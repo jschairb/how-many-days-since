@@ -1,0 +1,28 @@
+/* @font-face { */
+/*   font-family: "ghettomarquee"; */
+/*   src: url(/fonts/ghettomarquee) format("truetype"); */
+/* } */
+
+body {
+    font-family: Arial, Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    /* font-family: "ghettomarquee", sans-serif; */
+    font-size: 36px;
+    text-align: center;
+}
+
+#content {
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#days_since {
+    font-size: 24px;
+}
+
+#days_count {
+    font-size: 256px;
+}
