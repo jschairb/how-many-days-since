@@ -1,6 +1,6 @@
 require 'sinatra'
 
-require 'active_support/all'
+require 'active_support/core_ext/date/conversions'
 
 set :last_defeat, "11/23/2003"
 
