@@ -1,2 +1,2 @@
 sinatra --version 1.2.3
-active_support
+activesupport
