@@ -1,20 +1,40 @@
-body {
-    font-family: Arial, Arial, Helvetica, sans-serif;
+@font-face {
+    font-family: 'Danzig';
+    src: url('giant_gila-webfont.eot');
+    src: url('giant_gila-webfont.eot?#iefix') format('eot'),
+         url('giant_gila-webfont.woff') format('woff'),
+         url('giant_gila-webfont.ttf') format('truetype'),
+         url('giant_gila-webfont.svg#webfontPFzWzLCi') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
-p { margin: 0; padding: 0; }
+body {
+    font-family: Arial, Arial, Helvetica, sans-serif;
+    width: 640px;
+    margin: 0 auto;
+}
+
+h1,a,a:visited {
+    color: #BE2137;
+}
 
 h1 {
-    font-size: 36px;
+    font-family: Impact, Charcoal, sans-serif;
+    text-shadow: 2px 2px 2px #8F3642;
+    font-size: 64px;
     text-align: center;
     margin-bottom: 0;
 }
 
-#content {
-    width: 800px;
-    margin: 0 auto;
+#content, #footer {
     text-align: center;
 }
+
+p#phrase, div#footer { margin: 1em; }
+
+p#phrase { font-weight: bold; }
 
 #days_since {
     font-size: 24px;
@@ -23,4 +43,9 @@ h1 {
 
 #days_count {
     font-size: 256px;
+    text-shadow: 4px 4px 4px #808080;
+}
+
+a span.danzig, a:visited span.danzig {
+    font-family: 'Danzig', Arial, sans-serif;
 }
