@@ -2,10 +2,11 @@ require 'sinatra'
 
 require 'active_support/core_ext/date/conversions'
 
-set :last_defeat, "11/23/2003"
+#set :last_defeat, "11/23/2003"
+set :last_defeat, "11/26/2011"
 
 get '/' do
-  @days_since = (Date.civil(2003,11,23) - Date.parse(Time.now.to_s)).to_i.abs
+  @days_since = (Date.civil(2011,11,26) - Date.parse(Time.now.to_s)).to_i.abs
   @title = "How many days since Michigan has beaten Ohio State?"
 
   Time.zone = "Eastern Time (US & Canada)"
@@ -50,5 +51,5 @@ __END__
 
 @@index
 <p id="days_since"><span id="days_count"><%= @days_since %></span> days.</p>
-<p id="logo"><img src="pitiful-michigan-fans.jpg" /></p>
+<p id="logo"><img src="mushroom-cloud.jpg" /></p>
 <p id="phrase">It's <span id="time"><%= @time %></span> in Columbus and Michigan still sucks.</p>
