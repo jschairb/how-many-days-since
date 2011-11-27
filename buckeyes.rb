@@ -2,7 +2,7 @@ require 'sinatra'
 
 require 'active_support/core_ext/date/conversions'
 
-set :last_defeat, "11/23/2003"
+set :last_defeat, "11/26/2011"
 
 get '/' do
   @days_since = (Date.civil(2003,11,23) - Date.parse(Time.now.to_s)).to_i.abs
