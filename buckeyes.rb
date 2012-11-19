@@ -51,5 +51,5 @@ __END__
 
 @@index
 <p id="days_since"><span id="days_count"><%= @days_since %></span> days.</p>
-<p id="logo"><img src="mushroom-cloud.jpg" /></p>
+<p id="logo"><img src="pitiful-michigan-fans.jpg" /></p>
 <p id="phrase">It's <span id="time"><%= @time %></span> in Columbus and Michigan still sucks.</p>
