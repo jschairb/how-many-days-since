@@ -3,8 +3,13 @@ require 'sinatra'
 require 'active_support/core_ext/time'
 require 'active_support/core_ext/date/conversions'
 
-#set :last_defeat, "11/23/2003"
-set :last_defeat, "11/26/2011"
+helpers do
+  def random_image_path
+    images = Dir.glob("public/images/*.{gif,jpg,png}").
+      map { |f| f.gsub("public/", "") }
+    images.sample
+  end
+end
 
 get '/' do
   @days_since = (Date.civil(2011,11,26) - Date.parse(Time.now.to_s)).to_i.abs
@@ -12,6 +17,8 @@ get '/' do
 
   Time.zone = "Eastern Time (US & Canada)"
   @time = Time.zone.now.strftime("%I:%M %p")
+
+  @image = random_image_path
 
   erb :index
 end
@@ -52,5 +59,5 @@ __END__
 
 @@index
 <p id="days_since"><span id="days_count"><%= @days_since %></span> days.</p>
-<p id="logo"><img src="pitiful-michigan-fans.jpg" /></p>
+<p id="logo"><img src="<%= @image %>" /></p>
 <p id="phrase">It's <span id="time"><%= @time %></span> in Columbus and Michigan still sucks.</p>
