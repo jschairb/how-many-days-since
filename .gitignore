@@ -1,2 +1,6 @@
 *.DS_Store
 *.rvmrc
+node_modules/
+.astro/
+dist/
+.env

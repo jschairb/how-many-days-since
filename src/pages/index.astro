@@ -1,0 +1,103 @@
+---
+import fs from 'node:fs';
+
+const title = 'How many days since Michigan has beaten Ohio State?';
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
+const referenceDate = new Date('2011-11-26T05:00:00.000Z');
+const buildNow = new Date();
+const daysSince = Math.max(
+  Math.floor((buildNow.getTime() - referenceDate.getTime()) / MS_PER_DAY),
+  0
+);
+
+const easternFormatter = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'America/New_York',
+  hour: 'numeric',
+  minute: '2-digit',
+});
+const formattedTime = easternFormatter.format(buildNow);
+
+const imageDirectory = new URL('../../public/images/', import.meta.url);
+const imageFiles = fs
+  .readdirSync(imageDirectory)
+  .filter((file) => file.match(/\.(gif|jpe?g|png)$/i));
+const initialImage = imageFiles[0] ?? '';
+const imageListJSON = JSON.stringify(imageFiles);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/reset.css" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h1>{title}</h1>
+    <div id="content">
+      <p id="days_since"><span id="days_count">{daysSince}</span> days.</p>
+      <p id="logo">
+        {initialImage ? (
+          <img
+            id="logo-image"
+            src={`/images/${initialImage}`}
+            alt="Celebratory Buckeye"
+            loading="lazy"
+          />
+        ) : (
+          ''
+        )}
+      </p>
+      <p id="phrase">
+        It's <span id="time">{formattedTime}</span> in Columbus and Michigan still sucks.
+      </p>
+    </div>
+    <div id="footer">
+      an <a href="https://twitter.com/jschairb">@<span class="danzig">jschairb</span></a> joint
+    </div>
+    <script type="module">
+      const targetDate = new Date('2011-11-26T05:00:00Z');
+      const msPerDay = 24 * 60 * 60 * 1000;
+      const images = {imageListJSON};
+
+      const formatEasternTime = (date) =>
+        new Intl.DateTimeFormat('en-US', {
+          timeZone: 'America/New_York',
+          hour: 'numeric',
+          minute: '2-digit',
+        }).format(date);
+
+      const updateMetrics = () => {
+        const now = new Date();
+        const diffInDays = Math.max(
+          Math.floor((now.getTime() - targetDate.getTime()) / msPerDay),
+          0
+        );
+
+        const daysCount = document.getElementById('days_count');
+        const timeEl = document.getElementById('time');
+
+        if (daysCount) {
+          daysCount.textContent = diffInDays.toString();
+        }
+
+        if (timeEl) {
+          timeEl.textContent = formatEasternTime(now);
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const imageEl = document.getElementById('logo-image');
+        if (imageEl && images.length > 0) {
+          const randomImage = images[Math.floor(Math.random() * images.length)];
+          imageEl.src = `/images/${randomImage}`;
+        }
+
+        updateMetrics();
+        setInterval(updateMetrics, 60 * 1000);
+      });
+    </script>
+  </body>
+</html>
