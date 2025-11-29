@@ -66,19 +66,25 @@ a span.danzig, a:visited span.danzig {
 /* Bottom Navigation Styles */
 #bottom-nav {
     text-align: center;
-    margin: 2em 0 1em 0;
-    padding: 1em 0;
-    border-top: 2px solid #BE2137;
+    margin: 2em 0 1em 0 !important;
+    padding: 1em 0 !important;
+    border-top: 2px solid #BE2137 !important;
+    background: transparent !important;
+    display: block !important;
 }
 
 #bottom-nav a {
-    font-size: 1.2em;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 0.5em 1em;
-    display: inline-block;
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    padding: 0.5em 1em !important;
+    display: inline-block !important;
+    color: #BE2137 !important;
+    background: transparent !important;
+    margin: 0 !important;
+    vertical-align: baseline !important;
 }
 
 #bottom-nav a:hover {
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
