@@ -1,6 +1,6 @@
 ---
 const title = 'The Rivalry: A Buckeye Perspective';
-const description = 'Tracking the restoration of order in the greatest rivalry in sports.';
+const description = 'Complete history and statistics of The Game.';
 const siteUrl = 'https://howmanydayssincemichiganbeatohiostate.com';
 const ogImage = `${siteUrl}/og/rivalry.png`;
 const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
@@ -9,8 +9,8 @@ const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     
@@ -32,7 +32,6 @@ const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
     <link rel="stylesheet" href="/reset.css?v=3" />
     <link rel="stylesheet" href="/style.css?v=3" />
     
-    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     {gaMeasurementId && (
@@ -48,215 +47,157 @@ const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
     )}
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Inter:wght@400;600&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #666666; /* Grey */
-            color: #1c1917;
-            max-width: 100% !important; /* Override style.css max-width for full-width layout */
-            padding: 0 !important; /* Remove padding for full-width sections */
-        }
-
-        h1, h2, h3, .serif {
-            font-family: 'Roboto Slab', serif;
-        }
-
-        .bg-osu { background-color: #BB0000; } /* Scarlet */
-        .text-osu { color: #BB0000; }
-        .border-osu { border-color: #BB0000; }
-        .bg-mich { background-color: #00274c; }
-        .text-mich { color: #00274c; }
-        .bg-grey { background-color: #666666; }
-
-        .chart-container {
-            position: relative;
+        .rivalry-table {
             width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 350px;
-            max-height: 400px;
+            border-collapse: collapse;
+            margin: 2rem 0;
         }
-
-        @media (max-width: 640px) {
-            .chart-container {
-                height: 280px;
-            }
+        
+        .rivalry-table th {
+            background-color: #BE2137;
+            color: white;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .rivalry-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .rivalry-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .osu-win {
+            color: #BE2137;
+            font-weight: bold;
+        }
+        
+        .mich-win {
+            color: #00274c;
+            font-weight: bold;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 1rem 0;
+            border: 2px solid #BE2137;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .chart-container {
+            margin: 2rem 0;
+            max-width: 100%;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-left: 4px solid #BE2137;
+        }
+        
+        .stat-card h3 {
+            font-size: 0.875rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #BE2137;
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body>
 
-<!-- Navigation -->
-<nav class="bg-stone-900 text-stone-100 shadow-lg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center">
-            <div class="flex items-center">
-                <a href="/" class="text-2xl font-bold serif tracking-wider text-white hover:text-red-400 transition">THE <span class="text-red-500">GAME</span></a>
-            </div>
-            <div class="hidden md:flex space-x-8">
-                <button onclick="scrollToSection('counter')" class="hover:text-red-400 transition">The Count</button>
-                <button onclick="scrollToSection('dominance')" class="hover:text-red-400 transition">Modern Era</button>
-                <button onclick="scrollToSection('history')" class="hover:text-red-400 transition">History</button>
-                <button onclick="scrollToSection('data')" class="hover:text-red-400 transition">Archives</button>
-            </div>
-        </div>
-    </div>
-</nav>
-
-<!-- Hero / The Counter -->
-<header id="counter" class="bg-white border-b border-stone-200">
-    <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-4">Days Since Michigan Beat Ohio State</h1>
-        <p class="text-stone-500 text-lg mb-8 max-w-2xl mx-auto">
-            Tracking the restoration of order in the greatest rivalry in sports. Following the 2025 victory, the clock has been reset in Columbus's favor.
+    <h1>The Rivalry: A Buckeye Perspective</h1>
+    
+    <div id="content">
+        <p style="text-align: center; margin: 2rem 0;">
+            <strong>Days Since Michigan Beat Ohio State:</strong><br>
+            <span id="days-count" style="font-size: 3rem; color: #BE2137; font-weight: bold;">0</span>
         </p>
         
-        <div class="inline-block bg-stone-100 border-4 border-osu rounded-xl p-8 shadow-inner">
-            <div id="days-count" class="text-7xl md:text-9xl font-black text-osu tabular-nums tracking-tighter">
-                0
+        <p style="text-align: center; margin-bottom: 2rem;">
+            <strong>Last Michigan Win:</strong> November 30, 2024<br>
+            <strong style="color: #BE2137;">Most Recent Result:</strong> Ohio State 27, Michigan 9 (Nov 29, 2025)
+        </p>
+        
+        <h2>Key Statistics</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Top 5 Matchups</h3>
+                <div class="value">7-6-1</div>
+                <p>Advantage: Ohio State</p>
             </div>
-            <div class="text-stone-500 font-medium mt-2 uppercase tracking-widest">Days</div>
+            <div class="stat-card">
+                <h3>21st Century</h3>
+                <div class="value">18</div>
+                <p>OSU Wins Since 2000</p>
+            </div>
+            <div class="stat-card">
+                <h3>Game of Century</h3>
+                <div class="value">42-39</div>
+                <p>#1 OSU vs #2 Mich (2006)</p>
+            </div>
         </div>
         
-        <div class="mt-8 text-stone-600">
-            <span class="font-bold">Last Michigan Win:</span> November 30, 2024 <br>
-            <span class="font-bold text-osu">Most Recent Result:</span> Ohio State 27, Michigan 9 (Nov 29, 2025)
+        <h2>Cumulative Wins (1897-2025)</h2>
+        <div class="chart-container">
+            <canvas id="cumulativeChart" style="max-height: 300px;"></canvas>
         </div>
+        
+        <h2>Dominance by Decade</h2>
+        <div class="chart-container">
+            <canvas id="decadeChart" style="max-height: 300px;"></canvas>
+        </div>
+        
+        <h2>Top 5 Matchup Winners</h2>
+        <div class="chart-container">
+            <canvas id="top5Chart" style="max-height: 250px;"></canvas>
+        </div>
+        
+        <h2>Complete Game History</h2>
+        <input type="text" id="gameSearch" class="search-box" placeholder="Search by year, winner, or location...">
+        
+        <table class="rivalry-table">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Date</th>
+                    <th>Winner</th>
+                    <th>Score</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody id="gameTableBody">
+                <!-- Data populated by JS -->
+            </tbody>
+        </table>
+        <div id="noResults" style="display: none; text-align: center; padding: 2rem;">No games found matching your search.</div>
     </div>
-</header>
-
-<!-- Main Content -->
-<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16 w-full">
-
-    <!-- Section 1: The Modern Shift -->
-    <section id="dominance">
-        <div class="mb-8">
-            <h2 class="text-3xl font-bold text-white mb-2 border-l-4 border-osu pl-4">The Shift of Power</h2>
-            <p class="text-stone-100 max-w-3xl">
-                While Michigan claims historical superiority based on wins accumulated before the invention of the forward pass, the modern era tells a different story. Since 1950, and emphatically in the 21st century, Ohio State has been the premier program.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Chart 1: Cumulative Wins -->
-            <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
-                <h3 class="text-xl font-bold mb-4 text-stone-800">Cumulative Wins (1897 - 2025)</h3>
-                <p class="text-sm text-stone-500 mb-4 h-12">
-                    Observe the trajectory. Michigan's early lead (blue) has been steadily eroded by Ohio State's consistent excellence (red) in the modern era.
-                </p>
-                <div class="chart-container">
-                    <canvas id="cumulativeChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Chart 2: Decades -->
-            <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
-                <h3 class="text-xl font-bold mb-4 text-stone-800">Dominance by Era</h3>
-                <p class="text-sm text-stone-500 mb-4 h-12">
-                    Michigan owned the early 1900s. However, Ohio State has won the majority of games in the 21st century, turning the tide of the rivalry.
-                </p>
-                <div class="chart-container">
-                    <canvas id="decadeChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 2: High Stakes -->
-    <section id="history" class="bg-stone-100 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-12">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-8 text-center">
-                <h2 class="text-3xl font-bold text-stone-900 mb-2">When It Matters Most</h2>
-                <p class="text-stone-600 max-w-2xl mx-auto">
-                    In "The Game," rankings often get thrown out the window. However, when both teams are at their peak (Ranked Top 5), Ohio State holds the edge.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                <!-- Stats Cards -->
-                <div class="space-y-4">
-                    <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-osu">
-                        <h4 class="text-sm font-bold text-stone-400 uppercase">Top 5 Matchups Record</h4>
-                        <p class="text-3xl font-bold text-stone-800">7 - 6 - 1</p>
-                        <p class="text-xs text-stone-500">Advantage: Ohio State</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-osu">
-                        <h4 class="text-sm font-bold text-stone-400 uppercase">#1 vs #2 (2006)</h4>
-                        <p class="text-3xl font-bold text-osu">OSU 42 - 39</p>
-                        <p class="text-xs text-stone-500">The "Game of the Century"</p>
-                    </div>
-                </div>
-
-                <!-- Chart 3: Top 5 Breakdown -->
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <h3 class="text-lg font-bold mb-2 text-center text-stone-800">Top 5 Matchup Winners</h3>
-                    <div class="chart-container" style="height: 250px;">
-                        <canvas id="top5Chart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Stats Cards -->
-                <div class="space-y-4">
-                    <div class="bg-white p-6 rounded-lg shadow-sm border-r-4 border-osu md:text-right">
-                        <h4 class="text-sm font-bold text-stone-400 uppercase">21st Century Wins</h4>
-                        <p class="text-3xl font-bold text-stone-800">18 Wins</p>
-                        <p class="text-xs text-stone-500">Since 2000 (OSU)</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border-r-4 border-osu md:text-right">
-                        <h4 class="text-sm font-bold text-stone-400 uppercase">Avg Score (Last 10 Games)</h4>
-                        <p class="text-3xl font-bold text-stone-800">33.5 Pts</p>
-                        <p class="text-xs text-stone-500">Buckeye Offense</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 3: The Archives -->
-    <section id="data">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-6">
-            <div>
-                <h2 class="text-3xl font-bold text-white mb-2 border-l-4 border-stone-100 pl-4">The Archives</h2>
-                <p class="text-stone-100 max-w-xl">
-                    Explore the complete history of the rivalry. Use the search bar to find specific years, locations, or scores.
-                </p>
-            </div>
-            <div class="mt-4 md:mt-0 w-full md:w-auto">
-                <input type="text" id="gameSearch" placeholder="Search year, winner, or location..." 
-                       class="w-full md:w-64 px-4 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:outline-none shadow-sm">
-            </div>
-        </div>
-
-        <div class="overflow-x-auto bg-white rounded-lg shadow border border-stone-200">
-            <table class="min-w-full divide-y divide-stone-200">
-                <thead class="bg-stone-50">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-stone-500 uppercase tracking-wider">Year</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-stone-500 uppercase tracking-wider">Date</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-stone-500 uppercase tracking-wider">Winner</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-stone-500 uppercase tracking-wider">Score</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-stone-500 uppercase tracking-wider">Location</th>
-                    </tr>
-                </thead>
-                <tbody id="gameTableBody" class="bg-white divide-y divide-stone-200 text-sm">
-                    <!-- Data populated by JS -->
-                </tbody>
-            </table>
-        </div>
-        <div id="noResults" class="hidden text-center py-8 text-stone-100">No games found matching your search.</div>
-    </section>
-
-</main>
-
-<footer class="bg-stone-900 text-stone-400 py-8">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-        <p class="mb-2">How Many Days Since Michigan Has Beaten Ohio State?</p>
-        <p class="text-xs">Data provided for historical research purposes. Rankings based on AP Poll (pre-2014) and CFP (post-2014).</p>
-        <p class="mt-4"><a href="/" class="hover:text-red-400 transition">← Back to Home</a></p>
+    
+    <nav id="bottom-nav">
+        <a href="/">← Back to Home</a>
+        <a href="/mo-carmen">Who is Mo Carmen?!</a>
+    </nav>
+    
+    <div id="footer">
+        an <a href="https://jschairb.dev">@<span class="danzig">jschairb</span></a> joint
     </div>
-</footer>
 
 <script is:inline src="/rivalry-data.js"></script>
 

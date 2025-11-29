@@ -288,22 +288,22 @@ function renderTable(data) {
     tbody.innerHTML = '';
     
     if (data.length === 0) {
-        document.getElementById('noResults').classList.remove('hidden');
+        document.getElementById('noResults').style.display = 'block';
         return;
     } else {
-        document.getElementById('noResults').classList.add('hidden');
+        document.getElementById('noResults').style.display = 'none';
     }
 
     data.forEach(g => {
         const tr = document.createElement('tr');
-        const winnerClass = g.winner === 'Ohio State' ? 'text-osu font-bold' : (g.winner === 'Michigan' ? 'text-mich font-bold' : 'text-stone-600');
+        const winnerClass = g.winner === 'Ohio State' ? 'osu-win' : (g.winner === 'Michigan' ? 'mich-win' : '');
         
         tr.innerHTML = `
-            <td class="px-6 py-4 whitespace-nowrap text-stone-900">${g.year}</td>
-            <td class="px-6 py-4 whitespace-nowrap text-stone-500">${g.date}</td>
-            <td class="px-6 py-4 whitespace-nowrap ${winnerClass}">${g.winner}</td>
-            <td class="px-6 py-4 whitespace-nowrap text-stone-700">${g.wScore} - ${g.lScore}</td>
-            <td class="px-6 py-4 whitespace-nowrap text-stone-500">${g.location}</td>
+            <td>${g.year}</td>
+            <td>${g.date}</td>
+            <td class="${winnerClass}">${g.winner}</td>
+            <td>${g.wScore} - ${g.lScore}</td>
+            <td>${g.location}</td>
         `;
         tbody.appendChild(tr);
     });
@@ -320,9 +320,6 @@ function filterGames() {
     renderTable(filtered);
 }
 
-function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-}
 
 // Initialize
 window.addEventListener('DOMContentLoaded', () => {
