@@ -4,6 +4,7 @@ import fs from 'node:fs';
 const title = 'How many days since Michigan has beaten Ohio State?';
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const referenceDate = new Date(import.meta.env.REFERENCE_DATE);
+const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
 const buildNow = new Date();
 const daysSince = Math.max(
   Math.floor((buildNow.getTime() - referenceDate.getTime()) / MS_PER_DAY),
@@ -35,6 +36,18 @@ const referenceDateString = import.meta.env.REFERENCE_DATE;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/reset.css" />
     <link rel="stylesheet" href="/style.css" />
+    
+    {gaMeasurementId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+        <script is:inline define:vars={{ gaMeasurementId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaMeasurementId);
+        </script>
+      </>
+    )}
   </head>
   <body>
     <h1>{title}</h1>
