@@ -4,7 +4,7 @@ import fs from 'node:fs';
 const title = 'How many days since Michigan has beaten Ohio State?';
 const description = 'A proudly Buckeye-forward site tracking the days since Michigan last beat Ohio State. Go Bucks!';
 const siteUrl = 'https://howmanydayssincemichiganbeatohiostate.com';
-const ogImage = `${siteUrl}/mushroom-cloud.jpg`;
+const ogImage = `${siteUrl}/images/home.png`;
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const referenceDate = new Date(import.meta.env.REFERENCE_DATE);
@@ -47,9 +47,9 @@ const imageRotationIntervalString = imageRotationInterval.toString();
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="800" />
-    <meta property="og:image:height" content="600" />
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
