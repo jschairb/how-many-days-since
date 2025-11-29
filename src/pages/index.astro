@@ -9,6 +9,7 @@ const ogImage = `${siteUrl}/mushroom-cloud.jpg`;
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const referenceDate = new Date(import.meta.env.REFERENCE_DATE);
 const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
+const imageRotationInterval = parseInt(import.meta.env.IMAGE_ROTATION_INTERVAL);
 const buildNow = new Date();
 const daysSince = Math.max(
   Math.floor((buildNow.getTime() - referenceDate.getTime()) / MS_PER_DAY),
@@ -29,6 +30,7 @@ const imageFiles = fs
 const initialImage = imageFiles[0] ?? '';
 const imageListJSON = JSON.stringify(imageFiles);
 const referenceDateString = import.meta.env.REFERENCE_DATE;
+const imageRotationIntervalString = imageRotationInterval.toString();
 ---
 
 <!DOCTYPE html>
@@ -97,10 +99,11 @@ const referenceDateString = import.meta.env.REFERENCE_DATE;
     <div id="footer">
       an <a href="https://jschairb.dev">@<span class="danzig">jschairb</span></a> joint
     </div>
-    <script type="module" define:vars={{ imageListJSON, referenceDateString }}>
+    <script type="module" define:vars={{ imageListJSON, referenceDateString, imageRotationIntervalString }}>
       const targetDate = new Date(referenceDateString);
       const msPerDay = 24 * 60 * 60 * 1000;
       const images = JSON.parse(imageListJSON);
+      const rotationInterval = parseInt(imageRotationIntervalString);
 
       const formatEasternTime = (date) =>
         new Intl.DateTimeFormat('en-US', {
@@ -137,11 +140,11 @@ const referenceDateString = import.meta.env.REFERENCE_DATE;
           currentImageIndex = Math.floor(Math.random() * images.length);
           imageEl.src = `/images/${images[currentImageIndex]}`;
           
-          // Rotate through images every 3 seconds
+          // Rotate through images at configured interval
           setInterval(() => {
             currentImageIndex = (currentImageIndex + 1) % images.length;
             imageEl.src = `/images/${images[currentImageIndex]}`;
-          }, 3000);
+          }, rotationInterval);
         }
 
         updateMetrics();
