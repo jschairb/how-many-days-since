@@ -19,6 +19,10 @@ export const { getStaticPaths, GET } = OGImageRoute({
       title: 'Mo Carmen',
       description: 'Born the moment Shawn Springs fell down in \'96',
     },
+    'rivalry': {
+      title: 'The Rivalry',
+      description: 'A Buckeye Perspective',
+    },
   },
   getImageOptions: (_path, page) => {
     return {
