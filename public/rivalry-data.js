@@ -125,14 +125,17 @@ const games = [
 
 // Counter update
 function updateCounter() {
+    const MS_PER_DAY = 24 * 60 * 60 * 1000;
     const today = new Date();
     const lastLossGame = games.find(g => g.winner === 'Michigan' && g.year === 2024);
     const lastLossDate = new Date(`${lastLossGame.date}, ${lastLossGame.year}`);
     
-    const diffTime = Math.abs(today - lastLossDate);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    const daysSince = Math.max(
+        Math.floor((today.getTime() - lastLossDate.getTime()) / MS_PER_DAY),
+        0
+    );
     
-    document.getElementById('days-count').innerText = diffDays;
+    document.getElementById('days-count').innerText = daysSince;
 }
 
 // Charts initialization
