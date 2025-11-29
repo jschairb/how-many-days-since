@@ -25,7 +25,7 @@ const formattedTime = easternFormatter.format(buildNow);
 const imageDirectory = new URL('../../public/images/', import.meta.url);
 const imageFiles = fs
   .readdirSync(imageDirectory)
-  .filter((file) => file.match(/\.(gif|jpe?g|png)$/i));
+  .filter((file: string) => file.match(/\.(gif|jpe?g|png)$/i));
 const initialImage = imageFiles[0] ?? '';
 const imageListJSON = JSON.stringify(imageFiles);
 const referenceDateString = import.meta.env.REFERENCE_DATE;
