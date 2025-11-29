@@ -1,7 +1,12 @@
 import { defineConfig } from 'astro/config';
 
+import robotsTxt from 'astro-robots-txt';
+
+import sitemap from '@astrojs/sitemap';
+
 export default defineConfig({
   site: 'https:/howmanydayssincemichiganbeatohiostate.com',
+
   // Last date Michigan beat Ohio State
   vite: {
     define: {
@@ -10,4 +15,6 @@ export default defineConfig({
       'import.meta.env.IMAGE_ROTATION_INTERVAL': JSON.stringify(5000), // Image rotation interval in milliseconds
     },
   },
+
+  integrations: [robotsTxt(), sitemap()],
 });
