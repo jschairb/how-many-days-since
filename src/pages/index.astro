@@ -72,7 +72,7 @@ const imageRotationIntervalString = imageRotationInterval.toString();
     )}
   </head>
   <body>
-    <h1 id="title">{title}</h1>
+    <h1>{title}</h1>
     <div id="content">
       <p id="days_since"><span id="days_count">{daysSince}</span> days.</p>
       <p id="logo">
@@ -154,41 +154,17 @@ const imageRotationIntervalString = imageRotationInterval.toString();
     <script>
       import { emojiBlast } from 'emoji-blast';
       
-      const runEmojiBlast = () => {
-        const element = document.getElementById("title");
-        
-        if (element) {
-          const getPosition = () => {
-            const rect = element.getBoundingClientRect();
-            return {
-              x: rect.left + rect.width / 2 + window.scrollX,
-              y: rect.top + rect.height / 2 + window.scrollY
-            };
-          };
-          
-          // Trigger emoji blast on page load
-          emojiBlast({
-            emojiCount: 20,
-            emojis: ["🅾️"],
-            position: getPosition
-          });
-          
-          // Also trigger on click
-          element.addEventListener('click', () => {
-            emojiBlast({
-              emojiCount: 20,
-              emojis: ["🅾️"],
-              position: getPosition
-            });
-          });
-        }
-      };
-      
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', runEmojiBlast);
-      } else {
-        runEmojiBlast();
-      }
+      // Trigger emoji blast on any click anywhere on the page
+      document.addEventListener('click', (event) => {
+        emojiBlast({
+          emojiCount: 20,
+          emojis: ["🅾️"],
+          position: {
+            x: event.clientX,
+            y: event.clientY
+          }
+        });
+      });
     </script>
   </body>
 </html>
