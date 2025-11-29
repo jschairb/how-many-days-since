@@ -300,13 +300,14 @@ function renderTable(data) {
     data.forEach(g => {
         const tr = document.createElement('tr');
         const winnerClass = g.winner === 'Ohio State' ? 'osu-win' : (g.winner === 'Michigan' ? 'mich-win' : '');
+        const cellStyle = 'border: 1px solid #BE2137 !important; padding: 0.75rem !important;';
         
         tr.innerHTML = `
-            <td>${g.year}</td>
-            <td>${g.date}</td>
-            <td class="${winnerClass}">${g.winner}</td>
-            <td>${g.wScore} - ${g.lScore}</td>
-            <td>${g.location}</td>
+            <td style="${cellStyle}">${g.year}</td>
+            <td style="${cellStyle}">${g.date}</td>
+            <td class="${winnerClass}" style="${cellStyle}">${g.winner}</td>
+            <td style="${cellStyle}">${g.wScore} - ${g.lScore}</td>
+            <td style="${cellStyle}">${g.location}</td>
         `;
         tbody.appendChild(tr);
     });
