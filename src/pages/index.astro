@@ -156,14 +156,16 @@ const imageRotationIntervalString = imageRotationInterval.toString();
       
       // Trigger emoji blast on any click anywhere on the page
       document.addEventListener('click', (event) => {
+        // Get the actual click position relative to the page, not the viewport
+        const x = event.pageX || event.clientX + window.scrollX;
+        const y = event.pageY || event.clientY + window.scrollY;
+        
         emojiBlast({
           emojiCount: 20,
           emojis: ["🅾️"],
-          position() {
-            return {
-              x: event.clientX,
-              y: event.clientY
-            };
+          position: {
+            x: x,
+            y: y
           }
         });
       });
