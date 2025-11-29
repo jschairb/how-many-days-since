@@ -12,8 +12,11 @@
 
 body {
     font-family: Arial, Arial, Helvetica, sans-serif;
-    width: 640px;
+    max-width: 640px;
+    width: 100%;
     margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 h1,a,a:visited {
@@ -23,7 +26,7 @@ h1,a,a:visited {
 h1 {
     font-family: Impact, Charcoal, sans-serif;
     text-shadow: 2px 2px 2px #8F3642;
-    font-size: 64px;
+    font-size: clamp(32px, 10vw, 64px);
     text-align: center;
     margin-bottom: 0;
 }
@@ -42,7 +45,7 @@ p#phrase { font-weight: bold; }
 }
 
 #days_count {
-    font-size: 256px;
+    font-size: clamp(80px, 20vw, 256px);
     text-shadow: 4px 4px 4px #808080;
 }
 
@@ -51,7 +54,7 @@ a span.danzig, a:visited span.danzig {
 }
 
 #logo-image {
-    max-width: 600px;
+    max-width: 100%;
     max-height: 400px;
     width: auto;
     height: auto;
