@@ -29,6 +29,8 @@ const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
     <meta property="twitter:image" content={ogImage} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/reset.css?v=3" />
+    <link rel="stylesheet" href="/style.css?v=3" />
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -52,6 +54,8 @@ const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
             font-family: 'Inter', sans-serif;
             background-color: #666666; /* Grey */
             color: #1c1917;
+            max-width: 100% !important; /* Override style.css max-width for full-width layout */
+            padding: 0 !important; /* Remove padding for full-width sections */
         }
 
         h1, h2, h3, .serif {
