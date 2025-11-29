@@ -139,40 +139,46 @@ const referenceDateString = import.meta.env.REFERENCE_DATE;
         setInterval(updateMetrics, 60 * 1000);
       });
     </script>
+    <script>
+      import { emojiBlast } from 'emoji-blast';
+      
+      const runEmojiBlast = () => {
+        const element = document.getElementById("title");
+        
+        if (element) {
+          // Trigger emoji blast on page load
+          emojiBlast({
+            emojiCount: 20,
+            emojis: ["🅾️"],
+            position() {
+              return {
+                x: element.offsetLeft + element.clientWidth / 2,
+                y: element.offsetTop + element.clientHeight / 2
+              };
+            }
+          });
+          
+          // Also trigger on click
+          element.addEventListener('click', () => {
+            emojiBlast({
+              emojiCount: 20,
+              emojis: ["🅾️"],
+              position() {
+                return {
+                  x: element.offsetLeft + element.clientWidth / 2,
+                  y: element.offsetTop + element.clientHeight / 2
+                };
+              }
+            });
+          });
+        }
+      };
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runEmojiBlast);
+      } else {
+        runEmojiBlast();
+      }
+    </script>
   </body>
 </html>
-<script>
-  import { emojiBlast } from 'emoji-blast';
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const element = document.getElementById("title");
-    
-    if (element) {
-      // Trigger emoji blast on page load
-      emojiBlast({
-        emojiCount: 20,
-        emojis: ["🅾️"],
-        position() {
-          return {
-            x: element.offsetLeft + element.clientWidth / 2,
-            y: element.offsetTop + element.clientHeight / 2
-          };
-        }
-      });
-      
-      // Also trigger on click
-      element.addEventListener('click', () => {
-        emojiBlast({
-          emojiCount: 20,
-          emojis: ["🅾️"],
-          position() {
-            return {
-              x: element.offsetLeft + element.clientWidth / 2,
-              y: element.offsetTop + element.clientHeight / 2
-            };
-          }
-        });
-      });
-    }
-  });
-</script>
