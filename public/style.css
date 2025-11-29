@@ -62,3 +62,22 @@ a span.danzig, a:visited span.danzig {
     display: block;
     margin: 0 auto;
 }
+
+#bottom-nav {
+    text-align: center;
+    margin: 2em 0 1em 0;
+    padding: 1em 0;
+    border-top: 2px solid #BE2137;
+}
+
+#bottom-nav a {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    display: inline-block;
+}
+
+#bottom-nav a:hover {
+    text-decoration: underline;
+}

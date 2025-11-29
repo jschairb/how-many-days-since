@@ -1,0 +1,116 @@
+---
+const title = 'Mo Carmen: The Mascot for a Dominance That Never Ends';
+const description = 'The anti-mascot for an era of undeniable truth: The Horn in the Dark.';
+const siteUrl = 'https://howmanydayssincemichiganbeatohiostate.com';
+const ogImage = `${siteUrl}/images/mo-carmen-smile.png`;
+const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${siteUrl}/mo-carmen`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={`${siteUrl}/mo-carmen`} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/reset.css" />
+    <link rel="stylesheet" href="/style.css" />
+    
+    {gaMeasurementId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+        <script is:inline define:vars={{ gaMeasurementId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaMeasurementId);
+        </script>
+      </>
+    )}
+  </head>
+  <body>
+    <h1>Mo Carmen</h1>
+    <h2 style="text-align: center; color: #BE2137; font-size: 1.5em; margin: 1em 0;">Born the moment Shawn Springs fell down in '96</h2>
+    
+    <div id="content">
+      <p id="mo-image">
+        <img src="/images/mo-carmen-smile.png" alt="Mo Carmen" style="max-width: 400px; max-height: 400px; width: auto; height: auto; object-fit: contain; display: block; margin: 0 auto;" />
+      </p>
+      
+      <div style="text-align: left; max-width: 600px; margin: 2em auto; line-height: 1.6;">
+        <p style="margin-bottom: 1em;">
+          Mo Carmen materialized in '96. Not in some focus group. Not on a marketing deck. He showed up the second Shawn Springs hit the grass and the Streets took off. While his more famous relative was doing his thing on the sidelines, Mo grabbed a trumpet and disappeared into a basement on South Campus.
+        </p>
+        
+        <p style="margin-bottom: 1em;">
+          He's the anti-mascot. No pom-poms, no choreography, no corporate sponsorships. Just a horn and a simple truth: <em>"If the note's right, it don't matter how wrong I play it."</em>
+        </p>
+        
+        <p style="margin-bottom: 1em;">
+          The note? The streak. And Mo's been playing it wrong—distorted, reverb-drenched, soulful—with <a href="https://rodeoreverbrecords.com/mariachi-sleepover/" target="_blank" rel="noopener noreferrer" style="color: #BE2137; font-weight: bold;">Mariachi Sleepover</a> since they started. No apologies. No explanation needed.
+        </p>
+        
+        <p style="margin-bottom: 1em;">
+          He's the black sheep of the Buckeye family. But even the black sheep knows the count. And while Ann Arbor waits for their next win, Mo's still here, playing that same plaintive trumpet over their silence.
+        </p>
+        
+        <p style="margin-bottom: 1em; font-weight: bold; text-align: center; font-size: 1.2em;">
+          The clock keeps turning. Mo keeps playing.
+        </p>
+      </div>
+      
+      <div style="max-width: 700px; margin: 3em auto; padding: 2em; background: #f5f5f5; border: 3px solid #BE2137;">
+        <h2 style="text-align: center; color: #BE2137; font-size: 2em; margin-bottom: 0.5em;">The Black Sheep Collection</h2>
+        <p style="text-align: center; font-style: italic; margin-bottom: 1.5em;">Four tees. Four moods. Play it wrong, play it loud.</p>
+        
+        <div style="text-align: center; margin: 2em 0;">
+          <img src="/images/products/mo-carmen-t-shirt.png" alt="Mo Carmen T-Shirt Collection" style="max-width: 100%; height: auto; border-radius: 8px;" />
+        </div>
+        
+        <div style="text-align: left; line-height: 1.6; margin-bottom: 1.5em;">
+          <p style="margin-bottom: 1em;">
+            Mo's not the one on the sidelines. He grabbed a trumpet, found <a href="https://rodeoreverbrecords.com/mariachi-sleepover/" target="_blank" rel="noopener noreferrer" style="color: #BE2137; font-weight: bold;">Mariachi Sleepover</a> in a basement somewhere, and never looked back.
+          </p>
+          
+          <p style="margin-bottom: 1em;">
+            The Black Sheep Collection: scowling, slouching, smooth, and blasting his horn into the night. Organic cotton. Built to last. No apologies.
+          </p>
+          
+          <p style="text-align: center; font-weight: bold; margin-bottom: 1em;">
+            Long live the black sheep.
+          </p>
+        </div>
+        
+        <div style="text-align: center;">
+          <a href="https://gwagrapplegear.com/collections/mo-carmen" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #BE2137; color: white; padding: 1em 2em; font-size: 1.3em; font-weight: bold; text-decoration: none; border-radius: 8px; margin-top: 1em;">
+            Shop the Collection →
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <nav id="bottom-nav">
+      <a href="/">← Back to the Count</a>
+    </nav>
+    
+    <div id="footer">
+      an <a href="https://jschairb.dev">@<span class="danzig">jschairb</span></a> joint
+    </div>
+  </body>
+</html>
