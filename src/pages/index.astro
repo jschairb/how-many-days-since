@@ -154,13 +154,13 @@ const imageRotationIntervalString = imageRotationInterval.toString();
     <script>
       import { emojiBlast } from 'emoji-blast';
       
-      // Trigger emoji blast on any click - exactly like the library's onclick example
+      // TEST: Force position to far left to verify it's working
       document.addEventListener('click', (event) => {
         emojiBlast({
           emojiCount: 20,
           emojis: ["🅾️"],
           position: {
-            x: event.clientX,
+            x: 50,
             y: event.clientY
           }
         });
