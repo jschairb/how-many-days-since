@@ -130,9 +130,18 @@ const referenceDateString = import.meta.env.REFERENCE_DATE;
 
       document.addEventListener('DOMContentLoaded', () => {
         const imageEl = document.getElementById('logo-image');
+        let currentImageIndex = 0;
+        
         if (imageEl && images.length > 0) {
-          const randomImage = images[Math.floor(Math.random() * images.length)];
-          imageEl.src = `/images/${randomImage}`;
+          // Start with a random image
+          currentImageIndex = Math.floor(Math.random() * images.length);
+          imageEl.src = `/images/${images[currentImageIndex]}`;
+          
+          // Rotate through images every 3 seconds
+          setInterval(() => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            imageEl.src = `/images/${images[currentImageIndex]}`;
+          }, 3000);
         }
 
         updateMetrics();
