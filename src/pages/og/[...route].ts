@@ -12,8 +12,8 @@ export const { getStaticPaths, GET } = OGImageRoute({
   param: 'route',
   pages: {
     home: {
-      title: `${daysSince} days`,
-      description: 'How many days since Michigan has beaten Ohio State?',
+      title: 'Ohio State 27 - Michigan 9',
+      description: 'November 29, 2025 • The Game',
     },
     'mo-carmen': {
       title: 'Mo Carmen',
