@@ -159,9 +159,11 @@ const imageRotationIntervalString = imageRotationInterval.toString();
         emojiBlast({
           emojiCount: 20,
           emojis: ["🅾️"],
-          position: {
-            x: event.pageX,
-            y: event.pageY
+          position() {
+            return {
+              x: event.clientX,
+              y: event.clientY
+            };
           }
         });
       });
