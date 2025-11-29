@@ -3,7 +3,7 @@ import fs from 'node:fs';
 
 const title = 'How many days since Michigan has beaten Ohio State?';
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
-const referenceDate = new Date('2011-11-26T05:00:00.000Z');
+const referenceDate = new Date(import.meta.env.REFERENCE_DATE);
 const buildNow = new Date();
 const daysSince = Math.max(
   Math.floor((buildNow.getTime() - referenceDate.getTime()) / MS_PER_DAY),
@@ -23,6 +23,7 @@ const imageFiles = fs
   .filter((file) => file.match(/\.(gif|jpe?g|png)$/i));
 const initialImage = imageFiles[0] ?? '';
 const imageListJSON = JSON.stringify(imageFiles);
+const referenceDateString = import.meta.env.REFERENCE_DATE;
 ---
 
 <!DOCTYPE html>
@@ -31,6 +32,7 @@ const imageListJSON = JSON.stringify(imageFiles);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/reset.css" />
     <link rel="stylesheet" href="/style.css" />
   </head>
@@ -55,12 +57,12 @@ const imageListJSON = JSON.stringify(imageFiles);
       </p>
     </div>
     <div id="footer">
-      an <a href="https://twitter.com/jschairb">@<span class="danzig">jschairb</span></a> joint
+      an <a href="https://jschairb.dev">@<span class="danzig">jschairb</span></a> joint
     </div>
-    <script type="module">
-      const targetDate = new Date('2011-11-26T05:00:00Z');
+    <script type="module" define:vars={{ imageListJSON, referenceDateString }}>
+      const targetDate = new Date(referenceDateString);
       const msPerDay = 24 * 60 * 60 * 1000;
-      const images = {imageListJSON};
+      const images = JSON.parse(imageListJSON);
 
       const formatEasternTime = (date) =>
         new Intl.DateTimeFormat('en-US', {

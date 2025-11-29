@@ -13,7 +13,7 @@ This is a proudly Buckeye-forward Astro site that keeps track of the number of d
 npm install
 ```
 
-Astro will install locally in `node_modules` along with the few other build-time dependencies the project needs.
+Astro will install locally in `node_modules` along with TypeScript and other build-time dependencies.
 
 ## Local Development
 
@@ -23,7 +23,7 @@ Start an interactive dev server with hot reloading:
 npm run dev
 ```
 
-The site will be served at the URL printed in the terminal (typically <http://localhost:4321>). You can edit the `src/pages/index.astro` page or the styles under `public/` and immediately see those changes reflected.
+The site will be served at the URL printed in the terminal (typically http://localhost:4321). You can edit the `src/pages/index.astro` page or the styles under `public/` and immediately see those changes reflected.
 
 ## Building for Production
 
@@ -37,11 +37,43 @@ Astro will emit the static site into `dist/`. You can preview the production bui
 npm run preview
 ```
 
+## Type Checking
+
+Run TypeScript type checking:
+
+```bash
+npm run check
+```
+
+## Configuration
+
+The reference date (last time Michigan beat Ohio State) is configured in `astro.config.mjs`:
+
+```javascript
+vite: {
+  define: {
+    'import.meta.env.REFERENCE_DATE': JSON.stringify('2024-11-30T05:00:00.000Z'),
+  },
+}
+```
+
+Update this date when needed to keep the counter accurate.
+
 ## Project Structure
 
 - `src/pages/index.astro` – The single page that renders the Buckeye propaganda, computes the days-since count, and randomizes the featured celebratory image.
-- `public/` – Static assets carried over from the original site, including the font, CSS, and triumphant Buckeye imagery.
-- `astro.config.mjs` – Minimal Astro configuration for the project.
+- `public/` – Static assets including the Block O favicon, fonts, CSS, and triumphant Buckeye imagery.
+- `public/images/` – Rotating collection of celebratory images displayed on the page.
+- `astro.config.mjs` – Astro configuration including the reference date and site URL.
+- `tsconfig.json` – TypeScript configuration extending Astro's strict preset.
+
+## Features
+
+- **Real-time Counter**: Displays days since the reference date, updating every minute
+- **Dynamic Time Display**: Shows current time in Columbus (America/New_York timezone)
+- **Random Image Rotation**: Randomly selects from celebratory images on each page load
+- **Responsive Design**: Works on all device sizes
+- **SVG Favicon**: Block O icon in scarlet and white
 
 ## Buckeye Pride
 
