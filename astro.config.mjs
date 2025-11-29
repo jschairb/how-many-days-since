@@ -5,7 +5,7 @@ import robotsTxt from 'astro-robots-txt';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https:/howmanydayssincemichiganbeatohiostate.com',
+  site: 'https://howmanydayssincemichiganhasbeatenohiostate.com',
 
   // Last date Michigan beat Ohio State
   vite: {
