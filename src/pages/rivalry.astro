@@ -32,6 +32,29 @@ const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
     <link rel="stylesheet" href="/reset.css?v=3" />
     <link rel="stylesheet" href="/style.css?v=3" />
     
+    <!-- Override reset.css for table borders -->
+    <style>
+        .rivalry-table,
+        .rivalry-table th,
+        .rivalry-table td {
+            border-style: solid !important;
+            border-color: #BE2137 !important;
+        }
+        
+        .rivalry-table {
+            border-width: 2px !important;
+        }
+        
+        .rivalry-table th {
+            border-width: 1px !important;
+            border-color: white !important;
+        }
+        
+        .rivalry-table td {
+            border-width: 1px !important;
+        }
+    </style>
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     {gaMeasurementId && (
