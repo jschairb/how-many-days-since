@@ -4,7 +4,7 @@ This is a proudly Buckeye-forward Astro site that keeps track of the number of d
 
 ## Requirements
 
-- Node.js 20.x (the Astro CLI and tooling expect a modern Node runtime)
+- Node.js 24.14.0 LTS (`.nvmrc` is committed — run `nvm use` to switch automatically)
 - npm 9+ (bundled with current Node releases)
 
 ## Getting Started
@@ -37,6 +37,15 @@ Astro will emit the static site into `dist/`. You can preview the production bui
 npm run preview
 ```
 
+## Tests
+
+Unit tests cover the core date-calculation and time-formatting utilities in `src/lib/days.ts`:
+
+```bash
+npm test           # single run
+npm run test:watch # watch mode
+```
+
 ## Type Checking
 
 Run TypeScript type checking:
@@ -61,6 +70,7 @@ Update this date when needed to keep the counter accurate.
 
 ## Project Structure
 
+- `src/lib/days.ts` – Pure utility functions: `calcDaysSince` and `formatEasternTime`. Tested by Vitest.
 - `src/pages/index.astro` – The single page that renders the Buckeye propaganda, computes the days-since count, and randomizes the featured celebratory image.
 - `public/` – Static assets including the Block O favicon, fonts, CSS, and triumphant Buckeye imagery.
 - `public/images/` – Rotating collection of celebratory images displayed on the page.
