@@ -85,6 +85,29 @@ test.describe('Rivalry Lab', () => {
     await expect(page.locator('[data-game-score]')).toContainText('FINAL');
   });
 
+  test('explains and plays one selected matchup without series controls or turning points', async ({ page }) => {
+    await page.goto('/rivalry-lab');
+    await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
+
+    const playOne = page.getByRole('button', { name: 'PLAY ONE' });
+    await expect(playOne).toBeVisible();
+    await expect(page.locator('[data-view="pregame"]')).toContainText(
+      'Pick this matchup, then play one simulated game.'
+    );
+    expect(await playOne.evaluate((button) => button.getBoundingClientRect().top)).toBeLessThan(
+      await page.locator('.pregame-explanation').evaluate((section) => section.getBoundingClientRect().top)
+    );
+    await expect(page.getByText(/BEST OF 10|SIM 100|1,000|10,000/i)).toHaveCount(0);
+
+    await playOne.click();
+    await expect(page.locator('[data-game-score]')).toContainText('FINAL');
+    await expect(page.getByText(/KEY TURNING POINT/i)).toHaveCount(0);
+    await expect(page.getByRole('button', { name: /POSTGAME|RUN AGAIN/i })).toHaveCount(0);
+    await expect(page.locator('[data-view="postgame"]')).toHaveCount(0);
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-single-game.png', fullPage: true });
+  });
+
   test('keeps Tape focused on selected-season profiles and moves derived matchup outputs to Pregame', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto('/rivalry-lab');
