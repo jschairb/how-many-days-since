@@ -36,6 +36,7 @@ test.describe('Count', () => {
     await expect(count).toBeVisible();
     expect(Number((await count.textContent())?.replaceAll(',', ''))).toBeGreaterThanOrEqual(0);
     await expect(page.getByText('ALL-TIME SERIES (M-OSU-T), 1897-2025')).toBeVisible();
+    await expect(page.getByText('NEXT GAME: November 28, 2026 - Columbus.')).toBeVisible();
   });
 
   test('keeps the Share ribbon aligned to the content and removes image captions', async ({ page }) => {
