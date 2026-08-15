@@ -32,6 +32,6 @@ const nav = [{ href: '/', label: 'THE COUNT', id: 'count' }, { href: '/record', 
   <body>
     <header class="site-header"><nav class="site-nav" aria-label="Site">{nav.map((item) => <a href={item.href} aria-current={active === item.id ? 'page' : undefined} class:list={{ active: active === item.id }}>{item.label}</a>)}</nav></header>
     <main class:list={{ 'site-main': true, lab: active === 'lab' }}><slot /></main>
-    {active !== 'lab' && <footer class="site-footer">an <a href="https://github.com/jschairb">@jschairb</a> joint, from Great Western Productions · © {new Date().getFullYear()}</footer>}
+    {active !== 'lab' && <footer class="site-footer">an <a href="https://github.com/jschairb">@jschairb</a> joint, from <a href="https://greatwesternproductions.com">Great Western Productions</a> · © {new Date().getFullYear()}</footer>}
   </body>
 </html>

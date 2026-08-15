@@ -45,7 +45,7 @@ const { referenceDate, siteUrl } = Astro.props;
   #share-clip {
     position: fixed;
     top: 0;
-    right: 0;
+    right: max(40px, calc((100vw - 1080px) / 2));
     width: 132px;
     height: 132px;
     overflow: hidden;
@@ -82,7 +82,7 @@ const { referenceDate, siteUrl } = Astro.props;
     pointer-events: auto;
     position: fixed;
     top: 104px;
-    right: 14px;
+    right: max(40px, calc((100vw - 1080px) / 2));
     display: flex;
     flex-direction: column;
     min-width: 172px;
@@ -179,11 +179,10 @@ const { referenceDate, siteUrl } = Astro.props;
   } from '../lib/share-graphic';
 
   // Straight off the site's stylesheet, so the card reads as the page.
-  const SCARLET = '#BE2137';
-  const HEADLINE_SHADOW = '#8F3642';
-  const COUNT_SHADOW = '#808080';
-  const HEADLINE_FONT = 'Impact, Charcoal, sans-serif';
-  const BODY_FONT = 'Arial, Helvetica, sans-serif';
+  const SCARLET = '#BB0000';
+  const MUTED = '#6B717C';
+  const HEADING_FONT = 'Archivo Black, Arial Black, Arial, sans-serif';
+  const BODY_FONT = 'IBM Plex Sans, Arial, Helvetica, sans-serif';
 
   const badge = document.getElementById('share-badge');
   const canvas = document.getElementById('share-canvas') as HTMLCanvasElement | null;
@@ -211,11 +210,8 @@ const { referenceDate, siteUrl } = Astro.props;
       }
     };
 
-    /**
-     * Repaints the card as a scaled-up copy of the homepage: scarlet Impact
-     * headline over a white field, the count in Arial with its grey drop
-     * shadow, then the Columbus line.
-     */
+    /** Repaints the card as the current Count page: clean type, scarlet
+     * counter, series panels, and the same restrained white space. */
     const draw = (days: number, now: Date) => {
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
@@ -224,31 +220,22 @@ const { referenceDate, siteUrl } = Astro.props;
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, SHARE_WIDTH, SHARE_HEIGHT);
 
-      // h1: Impact, scarlet, text-shadow 2px 2px 2px #8F3642 (scaled up).
       ctx.textAlign = 'center';
       ctx.textBaseline = 'alphabetic';
-      ctx.fillStyle = SCARLET;
-      ctx.shadowColor = HEADLINE_SHADOW;
-      ctx.shadowOffsetX = 3;
-      ctx.shadowOffsetY = 3;
-      ctx.shadowBlur = 3;
-
-      const headlineSize = 70;
-      ctx.font = `${headlineSize}px ${HEADLINE_FONT}`;
-      const lines = wrapText(SHARE_HEADLINE, SHARE_WIDTH - 140, (l) => ctx.measureText(l).width);
-      let y = 92;
+      ctx.fillStyle = '#111111';
+      ctx.font = `52px ${HEADING_FONT}`;
+      const lines = wrapText(SHARE_HEADLINE.toUpperCase(), SHARE_WIDTH - 180, (l) => ctx.measureText(l).width);
+      let y = 104;
       for (const line of lines) {
         ctx.fillText(line, SHARE_WIDTH / 2, y);
-        y += headlineSize * 1.06;
+        y += 58;
       }
 
-      // #days_count: Arial, text-shadow 4px 4px 4px #808080, with the small
-      // "days." tail riding the same baseline as it does on the page.
       const countText = formatCount(days);
-      const unitText = ' days.';
-      const unitSize = 46;
+      const unitText = ' DAYS';
+      const unitSize = 42;
 
-      const countSize = fitFontSize(SHARE_WIDTH - 320, 210, 110, (size) => {
+      const countSize = fitFontSize(SHARE_WIDTH - 300, 190, 110, (size) => {
         ctx.font = `${size}px ${BODY_FONT}`;
         return ctx.measureText(countText).width;
       });
@@ -258,19 +245,18 @@ const { referenceDate, siteUrl } = Astro.props;
       ctx.font = `${unitSize}px ${BODY_FONT}`;
       const unitWidth = ctx.measureText(unitText).width;
 
-      const baseline = 400;
+      const baseline = 342;
       let x = (SHARE_WIDTH - (countWidth + unitWidth)) / 2;
 
       ctx.textAlign = 'left';
-      ctx.fillStyle = '#000000';
+      ctx.fillStyle = SCARLET;
       ctx.font = `${countSize}px ${BODY_FONT}`;
-      ctx.shadowColor = COUNT_SHADOW;
-      ctx.shadowOffsetX = 6;
-      ctx.shadowOffsetY = 6;
-      ctx.shadowBlur = 6;
+      ctx.shadowColor = '#111111';
+      ctx.shadowOffsetX = 5;
+      ctx.shadowOffsetY = 5;
+      ctx.shadowBlur = 0;
       ctx.fillText(countText, x, baseline);
 
-      // The tail sits outside the shadowed span on the page, so drop the shadow.
       ctx.shadowColor = 'transparent';
       ctx.shadowOffsetX = 0;
       ctx.shadowOffsetY = 0;
@@ -278,18 +264,28 @@ const { referenceDate, siteUrl } = Astro.props;
       ctx.font = `${unitSize}px ${BODY_FONT}`;
       ctx.fillText(unitText, x + countWidth, baseline);
 
-      // p#phrase: bold Arial.
       ctx.textAlign = 'center';
-      ctx.font = `bold 34px ${BODY_FONT}`;
+      ctx.fillStyle = MUTED;
+      ctx.font = `500 25px ${BODY_FONT}`;
       ctx.fillText(
         `It's ${formatEasternTime(now)} in Columbus and Michigan still sucks.`,
         SHARE_WIDTH / 2,
-        492
+        402
       );
 
+      ctx.strokeStyle = '#111111';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(150, 452, 900, 98);
       ctx.fillStyle = SCARLET;
-      ctx.font = `26px ${BODY_FONT}`;
-      ctx.fillText(siteUrl.replace(/^https?:\/\//, ''), SHARE_WIDTH / 2, 566);
+      ctx.font = `32px ${HEADING_FONT}`;
+      ctx.fillText('OHIO STATE 27–9', 330, 512);
+      ctx.fillStyle = '#111111';
+      ctx.fillText('62–52–6', 600, 512);
+      ctx.fillStyle = SCARLET;
+      ctx.fillText('OSU SINCE 2012', 870, 512);
+      ctx.fillStyle = MUTED;
+      ctx.font = `20px ${BODY_FONT}`;
+      ctx.fillText(siteUrl.replace(/^https?:\/\//, ''), SHARE_WIDTH / 2, 592);
 
       xLink.href = buildXIntentUrl(days, siteUrl);
     };
