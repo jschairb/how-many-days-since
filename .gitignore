@@ -4,3 +4,7 @@ node_modules/
 .astro/
 dist/
 .env
+tmp/
+test-results/
+playwright-report/
+.claude/
