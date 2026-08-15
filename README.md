@@ -71,6 +71,8 @@ Update this date when needed to keep the counter accurate.
 ## Project Structure
 
 - `src/lib/days.ts` – Pure utility functions: `calcDaysSince` and `formatEasternTime`. Tested by Vitest.
+- `src/lib/share-graphic.ts` – Pure helpers for the shareable graphic: caption and filename builders, the X intent URL, and the text-layout math (`wrapText`, `fitFontSize`). Text measurement is injected, so the layout is tested in Node without a canvas.
+- `src/components/ShareGraphic.astro` – The corner Share badge: draws the 1200x630 card on a hidden `<canvas>` and routes the badge to the share sheet, clipboard, download, or X.
 - `src/pages/index.astro` – The single page that renders the Buckeye propaganda, computes the days-since count, and randomizes the featured celebratory image.
 - `public/` – Static assets including the Block O favicon, fonts, CSS, and triumphant Buckeye imagery.
 - `public/images/` – Rotating collection of celebratory images displayed on the page.
@@ -82,8 +84,30 @@ Update this date when needed to keep the counter accurate.
 - **Real-time Counter**: Displays days since the reference date, updating every minute
 - **Dynamic Time Display**: Shows current time in Columbus (America/New_York timezone)
 - **Random Image Rotation**: Randomly selects from celebratory images on each page load
+- **Shareable Graphic**: A 1200x630 PNG drawn in the browser with the current count, offered through the native share sheet, the clipboard, a download, or an X post intent
 - **Responsive Design**: Works on all device sizes
 - **SVG Favicon**: Block O icon in scarlet and white
+
+## Share Graphic
+
+A scarlet **Share** badge sits in the top-right corner: a diagonal corner ribbon on wide viewports, and a pill below 905px, where the 640px body column reaches the corner and a ribbon would land on the `h1`. The badge is the whole interface. The card never renders on the page, since a preview would only repeat what the visitor is already looking at.
+
+`ShareGraphic.astro` paints the card on a hidden `<canvas>` at load and again every minute, so the count holds up on a tab left open past midnight. It renders client-side, so no rebuild is needed to keep it current.
+
+The card is the homepage scaled to 1200x630, reusing the stylesheet's own values: the `h1` in Impact and `#BE2137` over its `#8F3642` shadow, the count in Arial with its `#808080` drop shadow and the small `days.` tail on the same baseline, then the Columbus line in bold. The count auto-shrinks from 210px if the digits ever outgrow the frame.
+
+Tapping the badge does whatever the browser supports:
+
+| Path | Available when | Result |
+| --- | --- | --- |
+| Native share sheet | `navigator.canShare` accepts files (mobile Safari, Android Chrome) | One tap: the sheet opens with the PNG attached |
+| Copy image | `ClipboardItem` and `navigator.clipboard.write` exist | PNG on the clipboard, ready to paste into a post |
+| Download PNG | Always | Saves `days-since-michigan-beat-ohio-state-<count>.png` |
+| Post on X | Always | Opens the X composer with the caption and site URL |
+
+Where the share sheet takes files the badge fires it directly. Everywhere else the badge opens a small menu with the other three, dismissed by Escape or a click outside.
+
+Note: the `og:image` meta tags still point at the static PNGs in `public/`. Those preview cards do not carry the day count, since a build-time image would go stale between deploys.
 
 ## Buckeye Pride
 
