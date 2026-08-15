@@ -1,22 +1,69 @@
 import { test, expect } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+
+const games = JSON.parse(readFileSync(new URL('../src/data/rivalry-games.json', import.meta.url), 'utf8')) as Array<{ year: number }>;
+const snapshot = JSON.parse(readFileSync(new URL('../src/data/rivalry-lab-snapshot.json', import.meta.url), 'utf8')) as { ratings: { teamSeasons: Array<{ teamId: string; season: number }> } };
 
 test.describe('Record', () => {
-  test('links covered team-season records and the score to CollegeFootballData', async ({ page }) => {
+  test('links Every Meeting to the internal game and covered team-season archives', async ({ page }) => {
     await page.goto('/record');
 
     const meeting = page.locator('[data-game^="2025"]');
     await expect(meeting.getByRole('link', { name: /Ohio State/ })).toHaveAttribute(
       'href',
-      'https://collegefootballdata.com/teams/ohio-state/2025'
+      '/teams/ohio-state/2025'
     );
     await expect(meeting.getByRole('link', { name: /Michigan/ })).toHaveAttribute(
       'href',
-      'https://collegefootballdata.com/teams/michigan/2025'
+      '/teams/michigan/2025'
     );
     await expect(meeting.getByRole('link', { name: '27-9' })).toHaveAttribute(
       'href',
-      /collegefootballdata\.com\/boxscore\//
+      '/record/2025'
     );
+  });
+
+  test('renders a covered game with its archival facts, internal team links, and adjacent meetings', async ({ page }) => {
+    await page.goto('/record/2025');
+
+    await expect(page).toHaveTitle(/2025 Ohio State vs Michigan/i);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://howmanydayssincemichiganhasbeatenohiostate.com/record/2025'
+    );
+    await expect(page.getByTestId('game-score')).toContainText('OHIO STATE 27');
+    await expect(page.getByTestId('game-score')).toContainText('9 MICHIGAN');
+    await expect(page.getByTestId('game-facts')).toContainText('Nov 29');
+    await expect(page.getByTestId('game-facts')).toContainText('Ann Arbor');
+    await expect(page.getByRole('link', { name: 'Ohio State 2025 season' })).toHaveAttribute('href', '/teams/ohio-state/2025');
+    await expect(page.getByRole('link', { name: 'Michigan 2025 season' })).toHaveAttribute('href', '/teams/michigan/2025');
+    await expect(page.getByRole('link', { name: /CFBD advanced box score/i })).toHaveAttribute('href', /collegefootballdata\.com\/boxscore\//);
+    await expect(page.getByRole('link', { name: /previous meeting: 2024/i })).toHaveAttribute('href', '/record/2024');
+    await expect(page.getByRole('link', { name: /next meeting/i })).toHaveCount(0);
+  });
+
+  test('renders every snapshot team-season with its available profile and canonical URL', async ({ page }) => {
+    await page.goto('/teams/ohio-state/2025');
+
+    await expect(page).toHaveTitle(/2025 Ohio State Season/i);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://howmanydayssincemichiganhasbeatenohiostate.com/teams/ohio-state/2025'
+    );
+    await expect(page.getByTestId('season-record')).toContainText('12-2');
+    await expect(page.getByTestId('season-profile')).toContainText('OBSERVED');
+    await expect(page.getByRole('link', { name: /2025 rivalry meeting/i })).toHaveAttribute('href', '/record/2025');
+  });
+
+  test('serves every generated game and snapshot team-season route', async ({ page }) => {
+    const routes = [
+      ...games.map((game) => `/record/${game.year}`),
+      ...snapshot.ratings.teamSeasons.map((season) => `/teams/${season.teamId}/${season.season}`),
+    ];
+
+    const responses = await Promise.all(routes.map((route) => page.request.get(route)));
+
+    expect(responses.filter((response) => !response.ok()).map((response) => response.url())).toEqual([]);
   });
 
   test('shows the observed drought statistics section and longest Ohio State drought', async ({ page }) => {
