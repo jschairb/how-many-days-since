@@ -1,7 +1,6 @@
 ---
 import SiteShell from '../components/SiteShell.astro';
 import games from '../data/rivalry-games.json';
-import { calculateTrend } from '../lib/record-trend';
 
 const totals = games.reduce(
   (value, game) => ({
@@ -11,33 +10,7 @@ const totals = games.reduce(
   }),
   { michigan: 0, ohioState: 0, ties: 0 }
 );
-const decades = Object.entries(
-  games.reduce<Record<string, { michigan: number; ohioState: number }>>((value, game) => {
-    const decade = `${Math.floor(game.year / 10) * 10}`;
-    value[decade] ??= { michigan: 0, ohioState: 0 };
-    if (game.winner === 'Michigan') value[decade].michigan++;
-    if (game.winner === 'Ohio State') value[decade].ohioState++;
-    return value;
-  }, {})
-)
-  .map(([year, wins]) => ({ year: Number(year), ...wins, margin: wins.ohioState - wins.michigan }))
-  .sort((a, b) => a.year - b.year);
-
-const allTimeTrend = calculateTrend(decades);
-const since2000 = decades.filter((decade) => decade.year >= 2000);
-const since2000Trend = calculateTrend(since2000);
-const chartHeight = 120;
-const chartWidth = decades.length * 100;
-const trendMargins = [
-  ...decades.map((decade) => decade.margin),
-  allTimeTrend.start,
-  allTimeTrend.end,
-  since2000Trend.start,
-  since2000Trend.end,
-];
-const yLimit = Math.max(1, ...trendMargins.map((margin) => Math.abs(margin)));
-const x = (year: number) => decades.findIndex((decade) => decade.year === year) * 100 + 50;
-const y = (margin: number) => chartHeight / 2 - (margin / yLimit) * (chartHeight / 2 - 10);
+const decades = Object.entries(games.reduce<Record<string, { michigan: number; ohioState: number }>>((value, game) => { const decade = `${Math.floor(game.year / 10) * 10}`; value[decade] ??= { michigan: 0, ohioState: 0 }; if (game.winner === 'Michigan') value[decade].michigan++; if (game.winner === 'Ohio State') value[decade].ohioState++; return value; }, {})).sort(([a], [b]) => Number(a) - Number(b));
 ---
 
 <SiteShell active="record" title="The Record | Ohio State vs Michigan" description="All 121 Ohio State-Michigan meetings from 1897 through 2025, with rivalry results by decade.">
@@ -50,21 +23,7 @@ const y = (margin: number) => chartHeight / 2 - (margin / yLimit) * (chartHeight
     </section>
     <section>
       <div class="section-title"><b>WINS BY DECADE</b><span>TREND: HISTORICAL RESULTS</span></div>
-      <div class="trend-key" aria-label="Trend line legend">
-        <span><i class="all-time"></i>ALL-TIME</span>
-        <span><i class:list={{ 'since-2000': true, mich: since2000Trend.direction === 'Michigan', osu: since2000Trend.direction === 'Ohio State' }}></i>SINCE 2000</span>
-      </div>
-      <div class="trend-chart">
-        <svg class="trend-lines" viewBox={`0 0 ${chartWidth} ${chartHeight}`} preserveAspectRatio="none" aria-label="Ohio State minus Michigan wins by decade trend lines" role="img">
-          <line class="zero" x1="0" x2={chartWidth} y1={y(0)} y2={y(0)} />
-          <line data-trend="all-time" class="all-time" x1={x(decades[0].year)} y1={y(allTimeTrend.start)} x2={x(decades.at(-1)!.year)} y2={y(allTimeTrend.end)} />
-          <line data-trend="since-2000" class:list={{ 'since-2000': true, mich: since2000Trend.direction === 'Michigan', osu: since2000Trend.direction === 'Ohio State' }} x1={x(since2000[0].year)} y1={y(since2000Trend.start)} x2={x(since2000.at(-1)!.year)} y2={y(since2000Trend.end)} />
-        </svg>
-        <div class="decades">
-          {decades.map((decade) => <div class="decade" title={`${decade.year}s: Michigan ${decade.michigan}, Ohio State ${decade.ohioState}`}><i class="m" style={`height:${decade.michigan * 9}px`}></i><i class="o" style={`height:${decade.ohioState * 9}px`}></i><small>{String(decade.year).slice(2)}</small></div>)}
-        </div>
-      </div>
-      <p class="trend-summary" data-trend-summary>Since 2000: <b class:list={{ mich: since2000Trend.direction === 'Michigan', osu: since2000Trend.direction === 'Ohio State' }}>{since2000Trend.direction}</b> trend. Positive decade margins favor Ohio State; negative margins favor Michigan.</p>
+      <div class="decades">{decades.map(([decade, wins]) => <div class="decade" title={`${decade}s: Michigan ${wins.michigan}, Ohio State ${wins.ohioState}`}><i class="m" style={`height:${wins.michigan * 9}px`}></i><i class="o" style={`height:${wins.ohioState * 9}px`}></i></div>)}</div>
     </section>
     <section>
       <div class="record-filter"><b>EVERY MEETING</b><input aria-label="Filter games" placeholder="Filter by year, team, or site..." data-filter /></div>
@@ -73,26 +32,3 @@ const y = (margin: number) => chartHeight / 2 - (margin / yLimit) * (chartHeight
   </section>
   <script>document.querySelector('[data-filter]')?.addEventListener('input', (event) => { const query = (event.currentTarget as HTMLInputElement).value.toLowerCase(); document.querySelectorAll<HTMLElement>('[data-game]').forEach((row) => row.hidden = !row.dataset.game!.includes(query)); });</script>
 </SiteShell>
-
-<style>
-  .trend-key { display:flex; gap:18px; justify-content:flex-end; margin:0 0 8px; color:#6b717c; font-size:11px; font-weight:700; letter-spacing:.04em; }
-  .trend-key span { display:flex; align-items:center; gap:6px; }
-  .trend-key i { display:block; width:18px; border-top:3px solid #6b717c; }
-  .trend-key i.since-2000.osu { border-color:#bb0000; }
-  .trend-key i.since-2000.mich { border-color:#00274c; }
-  .trend-chart { position:relative; height:145px; border-bottom:1px solid #d9dce1; }
-  .trend-lines { position:absolute; inset:0 0 25px; width:100%; height:120px; pointer-events:none; overflow:visible; }
-  .trend-lines .zero { stroke:#d9dce1; stroke-width:1; stroke-dasharray:3 4; }
-  .trend-lines .all-time { stroke:#6b717c; stroke-width:2; stroke-dasharray:4 4; }
-  .trend-lines .since-2000 { stroke-width:3; }
-  .trend-lines .since-2000.osu { stroke:#bb0000; }
-  .trend-lines .since-2000.mich { stroke:#00274c; }
-  .decades { position:absolute; inset:0 0 0; display:grid; grid-template-columns:repeat(13, 1fr); align-items:end; gap:3px; }
-  .decade { height:100%; display:flex; align-items:flex-end; justify-content:center; gap:2px; position:relative; padding-bottom:25px; }
-  .decade > i { width:min(14px, 36%); display:block; opacity:.86; }
-  .decade > i.m { background:#00274c; }
-  .decade > i.o { background:#bb0000; }
-  .decade small { position:absolute; bottom:5px; color:#6b717c; font-size:10px; }
-  .trend-summary { color:#6b717c; font-size:12px; margin:10px 0 30px; }
-  @media (max-width:640px) { .trend-key { justify-content:flex-start; } .trend-summary { line-height:1.45; } }
-</style>

@@ -1,14 +1,6 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Record', () => {
-  test('shows all-time and modern-era trend lines', async ({ page }) => {
-    await page.goto('/record');
-
-    await expect(page.locator('[data-trend="all-time"]')).toBeVisible();
-    await expect(page.locator('[data-trend="since-2000"]')).toBeVisible();
-    await expect(page.getByText(/since 2000: .*trend/i)).toBeVisible();
-  });
-
   test('renders all 121 meetings and filters them', async ({ page }) => {
     await page.goto('/record');
     await expect(page).toHaveTitle(/The Record/i);
