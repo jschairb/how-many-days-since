@@ -5,8 +5,22 @@
   "eraModelVersion": "srs-era-neutral-v1",
   "simulationEngineVersion": "drive-v1",
   "dataSnapshotVersion": "cfbd-1970-2025-v1",
-  "generatedAt": "2026-08-15T05:31:16.254Z",
+  "generatedAt": "2026-08-15T17:33:12.822Z",
   "neutralPointsPerTeam": 25.319940719998808,
+  "model": {
+    "matchupFormulaVersion": "srs-offense-defense-v1",
+    "driveModelVersion": "drive-v1",
+    "matchupAdvantageDivisor": 4,
+    "winProbabilityMarginScale": 13.5,
+    "scoreFloor": 3,
+    "scoreCeiling": 70,
+    "drivePossessions": 24,
+    "touchdownShare": 0.66,
+    "turnoverBaseRate": 0.17,
+    "turnoverScoreAdjustment": 250,
+    "turnoverFloor": 0.08,
+    "turnoverOnDownsRate": 0.1
+  },
   "ratings": {
     "environments": [
       {

@@ -1,8 +1,13 @@
 import snapshot from '../data/rivalry-lab-snapshot.json';
 import type { Rating } from './rivalry-lab';
+import type { ModelConfig } from './rivalry-lab';
 
 type Snapshot = typeof snapshot;
 export const rivalrySnapshot = snapshot as Snapshot;
+export function modelConfig(): ModelConfig {
+  const model = rivalrySnapshot.model as Omit<ModelConfig, 'neutralPointsPerTeam'>;
+  return { ...model, neutralPointsPerTeam: rivalrySnapshot.neutralPointsPerTeam };
+}
 
 export function validatePublicSnapshot(value: unknown): value is Snapshot {
   if (!value || typeof value !== 'object') throw new Error('Invalid public snapshot');

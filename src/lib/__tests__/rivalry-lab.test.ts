@@ -1,27 +1,28 @@
 import { describe, expect, it } from 'vitest';
 
-import { calculateMatchup, simulateGame, simulateSeries, validateMatchupInput } from '../rivalry-lab';
+import { calculateMatchup, simulateGame, simulateSeries, validateMatchupInput, type ModelConfig } from '../rivalry-lab';
 
 const ohioState = { teamId: 'ohio-state', season: 1995, overall: 8, offense: 12, defense: 5, scheduleStrength: 2 };
 const michigan = { teamId: 'michigan', season: 2023, overall: 12, offense: 7, defense: 10, scheduleStrength: 3 };
+const model: ModelConfig = { neutralPointsPerTeam: 25.32, matchupAdvantageDivisor: 4, winProbabilityMarginScale: 13.5, scoreFloor: 3, scoreCeiling: 70, drivePossessions: 24, touchdownShare: 0.66, turnoverBaseRate: 0.17, turnoverScoreAdjustment: 250, turnoverFloor: 0.08, turnoverOnDownsRate: 0.1 };
 
 describe('Rivalry Lab model', () => {
   it('returns complementary era-neutral win probabilities', () => {
-    const matchup = calculateMatchup(ohioState, michigan, 25.32);
+    const matchup = calculateMatchup(ohioState, michigan, model);
 
     expect(matchup.ohioState.winProbability + matchup.michigan.winProbability).toBeCloseTo(1);
     expect(matchup.michigan.expectedScore).toBeGreaterThan(matchup.ohioState.expectedScore);
   });
 
   it('replays a seeded game exactly', () => {
-    const matchup = calculateMatchup(ohioState, michigan, 25.32);
+    const matchup = calculateMatchup(ohioState, michigan, model);
 
-    expect(simulateGame(matchup, '19952023')).toEqual(simulateGame(matchup, '19952023'));
+    expect(simulateGame(matchup, '19952023', model)).toEqual(simulateGame(matchup, '19952023', model));
   });
 
   it('accounts for every game in a requested series', () => {
-    const matchup = calculateMatchup(ohioState, michigan, 25.32);
-    const series = simulateSeries(matchup, '19952023', 100);
+    const matchup = calculateMatchup(ohioState, michigan, model);
+    const series = simulateSeries(matchup, '19952023', 100, model);
 
     expect(series.games).toHaveLength(100);
     expect(series.ohioState.wins + series.michigan.wins + series.ties).toBe(100);
