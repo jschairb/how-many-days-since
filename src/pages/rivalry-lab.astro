@@ -2,4 +2,4 @@
 import SiteShell from '../components/SiteShell.astro'; import LabApp from '../components/RivalryLab.astro'; import { rivalrySnapshot } from '../lib/rivalry-snapshot';
 const osuYears = rivalrySnapshot.ratings.teamSeasons.filter((entry) => entry.teamId === 'ohio-state' && entry.srs).map((entry) => entry.season).sort((a,b) => b-a); const michYears = rivalrySnapshot.ratings.teamSeasons.filter((entry) => entry.teamId === 'michigan' && entry.srs).map((entry) => entry.season).sort((a,b) => b-a);
 ---
-<SiteShell active="lab" title="Rivalry Lab"><LabApp {osuYears} {michYears} /></SiteShell>
+<SiteShell active="lab" title="Rivalry Lab | Ohio State vs Michigan Historical Simulator" description="Compare historical Ohio State and Michigan teams with evidence-labeled ratings, seeded simulations, and era-neutral matchup analysis."><LabApp {osuYears} {michYears} /></SiteShell>
