@@ -1,0 +1,37 @@
+---
+import SiteShell from '../../../components/SiteShell.astro';
+import { formatSeasonRank, rivalrySnapshot, type TeamId, type TeamSeasonSnapshot } from '../../../lib/rivalry-snapshot';
+import { formatRecord, teamNameFor } from '../../../lib/rivalry-archive';
+import games from '../../../data/rivalry-games.json';
+
+export const prerender = true;
+export function getStaticPaths() {
+  return rivalrySnapshot.ratings.teamSeasons.map((entry) => ({ params: { team: entry.teamId, season: String(entry.season) }, props: { entry } }));
+}
+
+const entry = Astro.props.entry as TeamSeasonSnapshot;
+const teamId = entry.teamId as TeamId;
+const teamName = teamNameFor(teamId);
+const profile = entry.profile;
+const meeting = games.find((game) => game.year === entry.season);
+const rank = (value: number | null) => formatSeasonRank(value, profile?.derived.ratedTeams ?? null);
+const observation = (value: string | number | null, suffix = '') => value === null ? 'NOT REPORTED' : `${value}${suffix}`;
+---
+
+<SiteShell active="record" title={`${entry.season} ${teamName} Season | Ohio State vs Michigan`} description={`${teamName}'s ${entry.season} season record and available Rivalry Lab snapshot profile.`}>
+  <article class="archive-page team-archive">
+    <a class="archive-back" href="/record">← THE RECORD</a>
+    <header class={`archive-hero ${teamId === 'ohio-state' ? 'osu' : 'mich'}`}><span>RIVALRY SEASON ARCHIVE</span><h1>{entry.season} {teamName.toUpperCase()}</h1><strong data-testid="season-record">{formatRecord(entry)}</strong><small>{entry.games} GAMES · {entry.pointsFor} FOR · {entry.pointsAgainst} AGAINST · {entry.scoringMargin >= 0 ? '+' : ''}{entry.scoringMargin} MARGIN</small></header>
+    {profile ? <section class="archive-panel" data-testid="season-profile">
+      <div class="section-title"><h2>SEASON PROFILE</h2><span>SNAPSHOT DATA</span></div>
+      <div class="profile-section"><h3>OBSERVED</h3><dl><div><dt>Conference</dt><dd>{observation(profile.observed.conference)}</dd></div><div><dt>Division</dt><dd>{observation(profile.observed.division)}</dd></div><div><dt>Coach</dt><dd>{observation(profile.observed.coach)}</dd></div><div><dt>Final AP rank</dt><dd>{profile.observed.finalApRank === null ? 'UNRANKED / NOT REPORTED' : `NO. ${profile.observed.finalApRank}`}</dd></div><div><dt>CFBD postseason rank</dt><dd>{profile.observed.cfbdPostseasonRank === null ? 'NOT REPORTED' : `NO. ${profile.observed.cfbdPostseasonRank}`}</dd></div><div><dt>Scoring</dt><dd>{observation(profile.observed.pointsPerGame, ' PPG')} · {observation(profile.observed.pointsAllowedPerGame, ' ALLOWED/G')}</dd></div></dl></div>
+      <div class="profile-section"><h3>DERIVED SRS RANKINGS</h3><dl><div><dt>Overall</dt><dd>{rank(profile.derived.overallRank)}</dd></div><div><dt>Offense</dt><dd>{rank(profile.derived.offenseRank)}</dd></div><div><dt>Defense</dt><dd>{rank(profile.derived.defenseRank)}</dd></div><div><dt>Schedule strength</dt><dd>{rank(profile.derived.scheduleStrengthRank)}</dd></div></dl></div>
+      <p class="source-note"><b>SNAPSHOT CONFIDENCE:</b> {profile.confidence.score === null ? 'NOT SCORED' : `${profile.confidence.score}%`} {profile.confidence.reasons.length ? `· ${profile.confidence.reasons.join(' · ')}` : ''}</p>
+    </section> : <section class="archive-panel" data-testid="season-profile"><h2>SEASON PROFILE</h2><p>The public Rivalry Lab snapshot has no observed or derived profile for this available team season.</p></section>}
+    {meeting && <section class="archive-panel"><div class="section-title"><h2>RIVALRY MEETING</h2><span>ARCHIVED RESULT</span></div><p><a class="archive-result" href={`/record/${meeting.year}`}>{meeting.winner} {meeting.wScore}, {meeting.loser} {meeting.lScore} · {meeting.location}</a></p><a class="archive-button" href={`/record/${meeting.year}`}>{entry.season} RIVALRY MEETING →</a></section>}
+  </article>
+</SiteShell>
+
+<style>
+  .archive-page { max-width:900px; margin:auto; }.archive-back { display:inline-block; margin-bottom:24px; color:#111; font-size:12px; font-weight:700; letter-spacing:.05em; text-decoration:none; }.archive-hero { padding:28px; border:3px solid currentColor; }.archive-hero > span,.archive-hero small,.section-title span,.profile-section h3 { color:#6b717c; font-size:11px; font-weight:700; letter-spacing:.06em; }.archive-hero h1 { margin:8px 0; font:clamp(34px,6vw,62px)/.95 'Archivo Black'; letter-spacing:-.04em; }.archive-hero strong { display:block; font:clamp(42px,7vw,74px)/1 'Archivo Black'; }.archive-hero small { display:block; margin-top:12px; color:#111; }.archive-panel { margin-top:22px; padding:24px; border:3px solid #111; }.section-title { display:flex; justify-content:space-between; gap:16px; align-items:baseline; }.section-title h2,.archive-panel > h2 { margin:0; font:24px 'Archivo Black'; }.profile-section { margin-top:26px; }.profile-section h3 { margin:0 0 10px; }.profile-section dl { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); margin:0; border-top:1px solid #d9dce1; }.profile-section dl div { padding:12px 0; border-bottom:1px solid #d9dce1; }.profile-section dt { color:#6b717c; font-size:12px; }.profile-section dd { margin:3px 0 0; font-weight:700; }.source-note { margin:24px 0 0; color:#6b717c; font-size:12px; }.archive-result { color:#111; font:22px 'Archivo Black'; text-decoration:none; }.archive-button { display:inline-block; margin-top:12px; padding:10px 12px; background:#111; color:#fff; font-size:12px; font-weight:700; text-decoration:none; } @media (max-width:640px) { .archive-hero,.archive-panel { padding:18px; }.profile-section dl { grid-template-columns:1fr; } }
+</style>

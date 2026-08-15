@@ -2,7 +2,7 @@
 import SiteShell from '../components/SiteShell.astro';
 import games from '../data/rivalry-games.json';
 import { calculateRivalryRecord, type RivalryGame, type Team } from '../lib/rivalry-record';
-import { rivalrySnapshot } from '../lib/rivalry-snapshot';
+import { teamIdFor, teamSeasonFor } from '../lib/rivalry-archive';
 
 const totals = games.reduce(
   (value, game) => ({
@@ -22,13 +22,10 @@ const number = new Intl.NumberFormat('en-US');
 const formatDays = (days: number) => `${number.format(Math.round(days))} DAYS`;
 const formatResult = (game: RivalryGame) => `${game.winner} ${game.wScore}-${game.lScore} ${game.loser}`;
 const teamClass = (team: Team) => team === 'Ohio State' ? 'osu' : 'mich';
-const cfbdGamesBySeason = new Map(rivalrySnapshot.rivalryGames.map((game) => [game.season, game]));
-const teamId = (team: Team) => team === 'Ohio State' ? 'ohio-state' : 'michigan';
 const seasonRecord = (team: Team, season: number) => {
-  const record = rivalrySnapshot.ratings.teamSeasons.find((entry) => entry.teamId === teamId(team) && entry.season === season);
+  const record = teamSeasonFor(teamIdFor(team), season);
   return record ? `${record.wins}-${record.losses}${record.ties ? `-${record.ties}` : ''}` : 'Record unavailable';
 };
-const teamSeasonUrl = (team: Team, season: number) => `https://collegefootballdata.com/teams/${teamId(team)}/${season}`;
 ---
 
 <SiteShell active="record" title="The Record | Ohio State vs Michigan" description="All 121 Ohio State-Michigan meetings from 1897 through 2025, with rivalry results by decade.">
@@ -83,7 +80,7 @@ const teamSeasonUrl = (team: Team, season: number) => `https://collegefootballda
     </section>
     <section>
       <div class="record-filter"><b>EVERY MEETING</b><input aria-label="Filter games" placeholder="Filter by year, team, or site..." data-filter /></div>
-      <div class="game-table" data-games>{games.map((game) => { const drought = droughtHistoryByYear.get(game.year)!; const cfbdGame = cfbdGamesBySeason.get(game.year); const score = `${game.wScore}-${game.lScore}`; const winner = game.winner as Team; const loser = game.loser as Team; return <div class="game-row" data-game={`${game.year} ${game.winner} ${game.location}`.toLowerCase()}><b>{game.year}</b><span class="game-result"><b class:list={{ mich: game.winner === 'Michigan', osu: game.winner === 'Ohio State' }}>{cfbdGame ? <a class={`game-team-link ${teamClass(winner)}`} href={teamSeasonUrl(winner, game.year)} target="_blank" rel="noopener noreferrer">{game.winner} {seasonRecord(winner, game.year)}</a> : game.winner}</b><small class="game-drought" data-drought-context>{drought.losingTeam ? <><span class={teamClass(drought.losingTeam)}>{drought.losingTeam}</span> · {drought.daysSincePriorWin === null ? 'NO PRIOR WIN IN RECORD' : `${formatDays(drought.daysSincePriorWin)} SINCE PRIOR WIN`}</> : 'TIE · NO DROUGHT RESET'}</small></span><span>{cfbdGame ? <a class="game-score-link" href={cfbdGame.cfbdBoxscoreUrl} target="_blank" rel="noopener noreferrer">{score}</a> : score}</span><span>{cfbdGame ? <a class={`game-team-link ${teamClass(loser)}`} href={teamSeasonUrl(loser, game.year)} target="_blank" rel="noopener noreferrer">{game.loser} {seasonRecord(loser, game.year)}</a> : ''}</span></div>})}</div>
+      <div class="game-table" data-games>{games.map((game) => { const drought = droughtHistoryByYear.get(game.year)!; const score = `${game.wScore}-${game.lScore}`; const winner = game.winner as Team; const loser = game.loser as Team; const winnerSeason = teamSeasonFor(teamIdFor(winner), game.year); const loserSeason = teamSeasonFor(teamIdFor(loser), game.year); return <div class="game-row" data-game={`${game.year} ${game.winner} ${game.location}`.toLowerCase()}><b>{game.year}</b><span class="game-result"><b class:list={{ mich: game.winner === 'Michigan', osu: game.winner === 'Ohio State' }}>{winnerSeason ? <a class={`game-team-link ${teamClass(winner)}`} href={`/teams/${teamIdFor(winner)}/${game.year}`}>{game.winner} {seasonRecord(winner, game.year)}</a> : game.winner}</b><small class="game-drought" data-drought-context>{drought.losingTeam ? <><span class={teamClass(drought.losingTeam)}>{drought.losingTeam}</span> · {drought.daysSincePriorWin === null ? 'NO PRIOR WIN IN RECORD' : `${formatDays(drought.daysSincePriorWin)} SINCE PRIOR WIN`}</> : 'TIE · NO DROUGHT RESET'}</small></span><span><a class="game-score-link" href={`/record/${game.year}`}>{score}</a></span><span>{loserSeason ? <a class={`game-team-link ${teamClass(loser)}`} href={`/teams/${teamIdFor(loser)}/${game.year}`}>{game.loser} {seasonRecord(loser, game.year)}</a> : game.loser}</span></div>})}</div>
     </section>
   </section>
   <script>document.querySelector('[data-filter]')?.addEventListener('input', (event) => { const query = (event.currentTarget as HTMLInputElement).value.toLowerCase(); document.querySelectorAll<HTMLElement>('[data-game]').forEach((row) => row.hidden = !row.dataset.game!.includes(query)); });</script>
