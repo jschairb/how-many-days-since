@@ -5,12 +5,13 @@
   "eraModelVersion": "srs-era-neutral-v1",
   "simulationEngineVersion": "drive-v1",
   "dataSnapshotVersion": "cfbd-1970-2025-v1",
-  "generatedAt": "2026-08-15T19:47:03.303Z",
+  "generatedAt": "2026-08-15T21:00:04.187Z",
   "neutralPointsPerTeam": 25.319940719998808,
   "model": {
     "matchupFormulaVersion": "srs-offense-defense-v1",
     "driveModelVersion": "drive-v1",
     "matchupAdvantageDivisor": 4,
+    "pointsPerStandardDeviation": 5,
     "winProbabilityMarginScale": 13.5,
     "scoreFloor": 3,
     "scoreCeiling": 70,
@@ -323,6 +324,14 @@
           "defense": 20.808944879932785,
           "scheduleStrength": 17.58227868818899
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1970,
+          "overall": 1.8225014682768104,
+          "offense": 1.4714480122132771,
+          "defense": 1.774307889730035,
+          "scheduleStrength": 1.06547620712012
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -367,6 +376,14 @@
           "offense": 18.311265376126382,
           "defense": 18.66985401536152,
           "scheduleStrength": 19.98384754718234
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1970,
+          "overall": 1.8030834564884684,
+          "offense": 1.6260328959839498,
+          "defense": 1.5919148938449645,
+          "scheduleStrength": 1.2211215371583566
         },
         "profile": {
           "observed": {
@@ -413,6 +430,14 @@
           "defense": 17.962922080314584,
           "scheduleStrength": 11.15407881803793
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1971,
+          "overall": 2.174373611888056,
+          "offense": 2.100525091274543,
+          "defense": 1.7753447710168768,
+          "scheduleStrength": 0.7830298646073218
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -457,6 +482,14 @@
           "offense": 9.8244806670849,
           "defense": 16.292870045340837,
           "scheduleStrength": 15.720363120727868
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1971,
+          "overall": 1.4443480462346998,
+          "offense": 0.9663540951246452,
+          "defense": 1.6102870964158182,
+          "scheduleStrength": 1.1507662595298076
         },
         "profile": {
           "observed": {
@@ -503,6 +536,14 @@
           "defense": 21.2331955770059,
           "scheduleStrength": 12.294698115643286
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1972,
+          "overall": 1.755551786208046,
+          "offense": 0.9756332945797314,
+          "defense": 2.1157869095776425,
+          "scheduleStrength": 0.954885772210835
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -547,6 +588,14 @@
           "offense": 11.612368701930798,
           "defense": 11.709255501702136,
           "scheduleStrength": 13.413759638745468
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1972,
+          "overall": 1.3159740730314644,
+          "offense": 1.1468640491745068,
+          "defense": 1.1667715969342942,
+          "scheduleStrength": 1.0519240103765364
         },
         "profile": {
           "observed": {
@@ -593,6 +642,14 @@
           "defense": 22.137741187992738,
           "scheduleStrength": 17.328613491697187
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1973,
+          "overall": 2.1045002497880803,
+          "offense": 1.6629457780326653,
+          "defense": 2.0672702655907167,
+          "scheduleStrength": 1.2360291255997913
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -637,6 +694,14 @@
           "offense": 25.814724712602587,
           "defense": 22.354464874505922,
           "scheduleStrength": 16.44445972913296
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1973,
+          "overall": 2.463812216132387,
+          "offense": 2.2586027036632395,
+          "defense": 2.087508393282846,
+          "scheduleStrength": 1.169480262518842
         },
         "profile": {
           "observed": {
@@ -683,6 +748,14 @@
           "defense": 20.918286858060583,
           "scheduleStrength": 13.294959651673501
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1974,
+          "overall": 1.9513994725196337,
+          "offense": 1.4868726917383637,
+          "defense": 2.0098527179485943,
+          "scheduleStrength": 1.0540648927495984
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -727,6 +800,14 @@
           "offense": 21.94749777526864,
           "defense": 16.431232332599716,
           "scheduleStrength": 12.71348871325515
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1974,
+          "overall": 2.0843930949378406,
+          "offense": 2.1738455455689407,
+          "defense": 1.5787314318330452,
+          "scheduleStrength": 1.0024565036434485
         },
         "profile": {
           "observed": {
@@ -773,6 +854,14 @@
           "defense": 17.28688435060629,
           "scheduleStrength": 14.948958371857605
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1975,
+          "overall": 1.691538168460878,
+          "offense": 1.4579873497810065,
+          "defense": 1.6107377905684903,
+          "scheduleStrength": 1.1779804050153666
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -817,6 +906,14 @@
           "offense": 18.755827324155874,
           "defense": 18.22237884983203,
           "scheduleStrength": 13.478807802430739
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1975,
+          "overall": 2.010292034782358,
+          "offense": 1.9775612309531803,
+          "defense": 1.6979042407055271,
+          "scheduleStrength": 1.044223035128808
         },
         "profile": {
           "observed": {
@@ -863,6 +960,14 @@
           "defense": 19.4784776030709,
           "scheduleStrength": 13.944011250237665
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1976,
+          "overall": 2.482363337403139,
+          "offense": 2.492919955537342,
+          "defense": 1.993101717586449,
+          "scheduleStrength": 1.1050820678328752
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -907,6 +1012,14 @@
           "offense": 14.156494197616416,
           "defense": 17.38974557208445,
           "scheduleStrength": 18.546596489404596
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1976,
+          "overall": 1.8633052686001865,
+          "offense": 1.5651102771337149,
+          "defense": 1.7793758051526871,
+          "scheduleStrength": 1.5264624226145975
         },
         "profile": {
           "observed": {
@@ -953,6 +1066,14 @@
           "defense": 18.03826814979085,
           "scheduleStrength": 15.938051316852352
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1977,
+          "overall": 1.7816724083483644,
+          "offense": 1.617109636116092,
+          "defense": 1.6032429161800956,
+          "scheduleStrength": 1.0445230907055927
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -997,6 +1118,14 @@
           "offense": 16.43958505391586,
           "defense": 18.05571575793286,
           "scheduleStrength": 15.919555945009739
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1977,
+          "overall": 1.7552780688980874,
+          "offense": 1.5660352294432667,
+          "defense": 1.6047936611809837,
+          "scheduleStrength": 1.0430047559340483
         },
         "profile": {
           "observed": {
@@ -1043,6 +1172,14 @@
           "defense": 16.252892352098428,
           "scheduleStrength": 9.516224059232087
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1978,
+          "overall": 1.9875951930154454,
+          "offense": 1.829340172674772,
+          "defense": 1.8020220526933408,
+          "scheduleStrength": 0.8379932120404548
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -1087,6 +1224,14 @@
           "offense": 12.713874960379409,
           "defense": 7.583535734484063,
           "scheduleStrength": 10.047813654382288
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1978,
+          "overall": 1.2700157566204333,
+          "offense": 1.4992700826790077,
+          "defense": 0.8408164119270672,
+          "scheduleStrength": 0.8935049499188059
         },
         "profile": {
           "observed": {
@@ -1133,6 +1278,14 @@
           "defense": 15.091387490050002,
           "scheduleStrength": 13.105038612476207
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1979,
+          "overall": 1.5035357550242887,
+          "offense": 1.2042135679199502,
+          "defense": 1.4029982666968872,
+          "scheduleStrength": 1.022975091768287
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -1177,6 +1330,14 @@
           "offense": 16.592809769887943,
           "defense": 18.340915779129435,
           "scheduleStrength": 12.935140868457408
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1979,
+          "overall": 1.9805176996544784,
+          "offense": 1.7482963574242838,
+          "defense": 1.7050965701276901,
+          "scheduleStrength": 1.0060691947378082
         },
         "profile": {
           "observed": {
@@ -1223,6 +1384,14 @@
           "defense": 17.257823343454728,
           "scheduleStrength": 12.834202783482782
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1980,
+          "overall": 1.5839672726168863,
+          "offense": 1.1682113896515727,
+          "defense": 1.683771827102369,
+          "scheduleStrength": 0.9614343174883282
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -1267,6 +1436,14 @@
           "offense": 18.632044119092626,
           "defense": 11.547729460551327,
           "scheduleStrength": 13.013201112107453
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1980,
+          "overall": 1.65311250230489,
+          "offense": 1.8668002366788707,
+          "defense": 1.1266624501664442,
+          "scheduleStrength": 0.9782581820106931
         },
         "profile": {
           "observed": {
@@ -1313,6 +1490,14 @@
           "defense": 13.124587834302794,
           "scheduleStrength": 9.565993412423724
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1981,
+          "overall": 1.427559903236432,
+          "offense": 1.2652138680626241,
+          "defense": 1.1967417254219752,
+          "scheduleStrength": 0.6657257045602082
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -1357,6 +1542,14 @@
           "offense": 13.520193098384464,
           "defense": 5.50873791734022,
           "scheduleStrength": 7.86238711463572
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1981,
+          "overall": 1.0590964505541152,
+          "offense": 1.3657895570145662,
+          "defense": 0.5023042706807717,
+          "scheduleStrength": 0.5024531865242174
         },
         "profile": {
           "observed": {
@@ -1403,6 +1596,14 @@
           "defense": 14.335673809618921,
           "scheduleStrength": 17.899210311814596
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1982,
+          "overall": 1.5058400936118734,
+          "offense": 1.3982850851210495,
+          "defense": 1.3756431733690762,
+          "scheduleStrength": 1.1457904199502662
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -1447,6 +1648,14 @@
           "offense": 13.209149790806714,
           "defense": 14.447573901180922,
           "scheduleStrength": 15.990053047387041
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1982,
+          "overall": 1.404644262789476,
+          "offense": 1.206132126990045,
+          "defense": 1.3863810430430745,
+          "scheduleStrength": 0.9913572290872378
         },
         "profile": {
           "observed": {
@@ -1493,6 +1702,14 @@
           "defense": 14.080088608330536,
           "scheduleStrength": 8.157377483736367
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1983,
+          "overall": 1.4882043894297328,
+          "offense": 1.1706688504838256,
+          "defense": 1.3415529515925209,
+          "scheduleStrength": 0.5221622241676618
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -1537,6 +1754,14 @@
           "offense": 15.318351580582446,
           "defense": 8.683198414786416,
           "scheduleStrength": 7.0015906500407885
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1983,
+          "overall": 1.463462175720713,
+          "offense": 1.7364470444603244,
+          "defense": 0.8273364455766322,
+          "scheduleStrength": 0.39299452601575385
         },
         "profile": {
           "observed": {
@@ -1583,6 +1808,14 @@
           "defense": 13.436862234271668,
           "scheduleStrength": 13.849699285195642
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1984,
+          "overall": 0.8974230649954476,
+          "offense": 0.168773307727281,
+          "defense": 1.2092409997457811,
+          "scheduleStrength": 0.9785934913278158
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -1627,6 +1860,14 @@
           "offense": 15.496076188987345,
           "defense": 9.820606454857806,
           "scheduleStrength": 9.40004899974957
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1984,
+          "overall": 1.5130042020067316,
+          "offense": 1.655823004365963,
+          "defense": 0.8837985952771676,
+          "scheduleStrength": 0.5365819220478893
         },
         "profile": {
           "observed": {
@@ -1673,6 +1914,14 @@
           "defense": 24.37299119890356,
           "scheduleStrength": 17.17416705725531
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1985,
+          "overall": 2.0331209024732684,
+          "offense": 1.381310144950781,
+          "defense": 2.0741995570287495,
+          "scheduleStrength": 1.3514545721726796
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -1717,6 +1966,14 @@
           "offense": 11.999801658272974,
           "defense": 12.281064481730246,
           "scheduleStrength": 14.864196706841655
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1985,
+          "overall": 1.3161619380980756,
+          "offense": 1.2619775225387817,
+          "defense": 1.0451478154635498,
+          "scheduleStrength": 1.1222290671498294
         },
         "profile": {
           "observed": {
@@ -1763,6 +2020,14 @@
           "defense": 13.697629877104852,
           "scheduleStrength": 13.759514626903128
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1986,
+          "overall": 1.3724287227847272,
+          "offense": 1.2404946059724673,
+          "defense": 1.0942103868674233,
+          "scheduleStrength": 0.9223940064358508
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -1807,6 +2072,14 @@
           "offense": 9.334626163870526,
           "defense": 16.59643075043776,
           "scheduleStrength": 13.007978434635843
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1986,
+          "overall": 1.3037056233016084,
+          "offense": 0.8514159613438136,
+          "defense": 1.32577585136891,
+          "scheduleStrength": 0.8474142084616999
         },
         "profile": {
           "observed": {
@@ -1853,6 +2126,14 @@
           "defense": 12.927114338017752,
           "scheduleStrength": 9.359534986192289
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1987,
+          "overall": 1.1877339331938352,
+          "offense": 0.9605860706631458,
+          "defense": 1.1182964350691145,
+          "scheduleStrength": 0.5059577117001901
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -1897,6 +2178,14 @@
           "offense": 5.2989020014493615,
           "defense": 12.407869912918581,
           "scheduleStrength": 13.797680325236582
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1987,
+          "overall": 0.9301797991778555,
+          "offense": 0.5257002349657127,
+          "defense": 1.0733777336223265,
+          "scheduleStrength": 0.8963091952407318
         },
         "profile": {
           "observed": {
@@ -1943,6 +2232,14 @@
           "defense": 16.970238243606865,
           "scheduleStrength": 15.95607872170766
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1988,
+          "overall": 1.6597911436195472,
+          "offense": 1.4647056863688799,
+          "defense": 1.496820978956101,
+          "scheduleStrength": 0.9935591369072537
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -1987,6 +2284,14 @@
           "offense": 6.071630785246331,
           "defense": 2.9532662837646475,
           "scheduleStrength": 13.93398954926572
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1988,
+          "overall": 0.46631894923747236,
+          "offense": 0.5869096690358004,
+          "defense": 0.26048608549429003,
+          "scheduleStrength": 0.8034340798367269
         },
         "profile": {
           "observed": {
@@ -2033,6 +2338,14 @@
           "defense": 13.55210782975717,
           "scheduleStrength": 12.141012181814192
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1989,
+          "overall": 1.3525205555040989,
+          "offense": 1.1325040106277169,
+          "defense": 1.1779645701422687,
+          "scheduleStrength": 0.9735581258821555
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -2077,6 +2390,14 @@
           "offense": 9.233002662656512,
           "defense": 1.9816966848957998,
           "scheduleStrength": 7.714699478445681
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1989,
+          "overall": 0.6134888987801578,
+          "offense": 0.9359282366330159,
+          "defense": 0.17225132155825454,
+          "scheduleStrength": 0.49082577252959747
         },
         "profile": {
           "observed": {
@@ -2123,6 +2444,14 @@
           "defense": 14.558048021763666,
           "scheduleStrength": 14.395053139203002
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1990,
+          "overall": 1.6261035447433012,
+          "offense": 1.518965032189977,
+          "defense": 1.269001724960527,
+          "scheduleStrength": 0.8585725223581415
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -2167,6 +2496,14 @@
           "offense": 10.269671793764896,
           "defense": 11.473288063808418,
           "scheduleStrength": 10.992960437557548
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1990,
+          "overall": 1.166423567008258,
+          "offense": 0.9901991589481383,
+          "defense": 1.0001081410210961,
+          "scheduleStrength": 0.5383852791735013
         },
         "profile": {
           "observed": {
@@ -2213,6 +2550,14 @@
           "defense": 14.058267535927362,
           "scheduleStrength": 15.842208346449992
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1991,
+          "overall": 1.8210120444217284,
+          "offense": 2.0409631961259427,
+          "defense": 1.2556613134069956,
+          "scheduleStrength": 1.1614396901408701
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -2257,6 +2602,14 @@
           "offense": 4.351813344213371,
           "defense": 12.095724903505594,
           "scheduleStrength": 8.947538365586306
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1991,
+          "overall": 0.8828500239493615,
+          "offense": 0.4470613746511013,
+          "defense": 1.0803702362421748,
+          "scheduleStrength": 0.47828219421975554
         },
         "profile": {
           "observed": {
@@ -2303,6 +2656,14 @@
           "defense": 14.145423176147153,
           "scheduleStrength": 10.744424178517884
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1992,
+          "overall": 1.7428520004835801,
+          "offense": 1.8657748372338374,
+          "defense": 1.2605238895213449,
+          "scheduleStrength": 0.6288573502399009
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -2347,6 +2708,14 @@
           "offense": 5.4072414745957325,
           "defense": 14.97540028156949,
           "scheduleStrength": 10.96597500677971
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1992,
+          "overall": 1.0960423358359197,
+          "offense": 0.5523310257544572,
+          "defense": 1.3344846297630937,
+          "scheduleStrength": 0.6494128380029464
         },
         "profile": {
           "observed": {
@@ -2393,6 +2762,14 @@
           "defense": 17.900578595284987,
           "scheduleStrength": 13.907949342906965
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1993,
+          "overall": 1.4929189169410977,
+          "offense": 1.0009058051782964,
+          "defense": 1.6116125507142662,
+          "scheduleStrength": 0.8728048885734921
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -2437,6 +2814,14 @@
           "offense": 12.0035714129828,
           "defense": 14.835177408605553,
           "scheduleStrength": 13.672084901092989
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1993,
+          "overall": 1.3781120884500764,
+          "offense": 1.0752109519415582,
+          "defense": 1.3356304644855987,
+          "scheduleStrength": 0.8499534477547458
         },
         "profile": {
           "observed": {
@@ -2483,6 +2868,14 @@
           "defense": 14.31375766389704,
           "scheduleStrength": 20.958354851378328
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1994,
+          "overall": 1.3869304249311905,
+          "offense": 1.123231239301947,
+          "defense": 1.1689364637609438,
+          "scheduleStrength": 1.7019928575970706
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -2527,6 +2920,14 @@
           "offense": 6.995809076990907,
           "defense": 17.50966836903564,
           "scheduleStrength": 14.890090456436237
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1994,
+          "overall": 1.3009515568567733,
+          "offense": 0.6652894157836848,
+          "defense": 1.4299312804877318,
+          "scheduleStrength": 1.088407714791884
         },
         "profile": {
           "observed": {
@@ -2573,6 +2974,14 @@
           "defense": 15.62077892173574,
           "scheduleStrength": 16.948525003519332
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1995,
+          "overall": 1.3141432436024214,
+          "offense": 1.0032513511934558,
+          "defense": 1.3024230210673309,
+          "scheduleStrength": 1.17796361453096
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -2617,6 +3026,14 @@
           "offense": 20.329597148455353,
           "defense": 17.309715860965337,
           "scheduleStrength": 18.023928376807547
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1995,
+          "overall": 1.9175834356424604,
+          "offense": 2.0047077283801595,
+          "defense": 1.443242525767113,
+          "scheduleStrength": 1.2832553711935544
         },
         "profile": {
           "observed": {
@@ -2663,6 +3080,14 @@
           "defense": 18.444031815381344,
           "scheduleStrength": 17.320238001101075
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1996,
+          "overall": 1.2442878859038073,
+          "offense": 0.5393768600229918,
+          "defense": 1.6075866016962033,
+          "scheduleStrength": 1.1016219105979186
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -2707,6 +3132,14 @@
           "offense": 20.995574726770794,
           "defense": 22.410391276665404,
           "scheduleStrength": 16.40596599819807
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1996,
+          "overall": 2.154328078644795,
+          "offense": 1.7090514308198375,
+          "defense": 1.9532955221370019,
+          "scheduleStrength": 1.0236756929410324
         },
         "profile": {
           "observed": {
@@ -2753,6 +3186,14 @@
           "defense": 22.20699144851893,
           "scheduleStrength": 13.56718868384209
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1997,
+          "overall": 1.5577058635133458,
+          "offense": 0.832008020727086,
+          "defense": 1.9362832537249386,
+          "scheduleStrength": 0.8591621655130532
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -2797,6 +3238,14 @@
           "offense": 12.495065277476009,
           "defense": 17.553059922761935,
           "scheduleStrength": 12.817355966828604
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1997,
+          "overall": 1.5147362486849014,
+          "offense": 1.195831134535164,
+          "defense": 1.530495297342093,
+          "scheduleStrength": 0.7879225653504698
         },
         "profile": {
           "observed": {
@@ -2843,6 +3292,14 @@
           "defense": 13.317170503653276,
           "scheduleStrength": 12.836063474758335
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1998,
+          "overall": 1.152920325419946,
+          "offense": 0.8155166038889796,
+          "defense": 1.1737387915582218,
+          "scheduleStrength": 0.8276985889425535
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -2887,6 +3344,14 @@
           "offense": 19.40488452870981,
           "defense": 17.721377618598922,
           "scheduleStrength": 13.292928540724377
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1998,
+          "overall": 1.9130516347163076,
+          "offense": 1.7471994697417146,
+          "defense": 1.5619134969470514,
+          "scheduleStrength": 0.8768412220107858
         },
         "profile": {
           "observed": {
@@ -2933,6 +3398,14 @@
           "defense": 14.933735018992135,
           "scheduleStrength": 19.096303887626703
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 1999,
+          "overall": 1.359989302829078,
+          "offense": 1.3107030068143832,
+          "defense": 1.1570598602221087,
+          "scheduleStrength": 1.289123548793366
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -2977,6 +3450,14 @@
           "offense": 7.890913972962508,
           "defense": 11.844756599443043,
           "scheduleStrength": 19.902339062112883
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 1999,
+          "overall": 0.9385934064065391,
+          "offense": 0.7570059416110688,
+          "defense": 0.9177270386736387,
+          "scheduleStrength": 1.369937665866467
         },
         "profile": {
           "observed": {
@@ -3023,6 +3504,14 @@
           "defense": 13.575384455980197,
           "scheduleStrength": 13.532381680282098
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2000,
+          "overall": 1.23776630632129,
+          "offense": 1.1931586819491646,
+          "defense": 1.1019561091283663,
+          "scheduleStrength": 0.5976136812044723
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -3067,6 +3556,14 @@
           "offense": 11.71421456359899,
           "defense": 12.720219969070616,
           "scheduleStrength": 15.35110121865462
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2000,
+          "overall": 1.0757016037680913,
+          "offense": 0.9612516518167831,
+          "defense": 1.0325397523603252,
+          "scheduleStrength": 0.7460144991960783
         },
         "profile": {
           "observed": {
@@ -3113,6 +3610,14 @@
           "defense": 13.52092233300378,
           "scheduleStrength": 14.580389112827824
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2001,
+          "overall": 1.106116182238526,
+          "offense": 0.7313030056790173,
+          "defense": 1.2109890627871365,
+          "scheduleStrength": 1.0069364449689941
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -3157,6 +3662,14 @@
           "offense": 6.353426861555743,
           "defense": 11.266850340650628,
           "scheduleStrength": 11.953610534551393
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2001,
+          "overall": 0.9066392136522186,
+          "offense": 0.5825228715970836,
+          "defense": 1.009105162987524,
+          "scheduleStrength": 0.7144953808491966
         },
         "profile": {
           "observed": {
@@ -3203,6 +3716,14 @@
           "defense": 13.915923430929498,
           "scheduleStrength": 17.75743041984987
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2002,
+          "overall": 1.2309698151784088,
+          "offense": 1.0912425597306041,
+          "defense": 1.150455054338966,
+          "scheduleStrength": 1.028660433432537
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -3247,6 +3768,14 @@
           "offense": 6.991324012538326,
           "defense": 22.548006657036183,
           "scheduleStrength": 13.325044949470682
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2002,
+          "overall": 1.4462635493477445,
+          "offense": 0.6795962178172049,
+          "defense": 1.8640852942752406,
+          "scheduleStrength": 0.5908872567040911
         },
         "profile": {
           "observed": {
@@ -3293,6 +3822,14 @@
           "defense": 26.263191014837687,
           "scheduleStrength": 33.44897737529691
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2003,
+          "overall": 1.6756186107666773,
+          "offense": 1.600006296924764,
+          "defense": 1.5933969762515856,
+          "scheduleStrength": 1.1930321001047186
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -3337,6 +3874,14 @@
           "offense": 18.696782539183015,
           "defense": 25.90244952548537,
           "scheduleStrength": 37.465063633068866
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2003,
+          "overall": 1.4380447555962532,
+          "offense": 1.1638205306006093,
+          "defense": 1.5715106640354601,
+          "scheduleStrength": 1.3601257244159919
         },
         "profile": {
           "observed": {
@@ -3383,6 +3928,14 @@
           "defense": 16.48955843843025,
           "scheduleStrength": 29.219791986836757
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2004,
+          "overall": 1.3296978070475052,
+          "offense": 1.3788072457278524,
+          "defense": 1.0960651424660366,
+          "scheduleStrength": 1.2666066877359439
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -3427,6 +3980,14 @@
           "offense": 14.309305560739993,
           "defense": 21.187185669411484,
           "scheduleStrength": 29.59801099685323
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2004,
+          "overall": 1.2831439810401783,
+          "offense": 0.9721598901390505,
+          "defense": 1.4083176190501177,
+          "scheduleStrength": 1.2864172898657233
         },
         "profile": {
           "observed": {
@@ -3473,6 +4034,14 @@
           "defense": 26.371158927219188,
           "scheduleStrength": 38.71981980159303
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2005,
+          "overall": 1.5678695682629258,
+          "offense": 1.3044347397992442,
+          "defense": 1.6380449352731032,
+          "scheduleStrength": 1.4774127958674823
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -3517,6 +4086,14 @@
           "offense": 23.607392493796198,
           "defense": 33.03726250417374,
           "scheduleStrength": 39.2614792100137
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2005,
+          "overall": 1.8854312238265072,
+          "offense": 1.4852880513861653,
+          "defense": 2.052110059690741,
+          "scheduleStrength": 1.500876172992647
         },
         "profile": {
           "observed": {
@@ -3563,6 +4140,14 @@
           "defense": 23.369738446086657,
           "scheduleStrength": 31.024884778551094
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2006,
+          "overall": 1.6182995034381242,
+          "offense": 1.4301317207102149,
+          "defense": 1.6282054651439841,
+          "scheduleStrength": 1.3089793299717665
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -3607,6 +4192,14 @@
           "offense": 25.671985255883854,
           "defense": 24.63445266625041,
           "scheduleStrength": 28.476065043735602
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2006,
+          "overall": 1.8370369507307915,
+          "offense": 1.7527519623136145,
+          "defense": 1.7163200416021882,
+          "scheduleStrength": 1.1860121441343465
         },
         "profile": {
           "observed": {
@@ -3653,6 +4246,14 @@
           "defense": 22.71960272844951,
           "scheduleStrength": 31.868205307553612
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2007,
+          "overall": 1.3128873139180535,
+          "offense": 0.9401835511118605,
+          "defense": 1.5197235466085257,
+          "scheduleStrength": 1.2959029034565546
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -3697,6 +4298,14 @@
           "offense": 18.365902672832178,
           "defense": 28.802680232412527,
           "scheduleStrength": 28.55837611626644
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2007,
+          "overall": 1.6422266130432446,
+          "offense": 1.151954364527035,
+          "defense": 1.9266230962666333,
+          "scheduleStrength": 1.1403864889865631
         },
         "profile": {
           "observed": {
@@ -3743,6 +4352,14 @@
           "defense": 12.38550608793782,
           "scheduleStrength": 32.317114007213654
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2008,
+          "overall": 0.8079728868756404,
+          "offense": 0.7053800336777641,
+          "defense": 0.812642684410429,
+          "scheduleStrength": 1.2855136352325196
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -3787,6 +4404,14 @@
           "offense": 18.70546981569989,
           "defense": 28.127560781655323,
           "scheduleStrength": 33.149152810917016
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2008,
+          "overall": 1.600564063756243,
+          "offense": 1.1722113383176798,
+          "defense": 1.8455165527537736,
+          "scheduleStrength": 1.3239829881059435
         },
         "profile": {
           "observed": {
@@ -3833,6 +4458,14 @@
           "defense": 8.798330340216326,
           "scheduleStrength": 22.576945442461277
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2009,
+          "overall": 0.8948830064336389,
+          "offense": 1.1229418211012283,
+          "defense": 0.5869283739948651,
+          "scheduleStrength": 1.0006911290703788
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -3877,6 +4510,14 @@
           "offense": 16.513922472271503,
           "defense": 26.00525006040092,
           "scheduleStrength": 26.061463320795305
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2009,
+          "overall": 1.5483810280259043,
+          "offense": 1.1755031334352948,
+          "defense": 1.7347858676678984,
+          "scheduleStrength": 1.1865624812604953
         },
         "profile": {
           "observed": {
@@ -3923,6 +4564,14 @@
           "defense": 4.20852917225596,
           "scheduleStrength": 27.206077864128076
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2010,
+          "overall": 0.9499273850293101,
+          "offense": 1.4996587644313433,
+          "defense": 0.2959682593647775,
+          "scheduleStrength": 1.3091942609089928
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -3967,6 +4616,14 @@
           "offense": 22.621147433679404,
           "defense": 24.91057549733415,
           "scheduleStrength": 23.07333440618085
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2010,
+          "overall": 1.8248937554206293,
+          "offense": 1.6521246624955412,
+          "defense": 1.7518566149723855,
+          "scheduleStrength": 1.0764308047560904
         },
         "profile": {
           "observed": {
@@ -4013,6 +4670,14 @@
           "defense": 22.63346963920426,
           "scheduleStrength": 29.039225251309077
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2011,
+          "overall": 1.6193274222600176,
+          "offense": 1.5242780942859835,
+          "defense": 1.5615627702854644,
+          "scheduleStrength": 1.3000636915510841
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -4057,6 +4722,14 @@
           "offense": 12.381807649273519,
           "defense": 20.398288707594773,
           "scheduleStrength": 29.321459009893076
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2011,
+          "overall": 1.1806579505938668,
+          "offense": 0.845353012336066,
+          "defense": 1.4073497670078958,
+          "scheduleStrength": 1.3150680998212474
         },
         "profile": {
           "observed": {
@@ -4103,6 +4776,14 @@
           "defense": 18.447771412105112,
           "scheduleStrength": 25.938882544069013
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2012,
+          "overall": 1.353153880018921,
+          "offense": 1.2129354637003738,
+          "defense": 1.2980396157753635,
+          "scheduleStrength": 1.1806740439680659
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -4147,6 +4828,14 @@
           "offense": 21.001218148864968,
           "defense": 15.80392382426787,
           "scheduleStrength": 22.47511981848945
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2012,
+          "overall": 1.385888438376499,
+          "offense": 1.4566027649473245,
+          "defense": 1.1120107003892492,
+          "scheduleStrength": 0.9903535181474806
         },
         "profile": {
           "observed": {
@@ -4193,6 +4882,14 @@
           "defense": 15.950751671714665,
           "scheduleStrength": 30.87293527010975
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2013,
+          "overall": 1.2205937954388661,
+          "offense": 1.2922874814718872,
+          "defense": 0.9857629189525733,
+          "scheduleStrength": 1.2470758822280887
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -4237,6 +4934,14 @@
           "offense": 30.73868352054355,
           "defense": 19.39842666817533,
           "scheduleStrength": 27.28180624403584
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2013,
+          "overall": 1.687931492419689,
+          "offense": 1.956337052442018,
+          "defense": 1.1988306312496406,
+          "scheduleStrength": 1.0791044197374262
         },
         "profile": {
           "observed": {
@@ -4283,6 +4988,14 @@
           "defense": 21.801416089995136,
           "scheduleStrength": 30.74788148777904
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2014,
+          "overall": 1.0159833344704465,
+          "offense": 0.49187990950033716,
+          "defense": 1.3871314794192882,
+          "scheduleStrength": 1.3627275955585245
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -4327,6 +5040,14 @@
           "offense": 33.310888787507324,
           "defense": 21.814966575089045,
           "scheduleStrength": 32.326593390856196
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2014,
+          "overall": 1.9149567594236194,
+          "offense": 2.2005951221138216,
+          "defense": 1.3879936392146688,
+          "scheduleStrength": 1.4470039919887987
         },
         "profile": {
           "observed": {
@@ -4373,6 +5094,14 @@
           "defense": 24.696093127410467,
           "scheduleStrength": 28.319133106321758
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2015,
+          "overall": 1.531707762027109,
+          "offense": 1.2307424020507025,
+          "defense": 1.6405121250148766,
+          "scheduleStrength": 1.2675919282979713
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -4417,6 +5146,14 @@
           "offense": 21.20778610764711,
           "defense": 26.775542897902778,
           "scheduleStrength": 27.368784247373373
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2015,
+          "overall": 1.696663574095062,
+          "offense": 1.4016298354488859,
+          "defense": 1.778645818642138,
+          "scheduleStrength": 1.2183218377798632
         },
         "profile": {
           "observed": {
@@ -4463,6 +5200,14 @@
           "defense": 28.438173211217986,
           "scheduleStrength": 30.301385567367358
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2016,
+          "overall": 1.9837087134810867,
+          "offense": 1.9029640610498497,
+          "defense": 1.8563402691244142,
+          "scheduleStrength": 1.4066391650818928
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -4507,6 +5252,14 @@
           "offense": 26.72443505587303,
           "defense": 29.80922422538137,
           "scheduleStrength": 32.61164164583428
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2016,
+          "overall": 1.983799363186512,
+          "offense": 1.8102664537450988,
+          "defense": 1.9458374808374148,
+          "scheduleStrength": 1.5347408835361036
         },
         "profile": {
           "observed": {
@@ -4553,6 +5306,14 @@
           "defense": 23.119146631218918,
           "scheduleStrength": 31.39425299665383
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2017,
+          "overall": 1.3109361576486669,
+          "offense": 0.9809349084359948,
+          "defense": 1.484839989373785,
+          "scheduleStrength": 1.4505568414033367
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -4597,6 +5358,14 @@
           "offense": 29.67547999061084,
           "defense": 24.74318169776678,
           "scheduleStrength": 32.27713865308697
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2017,
+          "overall": 1.8884057476456884,
+          "offense": 1.9858686034950745,
+          "defense": 1.589144540463889,
+          "scheduleStrength": 1.4972810203763318
         },
         "profile": {
           "observed": {
@@ -4643,6 +5412,14 @@
           "defense": 24.696508665252157,
           "scheduleStrength": 31.715987098198937
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2018,
+          "overall": 1.5780196699933577,
+          "offense": 1.46473026193008,
+          "defense": 1.497052260242071,
+          "scheduleStrength": 1.3994598243207137
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -4687,6 +5464,14 @@
           "offense": 30.790493505649533,
           "defense": 16.479479678600867,
           "scheduleStrength": 30.413354835499053
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2018,
+          "overall": 1.570883092681339,
+          "offense": 1.9790830585010066,
+          "defense": 0.9989526307082489,
+          "scheduleStrength": 1.3311234447955873
         },
         "profile": {
           "observed": {
@@ -4733,6 +5518,14 @@
           "defense": 25.406861326333406,
           "scheduleStrength": 36.932138600538536
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2019,
+          "overall": 1.6011437435246434,
+          "offense": 1.5582497208300143,
+          "defense": 1.4738340048066954,
+          "scheduleStrength": 1.6876836993946265
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -4777,6 +5570,14 @@
           "offense": 38.183368801777796,
           "defense": 30.8640398383853,
           "scheduleStrength": 35.90519105613547
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2019,
+          "overall": 2.3065177769499328,
+          "offense": 2.6415188957771703,
+          "defense": 1.7904010595898927,
+          "scheduleStrength": 1.633644925693799
         },
         "profile": {
           "observed": {
@@ -4823,6 +5624,14 @@
           "defense": -0.617563977871898,
           "scheduleStrength": 15.67343206541725
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2020,
+          "overall": 0.49518212828625024,
+          "offense": 0.8770792870514665,
+          "defense": -0.05603041619412612,
+          "scheduleStrength": 1.119723090148782
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -4867,6 +5676,14 @@
           "offense": 25.172699667562867,
           "defense": 12.986918863472516,
           "scheduleStrength": 22.999720082216307
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2020,
+          "overall": 2.0088297385836635,
+          "offense": 2.202555628521911,
+          "defense": 1.1782786805461258,
+          "scheduleStrength": 1.6995627720610842
         },
         "profile": {
           "observed": {
@@ -4913,6 +5730,14 @@
           "defense": 27.11210194239473,
           "scheduleStrength": 36.42772903189887
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2021,
+          "overall": 2.018725575626131,
+          "offense": 2.0208521462166704,
+          "defense": 1.8359883093390894,
+          "scheduleStrength": 1.751302889110952
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -4957,6 +5782,14 @@
           "offense": 36.71374053306401,
           "defense": 21.13143756299864,
           "scheduleStrength": 34.98691264238901
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2021,
+          "overall": 2.13123434311792,
+          "offense": 2.6804420987568363,
+          "defense": 1.4309872546078062,
+          "scheduleStrength": 1.677576206650955
         },
         "profile": {
           "observed": {
@@ -5003,6 +5836,14 @@
           "defense": 28.315184831912447,
           "scheduleStrength": 36.94393755760375
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2022,
+          "overall": 2.3707155218912273,
+          "offense": 2.4299860482411035,
+          "defense": 2.0850431006053154,
+          "scheduleStrength": 1.8414221824414134
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -5047,6 +5888,14 @@
           "offense": 38.80018717794174,
           "defense": 25.328493345081835,
           "scheduleStrength": 41.01685528966183
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2022,
+          "overall": 2.484884208031841,
+          "offense": 2.868642320263481,
+          "defense": 1.8651123279396795,
+          "scheduleStrength": 2.0536260648827493
         },
         "profile": {
           "observed": {
@@ -5093,6 +5942,14 @@
           "defense": 32.28247934942766,
           "scheduleStrength": 35.94422788607653
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2023,
+          "overall": 2.4282213475429386,
+          "offense": 2.1847367207614323,
+          "defense": 2.4220665335533123,
+          "scheduleStrength": 1.952289383328047
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -5137,6 +5994,14 @@
           "offense": 22.400356533604175,
           "defense": 33.821813479957704,
           "scheduleStrength": 37.011867743395705
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2023,
+          "overall": 2.2266408559481046,
+          "offense": 1.6858297323935016,
+          "defense": 2.537558582387514,
+          "scheduleStrength": 2.012808475394145
         },
         "profile": {
           "observed": {
@@ -5183,6 +6048,14 @@
           "defense": 28.464888731977666,
           "scheduleStrength": 45.56459188238092
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2024,
+          "overall": 1.8329510713875814,
+          "offense": 1.395197876926989,
+          "defense": 2.0754428852638904,
+          "scheduleStrength": 2.320743042608648
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -5227,6 +6100,14 @@
           "offense": 31.55767919448123,
           "defense": 34.90613412448298,
           "scheduleStrength": 43.767456986991945
+        },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2024,
+          "overall": 2.5633782044302085,
+          "offense": 2.3100009317157597,
+          "defense": 2.5450894399365516,
+          "scheduleStrength": 2.2270940714949385
         },
         "profile": {
           "observed": {
@@ -5273,6 +6154,14 @@
           "defense": 27.136419129837467,
           "scheduleStrength": 46.02385241875201
         },
+        "crossEra": {
+          "teamId": "michigan",
+          "season": 2025,
+          "overall": 1.9822808599909951,
+          "offense": 1.8734448168476787,
+          "defense": 1.9224780777742638,
+          "scheduleStrength": 2.205859530992547
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -5318,6 +6207,14 @@
           "defense": 38.586911637257714,
           "scheduleStrength": 44.99885742730676
         },
+        "crossEra": {
+          "teamId": "ohio-state",
+          "season": 2025,
+          "overall": 2.5789521631985353,
+          "offense": 2.200003308503901,
+          "defense": 2.7336875715511875,
+          "scheduleStrength": 2.155059159114781
+        },
         "profile": {
           "observed": {
             "conference": "Big Ten",
@@ -5355,9 +6252,9 @@
         "season": 1970,
         "ohioStateScore": 20,
         "michiganScore": 9,
-        "ohioStateWinProbability": 0.45808814746647114,
-        "expectedOhioStateScore": 19.84245461331146,
-        "expectedMichiganScore": 22.111017930489652,
+        "ohioStateWinProbability": 0.4872360720460174,
+        "expectedOhioStateScore": 20.874286578706045,
+        "expectedMichiganScore": 21.563688468758734,
         "predictedWinner": "michigan",
         "actualWinner": "ohio-state"
       },
@@ -5366,9 +6263,9 @@
         "season": 1971,
         "ohioStateScore": 7,
         "michiganScore": 10,
-        "ohioStateWinProbability": 0.29886314656930724,
-        "expectedOhioStateScore": 14.690825830261378,
-        "expectedMichiganScore": 26.202509773872926,
+        "ohioStateWinProbability": 0.4262950658100629,
+        "expectedOhioStateScore": 18.33886814246068,
+        "expectedMichiganScore": 22.348144892500986,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5377,9 +6274,9 @@
         "season": 1972,
         "ohioStateScore": 14,
         "michiganScore": 11,
-        "ohioStateWinProbability": 0.3641748876547413,
-        "expectedOhioStateScore": 15.424253176524678,
-        "expectedMichiganScore": 22.94765915979847,
+        "ohioStateWinProbability": 0.4508027544298272,
+        "expectedOhioStateScore": 18.494424915443005,
+        "expectedMichiganScore": 21.159699760387912,
         "predictedWinner": "michigan",
         "actualWinner": "ohio-state"
       },
@@ -5388,9 +6285,9 @@
         "season": 1973,
         "ohioStateScore": 10,
         "michiganScore": 10,
-        "ohioStateWinProbability": 0.61568301834058,
-        "expectedOhioStateScore": 24.685197334790985,
-        "expectedMichiganScore": 18.32312570281005,
+        "ohioStateWinProbability": 0.5372947742742108,
+        "expectedOhioStateScore": 21.994877082728273,
+        "expectedMichiganScore": 19.977211876320418,
         "predictedWinner": "ohio-state",
         "actualWinner": "tie"
       },
@@ -5399,9 +6296,9 @@
         "season": 1974,
         "ohioStateScore": 12,
         "michiganScore": 10,
-        "ohioStateWinProbability": 0.5351954585280293,
-        "expectedOhioStateScore": 21.41720883951071,
-        "expectedMichiganScore": 19.513505706108553,
+        "ohioStateWinProbability": 0.5124565032434337,
+        "expectedOhioStateScore": 20.63944604023699,
+        "expectedMichiganScore": 19.9666556511585,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5410,9 +6307,9 @@
         "season": 1975,
         "ohioStateScore": 21,
         "michiganScore": 14,
-        "ohioStateWinProbability": 0.577770416536321,
-        "expectedOhioStateScore": 21.68631992089697,
-        "expectedMichiganScore": 17.452350239645497,
+        "ohioStateWinProbability": 0.5277219131021789,
+        "expectedOhioStateScore": 20.72672878009088,
+        "expectedMichiganScore": 19.22820871936189,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5421,9 +6318,9 @@
         "season": 1976,
         "ohioStateScore": 0,
         "michiganScore": 22,
-        "ohioStateWinProbability": 0.38678904029012834,
-        "expectedOhioStateScore": 17.34195184910383,
-        "expectedMichiganScore": 23.563151326856463,
+        "ohioStateWinProbability": 0.4564177820952417,
+        "expectedOhioStateScore": 19.251395125267553,
+        "expectedMichiganScore": 21.610822405646477,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5432,9 +6329,9 @@
         "season": 1977,
         "ohioStateScore": 6,
         "michiganScore": 14,
-        "ohioStateWinProbability": 0.5125809316668719,
-        "expectedOhioStateScore": 21.13254626923134,
-        "expectedMichiganScore": 20.45303253056509,
+        "ohioStateWinProbability": 0.5040250681540176,
+        "expectedOhioStateScore": 20.968671305840843,
+        "expectedMichiganScore": 20.751312930161703,
         "predictedWinner": "ohio-state",
         "actualWinner": "michigan"
       },
@@ -5443,9 +6340,9 @@
         "season": 1978,
         "ohioStateScore": 3,
         "michiganScore": 14,
-        "ohioStateWinProbability": 0.3447702395576454,
-        "expectedOhioStateScore": 17.544934093120034,
-        "expectedMichiganScore": 26.21338845556201,
+        "ohioStateWinProbability": 0.4367184923686057,
+        "expectedOhioStateScore": 19.726117775273078,
+        "expectedMichiganScore": 23.1617423795948,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5454,9 +6351,9 @@
         "season": 1979,
         "ohioStateScore": 18,
         "michiganScore": 15,
-        "ohioStateWinProbability": 0.6282146398637214,
-        "expectedOhioStateScore": 22.807243083697724,
-        "expectedMichiganScore": 15.725612985945766,
+        "ohioStateWinProbability": 0.546590675499103,
+        "expectedOhioStateScore": 21.084362429328607,
+        "expectedMichiganScore": 18.561146135355393,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5465,9 +6362,9 @@
         "season": 1980,
         "ohioStateScore": 3,
         "michiganScore": 9,
-        "ohioStateWinProbability": 0.5365859266980066,
-        "expectedOhioStateScore": 22.442416294788803,
-        "expectedMichiganScore": 20.46323894458063,
+        "ohioStateWinProbability": 0.5130579949211448,
+        "expectedOhioStateScore": 21.379468062132023,
+        "expectedMichiganScore": 20.67417596024974,
         "predictedWinner": "ohio-state",
         "actualWinner": "michigan"
       },
@@ -5476,9 +6373,9 @@
         "season": 1981,
         "ohioStateScore": 14,
         "michiganScore": 9,
-        "ohioStateWinProbability": 0.38026469033248583,
-        "expectedOhioStateScore": 18.89533454998968,
-        "expectedMichiganScore": 25.489070743805495,
+        "ohioStateWinProbability": 0.4588625590141043,
+        "expectedOhioStateScore": 20.357759612737645,
+        "expectedMichiganScore": 22.584214266443535,
         "predictedWinner": "michigan",
         "actualWinner": "ohio-state"
       },
@@ -5487,9 +6384,9 @@
         "season": 1982,
         "ohioStateScore": 24,
         "michiganScore": 14,
-        "ohioStateWinProbability": 0.4408748145058379,
-        "expectedOhioStateScore": 20.003392724533466,
-        "expectedMichiganScore": 23.211160471425647,
+        "ohioStateWinProbability": 0.48080985239048074,
+        "expectedOhioStateScore": 20.9655810225058,
+        "expectedMichiganScore": 22.002358267436115,
         "predictedWinner": "michigan",
         "actualWinner": "ohio-state"
       },
@@ -5498,9 +6395,9 @@
         "season": 1983,
         "ohioStateScore": 21,
         "michiganScore": 24,
-        "ohioStateWinProbability": 0.5010832366949414,
-        "expectedOhioStateScore": 22.388344078467085,
-        "expectedMichiganScore": 22.329849205422825,
+        "ohioStateWinProbability": 0.5025764739293874,
+        "expectedOhioStateScore": 22.4962238231931,
+        "expectedMichiganScore": 22.357092999556496,
         "predictedWinner": "ohio-state",
         "actualWinner": "michigan"
       },
@@ -5509,9 +6406,9 @@
         "season": 1984,
         "ohioStateScore": 21,
         "michiganScore": 6,
-        "ohioStateWinProbability": 0.6279558403514279,
-        "expectedOhioStateScore": 25.115415135203705,
-        "expectedMichiganScore": 18.048741718536505,
+        "ohioStateWinProbability": 0.5507678613236988,
+        "expectedOhioStateScore": 23.393985661381684,
+        "expectedMichiganScore": 20.643041396003827,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5520,9 +6417,9 @@
         "season": 1985,
         "ohioStateScore": 17,
         "michiganScore": 27,
-        "ohioStateWinProbability": 0.31670791561663963,
-        "expectedOhioStateScore": 15.355876162499342,
-        "expectedMichiganScore": 25.73659950803788,
+        "ohioStateWinProbability": 0.4376764376227917,
+        "expectedOhioStateScore": 20.142169281770308,
+        "expectedMichiganScore": 23.52523563295529,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5531,9 +6428,9 @@
         "season": 1986,
         "ohioStateScore": 24,
         "michiganScore": 26,
-        "ohioStateWinProbability": 0.482556863128777,
-        "expectedOhioStateScore": 21.030367413851295,
-        "expectedMichiganScore": 21.972679209893382,
+        "ohioStateWinProbability": 0.49364207560030343,
+        "expectedOhioStateScore": 22.18185463886541,
+        "expectedMichiganScore": 22.525201062796462,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5542,9 +6439,9 @@
         "season": 1987,
         "ohioStateScore": 23,
         "michiganScore": 20,
-        "ohioStateWinProbability": 0.41106028691275187,
-        "expectedOhioStateScore": 19.15762651395466,
-        "expectedMichiganScore": 24.012009656665906,
+        "ohioStateWinProbability": 0.4697939788977932,
+        "expectedOhioStateScore": 21.715928361105146,
+        "expectedMichiganScore": 23.349042183373218,
         "predictedWinner": "michigan",
         "actualWinner": "ohio-state"
       },
@@ -5553,9 +6450,9 @@
         "season": 1988,
         "ohioStateScore": 31,
         "michiganScore": 34,
-        "ohioStateWinProbability": 0.18154897427490801,
-        "expectedOhioStateScore": 13.22070814924029,
-        "expectedMichiganScore": 33.550197672308926,
+        "ohioStateWinProbability": 0.38011936861948953,
+        "expectedOhioStateScore": 20.33387859369115,
+        "expectedMichiganScore": 26.935940168484134,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5564,9 +6461,9 @@
         "season": 1989,
         "ohioStateScore": 18,
         "michiganScore": 28,
-        "ohioStateWinProbability": 0.3127506125115803,
-        "expectedOhioStateScore": 19.61974511486557,
-        "expectedMichiganScore": 30.248175342589477,
+        "ohioStateWinProbability": 0.43521403394638764,
+        "expectedOhioStateScore": 22.91416926914833,
+        "expectedMichiganScore": 26.43238936636703,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5575,9 +6472,9 @@
         "season": 1990,
         "ohioStateScore": 13,
         "michiganScore": 16,
-        "ohioStateWinProbability": 0.36942578566428597,
-        "expectedOhioStateScore": 21.310517430931085,
-        "expectedMichiganScore": 28.528710743052986,
+        "ohioStateWinProbability": 0.45552915329259136,
+        "expectedOhioStateScore": 23.587512532055555,
+        "expectedMichiganScore": 25.995300739722833,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5586,9 +6483,9 @@
         "season": 1991,
         "ohioStateScore": 3,
         "michiganScore": 31,
-        "ohioStateWinProbability": 0.29725226201875665,
-        "expectedOhioStateScore": 17.30907793260833,
-        "expectedMichiganScore": 28.92470534834717,
+        "ohioStateWinProbability": 0.425526603969195,
+        "expectedOhioStateScore": 21.265370784132436,
+        "expectedMichiganScore": 25.317076078487734,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5597,9 +6494,9 @@
         "season": 1992,
         "ohioStateScore": 13,
         "michiganScore": 13,
-        "ohioStateWinProbability": 0.310867083936656,
-        "expectedOhioStateScore": 17.226753899264633,
-        "expectedMichiganScore": 27.97368170001652,
+        "ohioStateWinProbability": 0.43106153636602684,
+        "expectedOhioStateScore": 21.091119143443404,
+        "expectedMichiganScore": 24.83765837154318,
         "predictedWinner": "michigan",
         "actualWinner": "tie"
       },
@@ -5608,9 +6505,9 @@
         "season": 1993,
         "ohioStateScore": 0,
         "michiganScore": 28,
-        "ohioStateWinProbability": 0.5371910790892139,
-        "expectedOhioStateScore": 24.486637122958005,
-        "expectedMichiganScore": 22.474602696931722,
+        "ohioStateWinProbability": 0.511926132895838,
+        "expectedOhioStateScore": 24.29245592448865,
+        "expectedMichiganScore": 23.648322573854053,
         "predictedWinner": "ohio-state",
         "actualWinner": "michigan"
       },
@@ -5619,9 +6516,9 @@
         "season": 1994,
         "ohioStateScore": 22,
         "michiganScore": 6,
-        "ohioStateWinProbability": 0.43289895537514206,
-        "expectedOhioStateScore": 21.344627654590372,
-        "expectedMichiganScore": 24.990075256622788,
+        "ohioStateWinProbability": 0.47688340907593124,
+        "expectedOhioStateScore": 23.514435623012513,
+        "expectedMichiganScore": 24.763622089125366,
         "predictedWinner": "michigan",
         "actualWinner": "ohio-state"
       },
@@ -5630,9 +6527,9 @@
         "season": 1995,
         "ohioStateScore": 23,
         "michiganScore": 31,
-        "ohioStateWinProbability": 0.7008166782398746,
-        "expectedOhioStateScore": 30.54047539225219,
-        "expectedMichiganScore": 19.04941260043429,
+        "ohioStateWinProbability": 0.5693906320095955,
+        "expectedOhioStateScore": 27.203386060789104,
+        "expectedMichiganScore": 23.43195340435147,
         "predictedWinner": "ohio-state",
         "actualWinner": "michigan"
       },
@@ -5641,9 +6538,9 @@
         "season": 1996,
         "ohioStateScore": 9,
         "michiganScore": 13,
-        "ohioStateWinProbability": 0.7782292860833881,
-        "expectedOhioStateScore": 32.65124649545917,
-        "expectedMichiganScore": 15.703654767983501,
+        "ohioStateWinProbability": 0.5941134614222382,
+        "expectedOhioStateScore": 27.37565802143963,
+        "expectedMichiganScore": 22.232203182942303,
         "predictedWinner": "ohio-state",
         "actualWinner": "michigan"
       },
@@ -5652,9 +6549,9 @@
         "season": 1997,
         "ohioStateScore": 14,
         "michiganScore": 20,
-        "ohioStateWinProbability": 0.5011443964613925,
-        "expectedOhioStateScore": 23.160890200439482,
-        "expectedMichiganScore": 23.099092683613865,
+        "ohioStateWinProbability": 0.5012016497129752,
+        "expectedOhioStateScore": 24.603942643220464,
+        "expectedMichiganScore": 24.539053433789537,
         "predictedWinner": "ohio-state",
         "actualWinner": "michigan"
       },
@@ -5663,9 +6560,9 @@
         "season": 1998,
         "ohioStateScore": 31,
         "michiganScore": 16,
-        "ohioStateWinProbability": 0.6936042901869177,
-        "expectedOhioStateScore": 30.836490103901454,
-        "expectedMichiganScore": 19.806663741605057,
+        "ohioStateWinProbability": 0.5651684834020709,
+        "expectedOhioStateScore": 27.277432957922596,
+        "expectedMichiganScore": 23.738202089549393,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5674,9 +6571,9 @@
         "season": 1999,
         "ohioStateScore": 17,
         "michiganScore": 24,
-        "ohioStateWinProbability": 0.3747053965745255,
-        "expectedOhioStateScore": 21.64494073477346,
-        "expectedMichiganScore": 28.558058481800956,
+        "ohioStateWinProbability": 0.4607175399302058,
+        "expectedOhioStateScore": 24.57930572044294,
+        "expectedMichiganScore": 26.70493923940493,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5685,9 +6582,9 @@
         "season": 2000,
         "ohioStateScore": 26,
         "michiganScore": 38,
-        "ohioStateWinProbability": 0.47088609142056975,
-        "expectedOhioStateScore": 24.627841080057674,
-        "expectedMichiganScore": 26.201772548167266,
+        "ohioStateWinProbability": 0.4917362188891317,
+        "expectedOhioStateScore": 25.398295943565152,
+        "expectedMichiganScore": 25.844580762279406,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5696,9 +6593,9 @@
         "season": 2001,
         "ohioStateScore": 26,
         "michiganScore": 20,
-        "ohioStateWinProbability": 0.4205909081088367,
-        "expectedOhioStateScore": 22.936428073662686,
-        "expectedMichiganScore": 27.261127836274373,
+        "ohioStateWinProbability": 0.4742079512315627,
+        "expectedOhioStateScore": 25.20469323997645,
+        "expectedMichiganScore": 26.598701199530577,
         "predictedWinner": "michigan",
         "actualWinner": "ohio-state"
       },
@@ -5707,9 +6604,9 @@
         "season": 2002,
         "ohioStateScore": 14,
         "michiganScore": 9,
-        "ohioStateWinProbability": 0.5593791326233454,
-        "expectedOhioStateScore": 26.47486034989051,
-        "expectedMichiganScore": 23.25318413732015,
+        "ohioStateWinProbability": 0.5165041128097174,
+        "expectedOhioStateScore": 26.64357117547519,
+        "expectedMichiganScore": 25.75202519707282,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5718,9 +6615,9 @@
         "season": 2003,
         "ohioStateScore": 21,
         "michiganScore": 35,
-        "ohioStateWinProbability": 0.41464673300230637,
-        "expectedOhioStateScore": 22.238379995167577,
-        "expectedMichiganScore": 26.893026476470084,
+        "ohioStateWinProbability": 0.48179111047840806,
+        "expectedOhioStateScore": 24.98030458993771,
+        "expectedMichiganScore": 25.964019663572824,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5729,9 +6626,9 @@
         "season": 2004,
         "ohioStateScore": 37,
         "michiganScore": 21,
-        "ohioStateWinProbability": 0.43650757842304366,
-        "expectedOhioStateScore": 23.651042623588104,
-        "expectedMichiganScore": 27.098242616505544,
+        "ohioStateWinProbability": 0.48498043552398384,
+        "expectedOhioStateScore": 25.431120221562033,
+        "expectedMichiganScore": 26.242420787504322,
         "predictedWinner": "michigan",
         "actualWinner": "ohio-state"
       },
@@ -5740,9 +6637,9 @@
         "season": 2005,
         "ohioStateScore": 25,
         "michiganScore": 21,
-        "ohioStateWinProbability": 0.6428778923393261,
-        "expectedOhioStateScore": 27.930309731150068,
-        "expectedMichiganScore": 19.99396966966599,
+        "ohioStateWinProbability": 0.5315366823458204,
+        "expectedOhioStateScore": 26.28202250395052,
+        "expectedMichiganScore": 24.576777957337455,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5751,9 +6648,9 @@
         "season": 2006,
         "ohioStateScore": 42,
         "michiganScore": 39,
-        "ohioStateWinProbability": 0.5894379437393918,
-        "expectedOhioStateScore": 24.79418171149836,
-        "expectedMichiganScore": 19.912009915238755,
+        "ohioStateWinProbability": 0.5213323479601114,
+        "expectedOhioStateScore": 23.55556825099504,
+        "expectedMichiganScore": 22.40292174297665,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5762,9 +6659,9 @@
         "season": 2007,
         "ohioStateScore": 14,
         "michiganScore": 3,
-        "ohioStateWinProbability": 0.62497197593958,
-        "expectedOhioStateScore": 28.777853450350143,
-        "expectedMichiganScore": 21.883321691265856,
+        "ohioStateWinProbability": 0.5287095983849678,
+        "expectedOhioStateScore": 27.25444093881653,
+        "expectedMichiganScore": 25.702415466383727,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5773,9 +6670,9 @@
         "season": 2008,
         "ohioStateScore": 42,
         "michiganScore": 7,
-        "ohioStateWinProbability": 0.7631327530872362,
-        "expectedOhioStateScore": 32.11936090692538,
-        "expectedMichiganScore": 16.325276748554934,
+        "ohioStateWinProbability": 0.5644996221285176,
+        "expectedOhioStateScore": 26.941044797238572,
+        "expectedMichiganScore": 23.438550119091772,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5784,9 +6681,9 @@
         "season": 2009,
         "ohioStateScore": 21,
         "michiganScore": 10,
-        "ohioStateWinProbability": 0.7441126403302843,
-        "expectedOhioStateScore": 32.495842178532094,
-        "expectedMichiganScore": 18.08519866189431,
+        "ohioStateWinProbability": 0.5618744065861506,
+        "expectedOhioStateScore": 26.991510379916843,
+        "expectedMichiganScore": 23.63307843222103,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5795,9 +6692,9 @@
         "season": 2010,
         "ohioStateScore": 37,
         "michiganScore": 7,
-        "ohioStateWinProbability": 0.767878259551706,
-        "expectedOhioStateScore": 36.58148519583025,
-        "expectedMichiganScore": 20.43050063098413,
+        "ohioStateWinProbability": 0.5729183697892941,
+        "expectedOhioStateScore": 29.070971582477625,
+        "expectedMichiganScore": 25.1051025152466,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5806,9 +6703,9 @@
         "season": 2011,
         "ohioStateScore": 34,
         "michiganScore": 40,
-        "ohioStateWinProbability": 0.32364948430571067,
-        "expectedOhioStateScore": 20.25514141672965,
-        "expectedMichiganScore": 30.205321335880484,
+        "ohioStateWinProbability": 0.45696806045052885,
+        "expectedOhioStateScore": 25.152788843039612,
+        "expectedMichiganScore": 27.482276481559055,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5817,9 +6714,9 @@
         "season": 2012,
         "ohioStateScore": 26,
         "michiganScore": 21,
-        "ohioStateWinProbability": 0.5014688857094862,
-        "expectedOhioStateScore": 28.2885667243005,
-        "expectedMichiganScore": 28.209246667797117,
+        "ohioStateWinProbability": 0.5002804881562022,
+        "expectedOhioStateScore": 27.702681076570226,
+        "expectedMichiganScore": 27.687534714546484,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5828,9 +6725,9 @@
         "season": 2013,
         "ohioStateScore": 42,
         "michiganScore": 41,
-        "ohioStateWinProbability": 0.709355293517736,
-        "expectedOhioStateScore": 35.89448354621655,
-        "expectedMichiganScore": 23.849041870699658,
+        "ohioStateWinProbability": 0.5483552751519808,
+        "expectedOhioStateScore": 30.03574868019934,
+        "expectedMichiganScore": 27.416377087135682,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5839,9 +6736,9 @@
         "season": 2014,
         "ohioStateScore": 42,
         "michiganScore": 28,
-        "ohioStateWinProbability": 0.8248507238543662,
-        "expectedOhioStateScore": 37.67895123991744,
-        "expectedMichiganScore": 16.759839773682863,
+        "ohioStateWinProbability": 0.586578284195614,
+        "expectedOhioStateScore": 30.1265706721908,
+        "expectedMichiganScore": 25.403758206200223,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5850,9 +6747,9 @@
         "season": 2015,
         "ohioStateScore": 42,
         "michiganScore": 13,
-        "ohioStateWinProbability": 0.5057352099933309,
-        "expectedOhioStateScore": 25.99688759694763,
-        "expectedMichiganScore": 25.687172673711814,
+        "ohioStateWinProbability": 0.5013075381976059,
+        "expectedOhioStateScore": 27.02571411086969,
+        "expectedMichiganScore": 26.955106887246583,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5861,9 +6758,9 @@
         "season": 2016,
         "ohioStateScore": 30,
         "michiganScore": 27,
-        "ohioStateWinProbability": 0.492813951392621,
-        "expectedOhioStateScore": 27.522285774743274,
-        "expectedMichiganScore": 27.91035912079213,
+        "ohioStateWinProbability": 0.4982843431840519,
+        "expectedOhioStateScore": 28.097902501945185,
+        "expectedMichiganScore": 28.190548333608852,
         "predictedWinner": "michigan",
         "actualWinner": "ohio-state"
       },
@@ -5872,9 +6769,9 @@
         "season": 2017,
         "ohioStateScore": 31,
         "michiganScore": 20,
-        "ohioStateWinProbability": 0.7265284819687771,
-        "expectedOhioStateScore": 33.02281577334659,
-        "expectedMichiganScore": 19.83223295198338,
+        "ohioStateWinProbability": 0.5551399127023359,
+        "expectedOhioStateScore": 28.29333737574388,
+        "expectedMichiganScore": 25.30362258630602,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5883,9 +6780,9 @@
         "season": 2018,
         "ohioStateScore": 62,
         "michiganScore": 39,
-        "ohioStateWinProbability": 0.443566386771853,
-        "expectedOhioStateScore": 27.706911282056225,
-        "expectedMichiganScore": 30.767366565108322,
+        "ohioStateWinProbability": 0.4885354488784151,
+        "expectedOhioStateScore": 28.44881759557778,
+        "expectedMichiganScore": 29.068011883865665,
         "predictedWinner": "michigan",
         "actualWinner": "ohio-state"
       },
@@ -5894,9 +6791,9 @@
         "season": 2019,
         "ohioStateScore": 56,
         "michiganScore": 27,
-        "ohioStateWinProbability": 0.7502435531114313,
-        "expectedOhioStateScore": 35.29305492931486,
-        "expectedMichiganScore": 20.444247509415117,
+        "ohioStateWinProbability": 0.5608117499071382,
+        "expectedOhioStateScore": 29.87024357876777,
+        "expectedMichiganScore": 26.57007204451818,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       },
@@ -5905,9 +6802,9 @@
         "season": 2021,
         "ohioStateScore": 27,
         "michiganScore": 42,
-        "ohioStateWinProbability": 0.5835851152392981,
-        "expectedOhioStateScore": 31.424622955770023,
-        "expectedMichiganScore": 26.868261866363163,
+        "ohioStateWinProbability": 0.5211587980224937,
+        "expectedOhioStateScore": 28.56889861398249,
+        "expectedMichiganScore": 27.425640753870606,
         "predictedWinner": "ohio-state",
         "actualWinner": "michigan"
       },
@@ -5916,9 +6813,9 @@
         "season": 2022,
         "ohioStateScore": 23,
         "michiganScore": 45,
-        "ohioStateWinProbability": 0.5976742340497514,
-        "expectedOhioStateScore": 31.754854208277568,
-        "expectedMichiganScore": 26.411773949277777,
+        "ohioStateWinProbability": 0.5249501959498475,
+        "expectedOhioStateScore": 28.290923403718484,
+        "expectedMichiganScore": 26.94249285885263,
         "predictedWinner": "ohio-state",
         "actualWinner": "michigan"
       },
@@ -5927,9 +6824,9 @@
         "season": 2023,
         "ohioStateScore": 24,
         "michiganScore": 30,
-        "ohioStateWinProbability": 0.4317859901748148,
-        "expectedOhioStateScore": 22.53939987857762,
-        "expectedMichiganScore": 26.246068597275666,
+        "ohioStateWinProbability": 0.48232604335131357,
+        "expectedOhioStateScore": 25.286266663004334,
+        "expectedMichiganScore": 26.241058117294735,
         "predictedWinner": "michigan",
         "actualWinner": "michigan"
       },
@@ -5938,9 +6835,9 @@
         "season": 2024,
         "ohioStateScore": 10,
         "michiganScore": 13,
-        "ohioStateWinProbability": 0.776314504809236,
-        "expectedOhioStateScore": 33.47113261616249,
-        "expectedMichiganScore": 16.672857141364926,
+        "ohioStateWinProbability": 0.577252809650617,
+        "expectedOhioStateScore": 27.96777795638174,
+        "expectedMichiganScore": 23.762447308770916,
         "predictedWinner": "ohio-state",
         "actualWinner": "michigan"
       },
@@ -5949,9 +6846,9 @@
         "season": 2025,
         "ohioStateScore": 27,
         "michiganScore": 9,
-        "ohioStateWinProbability": 0.7042913776120957,
-        "expectedOhioStateScore": 31.62676756160747,
-        "expectedMichiganScore": 19.91123031925158,
+        "ohioStateWinProbability": 0.5525847079771619,
+        "expectedOhioStateScore": 27.892169801479305,
+        "expectedMichiganScore": 25.042056402739483,
         "predictedWinner": "ohio-state",
         "actualWinner": "ohio-state"
       }
@@ -5959,9 +6856,9 @@
     "metrics": {
       "games": 55,
       "winnerAccuracy": 0.6226415094339622,
-      "brierScore": 0.21405815816018717,
-      "logLoss": 0.6176937080283816,
-      "meanAbsoluteScoreError": 9.987090115625488,
+      "brierScore": 0.23469145059858965,
+      "logLoss": 0.6623451975125731,
+      "meanAbsoluteScoreError": 10.025352103915246,
       "calibration": [
         {
           "lower": 0,
@@ -5973,58 +6870,58 @@
         {
           "lower": 0.1,
           "upper": 0.2,
-          "games": 1,
-          "predicted": 0.18154897427490801,
+          "games": 0,
+          "predicted": 0,
           "actual": 0
         },
         {
           "lower": 0.2,
           "upper": 0.3,
-          "games": 2,
-          "predicted": 0.29805770429403194,
+          "games": 0,
+          "predicted": 0,
           "actual": 0
         },
         {
           "lower": 0.3,
           "upper": 0.4,
-          "games": 10,
-          "predicted": 0.3484105136444399,
-          "actual": 0.2
+          "games": 1,
+          "predicted": 0.38011936861948953,
+          "actual": 0
         },
         {
           "lower": 0.4,
           "upper": 0.5,
-          "games": 12,
-          "predicted": 0.4446897255569187,
-          "actual": 0.6666666666666666
+          "games": 24,
+          "predicted": 0.46425070661845685,
+          "actual": 0.4166666666666667
         },
         {
           "lower": 0.5,
           "upper": 0.6,
-          "games": 13,
-          "predicted": 0.541448612848414,
-          "actual": 0.46153846153846156
+          "games": 30,
+          "predicted": 0.5387362174601822,
+          "actual": 0.6333333333333333
         },
         {
           "lower": 0.6,
           "upper": 0.7,
-          "games": 6,
-          "predicted": 0.6388846095035922,
-          "actual": 0.8333333333333334
+          "games": 0,
+          "predicted": 0,
+          "actual": 0
         },
         {
           "lower": 0.7,
           "upper": 0.8,
-          "games": 10,
-          "predicted": 0.7420902828311766,
-          "actual": 0.7
+          "games": 0,
+          "predicted": 0,
+          "actual": 0
         },
         {
           "lower": 0.8,
           "upper": 0.9,
-          "games": 1,
-          "predicted": 0.8248507238543662,
-          "actual": 1
+          "games": 0,
+          "predicted": 0,
+          "actual": 0
         },
         {
           "lower": 0.9,
@@ -6035,5 +6932,337 @@
         }
       ]
     }
-  }
+  },
+  "rivalryGames": [
+    {
+      "season": 1970,
+      "cfbdGameId": 42458,
+      "date": "1970-11-21T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/42458"
+    },
+    {
+      "season": 1971,
+      "cfbdGameId": 43195,
+      "date": "1971-11-20T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/43195"
+    },
+    {
+      "season": 1972,
+      "cfbdGameId": 43972,
+      "date": "1972-11-25T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/43972"
+    },
+    {
+      "season": 1973,
+      "cfbdGameId": 44728,
+      "date": "1973-11-24T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/44728"
+    },
+    {
+      "season": 1974,
+      "cfbdGameId": 45488,
+      "date": "1974-11-23T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/45488"
+    },
+    {
+      "season": 1975,
+      "cfbdGameId": 46292,
+      "date": "1975-11-22T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/46292"
+    },
+    {
+      "season": 1976,
+      "cfbdGameId": 47081,
+      "date": "1976-11-20T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/47081"
+    },
+    {
+      "season": 1977,
+      "cfbdGameId": 47945,
+      "date": "1977-11-19T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/47945"
+    },
+    {
+      "season": 1978,
+      "cfbdGameId": 48787,
+      "date": "1978-11-25T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/48787"
+    },
+    {
+      "season": 1979,
+      "cfbdGameId": 49575,
+      "date": "1979-11-17T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/49575"
+    },
+    {
+      "season": 1980,
+      "cfbdGameId": 50411,
+      "date": "1980-11-22T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/50411"
+    },
+    {
+      "season": 1981,
+      "cfbdGameId": 51216,
+      "date": "1981-11-21T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/51216"
+    },
+    {
+      "season": 1982,
+      "cfbdGameId": 51905,
+      "date": "1982-11-20T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/51905"
+    },
+    {
+      "season": 1983,
+      "cfbdGameId": 52601,
+      "date": "1983-11-19T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/52601"
+    },
+    {
+      "season": 1984,
+      "cfbdGameId": 53265,
+      "date": "1984-11-17T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/53265"
+    },
+    {
+      "season": 1985,
+      "cfbdGameId": 53955,
+      "date": "1985-11-23T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/53955"
+    },
+    {
+      "season": 1986,
+      "cfbdGameId": 54585,
+      "date": "1986-11-22T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/54585"
+    },
+    {
+      "season": 1987,
+      "cfbdGameId": 55221,
+      "date": "1987-11-21T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/55221"
+    },
+    {
+      "season": 1988,
+      "cfbdGameId": 55853,
+      "date": "1988-11-19T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/55853"
+    },
+    {
+      "season": 1989,
+      "cfbdGameId": 56512,
+      "date": "1989-11-25T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/56512"
+    },
+    {
+      "season": 1990,
+      "cfbdGameId": 57155,
+      "date": "1990-11-24T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/57155"
+    },
+    {
+      "season": 1991,
+      "cfbdGameId": 57784,
+      "date": "1991-11-23T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/57784"
+    },
+    {
+      "season": 1992,
+      "cfbdGameId": 58410,
+      "date": "1992-11-21T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/58410"
+    },
+    {
+      "season": 1993,
+      "cfbdGameId": 59041,
+      "date": "1993-11-20T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/59041"
+    },
+    {
+      "season": 1994,
+      "cfbdGameId": 59680,
+      "date": "1994-11-19T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/59680"
+    },
+    {
+      "season": 1995,
+      "cfbdGameId": 60350,
+      "date": "1995-11-25T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/60350"
+    },
+    {
+      "season": 1996,
+      "cfbdGameId": 60982,
+      "date": "1996-11-23T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/60982"
+    },
+    {
+      "season": 1997,
+      "cfbdGameId": 61648,
+      "date": "1997-11-22T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/61648"
+    },
+    {
+      "season": 1998,
+      "cfbdGameId": 62320,
+      "date": "1998-11-21T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/62320"
+    },
+    {
+      "season": 1999,
+      "cfbdGameId": 62994,
+      "date": "1999-11-20T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/62994"
+    },
+    {
+      "season": 2000,
+      "cfbdGameId": 63689,
+      "date": "2000-11-18T00:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/63689"
+    },
+    {
+      "season": 2001,
+      "cfbdGameId": 213280130,
+      "date": "2001-11-24T18:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/213280130"
+    },
+    {
+      "season": 2002,
+      "cfbdGameId": 223270194,
+      "date": "2002-11-23T17:15:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/223270194"
+    },
+    {
+      "season": 2003,
+      "cfbdGameId": 233260130,
+      "date": "2003-11-22T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/233260130"
+    },
+    {
+      "season": 2004,
+      "cfbdGameId": 243250194,
+      "date": "2004-11-20T18:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/243250194"
+    },
+    {
+      "season": 2005,
+      "cfbdGameId": 253230130,
+      "date": "2005-11-19T18:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/253230130"
+    },
+    {
+      "season": 2006,
+      "cfbdGameId": 263220194,
+      "date": "2006-11-18T20:30:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/263220194"
+    },
+    {
+      "season": 2007,
+      "cfbdGameId": 273210130,
+      "date": "2007-11-17T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/273210130"
+    },
+    {
+      "season": 2008,
+      "cfbdGameId": 283270194,
+      "date": "2008-11-22T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/283270194"
+    },
+    {
+      "season": 2009,
+      "cfbdGameId": 293250130,
+      "date": "2009-11-21T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/293250130"
+    },
+    {
+      "season": 2010,
+      "cfbdGameId": 303310194,
+      "date": "2010-11-27T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/303310194"
+    },
+    {
+      "season": 2011,
+      "cfbdGameId": 313300130,
+      "date": "2011-11-26T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/313300130"
+    },
+    {
+      "season": 2012,
+      "cfbdGameId": 323290194,
+      "date": "2012-11-24T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/323290194"
+    },
+    {
+      "season": 2013,
+      "cfbdGameId": 333340130,
+      "date": "2013-11-30T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/333340130"
+    },
+    {
+      "season": 2014,
+      "cfbdGameId": 400547951,
+      "date": "2014-11-29T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/400547951"
+    },
+    {
+      "season": 2015,
+      "cfbdGameId": 400763578,
+      "date": "2015-11-28T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/400763578"
+    },
+    {
+      "season": 2016,
+      "cfbdGameId": 400869650,
+      "date": "2016-11-26T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/400869650"
+    },
+    {
+      "season": 2017,
+      "cfbdGameId": 400935420,
+      "date": "2017-11-25T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/400935420"
+    },
+    {
+      "season": 2018,
+      "cfbdGameId": 401012895,
+      "date": "2018-11-24T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/401012895"
+    },
+    {
+      "season": 2019,
+      "cfbdGameId": 401112228,
+      "date": "2019-11-30T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/401112228"
+    },
+    {
+      "season": 2021,
+      "cfbdGameId": 401282781,
+      "date": "2021-11-27T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/401282781"
+    },
+    {
+      "season": 2022,
+      "cfbdGameId": 401405153,
+      "date": "2022-11-26T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/401405153"
+    },
+    {
+      "season": 2023,
+      "cfbdGameId": 401520434,
+      "date": "2023-11-25T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/401520434"
+    },
+    {
+      "season": 2024,
+      "cfbdGameId": 401628566,
+      "date": "2024-11-30T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/401628566"
+    },
+    {
+      "season": 2025,
+      "cfbdGameId": 401752921,
+      "date": "2025-11-29T17:00:00.000Z",
+      "cfbdBoxscoreUrl": "https://collegefootballdata.com/boxscore/401752921"
+    }
+  ]
 }

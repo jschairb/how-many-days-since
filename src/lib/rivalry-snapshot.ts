@@ -38,6 +38,7 @@ export type TeamSeasonSnapshot = {
   pointsAgainst: number;
   scoringMargin: number;
   srs: Rating;
+  crossEra: Rating;
   profile: SeasonProfile | null;
   evidenceType: 'DERIVED';
 };
@@ -66,15 +67,17 @@ export function modelConfig(): ModelConfig {
 
 export function validatePublicSnapshot(value: unknown): value is RivalrySnapshot {
   if (!value || typeof value !== 'object') throw new Error('Invalid public snapshot');
-  const candidate = value as { schemaVersion?: string; ratings?: { teamSeasons?: Array<{ teamId?: string }> } };
+  const candidate = value as { schemaVersion?: string; model?: { pointsPerStandardDeviation?: unknown }; ratings?: { teamSeasons?: Array<{ teamId?: string; crossEra?: Rating }> } };
   if (candidate.schemaVersion !== 'rivalry-lab-public-snapshot-v1') throw new Error('Invalid public snapshot schema');
   if (!candidate.ratings?.teamSeasons?.every((season) => season.teamId === 'ohio-state' || season.teamId === 'michigan')) throw new Error('Invalid public snapshot teams');
+  if (typeof candidate.model?.pointsPerStandardDeviation !== 'number') throw new Error('Invalid public snapshot model');
+  if (!candidate.ratings.teamSeasons.every((season) => season.crossEra && Number.isFinite(season.crossEra.overall) && Number.isFinite(season.crossEra.offense) && Number.isFinite(season.crossEra.defense))) throw new Error('Invalid public snapshot cross-era ratings');
   return true;
 }
 export function ratedSeason(teamId: TeamId, season: number): Rating {
   const entry = rivalrySnapshot.ratings.teamSeasons.find((rating) => rating.teamId === teamId && rating.season === season);
-  if (!entry?.srs) throw new Error(`No rated ${teamId} season for ${season}`);
-  return { ...entry.srs, teamId, season };
+  if (!entry?.crossEra) throw new Error(`No cross-era rating for ${teamId} season ${season}`);
+  return { ...entry.crossEra, teamId, season };
 }
 
 export function profileForSeason(teamId: TeamId, season: number, teamSeasons: readonly Pick<TeamSeasonSnapshot, 'teamId' | 'season' | 'profile'>[] = rivalrySnapshot.ratings.teamSeasons): SeasonProfile | null {

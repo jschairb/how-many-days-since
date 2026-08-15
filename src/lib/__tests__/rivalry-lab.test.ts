@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
-import { calculateMatchup, simulateGame, simulateSeries, validateMatchupInput, type ModelConfig } from '../rivalry-lab';
+import { calculateMatchup, simulateGame, simulateSeries, validateMatchupInput } from '../rivalry-lab';
+import { modelConfig, ratedSeason } from '../rivalry-snapshot';
 
-const ohioState = { teamId: 'ohio-state', season: 1995, overall: 8, offense: 12, defense: 5, scheduleStrength: 2 };
-const michigan = { teamId: 'michigan', season: 2023, overall: 12, offense: 7, defense: 10, scheduleStrength: 3 };
-const model: ModelConfig = { neutralPointsPerTeam: 25.32, matchupAdvantageDivisor: 4, winProbabilityMarginScale: 13.5, scoreFloor: 3, scoreCeiling: 70, drivePossessions: 24, touchdownShare: 0.66, turnoverBaseRate: 0.17, turnoverScoreAdjustment: 250, turnoverFloor: 0.08, turnoverOnDownsRate: 0.1 };
+const ohioState = ratedSeason('ohio-state', 1995);
+const michigan = ratedSeason('michigan', 2023);
+const model = modelConfig();
 
 describe('Rivalry Lab model', () => {
   it('returns complementary era-neutral win probabilities', () => {
@@ -12,6 +13,14 @@ describe('Rivalry Lab model', () => {
 
     expect(matchup.ohioState.winProbability + matchup.michigan.winProbability).toBeCloseTo(1);
     expect(matchup.michigan.expectedScore).toBeGreaterThan(matchup.ohioState.expectedScore);
+  });
+
+  it('keeps 1995 Ohio State and 2023 Michigan close using cross-era ratings', () => {
+    const matchup = calculateMatchup(ratedSeason('ohio-state', 1995), ratedSeason('michigan', 2023), modelConfig());
+
+    expect(matchup.michigan.winProbability).toBeGreaterThanOrEqual(0.5);
+    expect(matchup.michigan.winProbability).toBeLessThanOrEqual(0.6);
+    expect(Math.abs(matchup.expectedMargin)).toBeLessThan(7);
   });
 
   it('replays a seeded game exactly', () => {
