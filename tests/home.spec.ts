@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Count', () => {
-  test('shows a static hero image without rotation controls', async ({ page }) => {
+  test('does not render a rotating image section', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page.locator('.hero img')).toHaveAttribute('src', '/images/Sad-Michigan-fans.jpg');
+    await expect(page.locator('.hero')).toHaveCount(0);
     await expect(page.getByRole('button', { name: /another one/i })).toHaveCount(0);
   });
 
