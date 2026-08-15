@@ -27,6 +27,13 @@ test.describe('Record', () => {
     await expect(page.locator('[data-game^="2025"]')).toBeVisible();
     await expect(page.locator('[data-game^="2024"]')).toBeHidden();
   });
+
+  test('includes drought history in each Every Meeting row', async ({ page }) => {
+    await page.goto('/record');
+
+    await expect(page.getByText('DROUGHT HISTORY', { exact: true })).toHaveCount(0);
+    await expect(page.locator('[data-game^="2025"] [data-drought-context]')).toContainText('Michigan');
+  });
 });
 
 test.describe('Rivalry Lab', () => {

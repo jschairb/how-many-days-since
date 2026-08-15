@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Norwester';
+  src: url('/fonts/norwester.otf') format('opentype');
+  font-display: swap;
+}
+
+.site-footer .gwp {
+  font-family: 'Norwester', 'Arial Black', sans-serif;
+  font-size: 16px;
+}
