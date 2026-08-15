@@ -1,6 +1,23 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Record', () => {
+  test('shows the observed drought statistics section and longest Ohio State drought', async ({ page }) => {
+    await page.goto('/record');
+
+    await expect(page.getByRole('heading', { name: 'RIVALRY DROUGHTS' })).toBeVisible();
+    await expect(page.getByTestId('ohio-state-longest')).toContainText('1944');
+    await expect(page.getByTestId('ohio-state-longest')).toContainText('1952');
+  });
+
+  test('keeps the Record page readable on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/record');
+
+    await expect(page.getByRole('heading', { name: 'RIVALRY DROUGHTS' })).toBeVisible();
+    await expect(page.locator('[data-drought-table="longest"]')).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  });
+
   test('renders all 121 meetings and filters them', async ({ page }) => {
     await page.goto('/record');
     await expect(page).toHaveTitle(/The Record/i);
