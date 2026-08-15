@@ -1,0 +1,23 @@
+---
+import '../styles/site.css';
+const { active, title = 'How Many Days Since Michigan Has Beaten Ohio State?' } = Astro.props;
+const nav = [{ href: '/', label: 'THE COUNT', id: 'count' }, { href: '/record', label: 'THE RECORD', id: 'record' }, { href: '/rivalry-lab', label: 'RIVALRY LAB', id: 'lab' }];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content="The Ohio State-Michigan rivalry record and an evidence-labeled cross-era Rivalry Lab." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style is:global>[hidden]{display:none!important}</style>
+  </head>
+  <body>
+    <header class="site-header"><nav class="site-nav" aria-label="Site">{nav.map((item) => <a href={item.href} aria-current={active === item.id ? 'page' : undefined} class:list={{ active: active === item.id }}>{item.label}</a>)}</nav></header>
+    <main class:list={{ 'site-main': true, lab: active === 'lab' }}><slot /></main>
+    {active !== 'lab' && <footer class="site-footer">an <a href="https://github.com/jschairb">@jschairb</a> joint, from Great Western Productions · © {new Date().getFullYear()}</footer>}
+  </body>
+</html>

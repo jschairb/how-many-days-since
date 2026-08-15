@@ -1,0 +1,2253 @@
+{
+  "productVersion": "product-v1",
+  "ratingModelVersion": "srs-elo-v1",
+  "eraModelVersion": "srs-era-neutral-v1",
+  "simulationEngineVersion": "drive-v1",
+  "dataSnapshotVersion": "cfbd-1970-2025-v1",
+  "generatedAt": "2026-08-15T05:31:16.254Z",
+  "neutralPointsPerTeam": 25.319940719998808,
+  "ratings": {
+    "teamSeasons": [
+      {
+        "teamId": "michigan",
+        "season": 1970,
+        "games": 10,
+        "wins": 9,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 288,
+        "pointsAgainst": 90,
+        "scoringMargin": 19.8,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1970,
+          "overall": 37.37938149616525,
+          "offense": 16.570436616232474,
+          "defense": 20.808944879932785,
+          "scheduleStrength": 17.58227868818899
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1970,
+        "games": 10,
+        "wins": 9,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 290,
+        "pointsAgainst": 120,
+        "scoringMargin": 17,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1970,
+          "overall": 36.98111939148791,
+          "offense": 18.311265376126382,
+          "defense": 18.66985401536152,
+          "scheduleStrength": 19.98384754718234
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1971,
+        "games": 12,
+        "wins": 11,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 421,
+        "pointsAgainst": 83,
+        "scoringMargin": 28.166666666666668,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1971,
+          "overall": 39.31800119061906,
+          "offense": 21.355079110304473,
+          "defense": 17.962922080314584,
+          "scheduleStrength": 11.15407881803793
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1971,
+        "games": 10,
+        "wins": 6,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 224,
+        "pointsAgainst": 120,
+        "scoringMargin": 10.4,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1971,
+          "overall": 26.11735071242574,
+          "offense": 9.8244806670849,
+          "defense": 16.292870045340837,
+          "scheduleStrength": 15.720363120727868
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1972,
+        "games": 11,
+        "wins": 10,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 264,
+        "pointsAgainst": 57,
+        "scoringMargin": 18.818181818181817,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1972,
+          "overall": 31.11179761592589,
+          "offense": 9.878602038919976,
+          "defense": 21.2331955770059,
+          "scheduleStrength": 12.294698115643286
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1972,
+        "games": 11,
+        "wins": 9,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 280,
+        "pointsAgainst": 171,
+        "scoringMargin": 9.909090909090908,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1972,
+          "overall": 23.321624203632933,
+          "offense": 11.612368701930798,
+          "defense": 11.709255501702136,
+          "scheduleStrength": 13.413759638745468
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1973,
+        "games": 11,
+        "wins": 10,
+        "losses": 0,
+        "ties": 1,
+        "pointsFor": 330,
+        "pointsAgainst": 68,
+        "scoringMargin": 23.818181818181817,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1973,
+          "overall": 41.14439844660314,
+          "offense": 19.0066572586104,
+          "defense": 22.137741187992738,
+          "scheduleStrength": 17.328613491697187
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1973,
+        "games": 11,
+        "wins": 10,
+        "losses": 0,
+        "ties": 1,
+        "pointsFor": 413,
+        "pointsAgainst": 64,
+        "scoringMargin": 31.727272727272727,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1973,
+          "overall": 48.1691895871085,
+          "offense": 25.814724712602587,
+          "defense": 22.354464874505922,
+          "scheduleStrength": 16.44445972913296
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1974,
+        "games": 11,
+        "wins": 10,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 324,
+        "pointsAgainst": 75,
+        "scoringMargin": 22.636363636363637,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1974,
+          "overall": 35.92999510042085,
+          "offense": 15.011708242360271,
+          "defense": 20.918286858060583,
+          "scheduleStrength": 13.294959651673501
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1974,
+        "games": 12,
+        "wins": 10,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 437,
+        "pointsAgainst": 129,
+        "scoringMargin": 25.666666666666668,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1974,
+          "overall": 38.378730107868336,
+          "offense": 21.94749777526864,
+          "defense": 16.431232332599716,
+          "scheduleStrength": 12.71348871325515
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1975,
+        "games": 12,
+        "wins": 8,
+        "losses": 2,
+        "ties": 2,
+        "pointsFor": 324,
+        "pointsAgainst": 130,
+        "scoringMargin": 16.166666666666668,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1975,
+          "overall": 31.114905726265853,
+          "offense": 13.828021375659562,
+          "defense": 17.28688435060629,
+          "scheduleStrength": 14.948958371857605
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1975,
+        "games": 12,
+        "wins": 11,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 384,
+        "pointsAgainst": 102,
+        "scoringMargin": 23.5,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1975,
+          "overall": 36.97820617398791,
+          "offense": 18.755827324155874,
+          "defense": 18.22237884983203,
+          "scheduleStrength": 13.478807802430739
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1976,
+        "games": 12,
+        "wins": 10,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 432,
+        "pointsAgainst": 95,
+        "scoringMargin": 28.083333333333332,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1976,
+          "overall": 42.02705287044259,
+          "offense": 22.5485752673717,
+          "defense": 19.4784776030709,
+          "scheduleStrength": 13.944011250237665
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1976,
+        "games": 12,
+        "wins": 9,
+        "losses": 2,
+        "ties": 1,
+        "pointsFor": 305,
+        "pointsAgainst": 149,
+        "scoringMargin": 13,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1976,
+          "overall": 31.546239769700865,
+          "offense": 14.156494197616416,
+          "defense": 17.38974557208445,
+          "scheduleStrength": 18.546596489404596
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1977,
+        "games": 12,
+        "wins": 10,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 353,
+        "pointsAgainst": 124,
+        "scoringMargin": 19.083333333333332,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1977,
+          "overall": 35.01401103514623,
+          "offense": 16.975742885355384,
+          "defense": 18.03826814979085,
+          "scheduleStrength": 15.938051316852352
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1977,
+        "games": 12,
+        "wins": 9,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 343,
+        "pointsAgainst": 120,
+        "scoringMargin": 18.583333333333332,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1977,
+          "overall": 34.49530081184872,
+          "offense": 16.43958505391586,
+          "defense": 18.05571575793286,
+          "scheduleStrength": 15.919555945009739
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1978,
+        "games": 12,
+        "wins": 10,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 372,
+        "pointsAgainst": 105,
+        "scoringMargin": 22.25,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1978,
+          "overall": 31.76577591062765,
+          "offense": 15.512883558529223,
+          "defense": 16.252892352098428,
+          "scheduleStrength": 9.516224059232087
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1978,
+        "games": 12,
+        "wins": 7,
+        "losses": 4,
+        "ties": 1,
+        "pointsFor": 339,
+        "pointsAgainst": 216,
+        "scoringMargin": 10.25,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1978,
+          "overall": 20.297410694863462,
+          "offense": 12.713874960379409,
+          "defense": 7.583535734484063,
+          "scheduleStrength": 10.047813654382288
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1979,
+        "games": 12,
+        "wins": 8,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 312,
+        "pointsAgainst": 151,
+        "scoringMargin": 13.416666666666666,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1979,
+          "overall": 26.520391829023534,
+          "offense": 11.429004338973536,
+          "defense": 15.091387490050002,
+          "scheduleStrength": 13.105038612476207
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1979,
+        "games": 12,
+        "wins": 11,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 390,
+        "pointsAgainst": 126,
+        "scoringMargin": 22,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1979,
+          "overall": 34.933725549017375,
+          "offense": 16.592809769887943,
+          "defense": 18.340915779129435,
+          "scheduleStrength": 12.935140868457408
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1980,
+        "games": 12,
+        "wins": 10,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 322,
+        "pointsAgainst": 129,
+        "scoringMargin": 16.083333333333332,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1980,
+          "overall": 28.917435188768035,
+          "offense": 11.659611845313288,
+          "defense": 17.257823343454728,
+          "scheduleStrength": 12.834202783482782
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1980,
+        "games": 12,
+        "wins": 9,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 387,
+        "pointsAgainst": 181,
+        "scoringMargin": 17.166666666666668,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1980,
+          "overall": 30.17977357964396,
+          "offense": 18.632044119092626,
+          "defense": 11.547729460551327,
+          "scheduleStrength": 13.013201112107453
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1981,
+        "games": 12,
+        "wins": 9,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 355,
+        "pointsAgainst": 162,
+        "scoringMargin": 16.083333333333332,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1981,
+          "overall": 25.649164346918624,
+          "offense": 12.524576512615821,
+          "defense": 13.124587834302794,
+          "scheduleStrength": 9.565993412423724
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1981,
+        "games": 12,
+        "wins": 9,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 387,
+        "pointsAgainst": 253,
+        "scoringMargin": 11.166666666666666,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1981,
+          "overall": 19.028931015724687,
+          "offense": 13.520193098384464,
+          "defense": 5.50873791734022,
+          "scheduleStrength": 7.86238711463572
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1982,
+        "games": 12,
+        "wins": 8,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 345,
+        "pointsAgainst": 204,
+        "scoringMargin": 11.75,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1982,
+          "overall": 29.649217596656538,
+          "offense": 15.313543787037611,
+          "defense": 14.335673809618921,
+          "scheduleStrength": 17.899210311814596
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1982,
+        "games": 12,
+        "wins": 9,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 348,
+        "pointsAgainst": 208,
+        "scoringMargin": 11.666666666666666,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1982,
+          "overall": 27.656723691987633,
+          "offense": 13.209149790806714,
+          "defense": 14.447573901180922,
+          "scheduleStrength": 15.990053047387041
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1983,
+        "games": 12,
+        "wins": 9,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 355,
+        "pointsAgainst": 160,
+        "scoringMargin": 16.25,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1983,
+          "overall": 24.407335323603043,
+          "offense": 10.327246715272512,
+          "defense": 14.080088608330536,
+          "scheduleStrength": 8.157377483736367
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1983,
+        "games": 12,
+        "wins": 9,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 410,
+        "pointsAgainst": 206,
+        "scoringMargin": 17,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1983,
+          "overall": 24.001549995368862,
+          "offense": 15.318351580582446,
+          "defense": 8.683198414786416,
+          "scheduleStrength": 7.0015906500407885
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1984,
+        "games": 12,
+        "wins": 6,
+        "losses": 6,
+        "ties": 0,
+        "pointsFor": 214,
+        "pointsAgainst": 200,
+        "scoringMargin": 1.1666666666666667,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1984,
+          "overall": 15.016333003981625,
+          "offense": 1.5794707697099533,
+          "defense": 13.436862234271668,
+          "scheduleStrength": 13.849699285195642
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1984,
+        "games": 12,
+        "wins": 9,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 391,
+        "pointsAgainst": 200,
+        "scoringMargin": 15.916666666666666,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1984,
+          "overall": 25.31668264384515,
+          "offense": 15.496076188987345,
+          "defense": 9.820606454857806,
+          "scheduleStrength": 9.40004899974957
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1985,
+        "games": 12,
+        "wins": 10,
+        "losses": 1,
+        "ties": 1,
+        "pointsFor": 342,
+        "pointsAgainst": 98,
+        "scoringMargin": 20.333333333333332,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1985,
+          "overall": 37.507494367093145,
+          "offense": 13.134503168189578,
+          "defense": 24.37299119890356,
+          "scheduleStrength": 17.17416705725531
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1985,
+        "games": 12,
+        "wins": 9,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 325,
+        "pointsAgainst": 212,
+        "scoringMargin": 9.416666666666666,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1985,
+          "overall": 24.280866140003212,
+          "offense": 11.999801658272974,
+          "defense": 12.281064481730246,
+          "scheduleStrength": 14.864196706841655
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1986,
+        "games": 13,
+        "wins": 11,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 379,
+        "pointsAgainst": 203,
+        "scoringMargin": 13.538461538461538,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1986,
+          "overall": 27.297977921760392,
+          "offense": 13.60034804465554,
+          "defense": 13.697629877104852,
+          "scheduleStrength": 13.759514626903128
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1986,
+        "games": 13,
+        "wins": 10,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 347,
+        "pointsAgainst": 179,
+        "scoringMargin": 12.923076923076923,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1986,
+          "overall": 25.93105691430828,
+          "offense": 9.334626163870526,
+          "defense": 16.59643075043776,
+          "scheduleStrength": 13.007978434635843
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1987,
+        "games": 12,
+        "wins": 8,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 331,
+        "pointsAgainst": 172,
+        "scoringMargin": 13.25,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1987,
+          "overall": 22.609536208598254,
+          "offense": 9.682421870580495,
+          "defense": 12.927114338017752,
+          "scheduleStrength": 9.359534986192289
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1987,
+        "games": 11,
+        "wins": 6,
+        "losses": 4,
+        "ties": 1,
+        "pointsFor": 224,
+        "pointsAgainst": 181,
+        "scoringMargin": 3.909090909090909,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1987,
+          "overall": 17.70677191436795,
+          "offense": 5.2989020014493615,
+          "defense": 12.407869912918581,
+          "scheduleStrength": 13.797680325236582
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1988,
+        "games": 12,
+        "wins": 9,
+        "losses": 2,
+        "ties": 1,
+        "pointsFor": 361,
+        "pointsAgainst": 167,
+        "scoringMargin": 16.166666666666668,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1988,
+          "overall": 32.12274399682216,
+          "offense": 15.152505753215292,
+          "defense": 16.970238243606865,
+          "scheduleStrength": 15.95607872170766
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1988,
+        "games": 11,
+        "wins": 4,
+        "losses": 6,
+        "ties": 1,
+        "pointsFor": 229,
+        "pointsAgainst": 283,
+        "scoringMargin": -4.909090909090909,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1988,
+          "overall": 9.02489706901098,
+          "offense": 6.071630785246331,
+          "defense": 2.9532662837646475,
+          "scheduleStrength": 13.93398954926572
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1989,
+        "games": 12,
+        "wins": 10,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 335,
+        "pointsAgainst": 184,
+        "scoringMargin": 12.583333333333334,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1989,
+          "overall": 24.724345332935442,
+          "offense": 11.172237503178271,
+          "defense": 13.55210782975717,
+          "scheduleStrength": 12.141012181814192
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1989,
+        "games": 12,
+        "wins": 8,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 339,
+        "pointsAgainst": 297,
+        "scoringMargin": 3.5,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1989,
+          "overall": 11.214699347552306,
+          "offense": 9.233002662656512,
+          "defense": 1.9816966848957998,
+          "scheduleStrength": 7.714699478445681
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1990,
+        "games": 12,
+        "wins": 9,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 389,
+        "pointsAgainst": 198,
+        "scoringMargin": 15.916666666666666,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1990,
+          "overall": 30.311719599678636,
+          "offense": 15.753671577914972,
+          "defense": 14.558048021763666,
+          "scheduleStrength": 14.395053139203002
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1990,
+        "games": 12,
+        "wins": 7,
+        "losses": 4,
+        "ties": 1,
+        "pointsFor": 349,
+        "pointsAgainst": 220,
+        "scoringMargin": 10.75,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1990,
+          "overall": 21.74295985757332,
+          "offense": 10.269671793764896,
+          "defense": 11.473288063808418,
+          "scheduleStrength": 10.992960437557548
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1991,
+        "games": 12,
+        "wins": 10,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 420,
+        "pointsAgainst": 203,
+        "scoringMargin": 18.083333333333332,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1991,
+          "overall": 33.92554164092226,
+          "offense": 19.8672741049949,
+          "defense": 14.058267535927362,
+          "scheduleStrength": 15.842208346449992
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1991,
+        "games": 12,
+        "wins": 8,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 277,
+        "pointsAgainst": 187,
+        "scoringMargin": 7.5,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1991,
+          "overall": 16.447538247718967,
+          "offense": 4.351813344213371,
+          "defense": 12.095724903505594,
+          "scheduleStrength": 8.947538365586306
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1992,
+        "games": 12,
+        "wins": 9,
+        "losses": 0,
+        "ties": 3,
+        "pointsFor": 431,
+        "pointsAgainst": 171,
+        "scoringMargin": 21.666666666666668,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1992,
+          "overall": 32.41109106682421,
+          "offense": 18.265667890677044,
+          "defense": 14.145423176147153,
+          "scheduleStrength": 10.744424178517884
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1992,
+        "games": 12,
+        "wins": 8,
+        "losses": 3,
+        "ties": 1,
+        "pointsFor": 271,
+        "pointsAgainst": 158,
+        "scoringMargin": 9.416666666666666,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1992,
+          "overall": 20.382641756165228,
+          "offense": 5.4072414745957325,
+          "defense": 14.97540028156949,
+          "scheduleStrength": 10.96597500677971
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1993,
+        "games": 12,
+        "wins": 8,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 342,
+        "pointsAgainst": 160,
+        "scoringMargin": 15.166666666666666,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1993,
+          "overall": 29.074613130956045,
+          "offense": 11.174034535671064,
+          "defense": 17.900578595284987,
+          "scheduleStrength": 13.907949342906965
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1993,
+        "games": 12,
+        "wins": 10,
+        "losses": 1,
+        "ties": 1,
+        "pointsFor": 351,
+        "pointsAgainst": 193,
+        "scoringMargin": 13.166666666666666,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1993,
+          "overall": 26.838748821588357,
+          "offense": 12.0035714129828,
+          "defense": 14.835177408605553,
+          "scheduleStrength": 13.672084901092989
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1994,
+        "games": 12,
+        "wins": 8,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 330,
+        "pointsAgainst": 268,
+        "scoringMargin": 5.166666666666667,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1994,
+          "overall": 26.125025231128657,
+          "offense": 11.811267567231615,
+          "defense": 14.31375766389704,
+          "scheduleStrength": 20.958354851378328
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1994,
+        "games": 13,
+        "wins": 9,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 336,
+        "pointsAgainst": 211,
+        "scoringMargin": 9.615384615384615,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1994,
+          "overall": 24.50547744602655,
+          "offense": 6.995809076990907,
+          "defense": 17.50966836903564,
+          "scheduleStrength": 14.890090456436237
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1995,
+        "games": 13,
+        "wins": 9,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 338,
+        "pointsAgainst": 223,
+        "scoringMargin": 8.846153846153847,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1995,
+          "overall": 25.79467884723089,
+          "offense": 10.173899925495151,
+          "defense": 15.62077892173574,
+          "scheduleStrength": 16.948525003519332
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1995,
+        "games": 13,
+        "wins": 11,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 475,
+        "pointsAgainst": 220,
+        "scoringMargin": 19.615384615384617,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1995,
+          "overall": 37.63931300942068,
+          "offense": 20.329597148455353,
+          "defense": 17.309715860965337,
+          "scheduleStrength": 18.023928376807547
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1996,
+        "games": 12,
+        "wins": 8,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 277,
+        "pointsAgainst": 184,
+        "scoringMargin": 7.75,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1996,
+          "overall": 25.070238005718924,
+          "offense": 6.626206190337588,
+          "defense": 18.444031815381344,
+          "scheduleStrength": 17.320238001101075
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1996,
+        "games": 12,
+        "wins": 11,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 455,
+        "pointsAgainst": 131,
+        "scoringMargin": 27,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1996,
+          "overall": 43.4059660034362,
+          "offense": 20.995574726770794,
+          "defense": 22.410391276665404,
+          "scheduleStrength": 16.40596599819807
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1997,
+        "games": 12,
+        "wins": 12,
+        "losses": 0,
+        "ties": 0,
+        "pointsFor": 322,
+        "pointsAgainst": 114,
+        "scoringMargin": 17.333333333333332,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1997,
+          "overall": 30.900522023310003,
+          "offense": 8.693530574791078,
+          "defense": 22.20699144851893,
+          "scheduleStrength": 13.56718868384209
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1997,
+        "games": 13,
+        "wins": 10,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 394,
+        "pointsAgainst": 170,
+        "scoringMargin": 17.23076923076923,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1997,
+          "overall": 30.048125200237948,
+          "offense": 12.495065277476009,
+          "defense": 17.553059922761935,
+          "scheduleStrength": 12.817355966828604
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1998,
+        "games": 13,
+        "wins": 10,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 359,
+        "pointsAgainst": 235,
+        "scoringMargin": 9.538461538461538,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1998,
+          "overall": 22.374525318470504,
+          "offense": 9.057354814817229,
+          "defense": 13.317170503653276,
+          "scheduleStrength": 12.836063474758335
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1998,
+        "games": 12,
+        "wins": 11,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 430,
+        "pointsAgainst": 144,
+        "scoringMargin": 23.833333333333332,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1998,
+          "overall": 37.12626214730873,
+          "offense": 19.40488452870981,
+          "defense": 17.721377618598922,
+          "scheduleStrength": 13.292928540724377
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 1999,
+        "games": 12,
+        "wins": 10,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 361,
+        "pointsAgainst": 247,
+        "scoringMargin": 9.5,
+        "srs": {
+          "teamId": "michigan",
+          "season": 1999,
+          "overall": 28.596302381230082,
+          "offense": 13.662567362237947,
+          "defense": 14.933735018992135,
+          "scheduleStrength": 19.096303887626703
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 1999,
+        "games": 12,
+        "wins": 6,
+        "losses": 6,
+        "ties": 0,
+        "pointsFor": 285,
+        "pointsAgainst": 287,
+        "scoringMargin": -0.16666666666666666,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 1999,
+          "overall": 19.735670572405546,
+          "offense": 7.890913972962508,
+          "defense": 11.844756599443043,
+          "scheduleStrength": 19.902339062112883
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2000,
+        "games": 12,
+        "wins": 9,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 404,
+        "pointsAgainst": 229,
+        "scoringMargin": 14.583333333333334,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2000,
+          "overall": 28.115715057604497,
+          "offense": 14.540330601624303,
+          "defense": 13.575384455980197,
+          "scheduleStrength": 13.532381680282098
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2000,
+        "games": 12,
+        "wins": 8,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 331,
+        "pointsAgainst": 222,
+        "scoringMargin": 9.083333333333334,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2000,
+          "overall": 24.434434532669606,
+          "offense": 11.71421456359899,
+          "defense": 12.720219969070616,
+          "scheduleStrength": 15.35110121865462
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2001,
+        "games": 12,
+        "wins": 8,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 320,
+        "pointsAgainst": 237,
+        "scoringMargin": 6.916666666666667,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2001,
+          "overall": 21.497055780741157,
+          "offense": 7.9761334477373715,
+          "defense": 13.52092233300378,
+          "scheduleStrength": 14.580389112827824
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2001,
+        "games": 12,
+        "wins": 7,
+        "losses": 5,
+        "ties": 0,
+        "pointsFor": 312,
+        "pointsAgainst": 244,
+        "scoringMargin": 5.666666666666667,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2001,
+          "overall": 17.620277202206367,
+          "offense": 6.353426861555743,
+          "defense": 11.266850340650628,
+          "scheduleStrength": 11.953610534551393
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2002,
+        "games": 13,
+        "wins": 10,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 361,
+        "pointsAgainst": 265,
+        "scoringMargin": 7.384615384615385,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2002,
+          "overall": 25.142045812617678,
+          "offense": 11.226122381688182,
+          "defense": 13.915923430929498,
+          "scheduleStrength": 17.75743041984987
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2002,
+        "games": 14,
+        "wins": 14,
+        "losses": 0,
+        "ties": 0,
+        "pointsFor": 410,
+        "pointsAgainst": 183,
+        "scoringMargin": 16.214285714285715,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2002,
+          "overall": 29.539330669574507,
+          "offense": 6.991324012538326,
+          "defense": 22.548006657036183,
+          "scheduleStrength": 13.325044949470682
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2003,
+        "games": 13,
+        "wins": 10,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 460,
+        "pointsAgainst": 219,
+        "scoringMargin": 18.53846153846154,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2003,
+          "overall": 51.96730003196225,
+          "offense": 25.704109017124555,
+          "defense": 26.263191014837687,
+          "scheduleStrength": 33.44897737529691
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2003,
+        "games": 13,
+        "wins": 11,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 322,
+        "pointsAgainst": 229,
+        "scoringMargin": 7.153846153846154,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2003,
+          "overall": 44.5992320646684,
+          "offense": 18.696782539183015,
+          "defense": 25.90244952548537,
+          "scheduleStrength": 37.465063633068866
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2004,
+        "games": 12,
+        "wins": 9,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 370,
+        "pointsAgainst": 279,
+        "scoringMargin": 7.583333333333333,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2004,
+          "overall": 36.7843416202998,
+          "offense": 20.294783181869555,
+          "defense": 16.48955843843025,
+          "scheduleStrength": 29.219791986836757
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2004,
+        "games": 12,
+        "wins": 8,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 290,
+        "pointsAgainst": 219,
+        "scoringMargin": 5.916666666666667,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2004,
+          "overall": 35.49649123015147,
+          "offense": 14.309305560739993,
+          "defense": 21.187185669411484,
+          "scheduleStrength": 29.59801099685323
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2005,
+        "games": 12,
+        "wins": 7,
+        "losses": 5,
+        "ties": 0,
+        "pointsFor": 345,
+        "pointsAgainst": 244,
+        "scoringMargin": 8.416666666666666,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2005,
+          "overall": 47.10404158674405,
+          "offense": 20.732882659524844,
+          "defense": 26.371158927219188,
+          "scheduleStrength": 38.71981980159303
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2005,
+        "games": 12,
+        "wins": 10,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 392,
+        "pointsAgainst": 183,
+        "scoringMargin": 17.416666666666668,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2005,
+          "overall": 56.64465499796995,
+          "offense": 23.607392493796198,
+          "defense": 33.03726250417374,
+          "scheduleStrength": 39.2614792100137
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2006,
+        "games": 13,
+        "wins": 11,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 380,
+        "pointsAgainst": 207,
+        "scoringMargin": 13.307692307692308,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2006,
+          "overall": 44.31641044386433,
+          "offense": 20.946671997777667,
+          "defense": 23.369738446086657,
+          "scheduleStrength": 31.024884778551094
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2006,
+        "games": 13,
+        "wins": 12,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 450,
+        "pointsAgainst": 166,
+        "scoringMargin": 21.846153846153847,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2006,
+          "overall": 50.306437922134286,
+          "offense": 25.671985255883854,
+          "defense": 24.63445266625041,
+          "scheduleStrength": 28.476065043735602
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2007,
+        "games": 13,
+        "wins": 9,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 354,
+        "pointsAgainst": 278,
+        "scoringMargin": 5.846153846153846,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2007,
+          "overall": 37.70918923121666,
+          "offense": 14.98958650276716,
+          "defense": 22.71960272844951,
+          "scheduleStrength": 31.868205307553612
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2007,
+        "games": 13,
+        "wins": 11,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 408,
+        "pointsAgainst": 166,
+        "scoringMargin": 18.615384615384617,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2007,
+          "overall": 47.1685829052447,
+          "offense": 18.365902672832178,
+          "defense": 28.802680232412527,
+          "scheduleStrength": 28.55837611626644
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2008,
+        "games": 12,
+        "wins": 3,
+        "losses": 9,
+        "ties": 0,
+        "pointsFor": 243,
+        "pointsAgainst": 347,
+        "scoringMargin": -8.666666666666666,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2008,
+          "overall": 23.641552243823888,
+          "offense": 11.256046155886073,
+          "defense": 12.38550608793782,
+          "scheduleStrength": 32.317114007213654
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2008,
+        "games": 13,
+        "wins": 10,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 359,
+        "pointsAgainst": 181,
+        "scoringMargin": 13.692307692307692,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2008,
+          "overall": 46.83303059735522,
+          "offense": 18.70546981569989,
+          "defense": 28.127560781655323,
+          "scheduleStrength": 33.149152810917016
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2009,
+        "games": 12,
+        "wins": 5,
+        "losses": 7,
+        "ties": 0,
+        "pointsFor": 354,
+        "pointsAgainst": 330,
+        "scoringMargin": 2,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2009,
+          "overall": 24.573851176425,
+          "offense": 15.77552083620866,
+          "defense": 8.798330340216326,
+          "scheduleStrength": 22.576945442461277
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2009,
+        "games": 13,
+        "wins": 11,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 377,
+        "pointsAgainst": 163,
+        "scoringMargin": 16.46153846153846,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2009,
+          "overall": 42.519172532672435,
+          "offense": 16.513922472271503,
+          "defense": 26.00525006040092,
+          "scheduleStrength": 26.061463320795305
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2010,
+        "games": 13,
+        "wins": 7,
+        "losses": 6,
+        "ties": 0,
+        "pointsFor": 426,
+        "pointsAgainst": 458,
+        "scoringMargin": -2.4615384615384617,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2010,
+          "overall": 24.74208985354775,
+          "offense": 20.533560681291785,
+          "defense": 4.20852917225596,
+          "scheduleStrength": 27.206077864128076
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2010,
+        "games": 13,
+        "wins": 12,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 504,
+        "pointsAgainst": 186,
+        "scoringMargin": 24.46153846153846,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2010,
+          "overall": 47.53172293101356,
+          "offense": 22.621147433679404,
+          "defense": 24.91057549733415,
+          "scheduleStrength": 23.07333440618085
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2011,
+        "games": 13,
+        "wins": 11,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 433,
+        "pointsAgainst": 226,
+        "scoringMargin": 15.923076923076923,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2011,
+          "overall": 44.95943038227339,
+          "offense": 22.325960743069142,
+          "defense": 22.63346963920426,
+          "scheduleStrength": 29.039225251309077
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2011,
+        "games": 13,
+        "wins": 6,
+        "losses": 7,
+        "ties": 0,
+        "pointsFor": 318,
+        "pointsAgainst": 273,
+        "scoringMargin": 3.4615384615384617,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2011,
+          "overall": 32.78009635686829,
+          "offense": 12.381807649273519,
+          "defense": 20.398288707594773,
+          "scheduleStrength": 29.321459009893076
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2012,
+        "games": 13,
+        "wins": 8,
+        "losses": 5,
+        "ties": 0,
+        "pointsFor": 388,
+        "pointsAgainst": 258,
+        "scoringMargin": 10,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2012,
+          "overall": 35.93580788070774,
+          "offense": 17.48803646860263,
+          "defense": 18.447771412105112,
+          "scheduleStrength": 25.938882544069013
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2012,
+        "games": 12,
+        "wins": 12,
+        "losses": 0,
+        "ties": 0,
+        "pointsFor": 446,
+        "pointsAgainst": 274,
+        "scoringMargin": 14.333333333333334,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2012,
+          "overall": 36.805141973132834,
+          "offense": 21.001218148864968,
+          "defense": 15.80392382426787,
+          "scheduleStrength": 22.47511981848945
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2013,
+        "games": 13,
+        "wins": 7,
+        "losses": 6,
+        "ties": 0,
+        "pointsFor": 419,
+        "pointsAgainst": 349,
+        "scoringMargin": 5.384615384615385,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2013,
+          "overall": 36.255645381589304,
+          "offense": 20.30489370987464,
+          "defense": 15.950751671714665,
+          "scheduleStrength": 30.87293527010975
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2013,
+        "games": 14,
+        "wins": 12,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 637,
+        "pointsAgainst": 317,
+        "scoringMargin": 22.857142857142858,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2013,
+          "overall": 50.137110188718886,
+          "offense": 30.73868352054355,
+          "defense": 19.39842666817533,
+          "scheduleStrength": 27.28180624403584
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2014,
+        "games": 12,
+        "wins": 5,
+        "losses": 7,
+        "ties": 0,
+        "pointsFor": 251,
+        "pointsAgainst": 269,
+        "scoringMargin": -1.5,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2014,
+          "overall": 29.247109665120412,
+          "offense": 7.4456935751252775,
+          "defense": 21.801416089995136,
+          "scheduleStrength": 30.74788148777904
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2014,
+        "games": 15,
+        "wins": 14,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 672,
+        "pointsAgainst": 330,
+        "scoringMargin": 22.8,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2014,
+          "overall": 55.125855362596376,
+          "offense": 33.310888787507324,
+          "defense": 21.814966575089045,
+          "scheduleStrength": 32.326593390856196
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2015,
+        "games": 13,
+        "wins": 10,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 408,
+        "pointsAgainst": 213,
+        "scoringMargin": 15,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2015,
+          "overall": 43.318215000225706,
+          "offense": 18.62212187281524,
+          "defense": 24.696093127410467,
+          "scheduleStrength": 28.319133106321758
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2015,
+        "games": 13,
+        "wins": 12,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 464,
+        "pointsAgainst": 196,
+        "scoringMargin": 20.615384615384617,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2015,
+          "overall": 47.983329005549884,
+          "offense": 21.20778610764711,
+          "defense": 26.775542897902778,
+          "scheduleStrength": 27.368784247373373
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2016,
+        "games": 13,
+        "wins": 10,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 524,
+        "pointsAgainst": 183,
+        "scoringMargin": 26.23076923076923,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2016,
+          "overall": 56.53107597587809,
+          "offense": 28.092902764660092,
+          "defense": 28.438173211217986,
+          "scheduleStrength": 30.301385567367358
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2016,
+        "games": 13,
+        "wins": 11,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 512,
+        "pointsAgainst": 201,
+        "scoringMargin": 23.923076923076923,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2016,
+          "overall": 56.53365928125441,
+          "offense": 26.72443505587303,
+          "defense": 29.80922422538137,
+          "scheduleStrength": 32.61164164583428
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2017,
+        "games": 13,
+        "wins": 8,
+        "losses": 5,
+        "ties": 0,
+        "pointsFor": 328,
+        "pointsAgainst": 245,
+        "scoringMargin": 6.384615384615385,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2017,
+          "overall": 37.777575792217654,
+          "offense": 14.658429160998738,
+          "defense": 23.119146631218918,
+          "scheduleStrength": 31.39425299665383
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2017,
+        "games": 14,
+        "wins": 12,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 576,
+        "pointsAgainst": 266,
+        "scoringMargin": 22.142857142857142,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2017,
+          "overall": 54.418661688377604,
+          "offense": 29.67547999061084,
+          "defense": 24.74318169776678,
+          "scheduleStrength": 32.27713865308697
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2018,
+        "games": 13,
+        "wins": 10,
+        "losses": 3,
+        "ties": 0,
+        "pointsFor": 457,
+        "pointsAgainst": 252,
+        "scoringMargin": 15.76923076923077,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2018,
+          "overall": 47.484722340147556,
+          "offense": 22.788213674895406,
+          "defense": 24.696508665252157,
+          "scheduleStrength": 31.715987098198937
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2018,
+        "games": 14,
+        "wins": 13,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 593,
+        "pointsAgainst": 357,
+        "scoringMargin": 16.857142857142858,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2018,
+          "overall": 47.26997318425039,
+          "offense": 30.790493505649533,
+          "defense": 16.479479678600867,
+          "scheduleStrength": 30.413354835499053
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2019,
+        "games": 13,
+        "wins": 9,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 412,
+        "pointsAgainst": 269,
+        "scoringMargin": 11,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2019,
+          "overall": 47.931486787403315,
+          "offense": 22.52462546106991,
+          "defense": 25.406861326333406,
+          "scheduleStrength": 36.932138600538536
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2019,
+        "games": 14,
+        "wins": 13,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 656,
+        "pointsAgainst": 192,
+        "scoringMargin": 33.142857142857146,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2019,
+          "overall": 69.04740864016311,
+          "offense": 38.183368801777796,
+          "defense": 30.8640398383853,
+          "scheduleStrength": 35.90519105613547
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2020,
+        "games": 6,
+        "wins": 2,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 170,
+        "pointsAgainst": 207,
+        "scoringMargin": -6.166666666666667,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2020,
+          "overall": 9.406452301981663,
+          "offense": 10.024016279853562,
+          "defense": -0.617563977871898,
+          "scheduleStrength": 15.67343206541725
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2020,
+        "games": 8,
+        "wins": 7,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 328,
+        "pointsAgainst": 206,
+        "scoringMargin": 15.25,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2020,
+          "overall": 38.15961853103538,
+          "offense": 25.172699667562867,
+          "defense": 12.986918863472516,
+          "scheduleStrength": 22.999720082216307
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2021,
+        "games": 14,
+        "wins": 12,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 501,
+        "pointsAgainst": 243,
+        "scoringMargin": 18.428571428571427,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2021,
+          "overall": 54.79150653997748,
+          "offense": 27.679404597582764,
+          "defense": 27.11210194239473,
+          "scheduleStrength": 36.42772903189887
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2021,
+        "games": 13,
+        "wins": 11,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 594,
+        "pointsAgainst": 296,
+        "scoringMargin": 22.923076923076923,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2021,
+          "overall": 57.84517809606265,
+          "offense": 36.71374053306401,
+          "defense": 21.13143756299864,
+          "scheduleStrength": 34.98691264238901
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2022,
+        "games": 14,
+        "wins": 13,
+        "losses": 1,
+        "ties": 0,
+        "pointsFor": 566,
+        "pointsAgainst": 225,
+        "scoringMargin": 24.357142857142858,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2022,
+          "overall": 61.182270716248794,
+          "offense": 32.86708588433637,
+          "defense": 28.315184831912447,
+          "scheduleStrength": 36.94393755760375
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2022,
+        "games": 13,
+        "wins": 11,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 575,
+        "pointsAgainst": 273,
+        "scoringMargin": 23.23076923076923,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2022,
+          "overall": 64.12868052302356,
+          "offense": 38.80018717794174,
+          "defense": 25.328493345081835,
+          "scheduleStrength": 41.01685528966183
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2023,
+        "games": 15,
+        "wins": 15,
+        "losses": 0,
+        "ties": 0,
+        "pointsFor": 538,
+        "pointsAgainst": 156,
+        "scoringMargin": 25.466666666666665,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2023,
+          "overall": 61.312031110643225,
+          "offense": 29.029551761215544,
+          "defense": 32.28247934942766,
+          "scheduleStrength": 35.94422788607653
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2023,
+        "games": 13,
+        "wins": 11,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 397,
+        "pointsAgainst": 146,
+        "scoringMargin": 19.307692307692307,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2023,
+          "overall": 56.22217001356189,
+          "offense": 22.400356533604175,
+          "defense": 33.821813479957704,
+          "scheduleStrength": 37.011867743395705
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2024,
+        "games": 13,
+        "wins": 8,
+        "losses": 5,
+        "ties": 0,
+        "pointsFor": 286,
+        "pointsAgainst": 259,
+        "scoringMargin": 2.076923076923077,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2024,
+          "overall": 47.52514382035134,
+          "offense": 19.06025508837367,
+          "defense": 28.464888731977666,
+          "scheduleStrength": 45.56459188238092
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2024,
+        "games": 16,
+        "wins": 14,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 571,
+        "pointsAgainst": 206,
+        "scoringMargin": 22.8125,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2024,
+          "overall": 66.46381331896421,
+          "offense": 31.55767919448123,
+          "defense": 34.90613412448298,
+          "scheduleStrength": 43.767456986991945
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "michigan",
+        "season": 2025,
+        "games": 13,
+        "wins": 9,
+        "losses": 4,
+        "ties": 0,
+        "pointsFor": 358,
+        "pointsAgainst": 265,
+        "scoringMargin": 7.153846153846154,
+        "srs": {
+          "teamId": "michigan",
+          "season": 2025,
+          "overall": 53.044381114975785,
+          "offense": 25.907961985138357,
+          "defense": 27.136419129837467,
+          "scheduleStrength": 46.02385241875201
+        },
+        "evidenceType": "DERIVED"
+      },
+      {
+        "teamId": "ohio-state",
+        "season": 2025,
+        "games": 14,
+        "wins": 12,
+        "losses": 2,
+        "ties": 0,
+        "pointsFor": 468,
+        "pointsAgainst": 130,
+        "scoringMargin": 24.142857142857142,
+        "srs": {
+          "teamId": "ohio-state",
+          "season": 2025,
+          "overall": 69.01086732109988,
+          "offense": 30.423955683842212,
+          "defense": 38.586911637257714,
+          "scheduleStrength": 44.99885742730676
+        },
+        "evidenceType": "DERIVED"
+      }
+    ]
+  }
+}
