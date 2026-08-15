@@ -33,9 +33,10 @@ test('publishes an evidence-labeled Rivalry Lab methodology page', async ({ page
   await expect(page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).resolves.toBe(true);
 });
 
-test('links to methodology from the Rivalry Lab provenance panel', async ({ page }) => {
+test('links to methodology from the Rivalry Lab Pregame provenance panel', async ({ page }) => {
   await page.goto('/rivalry-lab');
   await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
+  await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
   await expect(page.getByTestId('snapshot-provenance').getByRole('link', { name: 'READ THE METHOD' })).toHaveAttribute(
     'href',
