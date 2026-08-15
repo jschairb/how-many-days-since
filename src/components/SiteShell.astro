@@ -2,8 +2,9 @@
 import '../styles/site.css';
 import '../styles/norwester.css';
 const site = 'https://howmanydayssincemichiganhasbeatenohiostate.com';
-const { active, title = 'How Many Days Since Michigan Has Beaten Ohio State?', description = 'The Ohio State-Michigan rivalry record and an evidence-labeled cross-era Rivalry Lab.' } = Astro.props;
+const { active, title = 'How Many Days Since Michigan Has Beaten Ohio State?', description = 'The Ohio State-Michigan rivalry record and an evidence-labeled cross-era Rivalry Lab.', ogImage } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site).toString();
+const openGraphImage = ogImage ? new URL(ogImage, site).toString() : undefined;
 const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
 const webSiteSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'How Many Days Since Michigan Has Beaten Ohio State?', url: site });
 const pageSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebPage', name: title, description, url: canonical });
@@ -22,6 +23,7 @@ const nav = [{ href: '/', label: 'THE COUNT', id: 'count' }, { href: '/record', 
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    {openGraphImage && <meta property="og:image" content={openGraphImage} />}
     <meta name="twitter:card" content="summary_large_image" />
     <script type="application/ld+json" set:html={webSiteSchema}></script>
     <script type="application/ld+json" set:html={pageSchema}></script>

@@ -55,6 +55,15 @@ test.describe('Record', () => {
 });
 
 test.describe('Rivalry Lab', () => {
+  test('keeps the methodology page in Lab-local navigation on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/rivalry-lab/about');
+
+    await expect(page.getByRole('navigation', { name: 'Rivalry Lab' }).getByRole('link', { name: 'OPEN THE LAB' })).toBeVisible();
+    await expect(page.getByRole('navigation', { name: 'Rivalry Lab' }).getByRole('link', { name: 'METHOD' })).toHaveAttribute('aria-current', 'page');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  });
+
   test('shows observed and derived season profiles with snapshot provenance', async ({ page }) => {
     await page.goto('/rivalry-lab');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();

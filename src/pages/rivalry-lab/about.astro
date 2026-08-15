@@ -1,0 +1,96 @@
+---
+import SiteShell from '../../components/SiteShell.astro';
+
+const title = 'Rivalry Lab Methodology | Ohio State vs Michigan Historical Simulator';
+const description = 'How Rivalry Lab labels observed history, derives cross-era matchup ratings, and produces seeded synthetic simulations.';
+---
+
+<SiteShell active="lab" {title} {description} ogImage="/og/rivalry-lab/about.png">
+  <article class="methodology">
+    <header class="methodology-header">
+      <div>
+        <p class="eyebrow">RIVALRY LAB · METHODS &amp; SOURCES</p>
+        <h1>HOW RIVALRY LAB WORKS</h1>
+        <p class="methodology-lede">Rivalry Lab is a historical matchup simulator, not a record book or a prediction service. It keeps the source of each claim visible: observed history, derived ratings, or synthetic game output.</p>
+      </div>
+      <a class="method-primary" href="/rivalry-lab">OPEN THE LAB</a>
+    </header>
+
+    <nav class="method-nav" aria-label="Rivalry Lab">
+      <a href="/rivalry-lab">OPEN THE LAB</a>
+      <a href="/rivalry-lab/about" aria-current="page">METHOD</a>
+    </nav>
+
+    <section class="method-section" aria-labelledby="evidence-heading">
+      <div class="method-section-heading">
+        <p class="eyebrow">READ THE LABEL</p>
+        <h2 id="evidence-heading">WHAT THE LAB SHOWS</h2>
+      </div>
+      <div class="evidence-grid">
+        <article>
+          <p class="evidence-label observed">OBSERVED</p>
+          <h3>Season and rivalry history</h3>
+          <p>Team-season identities, records, scoring context, rankings, coaches, and archival Ohio State-Michigan meetings are historical facts carried into the public snapshot when source coverage is available.</p>
+        </article>
+        <article>
+          <p class="evidence-label derived">DERIVED</p>
+          <h3>Ratings and matchup expectations</h3>
+          <p>The Lab translates season ratings into a common scoring environment. Expected scores, win probabilities, rank summaries, and score advantages are model outputs, not historical results.</p>
+        </article>
+        <article>
+          <p class="evidence-label simulated">SIMULATED</p>
+          <h3>Every played game</h3>
+          <p>Drive timelines, final scores, turning points, series records, and volatility are synthetic outcomes generated from the derived matchup baseline and the selected seed.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="method-section method-columns" aria-labelledby="process-heading">
+      <div class="method-section-heading">
+        <p class="eyebrow">THE PROCESS</p>
+        <h2 id="process-heading">FROM SEASON TO MATCHUP</h2>
+      </div>
+      <div class="method-copy">
+        <ol class="method-steps">
+          <li><b>Choose two seasons.</b> The selector only offers seasons included in the public Rivalry Lab snapshot.</li>
+          <li><b>Use the exported cross-era ratings.</b> The matchup API uses normalized ratings and the exported scoring scale, rather than comparing raw season SRS values directly.</li>
+          <li><b>Set the neutral baseline.</b> Each team is translated from its own offensive and defensive environment into the same neutral scoring environment.</li>
+          <li><b>Run a seeded simulation.</b> The seed makes a given run reproducible. Changing it creates a different synthetic sequence around the same derived baseline.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="method-section method-columns" aria-labelledby="sources-heading">
+      <div class="method-section-heading">
+        <p class="eyebrow">PUBLIC RELEASE</p>
+        <h2 id="sources-heading">SOURCES &amp; COVERAGE</h2>
+      </div>
+      <div class="method-copy">
+        <p>The site consumes a reduced public product snapshot from the Rivalry Lab model workspace. The snapshot includes the derived ratings, era translation configuration, simulation configuration, selected observed season fields, and links for covered rivalry games.</p>
+        <p>It does not import the private historical warehouse, credentials, or purchased data packages. A season profile may show an unavailable field when the public snapshot does not report it. Missing fields are not filled with guesses.</p>
+        <p>The Tape screen names the snapshot versions used for the current release. That provenance panel is the source of record for the version loaded by the simulator.</p>
+      </div>
+    </section>
+
+    <section class="method-section limitations" aria-labelledby="limitations-heading">
+      <div class="method-section-heading">
+        <p class="eyebrow">BOUNDARIES</p>
+        <h2 id="limitations-heading">WHAT IT DOES NOT CLAIM</h2>
+      </div>
+      <div class="method-copy">
+        <p>A simulated final score is not a replay of a historical game, evidence that one team would certainly beat another, or a forecast of a future Ohio State-Michigan meeting. Ratings summarize the information represented in the released model; they do not capture every player, injury, coaching choice, weather condition, or counterfactual.</p>
+        <p>Rivalry Lab is unaffiliated with Ohio State University and the University of Michigan.</p>
+      </div>
+    </section>
+
+    <footer class="methodology-footer">
+      <a class="method-primary" href="/rivalry-lab">BUILD A MATCHUP</a>
+      <p>Look for the observed, derived, and simulated labels throughout the Lab.</p>
+    </footer>
+  </article>
+</SiteShell>
+
+<style>
+  .methodology { max-width:960px;margin:0 auto; }.methodology-header { display:flex;justify-content:space-between;align-items:end;gap:32px;padding:28px 0 38px;border-bottom:6px solid #111; }.eyebrow { margin:0 0 10px;color:#6b717c;font-size:12px;font-weight:700;letter-spacing:.08em; }.methodology h1,.methodology h2,.methodology h3 { font-family:'Archivo Black';letter-spacing:-.02em; }.methodology h1 { max-width:720px;margin:0;font-size:clamp(38px,7vw,76px);line-height:.94; }.methodology-lede { max-width:720px;margin:22px 0 0;font-size:18px;line-height:1.55; }.method-primary { display:inline-block;padding:14px 18px;background:#bb0000;color:#fff;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap; }.method-nav { display:flex;gap:22px;overflow-x:auto;margin:0 -4px;padding:18px 4px;border-bottom:1px solid #d9dce1; }.method-nav a { padding:0 0 4px;color:#6b717c;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap; }.method-nav a[aria-current=page] { color:#111;text-decoration:underline 3px #bb0000;text-underline-offset:6px; }.method-section { display:grid;grid-template-columns:240px minmax(0,1fr);gap:36px;padding:42px 0;border-bottom:1px solid #d9dce1; }.method-section h2 { margin:0;font-size:28px;line-height:1.05; }.evidence-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px; }.evidence-grid article { padding:20px;border:3px solid #111; }.evidence-grid h3 { margin:10px 0;font-size:20px;line-height:1.05; }.evidence-grid p,.method-copy p,.method-steps { margin:0;color:#363a41;font-size:15px;line-height:1.55; }.evidence-label { display:inline-block;padding:4px 6px!important;color:#111!important;font-size:11px!important;font-weight:700;letter-spacing:.06em; }.observed { background:#d9dce1; }.derived { background:#f6d55c; }.simulated { background:#bb0000;color:#fff!important; }.method-copy { display:grid;gap:16px; }.method-steps { display:grid;gap:16px;padding-left:20px; }.method-steps b { color:#111; }.limitations { border-bottom:0; }.methodology-footer { display:flex;align-items:center;justify-content:space-between;gap:24px;padding:28px;background:#111;color:#fff; }.methodology-footer p { margin:0;color:#d9dce1;font-size:14px; }.methodology-footer .method-primary { background:#fff;color:#111; }
+  @media (max-width:720px) { .methodology-header { align-items:start;flex-direction:column;padding-top:12px; }.method-section { grid-template-columns:1fr;gap:18px;padding:32px 0; }.evidence-grid { grid-template-columns:1fr; }.methodology-footer { align-items:start;flex-direction:column; }.methodology h1 { font-size:48px; }.methodology-lede { font-size:16px; } }
+</style>
