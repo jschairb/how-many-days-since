@@ -1,7 +1,8 @@
 ---
 import SiteShell from '../components/SiteShell.astro'; import LabApp from '../components/RivalryLab.astro'; import { rivalrySnapshot } from '../lib/rivalry-snapshot';
 const osuYears = rivalrySnapshot.ratings.teamSeasons.filter((entry) => entry.teamId === 'ohio-state' && entry.srs).map((entry) => entry.season).sort((a,b) => b-a); const michYears = rivalrySnapshot.ratings.teamSeasons.filter((entry) => entry.teamId === 'michigan' && entry.srs).map((entry) => entry.season).sort((a,b) => b-a);
-const seasonProfiles = rivalrySnapshot.ratings.teamSeasons.map(({ teamId, season, wins, losses, ties, profile }) => ({ teamId, season, wins, losses, ties, profile }));
+const seasonProfiles = rivalrySnapshot.ratings.teamSeasons.map(({ teamId, season, wins, losses, ties, crossEra, profile }) => ({ teamId, season, wins, losses, ties, crossEra, profile }));
 const provenance = { generatedAt: rivalrySnapshot.generatedAt, ratingModelVersion: rivalrySnapshot.ratingModelVersion, eraModelVersion: rivalrySnapshot.eraModelVersion, dataSnapshotVersion: rivalrySnapshot.dataSnapshotVersion };
+const matchupMethod = { neutralPointsPerTeam: rivalrySnapshot.neutralPointsPerTeam, matchupAdvantageDivisor: rivalrySnapshot.model.matchupAdvantageDivisor, pointsPerStandardDeviation: rivalrySnapshot.model.pointsPerStandardDeviation, winProbabilityMarginScale: rivalrySnapshot.model.winProbabilityMarginScale };
 ---
-<SiteShell active="lab" title="Rivalry Lab | Ohio State vs Michigan Historical Simulator" description="Compare historical Ohio State and Michigan teams with evidence-labeled ratings, seeded simulations, and era-neutral matchup analysis."><LabApp {osuYears} {michYears} {seasonProfiles} {provenance} /></SiteShell>
+<SiteShell active="lab" title="Rivalry Lab | Ohio State vs Michigan Historical Simulator" description="Compare historical Ohio State and Michigan teams with evidence-labeled ratings, seeded simulations, and era-neutral matchup analysis."><LabApp {osuYears} {michYears} {seasonProfiles} {provenance} {matchupMethod} /></SiteShell>
