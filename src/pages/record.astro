@@ -13,6 +13,7 @@ const totals = games.reduce(
 );
 const decades = Object.entries(games.reduce<Record<string, { michigan: number; ohioState: number }>>((value, game) => { const decade = `${Math.floor(game.year / 10) * 10}`; value[decade] ??= { michigan: 0, ohioState: 0 }; if (game.winner === 'Michigan') value[decade].michigan++; if (game.winner === 'Ohio State') value[decade].ohioState++; return value; }, {})).sort(([a], [b]) => Number(a) - Number(b));
 const droughtRecord = calculateRivalryRecord(games);
+const droughtHistoryByYear = new Map(droughtRecord.droughtHistory.map((entry) => [entry.game.year, entry]));
 const ohioStateDroughts = droughtRecord.byTeam['Ohio State'];
 const michiganDroughts = droughtRecord.byTeam.Michigan;
 const currentDrought = [ohioStateDroughts.currentActiveDrought, michiganDroughts.currentActiveDrought].find(Boolean);
@@ -71,18 +72,10 @@ const teamClass = (team: Team) => team === 'Ohio State' ? 'osu' : 'mich';
           <tbody>{droughtRecord.topFiveLongestDroughts.map((drought) => <tr><th scope="row" class={teamClass(drought.team)}>{drought.team}</th><td>{formatResult(drought.priorWin)}<br /><small>{drought.priorWin.year}</small></td><td>{formatResult(drought.nextWin)}<br /><small>{drought.nextWin.year}</small></td><td>{formatDays(drought.elapsedDays)}</td><td>{drought.elapsedGames} GAMES / {drought.elapsedSeasons} SEASONS</td></tr>)}</tbody>
         </table>
       </div>
-      <div class="section-title drought-subhead"><b>DROUGHT HISTORY</b><span>LOSING SIDE'S DAYS SINCE ITS PRIOR WIN</span></div>
-      <div class="drought-table-wrap" data-drought-table="history">
-        <table class="drought-history">
-          <caption>Game-by-game observed drought history</caption>
-          <thead><tr><th scope="col">YEAR</th><th scope="col">RESULT</th><th scope="col">LOSING SIDE</th><th scope="col">DAYS SINCE PRIOR WIN</th></tr></thead>
-          <tbody>{droughtRecord.droughtHistory.map((entry) => <tr><th scope="row">{entry.game.year}</th><td class:list={{ osu: entry.game.winner === 'Ohio State', mich: entry.game.winner === 'Michigan' }}>{entry.game.winner === 'Tie' ? 'TIE' : formatResult(entry.game)}</td><td>{entry.losingTeam ?? '—'}</td><td>{entry.daysSincePriorWin === null ? '—' : formatDays(entry.daysSincePriorWin)}</td></tr>)}</tbody>
-        </table>
-      </div>
     </section>
     <section>
       <div class="record-filter"><b>EVERY MEETING</b><input aria-label="Filter games" placeholder="Filter by year, team, or site..." data-filter /></div>
-      <div class="game-table" data-games>{games.map((game) => <div class="game-row" data-game={`${game.year} ${game.winner} ${game.location}`.toLowerCase()}><b>{game.year}</b><b class:list={{ mich: game.winner === 'Michigan', osu: game.winner === 'Ohio State' }}>{game.winner}</b><span>{game.wScore}-{game.lScore}</span><span>{game.location}</span></div>)}</div>
+      <div class="game-table" data-games>{games.map((game) => { const drought = droughtHistoryByYear.get(game.year)!; return <div class="game-row" data-game={`${game.year} ${game.winner} ${game.location}`.toLowerCase()}><b>{game.year}</b><span class="game-result"><b class:list={{ mich: game.winner === 'Michigan', osu: game.winner === 'Ohio State' }}>{game.winner}</b><small class="game-drought" data-drought-context>{drought.losingTeam ? <><span class={teamClass(drought.losingTeam)}>{drought.losingTeam}</span> · {drought.daysSincePriorWin === null ? 'NO PRIOR WIN IN RECORD' : `${formatDays(drought.daysSincePriorWin)} SINCE PRIOR WIN`}</> : 'TIE · NO DROUGHT RESET'}</small></span><span>{game.wScore}-{game.lScore}</span><span>{game.location}</span></div>})}</div>
     </section>
   </section>
   <script>document.querySelector('[data-filter]')?.addEventListener('input', (event) => { const query = (event.currentTarget as HTMLInputElement).value.toLowerCase(); document.querySelectorAll<HTMLElement>('[data-game]').forEach((row) => row.hidden = !row.dataset.game!.includes(query)); });</script>
@@ -98,16 +91,17 @@ const teamClass = (team: Team) => team === 'Ohio State' ? 'osu' : 'mich';
   .drought-summary small, .drought-list small { color:#6b717c; font-size:11px; font-weight:700; line-height:1.35; letter-spacing:.03em; }
   .drought-table-wrap { overflow-x:auto; margin:0 0 28px; border:3px solid #111; -webkit-overflow-scrolling:touch; }
   .drought-comparison-wrap { overflow:hidden; }
-  .drought-comparison, .drought-list, .drought-history { width:100%; border-collapse:collapse; }
-  .drought-comparison caption, .drought-list caption, .drought-history caption { padding:12px 16px; border-bottom:1px solid #d9dce1; text-align:left; color:#6b717c; font-size:12px; font-weight:700; }
-  .drought-comparison th, .drought-comparison td, .drought-list th, .drought-list td, .drought-history th, .drought-history td { padding:12px 14px; border-right:1px solid #d9dce1; border-bottom:1px solid #d9dce1; text-align:left; font-size:13px; vertical-align:top; }
-  .drought-comparison tr > :last-child, .drought-list tr > :last-child, .drought-history tr > :last-child { border-right:0; }
-  .drought-comparison tbody tr:last-child > *, .drought-list tbody tr:last-child > *, .drought-history tbody tr:last-child > * { border-bottom:0; }
-  .drought-comparison thead th, .drought-list thead th, .drought-history thead th { background:#f2f3f5; font-size:11px; letter-spacing:.04em; }
+  .drought-comparison, .drought-list { width:100%; border-collapse:collapse; }
+  .drought-comparison caption, .drought-list caption { padding:12px 16px; border-bottom:1px solid #d9dce1; text-align:left; color:#6b717c; font-size:12px; font-weight:700; }
+  .drought-comparison th, .drought-comparison td, .drought-list th, .drought-list td { padding:12px 14px; border-right:1px solid #d9dce1; border-bottom:1px solid #d9dce1; text-align:left; font-size:13px; vertical-align:top; }
+  .drought-comparison tr > :last-child, .drought-list tr > :last-child { border-right:0; }
+  .drought-comparison tbody tr:last-child > *, .drought-list tbody tr:last-child > * { border-bottom:0; }
+  .drought-comparison thead th, .drought-list thead th { background:#f2f3f5; font-size:11px; letter-spacing:.04em; }
   .drought-comparison tbody th { width:48%; }
   .drought-comparison td { font-weight:700; }
   .drought-list { min-width:760px; }
-  .drought-history { min-width:640px; }
   .drought-subhead { margin-top:36px; }
+  .game-result > b, .game-drought { display:block; }
+  .game-drought { margin-top:2px; color:#6b717c; font-size:11px; font-weight:600; line-height:1.25; }
   @media (max-width:640px) { .drought-summary { grid-template-columns:1fr; } .drought-summary > div { min-height:0; border-right:0; border-bottom:1px solid #d9dce1; } .drought-summary > div:last-child { border-bottom:0; } .drought-comparison th, .drought-comparison td { padding:10px; font-size:12px; } .drought-comparison tbody th { width:42%; } }
 </style>
