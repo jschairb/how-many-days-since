@@ -1,4 +1,5 @@
 {
+  "schemaVersion": "rivalry-lab-public-snapshot-v1",
   "productVersion": "product-v1",
   "ratingModelVersion": "srs-elo-v1",
   "eraModelVersion": "srs-era-neutral-v1",
@@ -7,6 +8,288 @@
   "generatedAt": "2026-08-15T05:31:16.254Z",
   "neutralPointsPerTeam": 25.319940719998808,
   "ratings": {
+    "environments": [
+      {
+        "season": 1970,
+        "averagePointsPerTeam": 21.25531914893617,
+        "games": 705
+      },
+      {
+        "season": 1971,
+        "averagePointsPerTeam": 20.260026737967916,
+        "games": 748
+      },
+      {
+        "season": 1972,
+        "averagePointsPerTeam": 20.47782258064516,
+        "games": 744
+      },
+      {
+        "season": 1973,
+        "averagePointsPerTeam": 20.86286089238845,
+        "games": 762
+      },
+      {
+        "season": 1974,
+        "averagePointsPerTeam": 20.016339869281047,
+        "games": 765
+      },
+      {
+        "season": 1975,
+        "averagePointsPerTeam": 19.860421836228287,
+        "games": 806
+      },
+      {
+        "season": 1976,
+        "averagePointsPerTeam": 20.006218905472636,
+        "games": 804
+      },
+      {
+        "season": 1977,
+        "averagePointsPerTeam": 20.655709342560552,
+        "games": 867
+      },
+      {
+        "season": 1978,
+        "averagePointsPerTeam": 20.600490196078432,
+        "games": 816
+      },
+      {
+        "season": 1979,
+        "averagePointsPerTeam": 19.894545454545455,
+        "games": 825
+      },
+      {
+        "season": 1980,
+        "averagePointsPerTeam": 20.510416666666668,
+        "games": 816
+      },
+      {
+        "season": 1981,
+        "averagePointsPerTeam": 20.53544776119403,
+        "games": 804
+      },
+      {
+        "season": 1982,
+        "averagePointsPerTeam": 21.529839883551674,
+        "games": 687
+      },
+      {
+        "season": 1983,
+        "averagePointsPerTeam": 21.93103448275862,
+        "games": 696
+      },
+      {
+        "season": 1984,
+        "averagePointsPerTeam": 22.01257396449704,
+        "games": 676
+      },
+      {
+        "season": 1985,
+        "averagePointsPerTeam": 22.25854383358098,
+        "games": 673
+      },
+      {
+        "season": 1986,
+        "averagePointsPerTeam": 22.66248037676609,
+        "games": 637
+      },
+      {
+        "season": 1987,
+        "averagePointsPerTeam": 23.052922590837284,
+        "games": 633
+      },
+      {
+        "season": 1988,
+        "averagePointsPerTeam": 23.659591194968552,
+        "games": 636
+      },
+      {
+        "season": 1989,
+        "averagePointsPerTeam": 24.134493670886076,
+        "games": 632
+      },
+      {
+        "season": 1990,
+        "averagePointsPerTeam": 24.396284829721363,
+        "games": 646
+      },
+      {
+        "season": 1991,
+        "averagePointsPerTeam": 23.039123630672925,
+        "games": 639
+      },
+      {
+        "season": 1992,
+        "averagePointsPerTeam": 22.878335949764523,
+        "games": 637
+      },
+      {
+        "season": 1993,
+        "averagePointsPerTeam": 24.371835443037973,
+        "games": 632
+      },
+      {
+        "season": 1994,
+        "averagePointsPerTeam": 24.5125786163522,
+        "games": 636
+      },
+      {
+        "season": 1995,
+        "averagePointsPerTeam": 25.203125,
+        "games": 640
+      },
+      {
+        "season": 1996,
+        "averagePointsPerTeam": 25.459214501510573,
+        "games": 662
+      },
+      {
+        "season": 1997,
+        "averagePointsPerTeam": 25.474474474474473,
+        "games": 666
+      },
+      {
+        "season": 1998,
+        "averagePointsPerTeam": 25.591246290801188,
+        "games": 674
+      },
+      {
+        "season": 1999,
+        "averagePointsPerTeam": 25.557580174927114,
+        "games": 686
+      },
+      {
+        "season": 2000,
+        "averagePointsPerTeam": 25.745726495726494,
+        "games": 702
+      },
+      {
+        "season": 2001,
+        "averagePointsPerTeam": 26.51410437235543,
+        "games": 709
+      },
+      {
+        "season": 2002,
+        "averagePointsPerTeam": 26.818652849740932,
+        "games": 772
+      },
+      {
+        "season": 2003,
+        "averagePointsPerTeam": 25.806053811659194,
+        "games": 1338
+      },
+      {
+        "season": 2004,
+        "averagePointsPerTeam": 26.022657450076807,
+        "games": 1302
+      },
+      {
+        "season": 2005,
+        "averagePointsPerTeam": 26.05538809344386,
+        "games": 1327
+      },
+      {
+        "season": 2006,
+        "averagePointsPerTeam": 23.37900355871886,
+        "games": 1405
+      },
+      {
+        "season": 2007,
+        "averagePointsPerTeam": 27.181075561606534,
+        "games": 1469
+      },
+      {
+        "season": 2008,
+        "averagePointsPerTeam": 25.741041244083842,
+        "games": 1479
+      },
+      {
+        "season": 2009,
+        "averagePointsPerTeam": 25.17540871934605,
+        "games": 1468
+      },
+      {
+        "season": 2010,
+        "averagePointsPerTeam": 26.200068399452803,
+        "games": 1462
+      },
+      {
+        "season": 2011,
+        "averagePointsPerTeam": 26.916555407209614,
+        "games": 1498
+      },
+      {
+        "season": 2012,
+        "averagePointsPerTeam": 27.43110949963742,
+        "games": 1379
+      },
+      {
+        "season": 2013,
+        "averagePointsPerTeam": 28.13820078226858,
+        "games": 1534
+      },
+      {
+        "season": 2014,
+        "averagePointsPerTeam": 27.936002522068097,
+        "games": 1586
+      },
+      {
+        "season": 2015,
+        "averagePointsPerTeam": 27.57217165149545,
+        "games": 1538
+      },
+      {
+        "season": 2016,
+        "averagePointsPerTeam": 28.226597805035507,
+        "games": 1549
+      },
+      {
+        "season": 2017,
+        "averagePointsPerTeam": 26.863313990973566,
+        "games": 1551
+      },
+      {
+        "season": 2018,
+        "averagePointsPerTeam": 28.3939588688946,
+        "games": 1556
+      },
+      {
+        "season": 2019,
+        "averagePointsPerTeam": 27.790203327171906,
+        "games": 1623
+      },
+      {
+        "season": 2020,
+        "averagePointsPerTeam": 27.028,
+        "games": 1125
+      },
+      {
+        "season": 2021,
+        "averagePointsPerTeam": 27.09005704971475,
+        "games": 2454
+      },
+      {
+        "season": 2022,
+        "averagePointsPerTeam": 26.744264507422404,
+        "games": 3705
+      },
+      {
+        "season": 2023,
+        "averagePointsPerTeam": 26.57319034852547,
+        "games": 3730
+      },
+      {
+        "season": 2024,
+        "averagePointsPerTeam": 26.302711239799947,
+        "games": 3799
+      },
+      {
+        "season": 2025,
+        "averagePointsPerTeam": 26.767302167667797,
+        "games": 3829
+      }
+    ],
     "teamSeasons": [
       {
         "teamId": "michigan",
@@ -2249,5 +2532,694 @@
         "evidenceType": "DERIVED"
       }
     ]
+  },
+  "validation": {
+    "modelVersion": "srs-era-neutral-v1",
+    "games": [
+      {
+        "heldOutGameId": 12612,
+        "season": 1970,
+        "ohioStateScore": 20,
+        "michiganScore": 9,
+        "ohioStateWinProbability": 0.45808814746647114,
+        "expectedOhioStateScore": 19.84245461331146,
+        "expectedMichiganScore": 22.111017930489652,
+        "predictedWinner": "michigan",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 13332,
+        "season": 1971,
+        "ohioStateScore": 7,
+        "michiganScore": 10,
+        "ohioStateWinProbability": 0.29886314656930724,
+        "expectedOhioStateScore": 14.690825830261378,
+        "expectedMichiganScore": 26.202509773872926,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 14111,
+        "season": 1972,
+        "ohioStateScore": 14,
+        "michiganScore": 11,
+        "ohioStateWinProbability": 0.3641748876547413,
+        "expectedOhioStateScore": 15.424253176524678,
+        "expectedMichiganScore": 22.94765915979847,
+        "predictedWinner": "michigan",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 14882,
+        "season": 1973,
+        "ohioStateScore": 10,
+        "michiganScore": 10,
+        "ohioStateWinProbability": 0.61568301834058,
+        "expectedOhioStateScore": 24.685197334790985,
+        "expectedMichiganScore": 18.32312570281005,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "tie"
+      },
+      {
+        "heldOutGameId": 15625,
+        "season": 1974,
+        "ohioStateScore": 12,
+        "michiganScore": 10,
+        "ohioStateWinProbability": 0.5351954585280293,
+        "expectedOhioStateScore": 21.41720883951071,
+        "expectedMichiganScore": 19.513505706108553,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 16444,
+        "season": 1975,
+        "ohioStateScore": 21,
+        "michiganScore": 14,
+        "ohioStateWinProbability": 0.577770416536321,
+        "expectedOhioStateScore": 21.68631992089697,
+        "expectedMichiganScore": 17.452350239645497,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 17213,
+        "season": 1976,
+        "ohioStateScore": 0,
+        "michiganScore": 22,
+        "ohioStateWinProbability": 0.38678904029012834,
+        "expectedOhioStateScore": 17.34195184910383,
+        "expectedMichiganScore": 23.563151326856463,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 18102,
+        "season": 1977,
+        "ohioStateScore": 6,
+        "michiganScore": 14,
+        "ohioStateWinProbability": 0.5125809316668719,
+        "expectedOhioStateScore": 21.13254626923134,
+        "expectedMichiganScore": 20.45303253056509,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 18952,
+        "season": 1978,
+        "ohioStateScore": 3,
+        "michiganScore": 14,
+        "ohioStateWinProbability": 0.3447702395576454,
+        "expectedOhioStateScore": 17.544934093120034,
+        "expectedMichiganScore": 26.21338845556201,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 19727,
+        "season": 1979,
+        "ohioStateScore": 18,
+        "michiganScore": 15,
+        "ohioStateWinProbability": 0.6282146398637214,
+        "expectedOhioStateScore": 22.807243083697724,
+        "expectedMichiganScore": 15.725612985945766,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 20579,
+        "season": 1980,
+        "ohioStateScore": 3,
+        "michiganScore": 9,
+        "ohioStateWinProbability": 0.5365859266980066,
+        "expectedOhioStateScore": 22.442416294788803,
+        "expectedMichiganScore": 20.46323894458063,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 21339,
+        "season": 1981,
+        "ohioStateScore": 14,
+        "michiganScore": 9,
+        "ohioStateWinProbability": 0.38026469033248583,
+        "expectedOhioStateScore": 18.89533454998968,
+        "expectedMichiganScore": 25.489070743805495,
+        "predictedWinner": "michigan",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 22061,
+        "season": 1982,
+        "ohioStateScore": 24,
+        "michiganScore": 14,
+        "ohioStateWinProbability": 0.4408748145058379,
+        "expectedOhioStateScore": 20.003392724533466,
+        "expectedMichiganScore": 23.211160471425647,
+        "predictedWinner": "michigan",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 22756,
+        "season": 1983,
+        "ohioStateScore": 21,
+        "michiganScore": 24,
+        "ohioStateWinProbability": 0.5010832366949414,
+        "expectedOhioStateScore": 22.388344078467085,
+        "expectedMichiganScore": 22.329849205422825,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 23417,
+        "season": 1984,
+        "ohioStateScore": 21,
+        "michiganScore": 6,
+        "ohioStateWinProbability": 0.6279558403514279,
+        "expectedOhioStateScore": 25.115415135203705,
+        "expectedMichiganScore": 18.048741718536505,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 24096,
+        "season": 1985,
+        "ohioStateScore": 17,
+        "michiganScore": 27,
+        "ohioStateWinProbability": 0.31670791561663963,
+        "expectedOhioStateScore": 15.355876162499342,
+        "expectedMichiganScore": 25.73659950803788,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 24741,
+        "season": 1986,
+        "ohioStateScore": 24,
+        "michiganScore": 26,
+        "ohioStateWinProbability": 0.482556863128777,
+        "expectedOhioStateScore": 21.030367413851295,
+        "expectedMichiganScore": 21.972679209893382,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 25398,
+        "season": 1987,
+        "ohioStateScore": 23,
+        "michiganScore": 20,
+        "ohioStateWinProbability": 0.41106028691275187,
+        "expectedOhioStateScore": 19.15762651395466,
+        "expectedMichiganScore": 24.012009656665906,
+        "predictedWinner": "michigan",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 26000,
+        "season": 1988,
+        "ohioStateScore": 31,
+        "michiganScore": 34,
+        "ohioStateWinProbability": 0.18154897427490801,
+        "expectedOhioStateScore": 13.22070814924029,
+        "expectedMichiganScore": 33.550197672308926,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 26661,
+        "season": 1989,
+        "ohioStateScore": 18,
+        "michiganScore": 28,
+        "ohioStateWinProbability": 0.3127506125115803,
+        "expectedOhioStateScore": 19.61974511486557,
+        "expectedMichiganScore": 30.248175342589477,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 27315,
+        "season": 1990,
+        "ohioStateScore": 13,
+        "michiganScore": 16,
+        "ohioStateWinProbability": 0.36942578566428597,
+        "expectedOhioStateScore": 21.310517430931085,
+        "expectedMichiganScore": 28.528710743052986,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 27930,
+        "season": 1991,
+        "ohioStateScore": 3,
+        "michiganScore": 31,
+        "ohioStateWinProbability": 0.29725226201875665,
+        "expectedOhioStateScore": 17.30907793260833,
+        "expectedMichiganScore": 28.92470534834717,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 28591,
+        "season": 1992,
+        "ohioStateScore": 13,
+        "michiganScore": 13,
+        "ohioStateWinProbability": 0.310867083936656,
+        "expectedOhioStateScore": 17.226753899264633,
+        "expectedMichiganScore": 27.97368170001652,
+        "predictedWinner": "michigan",
+        "actualWinner": "tie"
+      },
+      {
+        "heldOutGameId": 29185,
+        "season": 1993,
+        "ohioStateScore": 0,
+        "michiganScore": 28,
+        "ohioStateWinProbability": 0.5371910790892139,
+        "expectedOhioStateScore": 24.486637122958005,
+        "expectedMichiganScore": 22.474602696931722,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 29819,
+        "season": 1994,
+        "ohioStateScore": 22,
+        "michiganScore": 6,
+        "ohioStateWinProbability": 0.43289895537514206,
+        "expectedOhioStateScore": 21.344627654590372,
+        "expectedMichiganScore": 24.990075256622788,
+        "predictedWinner": "michigan",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 30508,
+        "season": 1995,
+        "ohioStateScore": 23,
+        "michiganScore": 31,
+        "ohioStateWinProbability": 0.7008166782398746,
+        "expectedOhioStateScore": 30.54047539225219,
+        "expectedMichiganScore": 19.04941260043429,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 31128,
+        "season": 1996,
+        "ohioStateScore": 9,
+        "michiganScore": 13,
+        "ohioStateWinProbability": 0.7782292860833881,
+        "expectedOhioStateScore": 32.65124649545917,
+        "expectedMichiganScore": 15.703654767983501,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 31792,
+        "season": 1997,
+        "ohioStateScore": 14,
+        "michiganScore": 20,
+        "ohioStateWinProbability": 0.5011443964613925,
+        "expectedOhioStateScore": 23.160890200439482,
+        "expectedMichiganScore": 23.099092683613865,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 32483,
+        "season": 1998,
+        "ohioStateScore": 31,
+        "michiganScore": 16,
+        "ohioStateWinProbability": 0.6936042901869177,
+        "expectedOhioStateScore": 30.836490103901454,
+        "expectedMichiganScore": 19.806663741605057,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 33148,
+        "season": 1999,
+        "ohioStateScore": 17,
+        "michiganScore": 24,
+        "ohioStateWinProbability": 0.3747053965745255,
+        "expectedOhioStateScore": 21.64494073477346,
+        "expectedMichiganScore": 28.558058481800956,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 33858,
+        "season": 2000,
+        "ohioStateScore": 26,
+        "michiganScore": 38,
+        "ohioStateWinProbability": 0.47088609142056975,
+        "expectedOhioStateScore": 24.627841080057674,
+        "expectedMichiganScore": 26.201772548167266,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 34560,
+        "season": 2001,
+        "ohioStateScore": 26,
+        "michiganScore": 20,
+        "ohioStateWinProbability": 0.4205909081088367,
+        "expectedOhioStateScore": 22.936428073662686,
+        "expectedMichiganScore": 27.261127836274373,
+        "predictedWinner": "michigan",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 35303,
+        "season": 2002,
+        "ohioStateScore": 14,
+        "michiganScore": 9,
+        "ohioStateWinProbability": 0.5593791326233454,
+        "expectedOhioStateScore": 26.47486034989051,
+        "expectedMichiganScore": 23.25318413732015,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 36604,
+        "season": 2003,
+        "ohioStateScore": 21,
+        "michiganScore": 35,
+        "ohioStateWinProbability": 0.41464673300230637,
+        "expectedOhioStateScore": 22.238379995167577,
+        "expectedMichiganScore": 26.893026476470084,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 37908,
+        "season": 2004,
+        "ohioStateScore": 37,
+        "michiganScore": 21,
+        "ohioStateWinProbability": 0.43650757842304366,
+        "expectedOhioStateScore": 23.651042623588104,
+        "expectedMichiganScore": 27.098242616505544,
+        "predictedWinner": "michigan",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 39226,
+        "season": 2005,
+        "ohioStateScore": 25,
+        "michiganScore": 21,
+        "ohioStateWinProbability": 0.6428778923393261,
+        "expectedOhioStateScore": 27.930309731150068,
+        "expectedMichiganScore": 19.99396966966599,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 40641,
+        "season": 2006,
+        "ohioStateScore": 42,
+        "michiganScore": 39,
+        "ohioStateWinProbability": 0.5894379437393918,
+        "expectedOhioStateScore": 24.79418171149836,
+        "expectedMichiganScore": 19.912009915238755,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 42049,
+        "season": 2007,
+        "ohioStateScore": 14,
+        "michiganScore": 3,
+        "ohioStateWinProbability": 0.62497197593958,
+        "expectedOhioStateScore": 28.777853450350143,
+        "expectedMichiganScore": 21.883321691265856,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 43537,
+        "season": 2008,
+        "ohioStateScore": 42,
+        "michiganScore": 7,
+        "ohioStateWinProbability": 0.7631327530872362,
+        "expectedOhioStateScore": 32.11936090692538,
+        "expectedMichiganScore": 16.325276748554934,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 44976,
+        "season": 2009,
+        "ohioStateScore": 21,
+        "michiganScore": 10,
+        "ohioStateWinProbability": 0.7441126403302843,
+        "expectedOhioStateScore": 32.495842178532094,
+        "expectedMichiganScore": 18.08519866189431,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 46552,
+        "season": 2010,
+        "ohioStateScore": 37,
+        "michiganScore": 7,
+        "ohioStateWinProbability": 0.767878259551706,
+        "expectedOhioStateScore": 36.58148519583025,
+        "expectedMichiganScore": 20.43050063098413,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 48050,
+        "season": 2011,
+        "ohioStateScore": 34,
+        "michiganScore": 40,
+        "ohioStateWinProbability": 0.32364948430571067,
+        "expectedOhioStateScore": 20.25514141672965,
+        "expectedMichiganScore": 30.205321335880484,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 49428,
+        "season": 2012,
+        "ohioStateScore": 26,
+        "michiganScore": 21,
+        "ohioStateWinProbability": 0.5014688857094862,
+        "expectedOhioStateScore": 28.2885667243005,
+        "expectedMichiganScore": 28.209246667797117,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 50968,
+        "season": 2013,
+        "ohioStateScore": 42,
+        "michiganScore": 41,
+        "ohioStateWinProbability": 0.709355293517736,
+        "expectedOhioStateScore": 35.89448354621655,
+        "expectedMichiganScore": 23.849041870699658,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 52532,
+        "season": 2014,
+        "ohioStateScore": 42,
+        "michiganScore": 28,
+        "ohioStateWinProbability": 0.8248507238543662,
+        "expectedOhioStateScore": 37.67895123991744,
+        "expectedMichiganScore": 16.759839773682863,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 54072,
+        "season": 2015,
+        "ohioStateScore": 42,
+        "michiganScore": 13,
+        "ohioStateWinProbability": 0.5057352099933309,
+        "expectedOhioStateScore": 25.99688759694763,
+        "expectedMichiganScore": 25.687172673711814,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 55617,
+        "season": 2016,
+        "ohioStateScore": 30,
+        "michiganScore": 27,
+        "ohioStateWinProbability": 0.492813951392621,
+        "expectedOhioStateScore": 27.522285774743274,
+        "expectedMichiganScore": 27.91035912079213,
+        "predictedWinner": "michigan",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 57170,
+        "season": 2017,
+        "ohioStateScore": 31,
+        "michiganScore": 20,
+        "ohioStateWinProbability": 0.7265284819687771,
+        "expectedOhioStateScore": 33.02281577334659,
+        "expectedMichiganScore": 19.83223295198338,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 58716,
+        "season": 2018,
+        "ohioStateScore": 62,
+        "michiganScore": 39,
+        "ohioStateWinProbability": 0.443566386771853,
+        "expectedOhioStateScore": 27.706911282056225,
+        "expectedMichiganScore": 30.767366565108322,
+        "predictedWinner": "michigan",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 60352,
+        "season": 2019,
+        "ohioStateScore": 56,
+        "michiganScore": 27,
+        "ohioStateWinProbability": 0.7502435531114313,
+        "expectedOhioStateScore": 35.29305492931486,
+        "expectedMichiganScore": 20.444247509415117,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      },
+      {
+        "heldOutGameId": 63916,
+        "season": 2021,
+        "ohioStateScore": 27,
+        "michiganScore": 42,
+        "ohioStateWinProbability": 0.5835851152392981,
+        "expectedOhioStateScore": 31.424622955770023,
+        "expectedMichiganScore": 26.868261866363163,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 67603,
+        "season": 2022,
+        "ohioStateScore": 23,
+        "michiganScore": 45,
+        "ohioStateWinProbability": 0.5976742340497514,
+        "expectedOhioStateScore": 31.754854208277568,
+        "expectedMichiganScore": 26.411773949277777,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 71300,
+        "season": 2023,
+        "ohioStateScore": 24,
+        "michiganScore": 30,
+        "ohioStateWinProbability": 0.4317859901748148,
+        "expectedOhioStateScore": 22.53939987857762,
+        "expectedMichiganScore": 26.246068597275666,
+        "predictedWinner": "michigan",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 75131,
+        "season": 2024,
+        "ohioStateScore": 10,
+        "michiganScore": 13,
+        "ohioStateWinProbability": 0.776314504809236,
+        "expectedOhioStateScore": 33.47113261616249,
+        "expectedMichiganScore": 16.672857141364926,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "michigan"
+      },
+      {
+        "heldOutGameId": 78936,
+        "season": 2025,
+        "ohioStateScore": 27,
+        "michiganScore": 9,
+        "ohioStateWinProbability": 0.7042913776120957,
+        "expectedOhioStateScore": 31.62676756160747,
+        "expectedMichiganScore": 19.91123031925158,
+        "predictedWinner": "ohio-state",
+        "actualWinner": "ohio-state"
+      }
+    ],
+    "metrics": {
+      "games": 55,
+      "winnerAccuracy": 0.6226415094339622,
+      "brierScore": 0.21405815816018717,
+      "logLoss": 0.6176937080283816,
+      "meanAbsoluteScoreError": 9.987090115625488,
+      "calibration": [
+        {
+          "lower": 0,
+          "upper": 0.1,
+          "games": 0,
+          "predicted": 0,
+          "actual": 0
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "games": 1,
+          "predicted": 0.18154897427490801,
+          "actual": 0
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "games": 2,
+          "predicted": 0.29805770429403194,
+          "actual": 0
+        },
+        {
+          "lower": 0.3,
+          "upper": 0.4,
+          "games": 10,
+          "predicted": 0.3484105136444399,
+          "actual": 0.2
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "games": 12,
+          "predicted": 0.4446897255569187,
+          "actual": 0.6666666666666666
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "games": 13,
+          "predicted": 0.541448612848414,
+          "actual": 0.46153846153846156
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "games": 6,
+          "predicted": 0.6388846095035922,
+          "actual": 0.8333333333333334
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "games": 10,
+          "predicted": 0.7420902828311766,
+          "actual": 0.7
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "games": 1,
+          "predicted": 0.8248507238543662,
+          "actual": 1
+        },
+        {
+          "lower": 0.9,
+          "upper": 1,
+          "games": 0,
+          "predicted": 0,
+          "actual": 0
+        }
+      ]
+    }
   }
 }

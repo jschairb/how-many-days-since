@@ -50,6 +50,21 @@ docker run --rm -p 4310:4310 how-many-days-since:local
 
 The container listens on port `4310`. Verify `/api/health`, `/api/matchup`, `/api/simulate`, and `/rivalry-lab` after deployment.
 
+## Rivalry Lab snapshot refresh
+
+The public site consumes a reduced, derived snapshot from the private historical-model workspace. It never imports the warehouse, CFBD credentials, or purchased data packages.
+
+```sh
+# In ~/src/cfb/cfb_simulator, after ratings and validation refresh:
+npm run product:generate
+npm run product:export-public
+
+# In this repository:
+npm run sync:lab-snapshot -- ../cfb/cfb_simulator/exports/rivalry-lab-snapshot.json
+```
+
+Review and commit the resulting `src/data/rivalry-lab-snapshot.json` with the public-site change. This explicit release step prevents an unreviewed model refresh from changing production behavior.
+
 ## Tests
 
 Unit tests cover the core date-calculation and time-formatting utilities in `src/lib/days.ts`:
