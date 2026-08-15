@@ -1,6 +1,21 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Count', () => {
+  test('links to the Rivalry Lab collection and features the commemorative tee', async ({ page }) => {
+    await page.goto('/');
+
+    await expect(page.getByRole('link', { name: 'MERCH' })).toHaveAttribute(
+      'href',
+      'https://gwpworkshop.com/collections/rivalry-lab'
+    );
+    await expect(
+      page.getByRole('link', { name: /shop the 2025 commemorative tee/i })
+    ).toHaveAttribute(
+      'href',
+      'https://gwpworkshop.com/products/script-in-the-snow-the-2025-rivalry-game-commemorative-tee'
+    );
+  });
+
   test('renders the handoff counter and shared navigation', async ({ page }) => {
     await page.goto('/');
     await expect(page).toHaveTitle(/How many days since Michigan has beaten Ohio State/i);
