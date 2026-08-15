@@ -1,6 +1,13 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Count', () => {
+  test('does not render a rotating image section', async ({ page }) => {
+    await page.goto('/');
+
+    await expect(page.locator('.hero')).toHaveCount(0);
+    await expect(page.getByRole('button', { name: /another one/i })).toHaveCount(0);
+  });
+
   test('links to the Rivalry Lab collection and features the commemorative tee', async ({ page }) => {
     await page.goto('/');
 
