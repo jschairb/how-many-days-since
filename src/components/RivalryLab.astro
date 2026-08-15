@@ -64,6 +64,47 @@ const { osuYears, michYears, seasonProfiles, provenance, matchupMethod } = Astro
 </script>
 
 <script>
+  const coverageLab = document.querySelector<HTMLElement>('[data-lab]');
+  const coveragePregame = document.querySelector<HTMLElement>('[data-view="pregame"]');
+  const coverageGame = document.querySelector<HTMLElement>('[data-view="game"]');
+
+  async function renderSimulationCoverage() {
+    if (!coverageLab || !coveragePregame) return;
+    const osuYear = coverageLab.querySelector<HTMLSelectElement>('[data-osu]')?.value;
+    const michYear = coverageLab.querySelector<HTMLSelectElement>('[data-mich]')?.value;
+    if (!osuYear || !michYear) return;
+    const response = await fetch(`/api/matchup?osuYear=${osuYear}&michYear=${michYear}`);
+    if (!response.ok) return;
+    const { simulationCoverage, usedInputs } = await response.json() as { simulationCoverage: 'box-score-enhanced' | 'score-and-schedule'; usedInputs: { possessionsPerGame?: { ohioState: number; michigan: number }; turnoversPerGame?: { ohioState: number; michigan: number } } };
+    const coverage = simulationCoverage === 'box-score-enhanced'
+      ? 'Historical possession and turnover context is active because both selected seasons have enrichment coverage.'
+      : 'Score and schedule context is active. Possession and turnover context stays off unless both selected seasons have enrichment coverage.';
+    let pregameContext = coveragePregame.querySelector<HTMLElement>('[data-simulation-coverage]');
+    if (!pregameContext) {
+      pregameContext = document.createElement('aside');
+      pregameContext.dataset.simulationCoverage = '';
+      pregameContext.className = 'simulation-coverage';
+      coveragePregame.querySelector('.pregame-results')?.after(pregameContext);
+    }
+    pregameContext.innerHTML = `<b>SIMULATION COVERAGE · ${simulationCoverage.toUpperCase()}</b><p>${coverage}</p>`;
+    if (!coverageGame) return;
+    let gameContext = coverageGame.querySelector<HTMLElement>('[data-game-coverage]');
+    if (!gameContext) {
+      gameContext = document.createElement('p');
+      gameContext.dataset.gameCoverage = '';
+      gameContext.className = 'simulation-game-context';
+      coverageGame.querySelector('[data-game-score]')?.before(gameContext);
+    }
+    gameContext.textContent = `SIMULATION COVERAGE · ${simulationCoverage.toUpperCase()}`;
+  }
+
+  new MutationObserver(() => {
+    if (coveragePregame && !coveragePregame.hidden || coverageGame && !coverageGame.hidden) void renderSimulationCoverage();
+  }).observe(coverageLab!, { attributes: true, subtree: true, attributeFilter: ['hidden'] });
+  coverageLab?.querySelectorAll('select').forEach((input) => input.addEventListener('change', () => void renderSimulationCoverage()));
+</script>
+
+<script>
   const lab = document.querySelector<HTMLElement>('[data-lab]');
   let restoringHistory = false;
   const applyScreen = (screen: string) => {
@@ -113,7 +154,7 @@ const { osuYears, michYears, seasonProfiles, provenance, matchupMethod } = Astro
 <style is:global>
     .lab-header { display:flex;align-items:end;justify-content:space-between;gap:20px; }.lab-method-link,.lab-nav a { color:#111;font-size:13.5px;font-weight:700;text-decoration:underline 3px #bb0000;text-underline-offset:6px;white-space:nowrap; }.lab-nav a { padding:0 0 4px; }
     .pregame-play { display:flex;align-items:center;justify-content:space-between;gap:20px;margin:20px 0;padding:18px 20px;background:#111;color:#fff; }.pregame-play p { max-width:620px;margin:0;font-size:16px;line-height:1.4; }.pregame-play .play-one { min-width:180px;padding:16px 24px;font-size:18px; }.pregame-play label { display:grid;gap:5px;color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em; }.pregame-play input { max-width:150px;font:16px 'Archivo Black'; }
-    .game-grid { grid-template-columns:1fr; }
+     .game-grid { grid-template-columns:1fr; }.simulation-coverage,.simulation-game-context { margin:18px 0 0;padding:13px 15px;border-left:5px solid #111;background:#f2f3f5; }.simulation-coverage b,.simulation-game-context { font-size:12px;font-weight:700;letter-spacing:.06em; }.simulation-coverage p { margin:6px 0;color:#363a41;font-size:14px;line-height:1.4; }.simulation-coverage small { color:#6b717c;font-size:11px;font-weight:700;letter-spacing:.04em; }
    .selector-box select { font-size:24px; }
     .season-profiles { margin-top: 36px; }.profile-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:14px; }.season-profile { border:3px solid #111;padding:20px; }.season-profile.osu { border-top-color:#bb0000; }.season-profile.mich { border-top-color:#00274c; }.season-profile header,.profile-facts,.profile-ranks span { display:flex;justify-content:space-between;gap:12px; }.season-profile header b { font:20px 'Archivo Black'; }.season-profile em,.profile-facts small,.profile-ranks small { color:#6b717c;font-size:11px;font-style:normal;font-weight:700;letter-spacing:.06em; }.profile-record { margin:12px 0 16px; }.profile-facts { border-top:1px solid #d9dce1;border-bottom:1px solid #d9dce1;padding:12px 0; }.profile-facts span { display:grid;gap:3px; }.profile-facts strong { font:18px 'Archivo Black'; }.profile-facts i { color:#6b717c;font-size:12px;font-style:normal; }.profile-ranks { display:grid;gap:8px;padding-top:14px; }.profile-ranks span { font-size:12px;font-weight:700; }.profile-ranks b { font-family:'Archivo Black'; }.profile-confidence { border-top:1px solid #d9dce1;margin:14px 0 0;padding-top:12px;color:#6b717c;font-size:12px; }
     .pregame-results { display:grid;grid-template-columns:1fr 1fr 1.45fr;border:3px solid #111;margin-top:20px; }.pregame-results section { min-width:0;padding:20px;border-right:1px solid #d9dce1; }.pregame-results section:last-child { border:0; }.pregame-results p,.pregame-results small { margin:0;color:#6b717c;font-size:11px;font-weight:700;letter-spacing:.06em; }.pregame-results em,.pregame-inputs em { display:inline-block;margin-left:6px;padding:2px 4px;background:#f6d55c;color:#111;font-size:10px;font-style:normal; }.pregame-results > section > strong { display:block;margin:12px 0 5px;font:28px 'Archivo Black';line-height:1; }.pregame-results .score { font-size:24px; }.pregame-results .probability { display:flex;justify-content:space-between;gap:16px;margin:10px 0; }.pregame-results .probability div { display:grid;gap:2px; }.pregame-results .probability strong { font:24px 'Archivo Black';line-height:1; }.pregame-results .probability b { font-size:11px; }.pregame-explanation { display:grid;grid-template-columns:1fr 1.3fr;gap:18px;margin-top:18px; }.pregame-method,.pregame-inputs { border-top:3px solid #111;padding-top:12px; }.pregame-method > b,.pregame-inputs > b,.drivers h3 { font:16px 'Archivo Black'; }.pregame-method p,.pregame-inputs p { margin:10px 0 0;color:#363a41;font-size:14px;line-height:1.45; }.pregame-inputs > div { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin-top:12px;background:#d9dce1; }.pregame-inputs span { display:grid;gap:4px;padding:10px;background:#fff; }.pregame-inputs small { color:#6b717c;font-size:10px;font-weight:700;letter-spacing:.04em;line-height:1.2; }.pregame-inputs strong { font:18px 'Archivo Black'; }.pregame-inputs .model-settings { color:#6b717c;font-size:12px; }.drivers { margin-top:30px; }.drivers .section-title { border-bottom:1px solid #d9dce1;padding-bottom:10px; }.drivers h3 { margin:0; }.driver-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:12px; }.driver-grid article { border-left:4px solid #111;padding:4px 0 4px 12px; }.driver-grid article:first-child { border-left-color:#bb0000; }.driver-grid article:last-child { border-left-color:#00274c; }.driver-grid p { margin:6px 0 0;color:#363a41;font-size:14px; }.provenance { margin-top:30px; }

@@ -5,6 +5,9 @@ export type Drive = { quarter: number; teamId: string; outcome: 'TD' | 'FG' | 'P
 export type Game = { engineVersion: 'drive-v1'; seed: string; ohioState: Stats; michigan: Stats; drives: Drive[]; winner: 'ohio-state' | 'michigan'; overtime: boolean; turningPoints: Drive[] };
 export type Stats = { possessions: number; touchdowns: number; fieldGoals: number; turnovers: number; punts: number; points: number };
 export type ModelConfig = { neutralPointsPerTeam: number; matchupAdvantageDivisor: number; pointsPerStandardDeviation: number; winProbabilityMarginScale: number; scoreFloor: number; scoreCeiling: number; drivePossessions: number; touchdownShare: number; turnoverBaseRate: number; turnoverScoreAdjustment: number; turnoverFloor: number; turnoverOnDownsRate: number };
+export type Enrichment = { possessionsPerGame: number; turnoversPerGame: number };
+export type SimulationSide = { scheduleStrength: number; enrichment: Enrichment | null };
+export type SimulationContext = { simulationCoverage: 'box-score-enhanced' | 'score-and-schedule'; usedInputs: { possessionsPerGame?: { ohioState: number; michigan: number }; turnoversPerGame?: { ohioState: number; michigan: number } }; ohioState: SimulationSide; michigan: SimulationSide };
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
@@ -25,14 +28,23 @@ function random(seed: string) {
 
 function emptyStats(): Stats { return { possessions: 0, touchdowns: 0, fieldGoals: 0, turnovers: 0, punts: 0, points: 0 }; }
 
-export function simulateGame(matchup: Matchup, seed: string, config: ModelConfig): Game {
+export function simulateGame(matchup: Matchup, seed: string, config: ModelConfig, context?: SimulationContext): Game {
   const next = random(seed); const ohioState = emptyStats(); const michigan = emptyStats(); const drives: Drive[] = [];
-  for (let possession = 0; possession < config.drivePossessions; possession += 1) {
+  const sides = context ? { 'ohio-state': context.ohioState, michigan: context.michigan } : null;
+  const drivePossessions = context?.simulationCoverage === 'box-score-enhanced'
+    ? Math.round(context.ohioState.enrichment!.possessionsPerGame + context.michigan.enrichment!.possessionsPerGame)
+    : context ? Math.round(config.drivePossessions + ((context.ohioState.scheduleStrength + context.michigan.scheduleStrength) / 2 - 1) * 2) : config.drivePossessions;
+  for (let possession = 0; possession < drivePossessions; possession += 1) {
     const side = possession % 2 === 0 ? matchup.ohioState : matchup.michigan;
     const stats = possession % 2 === 0 ? ohioState : michigan;
-    const scoringRate = clamp(side.expectedScore / 12 / 7.8, 0.2, 0.72); const turnoverRate = Math.max(config.turnoverFloor, config.turnoverBaseRate - (side.expectedScore - 20) / config.turnoverScoreAdjustment); const roll = next();
+    const simulationSide = sides?.[side.teamId as 'ohio-state' | 'michigan'];
+    const scoringRate = clamp(side.expectedScore / 12 / 7.8, 0.2, 0.72);
+    const turnoverRate = simulationSide?.enrichment
+      ? clamp(simulationSide.enrichment.turnoversPerGame / simulationSide.enrichment.possessionsPerGame, config.turnoverFloor, 0.4)
+      : Math.max(config.turnoverFloor, config.turnoverBaseRate - (side.expectedScore - 20) / config.turnoverScoreAdjustment + (simulationSide ? (simulationSide.scheduleStrength - 1) / 100 : 0));
+    const roll = next();
     const outcome = roll < scoringRate * config.touchdownShare ? 'TD' : roll < scoringRate ? 'FG' : roll < scoringRate + turnoverRate ? 'TURNOVER' : roll < scoringRate + turnoverRate + config.turnoverOnDownsRate ? 'DOWNS' : 'PUNT';
-    const drive: Drive = { quarter: Math.floor(possession / 6) + 1, teamId: side.teamId, outcome, points: outcome === 'TD' ? 7 : outcome === 'FG' ? 3 : 0 }; drives.push(drive); stats.possessions += 1; stats.points += drive.points;
+    const drive: Drive = { quarter: Math.floor(possession / Math.ceil(drivePossessions / 4)) + 1, teamId: side.teamId, outcome, points: outcome === 'TD' ? 7 : outcome === 'FG' ? 3 : 0 }; drives.push(drive); stats.possessions += 1; stats.points += drive.points;
     if (outcome === 'TD') stats.touchdowns += 1; if (outcome === 'FG') stats.fieldGoals += 1; if (outcome === 'TURNOVER') stats.turnovers += 1; if (outcome === 'PUNT') stats.punts += 1;
   }
   let overtime = false;
@@ -40,14 +52,7 @@ export function simulateGame(matchup: Matchup, seed: string, config: ModelConfig
   return { engineVersion: 'drive-v1', seed, ohioState, michigan, drives, winner: ohioState.points > michigan.points ? 'ohio-state' : 'michigan', overtime, turningPoints: drives.filter((drive) => drive.points > 0).slice(-3) };
 }
 
-export function simulateSeries(matchup: Matchup, seed: string, count: number, config: ModelConfig) {
-  const games = Array.from({ length: count }, (_, index) => simulateGame(matchup, `${seed}:${index}`, config));
-  const summary = (key: 'ohioState' | 'michigan', winner: 'ohio-state' | 'michigan') => ({ wins: games.filter((game) => game.winner === winner).length, averageScore: games.reduce((total, game) => total + game[key].points, 0) / count, averageTurnovers: games.reduce((total, game) => total + game[key].turnovers, 0) / count });
-  return { seed, games, ohioState: summary('ohioState', 'ohio-state'), michigan: summary('michigan', 'michigan'), ties: 0, overtimeGames: games.filter((game) => game.overtime).length, oneScoreGames: games.filter((game) => Math.abs(game.ohioState.points - game.michigan.points) <= 8).length, blowoutGames: games.filter((game) => Math.abs(game.ohioState.points - game.michigan.points) >= 17).length };
-}
-
-export function validateMatchupInput(input: { osuYear: number; michYear: number; count?: number }) {
+export function validateMatchupInput(input: { osuYear: number; michYear: number }) {
   if (!Number.isInteger(input.osuYear) || input.osuYear < 1970 || input.osuYear > 2025) throw new Error('Ohio State season must be between 1970 and 2025');
   if (!Number.isInteger(input.michYear) || input.michYear < 1970 || input.michYear > 2025) throw new Error('Michigan season must be between 1970 and 2025');
-  if (input.count !== undefined && ![1, 10, 100, 1000, 10000].includes(input.count)) throw new Error('Simulation count must be one of 1, 10, 100, 1000, or 10000');
 }
