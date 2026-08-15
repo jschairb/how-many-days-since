@@ -1,6 +1,15 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Record', () => {
+  test('links verified CollegeFootballData box scores for covered meetings', async ({ page }) => {
+    await page.goto('/record');
+
+    await expect(page.getByRole('link', { name: 'CFBD BOX SCORE' }).first()).toHaveAttribute(
+      'href',
+      /collegefootballdata\.com\/boxscore\//
+    );
+  });
+
   test('shows the observed drought statistics section and longest Ohio State drought', async ({ page }) => {
     await page.goto('/record');
 
