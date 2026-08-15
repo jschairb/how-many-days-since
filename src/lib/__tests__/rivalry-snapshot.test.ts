@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { formatSeasonRank, profileForSeason, validatePublicSnapshot } from '../rivalry-snapshot';
+import { formatSeasonRank, modelConfig, profileForSeason, ratedSeason, rivalrySnapshot, validatePublicSnapshot } from '../rivalry-snapshot';
 
 describe('validatePublicSnapshot', () => {
   it('accepts the reduced public snapshot contract', () => {
-    expect(validatePublicSnapshot({ schemaVersion: 'rivalry-lab-public-snapshot-v1', ratings: { teamSeasons: [{ teamId: 'ohio-state' }, { teamId: 'michigan' }] } })).toBe(true);
+    expect(validatePublicSnapshot({ schemaVersion: 'rivalry-lab-public-snapshot-v1', model: { pointsPerStandardDeviation: 5 }, ratings: { teamSeasons: [{ teamId: 'ohio-state', crossEra: { overall: 1, offense: 1, defense: 1 } }, { teamId: 'michigan', crossEra: { overall: 1, offense: 1, defense: 1 } }] } })).toBe(true);
   });
 
   it('rejects a snapshot with an unsupported team', () => {
@@ -16,5 +16,18 @@ describe('validatePublicSnapshot', () => {
 
   it('formats a same-season derived rank with its rated-team count', () => {
     expect(formatSeasonRank(2, 144)).toBe('NO. 2 OF 144');
+  });
+
+  it('exposes the canonical cross-era ratings and exported model parameters', () => {
+    const ohioState = ratedSeason('ohio-state', 1995);
+    const config = modelConfig();
+    const snapshotSeason = rivalrySnapshot.ratings.teamSeasons.find((season) => season.teamId === 'ohio-state' && season.season === 1995)!;
+
+    expect(ohioState).toEqual(snapshotSeason.crossEra);
+    expect(config.pointsPerStandardDeviation).toBe(rivalrySnapshot.model.pointsPerStandardDeviation);
+  });
+
+  it('rejects a snapshot without normalized cross-era ratings', () => {
+    expect(() => validatePublicSnapshot({ schemaVersion: 'rivalry-lab-public-snapshot-v1', model: { pointsPerStandardDeviation: 5 }, ratings: { teamSeasons: [{ teamId: 'ohio-state' }] } })).toThrow('cross-era');
   });
 });

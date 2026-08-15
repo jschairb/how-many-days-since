@@ -66,4 +66,21 @@ test.describe('Rivalry Lab', () => {
     await page.getByRole('button', { name: 'PLAY ONE' }).click();
     await expect(page.locator('[data-game-score]')).toContainText('FINAL');
   });
+
+  test('shows the normalized cross-era baseline in Tape and Pregame', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto('/rivalry-lab');
+    await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
+
+    await expect(page.locator('[data-tape]')).toContainText('24.2');
+    await expect(page.locator('[data-tape]')).toContainText('26.9');
+    await expect(page.getByTestId('snapshot-provenance')).toContainText('normalized ratings');
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-tape.png', fullPage: true });
+
+    await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
+    await expect(page.locator('[data-mich-prob]')).toContainText('55%');
+    await expect(page.locator('[data-score]')).toContainText('27 MICH');
+    await expect(page.locator('[data-score]')).toContainText('24 OSU');
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-pregame.png', fullPage: true });
+  });
 });

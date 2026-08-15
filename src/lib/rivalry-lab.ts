@@ -4,13 +4,13 @@ export type Side = { teamId: string; expectedScore: number; winProbability: numb
 export type Drive = { quarter: number; teamId: string; outcome: 'TD' | 'FG' | 'PUNT' | 'TURNOVER' | 'DOWNS'; points: number };
 export type Game = { engineVersion: 'drive-v1'; seed: string; ohioState: Stats; michigan: Stats; drives: Drive[]; winner: 'ohio-state' | 'michigan'; overtime: boolean; turningPoints: Drive[] };
 export type Stats = { possessions: number; touchdowns: number; fieldGoals: number; turnovers: number; punts: number; points: number };
-export type ModelConfig = { neutralPointsPerTeam: number; matchupAdvantageDivisor: number; winProbabilityMarginScale: number; scoreFloor: number; scoreCeiling: number; drivePossessions: number; touchdownShare: number; turnoverBaseRate: number; turnoverScoreAdjustment: number; turnoverFloor: number; turnoverOnDownsRate: number };
+export type ModelConfig = { neutralPointsPerTeam: number; matchupAdvantageDivisor: number; pointsPerStandardDeviation: number; winProbabilityMarginScale: number; scoreFloor: number; scoreCeiling: number; drivePossessions: number; touchdownShare: number; turnoverBaseRate: number; turnoverScoreAdjustment: number; turnoverFloor: number; turnoverOnDownsRate: number };
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
 export function calculateMatchup(ohioState: Rating, michigan: Rating, config: ModelConfig): Matchup {
-  const ohioStateAdvantage = (ohioState.offense - michigan.defense + ohioState.overall - michigan.overall) / config.matchupAdvantageDivisor;
-  const michiganAdvantage = (michigan.offense - ohioState.defense + michigan.overall - ohioState.overall) / config.matchupAdvantageDivisor;
+  const ohioStateAdvantage = (ohioState.offense - michigan.defense + ohioState.overall - michigan.overall) * config.pointsPerStandardDeviation / config.matchupAdvantageDivisor;
+  const michiganAdvantage = (michigan.offense - ohioState.defense + michigan.overall - ohioState.overall) * config.pointsPerStandardDeviation / config.matchupAdvantageDivisor;
   const ohioStateScore = clamp(config.neutralPointsPerTeam + ohioStateAdvantage, config.scoreFloor, config.scoreCeiling);
   const michiganScore = clamp(config.neutralPointsPerTeam + michiganAdvantage, config.scoreFloor, config.scoreCeiling);
   const expectedMargin = ohioStateScore - michiganScore;
