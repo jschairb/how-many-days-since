@@ -1,0 +1,396 @@
+---
+import { SHARE_WIDTH, SHARE_HEIGHT } from '../lib/share-graphic';
+
+interface Props {
+  referenceDate: string;
+  siteUrl: string;
+}
+
+const { referenceDate, siteUrl } = Astro.props;
+---
+
+<div id="share-badge" data-reference-date={referenceDate} data-site-url={siteUrl}>
+  <div id="share-clip">
+    <button
+      type="button"
+      id="share-trigger"
+      aria-haspopup="menu"
+      aria-expanded="false"
+      aria-controls="share-menu"
+    >
+      Share
+    </button>
+  </div>
+
+  <div id="share-menu" role="menu" hidden>
+    <button type="button" role="menuitem" id="share-copy" hidden>Copy image</button>
+    <button type="button" role="menuitem" id="share-download">Download PNG</button>
+    <a role="menuitem" id="share-x" href={siteUrl} rel="noopener" target="_blank">Post on X</a>
+    <p id="share-status" role="status" aria-live="polite"></p>
+  </div>
+
+  <canvas id="share-canvas" width={SHARE_WIDTH} height={SHARE_HEIGHT} aria-hidden="true" hidden
+  ></canvas>
+</div>
+
+<style>
+  /* The body column is 640px and centred, so a corner ribbon only clears it
+     on wide viewports. Below that the badge becomes a pill and this wrapper
+     reserves the headroom it needs, since the h1 runs the full width. */
+  #share-badge {
+    height: 0;
+  }
+
+  /* Clips the diagonal band to the corner. Only the band takes clicks. */
+  #share-clip {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 132px;
+    height: 132px;
+    overflow: hidden;
+    z-index: 50;
+    pointer-events: none;
+  }
+
+  #share-trigger {
+    pointer-events: auto;
+    position: absolute;
+    top: 30px;
+    right: -46px;
+    width: 180px;
+    transform: rotate(45deg);
+    padding: 0.45rem 0;
+    border: none;
+    background: #be2137;
+    color: #fff;
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  #share-trigger:hover,
+  #share-trigger:focus-visible {
+    background: #8f3642;
+  }
+
+  #share-menu {
+    pointer-events: auto;
+    position: fixed;
+    top: 104px;
+    right: 14px;
+    display: flex;
+    flex-direction: column;
+    min-width: 172px;
+    padding: 0.35rem;
+    background: #fff;
+    border: 2px solid #be2137;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  }
+
+  #share-menu[hidden] {
+    display: none;
+  }
+
+  #share-menu > button,
+  #share-menu > a {
+    font: bold 0.95rem/1 Arial, Helvetica, sans-serif;
+    text-align: left;
+    padding: 0.6rem 0.7rem;
+    border: none;
+    border-radius: 5px;
+    background: none;
+    color: #be2137 !important;
+    text-decoration: none !important;
+    cursor: pointer;
+  }
+
+  #share-menu > button[hidden] {
+    display: none;
+  }
+
+  #share-menu > button:hover,
+  #share-menu > a:hover {
+    background: #be2137;
+    color: #fff !important;
+  }
+
+  #share-status:empty {
+    display: none;
+  }
+
+  #share-status {
+    margin: 0.2rem 0.7rem 0.4rem;
+    font: 0.75rem/1.35 Arial, Helvetica, sans-serif;
+    color: #333;
+    max-width: 160px;
+  }
+
+  /* Below ~905px the 640px column reaches the corner, so the diagonal band
+     would sit on the headline. Swap to a pill and reserve room above it. */
+  @media (max-width: 904px) {
+    #share-badge {
+      height: 46px;
+    }
+
+    #share-clip {
+      top: 9px;
+      right: 9px;
+      width: auto;
+      height: auto;
+      overflow: visible;
+    }
+
+    #share-trigger {
+      position: static;
+      transform: none;
+      width: auto;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+    }
+
+    #share-menu {
+      top: 52px;
+      right: 9px;
+    }
+  }
+</style>
+
+<script>
+  import { calcDaysSince, formatEasternTime } from '../lib/days';
+  import {
+    SHARE_WIDTH,
+    SHARE_HEIGHT,
+    SHARE_HEADLINE,
+    buildShareCaption,
+    buildShareText,
+    buildXIntentUrl,
+    fitFontSize,
+    formatCount,
+    shareFileName,
+    wrapText,
+  } from '../lib/share-graphic';
+
+  // Straight off the site's stylesheet, so the card reads as the page.
+  const SCARLET = '#BE2137';
+  const HEADLINE_SHADOW = '#8F3642';
+  const COUNT_SHADOW = '#808080';
+  const HEADLINE_FONT = 'Impact, Charcoal, sans-serif';
+  const BODY_FONT = 'Arial, Helvetica, sans-serif';
+
+  const badge = document.getElementById('share-badge');
+  const canvas = document.getElementById('share-canvas') as HTMLCanvasElement | null;
+
+  if (badge && canvas) {
+    const referenceDate = new Date(badge.dataset.referenceDate ?? '');
+    const siteUrl = badge.dataset.siteUrl ?? window.location.origin;
+
+    const trigger = document.getElementById('share-trigger') as HTMLButtonElement;
+    const menu = document.getElementById('share-menu') as HTMLDivElement;
+    const copyBtn = document.getElementById('share-copy') as HTMLButtonElement;
+    const downloadBtn = document.getElementById('share-download') as HTMLButtonElement;
+    const xLink = document.getElementById('share-x') as HTMLAnchorElement;
+    const status = document.getElementById('share-status') as HTMLParagraphElement;
+
+    const currentDays = () => calcDaysSince(referenceDate, new Date());
+    const say = (message: string) => {
+      status.textContent = message;
+    };
+
+    const track = (method: string) => {
+      const gtag = (window as any).gtag;
+      if (typeof gtag === 'function') {
+        gtag('event', 'share', { method, content_type: 'days_since_graphic' });
+      }
+    };
+
+    /**
+     * Repaints the card as a scaled-up copy of the homepage: scarlet Impact
+     * headline over a white field, the count in Arial with its grey drop
+     * shadow, then the Columbus line.
+     */
+    const draw = (days: number, now: Date) => {
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      ctx.clearRect(0, 0, SHARE_WIDTH, SHARE_HEIGHT);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, SHARE_WIDTH, SHARE_HEIGHT);
+
+      // h1: Impact, scarlet, text-shadow 2px 2px 2px #8F3642 (scaled up).
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'alphabetic';
+      ctx.fillStyle = SCARLET;
+      ctx.shadowColor = HEADLINE_SHADOW;
+      ctx.shadowOffsetX = 3;
+      ctx.shadowOffsetY = 3;
+      ctx.shadowBlur = 3;
+
+      const headlineSize = 70;
+      ctx.font = `${headlineSize}px ${HEADLINE_FONT}`;
+      const lines = wrapText(SHARE_HEADLINE, SHARE_WIDTH - 140, (l) => ctx.measureText(l).width);
+      let y = 92;
+      for (const line of lines) {
+        ctx.fillText(line, SHARE_WIDTH / 2, y);
+        y += headlineSize * 1.06;
+      }
+
+      // #days_count: Arial, text-shadow 4px 4px 4px #808080, with the small
+      // "days." tail riding the same baseline as it does on the page.
+      const countText = formatCount(days);
+      const unitText = ' days.';
+      const unitSize = 46;
+
+      const countSize = fitFontSize(SHARE_WIDTH - 320, 210, 110, (size) => {
+        ctx.font = `${size}px ${BODY_FONT}`;
+        return ctx.measureText(countText).width;
+      });
+
+      ctx.font = `${countSize}px ${BODY_FONT}`;
+      const countWidth = ctx.measureText(countText).width;
+      ctx.font = `${unitSize}px ${BODY_FONT}`;
+      const unitWidth = ctx.measureText(unitText).width;
+
+      const baseline = 400;
+      let x = (SHARE_WIDTH - (countWidth + unitWidth)) / 2;
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#000000';
+      ctx.font = `${countSize}px ${BODY_FONT}`;
+      ctx.shadowColor = COUNT_SHADOW;
+      ctx.shadowOffsetX = 6;
+      ctx.shadowOffsetY = 6;
+      ctx.shadowBlur = 6;
+      ctx.fillText(countText, x, baseline);
+
+      // The tail sits outside the shadowed span on the page, so drop the shadow.
+      ctx.shadowColor = 'transparent';
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 0;
+      ctx.shadowBlur = 0;
+      ctx.font = `${unitSize}px ${BODY_FONT}`;
+      ctx.fillText(unitText, x + countWidth, baseline);
+
+      // p#phrase: bold Arial.
+      ctx.textAlign = 'center';
+      ctx.font = `bold 34px ${BODY_FONT}`;
+      ctx.fillText(
+        `It's ${formatEasternTime(now)} in Columbus and Michigan still sucks.`,
+        SHARE_WIDTH / 2,
+        492
+      );
+
+      ctx.fillStyle = SCARLET;
+      ctx.font = `26px ${BODY_FONT}`;
+      ctx.fillText(siteUrl.replace(/^https?:\/\//, ''), SHARE_WIDTH / 2, 566);
+
+      xLink.href = buildXIntentUrl(days, siteUrl);
+    };
+
+    const toBlob = (): Promise<Blob> =>
+      new Promise((resolve, reject) => {
+        canvas.toBlob(
+          (blob) => (blob ? resolve(blob) : reject(new Error('Could not render the image.'))),
+          'image/png'
+        );
+      });
+
+    const supportsFileShare = (() => {
+      try {
+        const probe = new File([new Blob()], 'probe.png', { type: 'image/png' });
+        return typeof navigator.canShare === 'function' && navigator.canShare({ files: [probe] });
+      } catch {
+        return false;
+      }
+    })();
+
+    const supportsImageCopy =
+      typeof ClipboardItem !== 'undefined' && typeof navigator.clipboard?.write === 'function';
+
+    copyBtn.hidden = !supportsImageCopy;
+
+    const closeMenu = () => {
+      menu.hidden = true;
+      trigger.setAttribute('aria-expanded', 'false');
+      say('');
+    };
+
+    const openMenu = () => {
+      menu.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+    };
+
+    // Where the share sheet takes files, one tap is the whole interaction.
+    // Everywhere else the ribbon opens the menu of fallbacks.
+    trigger.addEventListener('click', async () => {
+      if (!supportsFileShare) {
+        menu.hidden ? openMenu() : closeMenu();
+        return;
+      }
+
+      const days = currentDays();
+      try {
+        const file = new File([await toBlob()], shareFileName(days), { type: 'image/png' });
+        await navigator.share({ files: [file], text: buildShareText(days, siteUrl) });
+        track('web_share');
+      } catch (error) {
+        if ((error as Error)?.name === 'AbortError') return;
+        openMenu();
+        say('Sharing failed. Try downloading instead.');
+      }
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': await toBlob() })]);
+        say('Copied. Paste it into your post.');
+        track('copy_image');
+      } catch {
+        say('Copying failed. Try downloading instead.');
+      }
+    });
+
+    downloadBtn.addEventListener('click', async () => {
+      const days = currentDays();
+      try {
+        const url = URL.createObjectURL(await toBlob());
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = shareFileName(days);
+        link.click();
+        URL.revokeObjectURL(url);
+        say(buildShareCaption(days));
+        track('download');
+      } catch {
+        say('Download failed. Try again in a moment.');
+      }
+    });
+
+    xLink.addEventListener('click', () => track('x_intent'));
+
+    document.addEventListener('click', (event) => {
+      if (!menu.hidden && !badge.contains(event.target as Node)) closeMenu();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !menu.hidden) {
+        closeMenu();
+        trigger.focus();
+      }
+    });
+
+    const render = () => draw(currentDays(), new Date());
+
+    render();
+    // Impact is a system face, but wait for webfonts before trusting metrics.
+    document.fonts?.ready.then(render).catch(() => {});
+    setInterval(render, 60 * 1000);
+  }
+</script>

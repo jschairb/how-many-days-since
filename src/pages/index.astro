@@ -1,5 +1,6 @@
 ---
 import fs from 'node:fs';
+import ShareGraphic from '../components/ShareGraphic.astro';
 
 const title = 'How many days since Michigan has beaten Ohio State?';
 const description = 'A proudly Buckeye-forward site tracking the days since Michigan last beat Ohio State in The Game. Celebrating Buckeye dominance in college football\'s greatest rivalry. Go Bucks!';
@@ -87,6 +88,7 @@ const imageRotationIntervalString = imageRotationInterval.toString();
     )}
   </head>
   <body>
+    <ShareGraphic referenceDate={referenceDateString} siteUrl={siteUrl} />
     <h1>{title}</h1>
     <div id="content">
       <p id="days_since"><span id="days_count">{daysSince}</span> days.</p>
@@ -106,7 +108,7 @@ const imageRotationIntervalString = imageRotationInterval.toString();
         It's <span id="time">{formattedTime}</span> in Columbus and Michigan still sucks.
       </p>
     </div>
-    
+
     <div id="script-in-the-snow" style="max-width: 640px; margin: 2rem auto; padding: 0 1rem; position: relative;">
       <button id="copy-link-btn" onclick="copyProductLink()" style="position: absolute; top: 1.5rem; right: 2.5rem; background: white; border: 2px solid #BE2137; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s;" title="Copy link to share">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BE2137" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
