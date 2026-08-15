@@ -1,10 +1,19 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Record', () => {
-  test('links verified CollegeFootballData box scores for covered meetings', async ({ page }) => {
+  test('links covered team-season records and the score to CollegeFootballData', async ({ page }) => {
     await page.goto('/record');
 
-    await expect(page.getByRole('link', { name: 'CFBD BOX SCORE' }).first()).toHaveAttribute(
+    const meeting = page.locator('[data-game^="2025"]');
+    await expect(meeting.getByRole('link', { name: /Ohio State/ })).toHaveAttribute(
+      'href',
+      'https://collegefootballdata.com/teams/ohio-state/2025'
+    );
+    await expect(meeting.getByRole('link', { name: /Michigan/ })).toHaveAttribute(
+      'href',
+      'https://collegefootballdata.com/teams/michigan/2025'
+    );
+    await expect(meeting.getByRole('link', { name: '27-9' })).toHaveAttribute(
       'href',
       /collegefootballdata\.com\/boxscore\//
     );
