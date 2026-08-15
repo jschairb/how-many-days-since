@@ -85,20 +85,39 @@ test.describe('Rivalry Lab', () => {
     await expect(page.locator('[data-game-score]')).toContainText('FINAL');
   });
 
-  test('shows the normalized cross-era baseline in Tape and Pregame', async ({ page }) => {
+  test('keeps Tape focused on selected-season profiles and moves derived matchup outputs to Pregame', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto('/rivalry-lab');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
 
-    await expect(page.locator('[data-tape]')).toContainText('24.2');
-    await expect(page.locator('[data-tape]')).toContainText('26.9');
-    await expect(page.getByTestId('snapshot-provenance')).toContainText('normalized ratings');
-    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-tape.png', fullPage: true });
+    await expect(page.getByRole('heading', { name: 'TALE OF THE TAPE' })).toBeVisible();
+    await expect(page.locator('[data-view="tape"] [data-context]')).toContainText('1995 OHIO STATE × 2023 MICHIGAN');
+    await expect(page.getByTestId('season-profile-ohio-state')).toContainText('OBSERVED SCORING');
+    await expect(page.getByTestId('season-profile-michigan')).toContainText('DERIVED SRS RANKINGS');
+    await expect(page.locator('[data-tape]')).toHaveCount(0);
 
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
-    await expect(page.locator('[data-mich-prob]')).toContainText('55%');
-    await expect(page.locator('[data-score]')).toContainText('27 MICH');
-    await expect(page.locator('[data-score]')).toContainText('24 OSU');
-    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-pregame.png', fullPage: true });
+    await expect(page.locator('[data-expected-score]')).toContainText('DERIVED');
+    await expect(page.locator('[data-expected-score]')).toContainText('27 MICH');
+    await expect(page.locator('[data-expected-score]')).toContainText('24 OSU');
+    await expect(page.locator('[data-expected-margin]')).toContainText('DERIVED');
+    await expect(page.locator('[data-win-probability]')).toContainText('DERIVED');
+    await expect(page.locator('[data-pregame-inputs]')).toContainText('EXACT MODEL INPUTS');
+    await expect(page.locator('[data-pregame-inputs]')).toContainText('OFFENSE RATING');
+    await expect(page.locator('[data-pregame-method]')).toContainText('METHOD NOTE');
+    await expect(page.locator('[data-pregame-drivers]')).toContainText('KEY DRIVERS');
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-pregame-desktop.png', fullPage: true });
+  });
+
+  test('keeps the 1995 Ohio State and 2023 Michigan pregame readable on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/rivalry-lab');
+    await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
+
+    await expect(page.locator('[data-expected-score]')).toBeVisible();
+    await expect(page.locator('[data-pregame-inputs]')).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-pregame-mobile.png', fullPage: true });
   });
 });
