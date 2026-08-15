@@ -1,13 +1,19 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Record', () => {
-  test('links verified CollegeFootballData box scores for covered meetings', async ({ page }) => {
+  test('uses verified CollegeFootballData URLs on the winning team and score', async ({ page }) => {
     await page.goto('/record');
 
-    await expect(page.getByRole('link', { name: 'CFBD BOX SCORE' }).first()).toHaveAttribute(
+    const meeting = page.locator('[data-game^="2025"]');
+    await expect(meeting.getByRole('link', { name: 'Ohio State' })).toHaveAttribute(
       'href',
       /collegefootballdata\.com\/boxscore\//
     );
+    await expect(meeting.getByRole('link', { name: '27-9' })).toHaveAttribute(
+      'href',
+      /collegefootballdata\.com\/boxscore\//
+    );
+    await expect(page.getByText('CFBD BOX SCORE')).toHaveCount(0);
   });
 
   test('shows the observed drought statistics section and longest Ohio State drought', async ({ page }) => {
