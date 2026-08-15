@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import node from '@astrojs/node';
 
 import robotsTxt from 'astro-robots-txt';
 
@@ -6,6 +7,8 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://howmanydayssincemichiganhasbeatenohiostate.com',
+  output: 'server',
+  adapter: node({ mode: 'standalone' }),
 
   // Last date Michigan beat Ohio State
   vite: {

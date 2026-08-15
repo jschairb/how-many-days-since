@@ -31,11 +31,39 @@ The site will be served at the URL printed in the terminal (typically http://loc
 npm run build
 ```
 
-Astro will emit the static site into `dist/`. You can preview the production build locally by running:
+Astro emits a Node server application into `dist/`. The Count and Record pages render from bundled historical data. Rivalry Lab calls server routes for matchup calculation, seeded simulation, and local Chalk Talk.
+
+Run the production server locally:
 
 ```bash
-npm run preview
+HOST=0.0.0.0 PORT=4310 node ./dist/server/entry.mjs
 ```
+
+## Deployment
+
+Deploy this repository to a Node-capable host or container runtime. A static-only host cannot serve the Rivalry Lab API routes.
+
+```bash
+docker build -t how-many-days-since:local .
+docker run --rm -p 4310:4310 how-many-days-since:local
+```
+
+The container listens on port `4310`. Verify `/api/health`, `/api/matchup`, `/api/simulate`, and `/rivalry-lab` after deployment.
+
+## Rivalry Lab snapshot refresh
+
+The public site consumes a reduced, derived snapshot from the private historical-model workspace. It never imports the warehouse, CFBD credentials, or purchased data packages.
+
+```sh
+# In ~/src/cfb/cfb_simulator, after ratings and validation refresh:
+npm run product:generate
+npm run product:export-public
+
+# In this repository:
+npm run sync:lab-snapshot -- ../cfb/cfb_simulator/exports/rivalry-lab-snapshot.json
+```
+
+Review and commit the resulting `src/data/rivalry-lab-snapshot.json` with the public-site change. This explicit release step prevents an unreviewed model refresh from changing production behavior.
 
 ## Tests
 

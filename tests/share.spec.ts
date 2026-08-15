@@ -38,7 +38,7 @@ test.describe('share badge', () => {
   test('does not overlap the headline at mobile width', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 720 });
     const badge = (await page.locator('#share-trigger').boundingBox())!;
-    const heading = (await page.locator('h1').boundingBox())!;
+    const heading = (await page.locator('main h1').boundingBox())!;
     expect(badge.y + badge.height).toBeLessThanOrEqual(heading.y);
   });
 
@@ -51,7 +51,7 @@ test.describe('share badge', () => {
     await expect(page.locator('#share-menu')).toBeHidden();
 
     await page.locator('#share-trigger').click();
-    await page.locator('h1').click();
+    await page.locator('main h1').click();
     await expect(page.locator('#share-menu')).toBeHidden();
   });
 

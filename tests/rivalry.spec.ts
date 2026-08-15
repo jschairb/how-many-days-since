@@ -1,31 +1,25 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('rivalry page', () => {
-  test('has correct title and heading', async ({ page }) => {
-    await page.goto('/rivalry/');
-    await expect(page).toHaveTitle(/The Rivalry/i);
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('The Rivalry');
+test.describe('Record', () => {
+  test('renders all 121 meetings and filters them', async ({ page }) => {
+    await page.goto('/record');
+    await expect(page).toHaveTitle(/The Record/i);
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('THE RECORD');
+    await expect(page.locator('[data-game]')).toHaveCount(121);
+    await page.getByLabel('Filter games').fill('2025');
+    await expect(page.locator('[data-game^="2025"]')).toBeVisible();
+    await expect(page.locator('[data-game^="2024"]')).toBeHidden();
   });
+});
 
-  test('displays the days count', async ({ page }) => {
-    await page.goto('/rivalry/');
-    await expect(page.locator('#days-count')).toBeVisible();
-  });
-
-  test('displays key statistics cards', async ({ page }) => {
-    await page.goto('/rivalry/');
-    await expect(page.locator('.stats-grid')).toBeVisible();
-    await expect(page.locator('.stat-card').first()).toBeVisible();
-  });
-
-  test('has a searchable game history table', async ({ page }) => {
-    await page.goto('/rivalry/');
-    await expect(page.locator('.rivalry-table')).toBeVisible();
-    await expect(page.locator('#gameSearch')).toBeVisible();
-  });
-
-  test('has a back to home link', async ({ page }) => {
-    await page.goto('/rivalry/');
-    await expect(page.locator('#bottom-nav').getByRole('link', { name: /back to home/i })).toBeVisible();
+test.describe('Rivalry Lab', () => {
+  test('loads server-derived matchup values and runs a simulation', async ({ page }) => {
+    await page.goto('/rivalry-lab');
+    await expect(page.getByRole('heading', { level: 1, name: 'RIVALRY LAB' })).toBeVisible();
+    await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
+    await expect(page.getByRole('heading', { name: 'TALE OF THE TAPE' })).toBeVisible();
+    await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'PLAY ONE' }).click();
+    await expect(page.getByText('FINAL').first()).toBeVisible();
   });
 });

@@ -1,0 +1,37 @@
+---
+import '../styles/site.css';
+const site = 'https://howmanydayssincemichiganhasbeatenohiostate.com';
+const { active, title = 'How Many Days Since Michigan Has Beaten Ohio State?', description = 'The Ohio State-Michigan rivalry record and an evidence-labeled cross-era Rivalry Lab.' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site).toString();
+const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
+const webSiteSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'How Many Days Since Michigan Has Beaten Ohio State?', url: site });
+const pageSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebPage', name: title, description, url: canonical });
+const nav = [{ href: '/', label: 'THE COUNT', id: 'count' }, { href: '/record', label: 'THE RECORD', id: 'record' }, { href: '/rivalry-lab', label: 'RIVALRY LAB', id: 'lab' }];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={webSiteSchema}></script>
+    <script type="application/ld+json" set:html={pageSchema}></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style is:global>[hidden]{display:none!important}</style>
+    {gaMeasurementId && <><script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script><script is:inline define:vars={{ gaMeasurementId }}>window.dataLayer=window.dataLayer||[];function gtag(){{window.dataLayer.push(arguments)}}gtag('js',new Date());gtag('config',gaMeasurementId);</script></>}
+  </head>
+  <body>
+    <header class="site-header"><nav class="site-nav" aria-label="Site">{nav.map((item) => <a href={item.href} aria-current={active === item.id ? 'page' : undefined} class:list={{ active: active === item.id }}>{item.label}</a>)}</nav></header>
+    <main class:list={{ 'site-main': true, lab: active === 'lab' }}><slot /></main>
+    {active !== 'lab' && <footer class="site-footer">an <a href="https://github.com/jschairb">@jschairb</a> joint, from Great Western Productions · © {new Date().getFullYear()}</footer>}
+  </body>
+</html>
