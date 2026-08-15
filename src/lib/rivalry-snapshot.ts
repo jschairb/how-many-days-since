@@ -52,6 +52,7 @@ export type RivalrySnapshot = {
   generatedAt: string;
   neutralPointsPerTeam: number;
   model: Omit<ModelConfig, 'neutralPointsPerTeam'>;
+  rivalryGames: Array<{ season: number; cfbdGameId: number; date: string | null; cfbdBoxscoreUrl: string }>;
   ratings: {
     environments: Array<{ season: number; averagePointsPerTeam: number; games: number }>;
     teamSeasons: TeamSeasonSnapshot[];
