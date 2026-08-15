@@ -5,7 +5,7 @@
   "eraModelVersion": "srs-era-neutral-v1",
   "simulationEngineVersion": "drive-v1",
   "dataSnapshotVersion": "cfbd-1970-2025-v1",
-  "generatedAt": "2026-08-15T17:33:12.822Z",
+  "generatedAt": "2026-08-15T19:47:03.303Z",
   "neutralPointsPerTeam": 25.319940719998808,
   "model": {
     "matchupFormulaVersion": "srs-offense-defense-v1",
@@ -323,6 +323,31 @@
           "defense": 20.808944879932785,
           "scheduleStrength": 17.58227868818899
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 9,
+            "cfbdPostseasonRank": 9,
+            "pointsPerGame": 28.8,
+            "pointsAllowedPerGame": 9
+          },
+          "derived": {
+            "overallRank": 6,
+            "offenseRank": 14,
+            "defenseRank": 3,
+            "scheduleStrengthRank": 37,
+            "ratedTeams": 171
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -342,6 +367,31 @@
           "offense": 18.311265376126382,
           "defense": 18.66985401536152,
           "scheduleStrength": 19.98384754718234
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Woody Hayes",
+            "finalApRank": 5,
+            "cfbdPostseasonRank": 5,
+            "pointsPerGame": 29,
+            "pointsAllowedPerGame": 12
+          },
+          "derived": {
+            "overallRank": 8,
+            "offenseRank": 9,
+            "defenseRank": 5,
+            "scheduleStrengthRank": 28,
+            "ratedTeams": 171
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -363,6 +413,31 @@
           "defense": 17.962922080314584,
           "scheduleStrength": 11.15407881803793
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 6,
+            "cfbdPostseasonRank": 6,
+            "pointsPerGame": 35.083333333333336,
+            "pointsAllowedPerGame": 6.916666666666667
+          },
+          "derived": {
+            "overallRank": 4,
+            "offenseRank": 7,
+            "defenseRank": 4,
+            "scheduleStrengthRank": 52,
+            "ratedTeams": 182
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -382,6 +457,31 @@
           "offense": 9.8244806670849,
           "defense": 16.292870045340837,
           "scheduleStrength": 15.720363120727868
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Woody Hayes",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 22.4,
+            "pointsAllowedPerGame": 12
+          },
+          "derived": {
+            "overallRank": 17,
+            "offenseRank": 26,
+            "defenseRank": 8,
+            "scheduleStrengthRank": 28,
+            "ratedTeams": 182
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -403,6 +503,31 @@
           "defense": 21.2331955770059,
           "scheduleStrength": 12.294698115643286
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 6,
+            "cfbdPostseasonRank": 6,
+            "pointsPerGame": 24,
+            "pointsAllowedPerGame": 5.181818181818182
+          },
+          "derived": {
+            "overallRank": 7,
+            "offenseRank": 28,
+            "defenseRank": 3,
+            "scheduleStrengthRank": 44,
+            "ratedTeams": 185
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -422,6 +547,31 @@
           "offense": 11.612368701930798,
           "defense": 11.709255501702136,
           "scheduleStrength": 13.413759638745468
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Woody Hayes",
+            "finalApRank": 9,
+            "cfbdPostseasonRank": 9,
+            "pointsPerGame": 25.454545454545453,
+            "pointsAllowedPerGame": 15.545454545454545
+          },
+          "derived": {
+            "overallRank": 18,
+            "offenseRank": 20,
+            "defenseRank": 24,
+            "scheduleStrengthRank": 38,
+            "ratedTeams": 185
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -443,6 +593,31 @@
           "defense": 22.137741187992738,
           "scheduleStrength": 17.328613491697187
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 6,
+            "cfbdPostseasonRank": 6,
+            "pointsPerGame": 30,
+            "pointsAllowedPerGame": 6.181818181818182
+          },
+          "derived": {
+            "overallRank": 4,
+            "offenseRank": 10,
+            "defenseRank": 3,
+            "scheduleStrengthRank": 27,
+            "ratedTeams": 184
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -462,6 +637,31 @@
           "offense": 25.814724712602587,
           "defense": 22.354464874505922,
           "scheduleStrength": 16.44445972913296
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Woody Hayes",
+            "finalApRank": 2,
+            "cfbdPostseasonRank": 2,
+            "pointsPerGame": 37.54545454545455,
+            "pointsAllowedPerGame": 5.818181818181818
+          },
+          "derived": {
+            "overallRank": 1,
+            "offenseRank": 4,
+            "defenseRank": 2,
+            "scheduleStrengthRank": 30,
+            "ratedTeams": 184
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -483,6 +683,31 @@
           "defense": 20.918286858060583,
           "scheduleStrength": 13.294959651673501
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 3,
+            "cfbdPostseasonRank": 3,
+            "pointsPerGame": 29.454545454545453,
+            "pointsAllowedPerGame": 6.818181818181818
+          },
+          "derived": {
+            "overallRank": 3,
+            "offenseRank": 13,
+            "defenseRank": 1,
+            "scheduleStrengthRank": 43,
+            "ratedTeams": 183
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -502,6 +727,31 @@
           "offense": 21.94749777526864,
           "defense": 16.431232332599716,
           "scheduleStrength": 12.71348871325515
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Woody Hayes",
+            "finalApRank": 4,
+            "cfbdPostseasonRank": 4,
+            "pointsPerGame": 36.416666666666664,
+            "pointsAllowedPerGame": 10.75
+          },
+          "derived": {
+            "overallRank": 2,
+            "offenseRank": 3,
+            "defenseRank": 7,
+            "scheduleStrengthRank": 44,
+            "ratedTeams": 183
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -523,6 +773,31 @@
           "defense": 17.28688435060629,
           "scheduleStrength": 14.948958371857605
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 8,
+            "cfbdPostseasonRank": 8,
+            "pointsPerGame": 27,
+            "pointsAllowedPerGame": 10.833333333333334
+          },
+          "derived": {
+            "overallRank": 8,
+            "offenseRank": 16,
+            "defenseRank": 8,
+            "scheduleStrengthRank": 28,
+            "ratedTeams": 183
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -542,6 +817,31 @@
           "offense": 18.755827324155874,
           "defense": 18.22237884983203,
           "scheduleStrength": 13.478807802430739
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Woody Hayes",
+            "finalApRank": 4,
+            "cfbdPostseasonRank": 4,
+            "pointsPerGame": 32,
+            "pointsAllowedPerGame": 8.5
+          },
+          "derived": {
+            "overallRank": 4,
+            "offenseRank": 6,
+            "defenseRank": 5,
+            "scheduleStrengthRank": 35,
+            "ratedTeams": 183
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -563,6 +863,31 @@
           "defense": 19.4784776030709,
           "scheduleStrength": 13.944011250237665
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 3,
+            "cfbdPostseasonRank": 3,
+            "pointsPerGame": 36,
+            "pointsAllowedPerGame": 7.916666666666667
+          },
+          "derived": {
+            "overallRank": 1,
+            "offenseRank": 1,
+            "defenseRank": 1,
+            "scheduleStrengthRank": 32,
+            "ratedTeams": 183
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -582,6 +907,31 @@
           "offense": 14.156494197616416,
           "defense": 17.38974557208445,
           "scheduleStrength": 18.546596489404596
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Woody Hayes",
+            "finalApRank": 6,
+            "cfbdPostseasonRank": 6,
+            "pointsPerGame": 25.416666666666668,
+            "pointsAllowedPerGame": 12.416666666666666
+          },
+          "derived": {
+            "overallRank": 5,
+            "offenseRank": 11,
+            "defenseRank": 2,
+            "scheduleStrengthRank": 3,
+            "ratedTeams": 183
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -603,6 +953,31 @@
           "defense": 18.03826814979085,
           "scheduleStrength": 15.938051316852352
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 9,
+            "cfbdPostseasonRank": 9,
+            "pointsPerGame": 29.416666666666668,
+            "pointsAllowedPerGame": 10.333333333333334
+          },
+          "derived": {
+            "overallRank": 6,
+            "offenseRank": 11,
+            "defenseRank": 7,
+            "scheduleStrengthRank": 47,
+            "ratedTeams": 210
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -622,6 +997,31 @@
           "offense": 16.43958505391586,
           "defense": 18.05571575793286,
           "scheduleStrength": 15.919555945009739
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Woody Hayes",
+            "finalApRank": 11,
+            "cfbdPostseasonRank": 11,
+            "pointsPerGame": 28.583333333333332,
+            "pointsAllowedPerGame": 10
+          },
+          "derived": {
+            "overallRank": 9,
+            "offenseRank": 15,
+            "defenseRank": 6,
+            "scheduleStrengthRank": 48,
+            "ratedTeams": 210
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -643,6 +1043,31 @@
           "defense": 16.252892352098428,
           "scheduleStrength": 9.516224059232087
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 5,
+            "cfbdPostseasonRank": 5,
+            "pointsPerGame": 31,
+            "pointsAllowedPerGame": 8.75
+          },
+          "derived": {
+            "overallRank": 5,
+            "offenseRank": 7,
+            "defenseRank": 4,
+            "scheduleStrengthRank": 50,
+            "ratedTeams": 185
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -662,6 +1087,31 @@
           "offense": 12.713874960379409,
           "defense": 7.583535734484063,
           "scheduleStrength": 10.047813654382288
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Woody Hayes",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 28.25,
+            "pointsAllowedPerGame": 18
+          },
+          "derived": {
+            "overallRank": 19,
+            "offenseRank": 13,
+            "defenseRank": 39,
+            "scheduleStrengthRank": 45,
+            "ratedTeams": 185
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -683,6 +1133,31 @@
           "defense": 15.091387490050002,
           "scheduleStrength": 13.105038612476207
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 18,
+            "cfbdPostseasonRank": 18,
+            "pointsPerGame": 26,
+            "pointsAllowedPerGame": 12.583333333333334
+          },
+          "derived": {
+            "overallRank": 10,
+            "offenseRank": 22,
+            "defenseRank": 11,
+            "scheduleStrengthRank": 36,
+            "ratedTeams": 188
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -702,6 +1177,31 @@
           "offense": 16.592809769887943,
           "defense": 18.340915779129435,
           "scheduleStrength": 12.935140868457408
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Earle Bruce",
+            "finalApRank": 4,
+            "cfbdPostseasonRank": 4,
+            "pointsPerGame": 32.5,
+            "pointsAllowedPerGame": 10.5
+          },
+          "derived": {
+            "overallRank": 2,
+            "offenseRank": 9,
+            "defenseRank": 3,
+            "scheduleStrengthRank": 40,
+            "ratedTeams": 188
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -723,6 +1223,31 @@
           "defense": 17.257823343454728,
           "scheduleStrength": 12.834202783482782
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 4,
+            "cfbdPostseasonRank": 4,
+            "pointsPerGame": 26.833333333333332,
+            "pointsAllowedPerGame": 10.75
+          },
+          "derived": {
+            "overallRank": 11,
+            "offenseRank": 22,
+            "defenseRank": 6,
+            "scheduleStrengthRank": 45,
+            "ratedTeams": 187
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -742,6 +1267,31 @@
           "offense": 18.632044119092626,
           "defense": 11.547729460551327,
           "scheduleStrength": 13.013201112107453
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Earle Bruce",
+            "finalApRank": 15,
+            "cfbdPostseasonRank": 15,
+            "pointsPerGame": 32.25,
+            "pointsAllowedPerGame": 15.083333333333334
+          },
+          "derived": {
+            "overallRank": 9,
+            "offenseRank": 6,
+            "defenseRank": 25,
+            "scheduleStrengthRank": 44,
+            "ratedTeams": 187
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -763,6 +1313,31 @@
           "defense": 13.124587834302794,
           "scheduleStrength": 9.565993412423724
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 12,
+            "cfbdPostseasonRank": 12,
+            "pointsPerGame": 29.583333333333332,
+            "pointsAllowedPerGame": 13.5
+          },
+          "derived": {
+            "overallRank": 11,
+            "offenseRank": 16,
+            "defenseRank": 20,
+            "scheduleStrengthRank": 65,
+            "ratedTeams": 185
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -782,6 +1357,31 @@
           "offense": 13.520193098384464,
           "defense": 5.50873791734022,
           "scheduleStrength": 7.86238711463572
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Earle Bruce",
+            "finalApRank": 15,
+            "cfbdPostseasonRank": 15,
+            "pointsPerGame": 32.25,
+            "pointsAllowedPerGame": 21.083333333333332
+          },
+          "derived": {
+            "overallRank": 29,
+            "offenseRank": 13,
+            "defenseRank": 59,
+            "scheduleStrengthRank": 76,
+            "ratedTeams": 185
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -803,6 +1403,31 @@
           "defense": 14.335673809618921,
           "scheduleStrength": 17.899210311814596
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 28.75,
+            "pointsAllowedPerGame": 17
+          },
+          "derived": {
+            "overallRank": 8,
+            "offenseRank": 10,
+            "defenseRank": 13,
+            "scheduleStrengthRank": 15,
+            "ratedTeams": 164
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -822,6 +1447,31 @@
           "offense": 13.209149790806714,
           "defense": 14.447573901180922,
           "scheduleStrength": 15.990053047387041
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Earle Bruce",
+            "finalApRank": 12,
+            "cfbdPostseasonRank": 12,
+            "pointsPerGame": 29,
+            "pointsAllowedPerGame": 17.333333333333332
+          },
+          "derived": {
+            "overallRank": 15,
+            "offenseRank": 17,
+            "defenseRank": 11,
+            "scheduleStrengthRank": 29,
+            "ratedTeams": 164
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -843,6 +1493,31 @@
           "defense": 14.080088608330536,
           "scheduleStrength": 8.157377483736367
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 8,
+            "cfbdPostseasonRank": 8,
+            "pointsPerGame": 29.583333333333332,
+            "pointsAllowedPerGame": 13.333333333333334
+          },
+          "derived": {
+            "overallRank": 10,
+            "offenseRank": 18,
+            "defenseRank": 11,
+            "scheduleStrengthRank": 56,
+            "ratedTeams": 175
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -862,6 +1537,31 @@
           "offense": 15.318351580582446,
           "defense": 8.683198414786416,
           "scheduleStrength": 7.0015906500407885
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Earle Bruce",
+            "finalApRank": 9,
+            "cfbdPostseasonRank": 9,
+            "pointsPerGame": 34.166666666666664,
+            "pointsAllowedPerGame": 17.166666666666668
+          },
+          "derived": {
+            "overallRank": 11,
+            "offenseRank": 6,
+            "defenseRank": 36,
+            "scheduleStrengthRank": 72,
+            "ratedTeams": 175
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -883,6 +1583,31 @@
           "defense": 13.436862234271668,
           "scheduleStrength": 13.849699285195642
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 17.833333333333332,
+            "pointsAllowedPerGame": 16.666666666666668
+          },
+          "derived": {
+            "overallRank": 36,
+            "offenseRank": 76,
+            "defenseRank": 12,
+            "scheduleStrengthRank": 22,
+            "ratedTeams": 169
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -902,6 +1627,31 @@
           "offense": 15.496076188987345,
           "defense": 9.820606454857806,
           "scheduleStrength": 9.40004899974957
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Earle Bruce",
+            "finalApRank": 13,
+            "cfbdPostseasonRank": 13,
+            "pointsPerGame": 32.583333333333336,
+            "pointsAllowedPerGame": 16.666666666666668
+          },
+          "derived": {
+            "overallRank": 5,
+            "offenseRank": 7,
+            "defenseRank": 29,
+            "scheduleStrengthRank": 64,
+            "ratedTeams": 169
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -923,6 +1673,31 @@
           "defense": 24.37299119890356,
           "scheduleStrength": 17.17416705725531
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 2,
+            "cfbdPostseasonRank": 2,
+            "pointsPerGame": 28.5,
+            "pointsAllowedPerGame": 8.166666666666666
+          },
+          "derived": {
+            "overallRank": 1,
+            "offenseRank": 16,
+            "defenseRank": 1,
+            "scheduleStrengthRank": 4,
+            "ratedTeams": 167
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -942,6 +1717,31 @@
           "offense": 11.999801658272974,
           "defense": 12.281064481730246,
           "scheduleStrength": 14.864196706841655
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Earle Bruce",
+            "finalApRank": 14,
+            "cfbdPostseasonRank": 14,
+            "pointsPerGame": 27.083333333333332,
+            "pointsAllowedPerGame": 17.666666666666668
+          },
+          "derived": {
+            "overallRank": 18,
+            "offenseRank": 18,
+            "defenseRank": 25,
+            "scheduleStrengthRank": 12,
+            "ratedTeams": 167
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -963,6 +1763,31 @@
           "defense": 13.697629877104852,
           "scheduleStrength": 13.759514626903128
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 8,
+            "cfbdPostseasonRank": 8,
+            "pointsPerGame": 29.153846153846153,
+            "pointsAllowedPerGame": 15.615384615384615
+          },
+          "derived": {
+            "overallRank": 11,
+            "offenseRank": 14,
+            "defenseRank": 17,
+            "scheduleStrengthRank": 28,
+            "ratedTeams": 158
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -982,6 +1807,31 @@
           "offense": 9.334626163870526,
           "defense": 16.59643075043776,
           "scheduleStrength": 13.007978434635843
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Earle Bruce",
+            "finalApRank": 7,
+            "cfbdPostseasonRank": 7,
+            "pointsPerGame": 26.692307692307693,
+            "pointsAllowedPerGame": 13.76923076923077
+          },
+          "derived": {
+            "overallRank": 14,
+            "offenseRank": 29,
+            "defenseRank": 9,
+            "scheduleStrengthRank": 32,
+            "ratedTeams": 158
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1003,6 +1853,31 @@
           "defense": 12.927114338017752,
           "scheduleStrength": 9.359534986192289
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 19,
+            "cfbdPostseasonRank": 19,
+            "pointsPerGame": 27.583333333333332,
+            "pointsAllowedPerGame": 14.333333333333334
+          },
+          "derived": {
+            "overallRank": 16,
+            "offenseRank": 26,
+            "defenseRank": 19,
+            "scheduleStrengthRank": 55,
+            "ratedTeams": 154
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1022,6 +1897,31 @@
           "offense": 5.2989020014493615,
           "defense": 12.407869912918581,
           "scheduleStrength": 13.797680325236582
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Earle Bruce",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 20.363636363636363,
+            "pointsAllowedPerGame": 16.454545454545453
+          },
+          "derived": {
+            "overallRank": 24,
+            "offenseRank": 48,
+            "defenseRank": 21,
+            "scheduleStrengthRank": 22,
+            "ratedTeams": 154
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1043,6 +1943,31 @@
           "defense": 16.970238243606865,
           "scheduleStrength": 15.95607872170766
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 4,
+            "cfbdPostseasonRank": 4,
+            "pointsPerGame": 30.083333333333332,
+            "pointsAllowedPerGame": 13.916666666666666
+          },
+          "derived": {
+            "overallRank": 7,
+            "offenseRank": 12,
+            "defenseRank": 7,
+            "scheduleStrengthRank": 14,
+            "ratedTeams": 151
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1062,6 +1987,31 @@
           "offense": 6.071630785246331,
           "defense": 2.9532662837646475,
           "scheduleStrength": 13.93398954926572
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "John Cooper",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 20.818181818181817,
+            "pointsAllowedPerGame": 25.727272727272727
+          },
+          "derived": {
+            "overallRank": 53,
+            "offenseRank": 44,
+            "defenseRank": 70,
+            "scheduleStrengthRank": 28,
+            "ratedTeams": 151
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1083,6 +2033,31 @@
           "defense": 13.55210782975717,
           "scheduleStrength": 12.141012181814192
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Bo Schembechler",
+            "finalApRank": 7,
+            "cfbdPostseasonRank": 7,
+            "pointsPerGame": 27.916666666666668,
+            "pointsAllowedPerGame": 15.333333333333334
+          },
+          "derived": {
+            "overallRank": 13,
+            "offenseRank": 22,
+            "defenseRank": 15,
+            "scheduleStrengthRank": 20,
+            "ratedTeams": 143
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1102,6 +2077,31 @@
           "offense": 9.233002662656512,
           "defense": 1.9816966848957998,
           "scheduleStrength": 7.714699478445681
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "John Cooper",
+            "finalApRank": 24,
+            "cfbdPostseasonRank": 24,
+            "pointsPerGame": 28.25,
+            "pointsAllowedPerGame": 24.75
+          },
+          "derived": {
+            "overallRank": 40,
+            "offenseRank": 29,
+            "defenseRank": 71,
+            "scheduleStrengthRank": 57,
+            "ratedTeams": 143
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1123,6 +2123,31 @@
           "defense": 14.558048021763666,
           "scheduleStrength": 14.395053139203002
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Gary Moeller",
+            "finalApRank": 7,
+            "cfbdPostseasonRank": 7,
+            "pointsPerGame": 32.416666666666664,
+            "pointsAllowedPerGame": 16.5
+          },
+          "derived": {
+            "overallRank": 9,
+            "offenseRank": 14,
+            "defenseRank": 14,
+            "scheduleStrengthRank": 24,
+            "ratedTeams": 156
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1142,6 +2167,31 @@
           "offense": 10.269671793764896,
           "defense": 11.473288063808418,
           "scheduleStrength": 10.992960437557548
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "John Cooper",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 29.083333333333332,
+            "pointsAllowedPerGame": 18.333333333333332
+          },
+          "derived": {
+            "overallRank": 19,
+            "offenseRank": 25,
+            "defenseRank": 27,
+            "scheduleStrengthRank": 52,
+            "ratedTeams": 156
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1163,6 +2213,31 @@
           "defense": 14.058267535927362,
           "scheduleStrength": 15.842208346449992
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Gary Moeller",
+            "finalApRank": 6,
+            "cfbdPostseasonRank": 6,
+            "pointsPerGame": 35,
+            "pointsAllowedPerGame": 16.916666666666668
+          },
+          "derived": {
+            "overallRank": 4,
+            "offenseRank": 3,
+            "defenseRank": 13,
+            "scheduleStrengthRank": 10,
+            "ratedTeams": 149
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1182,6 +2257,31 @@
           "offense": 4.351813344213371,
           "defense": 12.095724903505594,
           "scheduleStrength": 8.947538365586306
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "John Cooper",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 23.083333333333332,
+            "pointsAllowedPerGame": 15.583333333333334
+          },
+          "derived": {
+            "overallRank": 31,
+            "offenseRank": 51,
+            "defenseRank": 19,
+            "scheduleStrengthRank": 55,
+            "ratedTeams": 149
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1203,6 +2303,31 @@
           "defense": 14.145423176147153,
           "scheduleStrength": 10.744424178517884
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Gary Moeller",
+            "finalApRank": 5,
+            "cfbdPostseasonRank": 5,
+            "pointsPerGame": 35.916666666666664,
+            "pointsAllowedPerGame": 14.25
+          },
+          "derived": {
+            "overallRank": 4,
+            "offenseRank": 4,
+            "defenseRank": 13,
+            "scheduleStrengthRank": 40,
+            "ratedTeams": 148
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1222,6 +2347,31 @@
           "offense": 5.4072414745957325,
           "defense": 14.97540028156949,
           "scheduleStrength": 10.96597500677971
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "John Cooper",
+            "finalApRank": 18,
+            "cfbdPostseasonRank": 18,
+            "pointsPerGame": 22.583333333333332,
+            "pointsAllowedPerGame": 13.166666666666666
+          },
+          "derived": {
+            "overallRank": 18,
+            "offenseRank": 44,
+            "defenseRank": 9,
+            "scheduleStrengthRank": 36,
+            "ratedTeams": 148
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1243,6 +2393,31 @@
           "defense": 17.900578595284987,
           "scheduleStrength": 13.907949342906965
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Gary Moeller",
+            "finalApRank": 21,
+            "cfbdPostseasonRank": 21,
+            "pointsPerGame": 28.5,
+            "pointsAllowedPerGame": 13.333333333333334
+          },
+          "derived": {
+            "overallRank": 8,
+            "offenseRank": 27,
+            "defenseRank": 3,
+            "scheduleStrengthRank": 30,
+            "ratedTeams": 143
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1262,6 +2437,31 @@
           "offense": 12.0035714129828,
           "defense": 14.835177408605553,
           "scheduleStrength": 13.672084901092989
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "John Cooper",
+            "finalApRank": 11,
+            "cfbdPostseasonRank": 11,
+            "pointsPerGame": 29.25,
+            "pointsAllowedPerGame": 16.083333333333332
+          },
+          "derived": {
+            "overallRank": 11,
+            "offenseRank": 23,
+            "defenseRank": 14,
+            "scheduleStrengthRank": 32,
+            "ratedTeams": 143
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1283,6 +2483,31 @@
           "defense": 14.31375766389704,
           "scheduleStrength": 20.958354851378328
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Gary Moeller",
+            "finalApRank": 12,
+            "cfbdPostseasonRank": 12,
+            "pointsPerGame": 27.5,
+            "pointsAllowedPerGame": 22.333333333333332
+          },
+          "derived": {
+            "overallRank": 9,
+            "offenseRank": 14,
+            "defenseRank": 12,
+            "scheduleStrengthRank": 4,
+            "ratedTeams": 143
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1302,6 +2527,31 @@
           "offense": 6.995809076990907,
           "defense": 17.50966836903564,
           "scheduleStrength": 14.890090456436237
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "John Cooper",
+            "finalApRank": 14,
+            "cfbdPostseasonRank": 14,
+            "pointsPerGame": 25.846153846153847,
+            "pointsAllowedPerGame": 16.23076923076923
+          },
+          "derived": {
+            "overallRank": 11,
+            "offenseRank": 36,
+            "defenseRank": 5,
+            "scheduleStrengthRank": 17,
+            "ratedTeams": 143
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1323,6 +2573,31 @@
           "defense": 15.62077892173574,
           "scheduleStrength": 16.948525003519332
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Lloyd Carr",
+            "finalApRank": 17,
+            "cfbdPostseasonRank": 17,
+            "pointsPerGame": 26,
+            "pointsAllowedPerGame": 17.153846153846153
+          },
+          "derived": {
+            "overallRank": 11,
+            "offenseRank": 18,
+            "defenseRank": 8,
+            "scheduleStrengthRank": 16,
+            "ratedTeams": 144
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1342,6 +2617,31 @@
           "offense": 20.329597148455353,
           "defense": 17.309715860965337,
           "scheduleStrength": 18.023928376807547
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "John Cooper",
+            "finalApRank": 6,
+            "cfbdPostseasonRank": 6,
+            "pointsPerGame": 36.53846153846154,
+            "pointsAllowedPerGame": 16.923076923076923
+          },
+          "derived": {
+            "overallRank": 2,
+            "offenseRank": 4,
+            "defenseRank": 3,
+            "scheduleStrengthRank": 12,
+            "ratedTeams": 144
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1363,6 +2663,31 @@
           "defense": 18.444031815381344,
           "scheduleStrength": 17.320238001101075
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Lloyd Carr",
+            "finalApRank": 20,
+            "cfbdPostseasonRank": 20,
+            "pointsPerGame": 23.083333333333332,
+            "pointsAllowedPerGame": 15.333333333333334
+          },
+          "derived": {
+            "overallRank": 14,
+            "offenseRank": 48,
+            "defenseRank": 4,
+            "scheduleStrengthRank": 9,
+            "ratedTeams": 153
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1382,6 +2707,31 @@
           "offense": 20.995574726770794,
           "defense": 22.410391276665404,
           "scheduleStrength": 16.40596599819807
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "John Cooper",
+            "finalApRank": 2,
+            "cfbdPostseasonRank": 2,
+            "pointsPerGame": 37.916666666666664,
+            "pointsAllowedPerGame": 10.916666666666666
+          },
+          "derived": {
+            "overallRank": 3,
+            "offenseRank": 4,
+            "defenseRank": 1,
+            "scheduleStrengthRank": 14,
+            "ratedTeams": 153
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1403,6 +2753,31 @@
           "defense": 22.20699144851893,
           "scheduleStrength": 13.56718868384209
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Lloyd Carr",
+            "finalApRank": 1,
+            "cfbdPostseasonRank": 1,
+            "pointsPerGame": 26.833333333333332,
+            "pointsAllowedPerGame": 9.5
+          },
+          "derived": {
+            "overallRank": 7,
+            "offenseRank": 31,
+            "defenseRank": 1,
+            "scheduleStrengthRank": 35,
+            "ratedTeams": 145
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1422,6 +2797,31 @@
           "offense": 12.495065277476009,
           "defense": 17.553059922761935,
           "scheduleStrength": 12.817355966828604
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "John Cooper",
+            "finalApRank": 12,
+            "cfbdPostseasonRank": 12,
+            "pointsPerGame": 30.307692307692307,
+            "pointsAllowedPerGame": 13.076923076923077
+          },
+          "derived": {
+            "overallRank": 8,
+            "offenseRank": 14,
+            "defenseRank": 4,
+            "scheduleStrengthRank": 38,
+            "ratedTeams": 145
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1443,6 +2843,31 @@
           "defense": 13.317170503653276,
           "scheduleStrength": 12.836063474758335
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Lloyd Carr",
+            "finalApRank": 12,
+            "cfbdPostseasonRank": 12,
+            "pointsPerGame": 27.615384615384617,
+            "pointsAllowedPerGame": 18.076923076923077
+          },
+          "derived": {
+            "overallRank": 22,
+            "offenseRank": 33,
+            "defenseRank": 15,
+            "scheduleStrengthRank": 32,
+            "ratedTeams": 149
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1462,6 +2887,31 @@
           "offense": 19.40488452870981,
           "defense": 17.721377618598922,
           "scheduleStrength": 13.292928540724377
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "John Cooper",
+            "finalApRank": 2,
+            "cfbdPostseasonRank": 2,
+            "pointsPerGame": 35.833333333333336,
+            "pointsAllowedPerGame": 12
+          },
+          "derived": {
+            "overallRank": 2,
+            "offenseRank": 4,
+            "defenseRank": 7,
+            "scheduleStrengthRank": 27,
+            "ratedTeams": 149
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1483,6 +2933,31 @@
           "defense": 14.933735018992135,
           "scheduleStrength": 19.096303887626703
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Lloyd Carr",
+            "finalApRank": 5,
+            "cfbdPostseasonRank": 5,
+            "pointsPerGame": 30.083333333333332,
+            "pointsAllowedPerGame": 20.583333333333332
+          },
+          "derived": {
+            "overallRank": 11,
+            "offenseRank": 13,
+            "defenseRank": 16,
+            "scheduleStrengthRank": 8,
+            "ratedTeams": 156
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1502,6 +2977,31 @@
           "offense": 7.890913972962508,
           "defense": 11.844756599443043,
           "scheduleStrength": 19.902339062112883
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "John Cooper",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 23.75,
+            "pointsAllowedPerGame": 23.916666666666668
+          },
+          "derived": {
+            "overallRank": 26,
+            "offenseRank": 37,
+            "defenseRank": 24,
+            "scheduleStrengthRank": 6,
+            "ratedTeams": 156
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1523,6 +3023,31 @@
           "defense": 13.575384455980197,
           "scheduleStrength": 13.532381680282098
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Lloyd Carr",
+            "finalApRank": 11,
+            "cfbdPostseasonRank": 11,
+            "pointsPerGame": 33.666666666666664,
+            "pointsAllowedPerGame": 19.083333333333332
+          },
+          "derived": {
+            "overallRank": 11,
+            "offenseRank": 18,
+            "defenseRank": 13,
+            "scheduleStrengthRank": 51,
+            "ratedTeams": 165
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1542,6 +3067,31 @@
           "offense": 11.71421456359899,
           "defense": 12.720219969070616,
           "scheduleStrength": 15.35110121865462
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "John Cooper",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 27.583333333333332,
+            "pointsAllowedPerGame": 18.5
+          },
+          "derived": {
+            "overallRank": 16,
+            "offenseRank": 26,
+            "defenseRank": 22,
+            "scheduleStrengthRank": 36,
+            "ratedTeams": 165
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1563,6 +3113,31 @@
           "defense": 13.52092233300378,
           "scheduleStrength": 14.580389112827824
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Lloyd Carr",
+            "finalApRank": 17,
+            "cfbdPostseasonRank": 20,
+            "pointsPerGame": 26.666666666666668,
+            "pointsAllowedPerGame": 19.75
+          },
+          "derived": {
+            "overallRank": 16,
+            "offenseRank": 37,
+            "defenseRank": 15,
+            "scheduleStrengthRank": 23,
+            "ratedTeams": 159
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1582,6 +3157,31 @@
           "offense": 6.353426861555743,
           "defense": 11.266850340650628,
           "scheduleStrength": 11.953610534551393
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Jim Tressel",
+            "finalApRank": 22,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 26,
+            "pointsAllowedPerGame": 20.333333333333332
+          },
+          "derived": {
+            "overallRank": 30,
+            "offenseRank": 47,
+            "defenseRank": 26,
+            "scheduleStrengthRank": 51,
+            "ratedTeams": 159
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1603,6 +3203,31 @@
           "defense": 13.915923430929498,
           "scheduleStrength": 17.75743041984987
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Lloyd Carr",
+            "finalApRank": 12,
+            "cfbdPostseasonRank": 9,
+            "pointsPerGame": 27.76923076923077,
+            "pointsAllowedPerGame": 20.384615384615383
+          },
+          "derived": {
+            "overallRank": 16,
+            "offenseRank": 21,
+            "defenseRank": 21,
+            "scheduleStrengthRank": 17,
+            "ratedTeams": 170
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1622,6 +3247,31 @@
           "offense": 6.991324012538326,
           "defense": 22.548006657036183,
           "scheduleStrength": 13.325044949470682
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Jim Tressel",
+            "finalApRank": 2,
+            "cfbdPostseasonRank": 1,
+            "pointsPerGame": 29.285714285714285,
+            "pointsAllowedPerGame": 13.071428571428571
+          },
+          "derived": {
+            "overallRank": 10,
+            "offenseRank": 50,
+            "defenseRank": 3,
+            "scheduleStrengthRank": 49,
+            "ratedTeams": 170
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1643,6 +3293,31 @@
           "defense": 26.263191014837687,
           "scheduleStrength": 33.44897737529691
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Lloyd Carr",
+            "finalApRank": 6,
+            "cfbdPostseasonRank": 6,
+            "pointsPerGame": 35.38461538461539,
+            "pointsAllowedPerGame": 16.846153846153847
+          },
+          "derived": {
+            "overallRank": 5,
+            "offenseRank": 10,
+            "defenseRank": 10,
+            "scheduleStrengthRank": 36,
+            "ratedTeams": 301
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1662,6 +3337,31 @@
           "offense": 18.696782539183015,
           "defense": 25.90244952548537,
           "scheduleStrength": 37.465063633068866
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Jim Tressel",
+            "finalApRank": 4,
+            "cfbdPostseasonRank": 4,
+            "pointsPerGame": 24.76923076923077,
+            "pointsAllowedPerGame": 17.615384615384617
+          },
+          "derived": {
+            "overallRank": 17,
+            "offenseRank": 38,
+            "defenseRank": 12,
+            "scheduleStrengthRank": 7,
+            "ratedTeams": 301
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1683,6 +3383,31 @@
           "defense": 16.48955843843025,
           "scheduleStrength": 29.219791986836757
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Lloyd Carr",
+            "finalApRank": 14,
+            "cfbdPostseasonRank": 14,
+            "pointsPerGame": 30.833333333333332,
+            "pointsAllowedPerGame": 23.25
+          },
+          "derived": {
+            "overallRank": 25,
+            "offenseRank": 21,
+            "defenseRank": 41,
+            "scheduleStrengthRank": 29,
+            "ratedTeams": 288
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1702,6 +3427,31 @@
           "offense": 14.309305560739993,
           "defense": 21.187185669411484,
           "scheduleStrength": 29.59801099685323
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Jim Tressel",
+            "finalApRank": 20,
+            "cfbdPostseasonRank": 20,
+            "pointsPerGame": 24.166666666666668,
+            "pointsAllowedPerGame": 18.25
+          },
+          "derived": {
+            "overallRank": 27,
+            "offenseRank": 46,
+            "defenseRank": 17,
+            "scheduleStrengthRank": 27,
+            "ratedTeams": 288
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1723,6 +3473,31 @@
           "defense": 26.371158927219188,
           "scheduleStrength": 38.71981980159303
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Lloyd Carr",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 28.75,
+            "pointsAllowedPerGame": 20.333333333333332
+          },
+          "derived": {
+            "overallRank": 7,
+            "offenseRank": 19,
+            "defenseRank": 6,
+            "scheduleStrengthRank": 2,
+            "ratedTeams": 298
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1742,6 +3517,31 @@
           "offense": 23.607392493796198,
           "defense": 33.03726250417374,
           "scheduleStrength": 39.2614792100137
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Jim Tressel",
+            "finalApRank": 4,
+            "cfbdPostseasonRank": 4,
+            "pointsPerGame": 32.666666666666664,
+            "pointsAllowedPerGame": 15.25
+          },
+          "derived": {
+            "overallRank": 3,
+            "offenseRank": 15,
+            "defenseRank": 1,
+            "scheduleStrengthRank": 1,
+            "ratedTeams": 298
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1763,6 +3563,31 @@
           "defense": 23.369738446086657,
           "scheduleStrength": 31.024884778551094
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Lloyd Carr",
+            "finalApRank": 8,
+            "cfbdPostseasonRank": 8,
+            "pointsPerGame": 29.23076923076923,
+            "pointsAllowedPerGame": 15.923076923076923
+          },
+          "derived": {
+            "overallRank": 9,
+            "offenseRank": 19,
+            "defenseRank": 6,
+            "scheduleStrengthRank": 13,
+            "ratedTeams": 309
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1782,6 +3607,31 @@
           "offense": 25.671985255883854,
           "defense": 24.63445266625041,
           "scheduleStrength": 28.476065043735602
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Jim Tressel",
+            "finalApRank": 2,
+            "cfbdPostseasonRank": 2,
+            "pointsPerGame": 34.61538461538461,
+            "pointsAllowedPerGame": 12.76923076923077
+          },
+          "derived": {
+            "overallRank": 2,
+            "offenseRank": 6,
+            "defenseRank": 4,
+            "scheduleStrengthRank": 28,
+            "ratedTeams": 309
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1803,6 +3653,31 @@
           "defense": 22.71960272844951,
           "scheduleStrength": 31.868205307553612
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Lloyd Carr",
+            "finalApRank": 18,
+            "cfbdPostseasonRank": 18,
+            "pointsPerGame": 27.23076923076923,
+            "pointsAllowedPerGame": 21.384615384615383
+          },
+          "derived": {
+            "overallRank": 25,
+            "offenseRank": 58,
+            "defenseRank": 10,
+            "scheduleStrengthRank": 29,
+            "ratedTeams": 320
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1822,6 +3697,31 @@
           "offense": 18.365902672832178,
           "defense": 28.802680232412527,
           "scheduleStrength": 28.55837611626644
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Jim Tressel",
+            "finalApRank": 5,
+            "cfbdPostseasonRank": 5,
+            "pointsPerGame": 31.384615384615383,
+            "pointsAllowedPerGame": 12.76923076923077
+          },
+          "derived": {
+            "overallRank": 9,
+            "offenseRank": 36,
+            "defenseRank": 1,
+            "scheduleStrengthRank": 49,
+            "ratedTeams": 320
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1843,6 +3743,31 @@
           "defense": 12.38550608793782,
           "scheduleStrength": 32.317114007213654
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Rich Rodriguez",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 20.25,
+            "pointsAllowedPerGame": 28.916666666666668
+          },
+          "derived": {
+            "overallRank": 77,
+            "offenseRank": 90,
+            "defenseRank": 78,
+            "scheduleStrengthRank": 28,
+            "ratedTeams": 320
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1862,6 +3787,31 @@
           "offense": 18.70546981569989,
           "defense": 28.127560781655323,
           "scheduleStrength": 33.149152810917016
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Jim Tressel",
+            "finalApRank": 9,
+            "cfbdPostseasonRank": 9,
+            "pointsPerGame": 27.615384615384617,
+            "pointsAllowedPerGame": 13.923076923076923
+          },
+          "derived": {
+            "overallRank": 10,
+            "offenseRank": 35,
+            "defenseRank": 4,
+            "scheduleStrengthRank": 22,
+            "ratedTeams": 320
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1883,6 +3833,31 @@
           "defense": 8.798330340216326,
           "scheduleStrength": 22.576945442461277
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Rich Rodriguez",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 29.5,
+            "pointsAllowedPerGame": 27.5
+          },
+          "derived": {
+            "overallRank": 64,
+            "offenseRank": 40,
+            "defenseRank": 90,
+            "scheduleStrengthRank": 67,
+            "ratedTeams": 302
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1902,6 +3877,31 @@
           "offense": 16.513922472271503,
           "defense": 26.00525006040092,
           "scheduleStrength": 26.061463320795305
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Jim Tressel",
+            "finalApRank": 5,
+            "cfbdPostseasonRank": 5,
+            "pointsPerGame": 29,
+            "pointsAllowedPerGame": 12.538461538461538
+          },
+          "derived": {
+            "overallRank": 9,
+            "offenseRank": 36,
+            "defenseRank": 5,
+            "scheduleStrengthRank": 49,
+            "ratedTeams": 302
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1923,6 +3923,31 @@
           "defense": 4.20852917225596,
           "scheduleStrength": 27.206077864128076
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Rich Rodriguez",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 32.76923076923077,
+            "pointsAllowedPerGame": 35.23076923076923
+          },
+          "derived": {
+            "overallRank": 61,
+            "offenseRank": 19,
+            "defenseRank": 117,
+            "scheduleStrengthRank": 27,
+            "ratedTeams": 306
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1942,6 +3967,31 @@
           "offense": 22.621147433679404,
           "defense": 24.91057549733415,
           "scheduleStrength": 23.07333440618085
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Jim Tressel",
+            "finalApRank": 5,
+            "cfbdPostseasonRank": 5,
+            "pointsPerGame": 38.76923076923077,
+            "pointsAllowedPerGame": 14.307692307692308
+          },
+          "derived": {
+            "overallRank": 7,
+            "offenseRank": 13,
+            "defenseRank": 5,
+            "scheduleStrengthRank": 59,
+            "ratedTeams": 306
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -1963,6 +4013,31 @@
           "defense": 22.63346963920426,
           "scheduleStrength": 29.039225251309077
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "Legends",
+            "coach": "Brady Hoke",
+            "finalApRank": 12,
+            "cfbdPostseasonRank": 12,
+            "pointsPerGame": 33.30769230769231,
+            "pointsAllowedPerGame": 17.384615384615383
+          },
+          "derived": {
+            "overallRank": 9,
+            "offenseRank": 17,
+            "defenseRank": 8,
+            "scheduleStrengthRank": 35,
+            "ratedTeams": 310
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -1982,6 +4057,31 @@
           "offense": 12.381807649273519,
           "defense": 20.398288707594773,
           "scheduleStrength": 29.321459009893076
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "Leaders",
+            "coach": "Luke Fickell",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 24.46153846153846,
+            "pointsAllowedPerGame": 21
+          },
+          "derived": {
+            "overallRank": 35,
+            "offenseRank": 60,
+            "defenseRank": 21,
+            "scheduleStrengthRank": 33,
+            "ratedTeams": 310
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2003,6 +4103,31 @@
           "defense": 18.447771412105112,
           "scheduleStrength": 25.938882544069013
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "Legends",
+            "coach": "Brady Hoke",
+            "finalApRank": 24,
+            "cfbdPostseasonRank": 24,
+            "pointsPerGame": 29.846153846153847,
+            "pointsAllowedPerGame": 19.846153846153847
+          },
+          "derived": {
+            "overallRank": 21,
+            "offenseRank": 28,
+            "defenseRank": 24,
+            "scheduleStrengthRank": 36,
+            "ratedTeams": 281
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2022,6 +4147,31 @@
           "offense": 21.001218148864968,
           "defense": 15.80392382426787,
           "scheduleStrength": 22.47511981848945
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "Leaders",
+            "coach": "Urban Meyer",
+            "finalApRank": 3,
+            "cfbdPostseasonRank": 3,
+            "pointsPerGame": 37.166666666666664,
+            "pointsAllowedPerGame": 22.833333333333332
+          },
+          "derived": {
+            "overallRank": 19,
+            "offenseRank": 18,
+            "defenseRank": 30,
+            "scheduleStrengthRank": 55,
+            "ratedTeams": 281
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2043,6 +4193,31 @@
           "defense": 15.950751671714665,
           "scheduleStrength": 30.87293527010975
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "Legends",
+            "coach": "Brady Hoke",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 32.23076923076923,
+            "pointsAllowedPerGame": 26.846153846153847
+          },
+          "derived": {
+            "overallRank": 38,
+            "offenseRank": 30,
+            "defenseRank": 52,
+            "scheduleStrengthRank": 42,
+            "ratedTeams": 325
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2062,6 +4237,31 @@
           "offense": 30.73868352054355,
           "defense": 19.39842666817533,
           "scheduleStrength": 27.28180624403584
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "Leaders",
+            "coach": "Urban Meyer",
+            "finalApRank": 12,
+            "cfbdPostseasonRank": 12,
+            "pointsPerGame": 45.5,
+            "pointsAllowedPerGame": 22.642857142857142
+          },
+          "derived": {
+            "overallRank": 7,
+            "offenseRank": 6,
+            "defenseRank": 34,
+            "scheduleStrengthRank": 59,
+            "ratedTeams": 325
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2083,6 +4283,31 @@
           "defense": 21.801416089995136,
           "scheduleStrength": 30.74788148777904
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Brady Hoke",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 20.916666666666668,
+            "pointsAllowedPerGame": 22.416666666666668
+          },
+          "derived": {
+            "overallRank": 52,
+            "offenseRank": 111,
+            "defenseRank": 19,
+            "scheduleStrengthRank": 37,
+            "ratedTeams": 321
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2102,6 +4327,31 @@
           "offense": 33.310888787507324,
           "defense": 21.814966575089045,
           "scheduleStrength": 32.326593390856196
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Urban Meyer",
+            "finalApRank": 1,
+            "cfbdPostseasonRank": 1,
+            "pointsPerGame": 44.8,
+            "pointsAllowedPerGame": 22
+          },
+          "derived": {
+            "overallRank": 3,
+            "offenseRank": 2,
+            "defenseRank": 18,
+            "scheduleStrengthRank": 18,
+            "ratedTeams": 321
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2123,6 +4373,31 @@
           "defense": 24.696093127410467,
           "scheduleStrength": 28.319133106321758
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Jim Harbaugh",
+            "finalApRank": 12,
+            "cfbdPostseasonRank": 12,
+            "pointsPerGame": 31.384615384615383,
+            "pointsAllowedPerGame": 16.384615384615383
+          },
+          "derived": {
+            "overallRank": 9,
+            "offenseRank": 33,
+            "defenseRank": 6,
+            "scheduleStrengthRank": 38,
+            "ratedTeams": 304
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2142,6 +4417,31 @@
           "offense": 21.20778610764711,
           "defense": 26.775542897902778,
           "scheduleStrength": 27.368784247373373
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Urban Meyer",
+            "finalApRank": 4,
+            "cfbdPostseasonRank": 4,
+            "pointsPerGame": 35.69230769230769,
+            "pointsAllowedPerGame": 15.076923076923077
+          },
+          "derived": {
+            "overallRank": 4,
+            "offenseRank": 22,
+            "defenseRank": 2,
+            "scheduleStrengthRank": 46,
+            "ratedTeams": 304
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2163,6 +4463,31 @@
           "defense": 28.438173211217986,
           "scheduleStrength": 30.301385567367358
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Jim Harbaugh",
+            "finalApRank": 10,
+            "cfbdPostseasonRank": 10,
+            "pointsPerGame": 40.30769230769231,
+            "pointsAllowedPerGame": 14.076923076923077
+          },
+          "derived": {
+            "overallRank": 3,
+            "offenseRank": 4,
+            "defenseRank": 4,
+            "scheduleStrengthRank": 15,
+            "ratedTeams": 305
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2182,6 +4507,31 @@
           "offense": 26.72443505587303,
           "defense": 29.80922422538137,
           "scheduleStrength": 32.61164164583428
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Urban Meyer",
+            "finalApRank": 6,
+            "cfbdPostseasonRank": 6,
+            "pointsPerGame": 39.38461538461539,
+            "pointsAllowedPerGame": 15.461538461538462
+          },
+          "derived": {
+            "overallRank": 2,
+            "offenseRank": 7,
+            "defenseRank": 2,
+            "scheduleStrengthRank": 6,
+            "ratedTeams": 305
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2203,6 +4553,31 @@
           "defense": 23.119146631218918,
           "scheduleStrength": 31.39425299665383
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Jim Harbaugh",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 25.23076923076923,
+            "pointsAllowedPerGame": 18.846153846153847
+          },
+          "derived": {
+            "overallRank": 20,
+            "offenseRank": 52,
+            "defenseRank": 15,
+            "scheduleStrengthRank": 11,
+            "ratedTeams": 300
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2222,6 +4597,31 @@
           "offense": 29.67547999061084,
           "defense": 24.74318169776678,
           "scheduleStrength": 32.27713865308697
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Urban Meyer",
+            "finalApRank": 5,
+            "cfbdPostseasonRank": 5,
+            "pointsPerGame": 41.142857142857146,
+            "pointsAllowedPerGame": 19
+          },
+          "derived": {
+            "overallRank": 2,
+            "offenseRank": 4,
+            "defenseRank": 9,
+            "scheduleStrengthRank": 6,
+            "ratedTeams": 300
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2243,6 +4643,31 @@
           "defense": 24.696508665252157,
           "scheduleStrength": 31.715987098198937
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Jim Harbaugh",
+            "finalApRank": 14,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 35.15384615384615,
+            "pointsAllowedPerGame": 19.384615384615383
+          },
+          "derived": {
+            "overallRank": 5,
+            "offenseRank": 13,
+            "defenseRank": 11,
+            "scheduleStrengthRank": 18,
+            "ratedTeams": 309
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2262,6 +4687,31 @@
           "offense": 30.790493505649533,
           "defense": 16.479479678600867,
           "scheduleStrength": 30.413354835499053
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Ryan Day",
+            "finalApRank": 3,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 42.357142857142854,
+            "pointsAllowedPerGame": 25.5
+          },
+          "derived": {
+            "overallRank": 6,
+            "offenseRank": 3,
+            "defenseRank": 47,
+            "scheduleStrengthRank": 35,
+            "ratedTeams": 309
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2283,6 +4733,31 @@
           "defense": 25.406861326333406,
           "scheduleStrength": 36.932138600538536
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Jim Harbaugh",
+            "finalApRank": 18,
+            "cfbdPostseasonRank": 18,
+            "pointsPerGame": 31.692307692307693,
+            "pointsAllowedPerGame": 20.692307692307693
+          },
+          "derived": {
+            "overallRank": 12,
+            "offenseRank": 16,
+            "defenseRank": 12,
+            "scheduleStrengthRank": 2,
+            "ratedTeams": 314
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2302,6 +4777,31 @@
           "offense": 38.183368801777796,
           "defense": 30.8640398383853,
           "scheduleStrength": 35.90519105613547
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Ryan Day",
+            "finalApRank": 3,
+            "cfbdPostseasonRank": 3,
+            "pointsPerGame": 46.857142857142854,
+            "pointsAllowedPerGame": 13.714285714285714
+          },
+          "derived": {
+            "overallRank": 1,
+            "offenseRank": 1,
+            "defenseRank": 1,
+            "scheduleStrengthRank": 4,
+            "ratedTeams": 314
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2323,6 +4823,31 @@
           "defense": -0.617563977871898,
           "scheduleStrength": 15.67343206541725
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Jim Harbaugh",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 28.333333333333332,
+            "pointsAllowedPerGame": 34.5
+          },
+          "derived": {
+            "overallRank": 146,
+            "offenseRank": 71,
+            "defenseRank": 226,
+            "scheduleStrengthRank": 47,
+            "ratedTeams": 408
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2342,6 +4867,31 @@
           "offense": 25.172699667562867,
           "defense": 12.986918863472516,
           "scheduleStrength": 22.999720082216307
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Ryan Day",
+            "finalApRank": 2,
+            "cfbdPostseasonRank": 2,
+            "pointsPerGame": 41,
+            "pointsAllowedPerGame": 25.75
+          },
+          "derived": {
+            "overallRank": 5,
+            "offenseRank": 5,
+            "defenseRank": 46,
+            "scheduleStrengthRank": 4,
+            "ratedTeams": 408
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2363,6 +4913,31 @@
           "defense": 27.11210194239473,
           "scheduleStrength": 36.42772903189887
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Jim Harbaugh",
+            "finalApRank": 3,
+            "cfbdPostseasonRank": 3,
+            "pointsPerGame": 35.785714285714285,
+            "pointsAllowedPerGame": 17.357142857142858
+          },
+          "derived": {
+            "overallRank": 4,
+            "offenseRank": 5,
+            "defenseRank": 5,
+            "scheduleStrengthRank": 2,
+            "ratedTeams": 452
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2382,6 +4957,31 @@
           "offense": 36.71374053306401,
           "defense": 21.13143756299864,
           "scheduleStrength": 34.98691264238901
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Ryan Day",
+            "finalApRank": 6,
+            "cfbdPostseasonRank": 6,
+            "pointsPerGame": 45.69230769230769,
+            "pointsAllowedPerGame": 22.76923076923077
+          },
+          "derived": {
+            "overallRank": 2,
+            "offenseRank": 1,
+            "defenseRank": 23,
+            "scheduleStrengthRank": 12,
+            "ratedTeams": 452
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2403,6 +5003,31 @@
           "defense": 28.315184831912447,
           "scheduleStrength": 36.94393755760375
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Jim Harbaugh",
+            "finalApRank": 3,
+            "cfbdPostseasonRank": 3,
+            "pointsPerGame": 40.42857142857143,
+            "pointsAllowedPerGame": 16.071428571428573
+          },
+          "derived": {
+            "overallRank": 5,
+            "offenseRank": 6,
+            "defenseRank": 8,
+            "scheduleStrengthRank": 49,
+            "ratedTeams": 697
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2422,6 +5047,31 @@
           "offense": 38.80018717794174,
           "defense": 25.328493345081835,
           "scheduleStrength": 41.01685528966183
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Ryan Day",
+            "finalApRank": 4,
+            "cfbdPostseasonRank": 4,
+            "pointsPerGame": 44.23076923076923,
+            "pointsAllowedPerGame": 21
+          },
+          "derived": {
+            "overallRank": 2,
+            "offenseRank": 2,
+            "defenseRank": 18,
+            "scheduleStrengthRank": 17,
+            "ratedTeams": 697
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2443,6 +5093,31 @@
           "defense": 32.28247934942766,
           "scheduleStrength": 35.94422788607653
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Jim Harbaugh",
+            "finalApRank": 1,
+            "cfbdPostseasonRank": 1,
+            "pointsPerGame": 35.86666666666667,
+            "pointsAllowedPerGame": 10.4
+          },
+          "derived": {
+            "overallRank": 2,
+            "offenseRank": 10,
+            "defenseRank": 2,
+            "scheduleStrengthRank": 23,
+            "ratedTeams": 704
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2462,6 +5137,31 @@
           "offense": 22.400356533604175,
           "defense": 33.821813479957704,
           "scheduleStrength": 37.011867743395705
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": "East",
+            "coach": "Ryan Day",
+            "finalApRank": 10,
+            "cfbdPostseasonRank": 10,
+            "pointsPerGame": 30.53846153846154,
+            "pointsAllowedPerGame": 11.23076923076923
+          },
+          "derived": {
+            "overallRank": 5,
+            "offenseRank": 28,
+            "defenseRank": 1,
+            "scheduleStrengthRank": 15,
+            "ratedTeams": 704
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2483,6 +5183,31 @@
           "defense": 28.464888731977666,
           "scheduleStrength": 45.56459188238092
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Sherrone Moore",
+            "finalApRank": null,
+            "cfbdPostseasonRank": null,
+            "pointsPerGame": 22,
+            "pointsAllowedPerGame": 19.923076923076923
+          },
+          "derived": {
+            "overallRank": 26,
+            "offenseRank": 69,
+            "defenseRank": 10,
+            "scheduleStrengthRank": 2,
+            "ratedTeams": 708
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2502,6 +5227,31 @@
           "offense": 31.55767919448123,
           "defense": 34.90613412448298,
           "scheduleStrength": 43.767456986991945
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Ryan Day",
+            "finalApRank": 1,
+            "cfbdPostseasonRank": 1,
+            "pointsPerGame": 35.6875,
+            "pointsAllowedPerGame": 12.875
+          },
+          "derived": {
+            "overallRank": 1,
+            "offenseRank": 4,
+            "defenseRank": 1,
+            "scheduleStrengthRank": 8,
+            "ratedTeams": 708
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       },
@@ -2523,6 +5273,31 @@
           "defense": 27.136419129837467,
           "scheduleStrength": 46.02385241875201
         },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Sherrone Moore",
+            "finalApRank": 21,
+            "cfbdPostseasonRank": 21,
+            "pointsPerGame": 27.53846153846154,
+            "pointsAllowedPerGame": 20.384615384615383
+          },
+          "derived": {
+            "overallRank": 20,
+            "offenseRank": 25,
+            "defenseRank": 20,
+            "scheduleStrengthRank": 9,
+            "ratedTeams": 699
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
+        },
         "evidenceType": "DERIVED"
       },
       {
@@ -2542,6 +5317,31 @@
           "offense": 30.423955683842212,
           "defense": 38.586911637257714,
           "scheduleStrength": 44.99885742730676
+        },
+        "profile": {
+          "observed": {
+            "conference": "Big Ten",
+            "division": null,
+            "coach": "Ryan Day",
+            "finalApRank": 5,
+            "cfbdPostseasonRank": 5,
+            "pointsPerGame": 33.42857142857143,
+            "pointsAllowedPerGame": 9.285714285714286
+          },
+          "derived": {
+            "overallRank": 2,
+            "offenseRank": 11,
+            "defenseRank": 1,
+            "scheduleStrengthRank": 17,
+            "ratedTeams": 699
+          },
+          "confidence": {
+            "score": 100,
+            "reasons": [
+              "Complete scores, dates, and site-state coverage",
+              "CFBD records, coaches, and AP poll sources imported"
+            ]
+          }
         },
         "evidenceType": "DERIVED"
       }

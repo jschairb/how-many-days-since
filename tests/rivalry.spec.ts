@@ -37,6 +37,17 @@ test.describe('Record', () => {
 });
 
 test.describe('Rivalry Lab', () => {
+  test('shows observed and derived season profiles with snapshot provenance', async ({ page }) => {
+    await page.goto('/rivalry-lab');
+    await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
+
+    await expect(page.getByTestId('season-profile-ohio-state')).toContainText('John Cooper');
+    await expect(page.getByTestId('season-profile-ohio-state')).toContainText('NO. 2 OF 144');
+    await expect(page.getByTestId('season-profile-michigan')).toContainText('Jim Harbaugh');
+    await expect(page.getByTestId('season-profile-michigan')).toContainText('NO. 2 OF 704');
+    await expect(page.getByTestId('snapshot-provenance')).toContainText('srs-elo-v1');
+  });
+
   test('loads server-derived matchup values and runs a simulation', async ({ page }) => {
     await page.goto('/rivalry-lab');
     await expect(page.getByRole('heading', { level: 1, name: 'RIVALRY LAB' })).toBeVisible();
@@ -44,6 +55,6 @@ test.describe('Rivalry Lab', () => {
     await expect(page.getByRole('heading', { name: 'TALE OF THE TAPE' })).toBeVisible();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
     await page.getByRole('button', { name: 'PLAY ONE' }).click();
-    await expect(page.getByText('FINAL').first()).toBeVisible();
+    await expect(page.locator('[data-game-score]')).toContainText('FINAL');
   });
 });
