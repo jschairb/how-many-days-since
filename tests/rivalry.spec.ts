@@ -149,6 +149,7 @@ test.describe('Rivalry Lab', () => {
 
     await playOne.click();
     await expect(page.locator('[data-game-score]')).toContainText('FINAL');
+    await expect(page.locator('[data-game-coverage]')).toContainText('SCORE-SCHEDULE');
     await expect(page.getByText(/KEY TURNING POINT/i)).toHaveCount(0);
     await expect(page.getByRole('button', { name: /POSTGAME|RUN AGAIN/i })).toHaveCount(0);
     await expect(page.locator('[data-view="postgame"]')).toHaveCount(0);
@@ -189,5 +190,40 @@ test.describe('Rivalry Lab', () => {
     await expect(page.locator('[data-pregame-inputs]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-pregame-mobile.png', fullPage: true });
+    await page.getByRole('button', { name: 'PLAY ONE' }).click();
+    await expect(page.locator('[data-game-coverage]')).toContainText('SCORE-SCHEDULE');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-game-mobile.png', fullPage: true });
+  });
+
+  test('shows enriched historical context for the 2014 Ohio State and 2023 Michigan pregame and game on desktop', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('2014');
+    await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
+
+    await expect(page.locator('[data-simulation-coverage]')).toContainText('ENRICHED');
+    await expect(page.locator('[data-simulation-coverage]')).toContainText('possession and turnover context is active');
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-pregame-desktop.png', fullPage: true });
+    await page.getByRole('button', { name: 'PLAY ONE' }).click();
+    await expect(page.locator('[data-game-coverage]')).toContainText('ENRICHED');
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-game-desktop.png', fullPage: true });
+  });
+
+  test('shows enriched historical context for the 2014 Ohio State and 2023 Michigan on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('2014');
+    await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
+
+    await expect(page.locator('[data-simulation-coverage]')).toContainText('ENRICHED');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-pregame-mobile.png', fullPage: true });
+    await page.getByRole('button', { name: 'PLAY ONE' }).click();
+    await expect(page.locator('[data-game-coverage]')).toContainText('ENRICHED');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-game-mobile.png', fullPage: true });
   });
 });

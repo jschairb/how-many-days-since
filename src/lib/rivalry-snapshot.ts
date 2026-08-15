@@ -1,5 +1,5 @@
 import snapshot from '../data/rivalry-lab-snapshot.json';
-import type { Rating } from './rivalry-lab';
+import type { Enrichment, Rating, SimulationContext } from './rivalry-lab';
 import type { ModelConfig } from './rivalry-lab';
 
 export type TeamId = 'ohio-state' | 'michigan';
@@ -53,6 +53,7 @@ export type RivalrySnapshot = {
   generatedAt: string;
   neutralPointsPerTeam: number;
   model: Omit<ModelConfig, 'neutralPointsPerTeam'>;
+  simulationEnrichment: Record<string, Enrichment>;
   rivalryGames: Array<{ season: number; cfbdGameId: number; date: string | null; cfbdBoxscoreUrl: string }>;
   ratings: {
     environments: Array<{ season: number; averagePointsPerTeam: number; games: number }>;
@@ -79,6 +80,20 @@ export function ratedSeason(teamId: TeamId, season: number): Rating {
   const entry = rivalrySnapshot.ratings.teamSeasons.find((rating) => rating.teamId === teamId && rating.season === season);
   if (!entry?.crossEra) throw new Error(`No cross-era rating for ${teamId} season ${season}`);
   return { ...entry.crossEra, teamId, season };
+}
+
+export function simulationContext(ohioStateTeamId: TeamId, ohioStateSeason: number, michiganTeamId: TeamId, michiganSeason: number): SimulationContext {
+  const ohioState = ratedSeason(ohioStateTeamId, ohioStateSeason);
+  const michigan = ratedSeason(michiganTeamId, michiganSeason);
+  const ohioStateEnrichment = rivalrySnapshot.simulationEnrichment[`${ohioStateTeamId}:${ohioStateSeason}`] ?? null;
+  const michiganEnrichment = rivalrySnapshot.simulationEnrichment[`${michiganTeamId}:${michiganSeason}`] ?? null;
+  const simulationCoverage = ohioStateEnrichment && michiganEnrichment ? 'box-score-enhanced' : 'score-and-schedule';
+  return {
+    simulationCoverage,
+    usedInputs: simulationCoverage === 'box-score-enhanced' ? { possessionsPerGame: { ohioState: ohioStateEnrichment.possessionsPerGame!, michigan: michiganEnrichment.possessionsPerGame! }, turnoversPerGame: { ohioState: ohioStateEnrichment.turnoversPerGame, michigan: michiganEnrichment.turnoversPerGame } } : {},
+    ohioState: { scheduleStrength: ohioState.scheduleStrength, enrichment: ohioStateEnrichment },
+    michigan: { scheduleStrength: michigan.scheduleStrength, enrichment: michiganEnrichment },
+  };
 }
 
 export function profileForSeason(teamId: TeamId, season: number, teamSeasons: readonly Pick<TeamSeasonSnapshot, 'teamId' | 'season' | 'profile'>[] = rivalrySnapshot.ratings.teamSeasons): SeasonProfile | null {

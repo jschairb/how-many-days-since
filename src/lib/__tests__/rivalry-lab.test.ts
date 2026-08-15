@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { calculateMatchup, simulateGame, simulateSeries, validateMatchupInput } from '../rivalry-lab';
-import { modelConfig, ratedSeason } from '../rivalry-snapshot';
+import { calculateMatchup, simulateGame, validateMatchupInput } from '../rivalry-lab';
+import { modelConfig, ratedSeason, simulationContext } from '../rivalry-snapshot';
 
 const ohioState = ratedSeason('ohio-state', 1995);
 const michigan = ratedSeason('michigan', 2023);
@@ -23,22 +23,38 @@ describe('Rivalry Lab model', () => {
     expect(Math.abs(matchup.expectedMargin)).toBeLessThan(7);
   });
 
-  it('replays a seeded game exactly', () => {
-    const matchup = calculateMatchup(ohioState, michigan, model);
+  it('uses score and schedule inputs when only one selected season has enrichment', () => {
+    const context = simulationContext('ohio-state', 1995, 'michigan', 2023);
 
-    expect(simulateGame(matchup, '19952023', model)).toEqual(simulateGame(matchup, '19952023', model));
+    expect(context.simulationCoverage).toBe('score-and-schedule');
+    expect(context.usedInputs).toEqual({});
   });
 
-  it('accounts for every game in a requested series', () => {
-    const matchup = calculateMatchup(ohioState, michigan, model);
-    const series = simulateSeries(matchup, '19952023', 100, model);
+  it('uses possession and turnover inputs only when both selected seasons have enrichment', () => {
+    const context = simulationContext('ohio-state', 2014, 'michigan', 2023);
 
-    expect(series.games).toHaveLength(100);
-    expect(series.ohioState.wins + series.michigan.wins + series.ties).toBe(100);
+    expect(context.simulationCoverage).toBe('box-score-enhanced');
+    expect(context.usedInputs.possessionsPerGame).toBeDefined();
+    expect(context.usedInputs.turnoversPerGame).toBeDefined();
   });
 
-  it('rejects unavailable years and unsupported simulation sizes', () => {
-    expect(() => validateMatchupInput({ osuYear: 1969, michYear: 2023, count: 1 })).toThrow('Ohio State season must be between 1970 and 2025');
-    expect(() => validateMatchupInput({ osuYear: 1995, michYear: 2023, count: 99 })).toThrow('Simulation count must be one of 1, 10, 100, 1000, or 10000');
+  it('replays an enriched seeded game exactly', () => {
+    const matchup = calculateMatchup(ohioState, michigan, model);
+
+    const context = simulationContext('ohio-state', 2014, 'michigan', 2023);
+    expect(simulateGame(matchup, '20142023', model, context)).toEqual(simulateGame(matchup, '20142023', model, context));
+  });
+
+  it('lets enriched pace change the number of simulated possessions', () => {
+    const matchup = calculateMatchup(ohioState, michigan, model);
+    const slow = simulationContext('ohio-state', 2014, 'michigan', 2023);
+    const fast = { ...slow, ohioState: { ...slow.ohioState, enrichment: { possessionsPerGame: 16, turnoversPerGame: 1 } }, michigan: { ...slow.michigan, enrichment: { possessionsPerGame: 16, turnoversPerGame: 1 } } };
+
+    expect(simulateGame(matchup, 'pace', model, fast).drives).toHaveLength(32);
+    expect(simulateGame(matchup, 'pace', model, slow).drives.length).toBeLessThan(32);
+  });
+
+  it('rejects unavailable years', () => {
+    expect(() => validateMatchupInput({ osuYear: 1969, michYear: 2023 })).toThrow('Ohio State season must be between 1970 and 2025');
   });
 });

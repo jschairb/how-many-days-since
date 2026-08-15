@@ -22,6 +22,16 @@
     "turnoverFloor": 0.08,
     "turnoverOnDownsRate": 0.1
   },
+  "simulationEnrichment": {
+    "ohio-state:2014": {
+      "possessionsPerGame": 13.3,
+      "turnoversPerGame": 1.1
+    },
+    "michigan:2023": {
+      "possessionsPerGame": 11.9,
+      "turnoversPerGame": 0.7
+    }
+  },
   "ratings": {
     "environments": [
       {
