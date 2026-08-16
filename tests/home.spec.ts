@@ -31,6 +31,15 @@ test.describe('Count', () => {
     await expect(page.locator('[data-live-count]')).toHaveAttribute('data-reference-date', '2024-11-30T17:00:00Z');
   });
 
+  test('counts Eastern calendar days, not elapsed 24-hour periods', async ({ page }) => {
+    // 8:00 AM Eastern on 2026-08-16 — before 1:00 PM, where the old
+    // elapsed-time math lagged one behind. Nov 30 2024 → Aug 16 2026 = 624.
+    await page.clock.install({ time: new Date('2026-08-16T12:00:00Z') });
+    await page.goto('/');
+
+    await expect(page.locator('#days_count')).toHaveText('624');
+  });
+
   test('displays a numeric days count and historical totals', async ({ page }) => {
     await page.goto('/');
     const count = page.locator('.counter strong');
