@@ -102,12 +102,13 @@ test.describe('Record', () => {
 });
 
 test.describe('Rivalry Lab', () => {
-  test('keeps the methodology page in Lab-local navigation on mobile', async ({ page }) => {
+  test('links the Lab and the methodology page to each other on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto('/rivalry-lab/about');
+    await page.goto('/rivalry-lab');
+    await expect(page.getByRole('link', { name: 'METHOD & SOURCES →' })).toHaveAttribute('href', '/rivalry-lab/about');
 
-    await expect(page.getByRole('navigation', { name: 'Rivalry Lab' }).getByRole('link', { name: 'OPEN THE LAB' })).toBeVisible();
-    await expect(page.getByRole('navigation', { name: 'Rivalry Lab' }).getByRole('link', { name: 'METHOD' })).toHaveAttribute('aria-current', 'page');
+    await page.goto('/rivalry-lab/about');
+    await expect(page.getByRole('link', { name: 'OPEN THE LAB' }).first()).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 
@@ -173,9 +174,9 @@ test.describe('Rivalry Lab', () => {
     await expect(page.locator('[data-expected-score]')).toContainText('24 OSU');
     await expect(page.locator('[data-expected-margin]')).toContainText('DERIVED');
     await expect(page.locator('[data-win-probability]')).toContainText('DERIVED');
-    await expect(page.locator('[data-pregame-inputs]')).toContainText('EXACT MODEL INPUTS');
+    await expect(page.locator('[data-pregame-inputs]')).toContainText('MATCHUP INPUTS');
     await expect(page.locator('[data-pregame-inputs]')).toContainText('OFFENSE RATING');
-    await expect(page.locator('[data-pregame-method]')).toContainText('METHOD NOTE');
+    await expect(page.locator('[data-pregame-method]')).toContainText('WHAT THIS MEANS');
     await expect(page.locator('[data-pregame-drivers]')).toContainText('KEY DRIVERS');
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-pregame-desktop.png', fullPage: true });
   });
