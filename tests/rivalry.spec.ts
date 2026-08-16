@@ -129,10 +129,11 @@ test.describe('Rivalry Lab', () => {
     await page.goto('/rivalry-lab');
     await expect(page.getByRole('heading', { level: 1, name: 'RIVALRY LAB' })).toBeVisible();
     await expect(page.locator('[data-seed]')).toHaveCount(0);
-    for (const team of ['[data-osu]', '[data-mich]'] as const) {
-      expect(await page.locator(team).evaluate((select: HTMLSelectElement) =>
-        select.value === select.options[select.options.length - 1].value)).toBe(true);
-    }
+    const latestSeason = (teamId: string) => String(Math.max(
+      ...snapshot.ratings.teamSeasons.filter((season) => season.teamId === teamId).map((season) => season.season)
+    ));
+    await expect(page.locator('[data-osu]')).toHaveValue(latestSeason('ohio-state'));
+    await expect(page.locator('[data-mich]')).toHaveValue(latestSeason('michigan'));
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await expect(page.getByRole('heading', { name: 'TALE OF THE TAPE' })).toBeVisible();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
