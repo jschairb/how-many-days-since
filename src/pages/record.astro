@@ -1,7 +1,7 @@
 ---
 import SiteShell from '../components/SiteShell.astro';
 import games from '../data/rivalry-games.json';
-import { calculateRivalryRecord, type RivalryGame, type Team } from '../lib/rivalry-record';
+import { calculateRivalryRecord, type Team } from '../lib/rivalry-record';
 import { teamIdFor, teamSeasonFor } from '../lib/rivalry-archive';
 
 const totals = games.reduce(
@@ -20,7 +20,6 @@ const michiganDroughts = droughtRecord.byTeam.Michigan;
 const currentDrought = [ohioStateDroughts.currentActiveDrought, michiganDroughts.currentActiveDrought].find(Boolean);
 const number = new Intl.NumberFormat('en-US');
 const formatDays = (days: number) => `${number.format(Math.round(days))} DAYS`;
-const formatResult = (game: RivalryGame) => `${game.winner} ${game.wScore}-${game.lScore} ${game.loser}`;
 const teamClass = (team: Team) => team === 'Ohio State' ? 'osu' : 'mich';
 const seasonRecord = (team: Team, season: number) => {
   const record = teamSeasonFor(teamIdFor(team), season);
@@ -56,12 +55,11 @@ const seasonRecord = (team: Team, season: number) => {
           <small>LONGEST MICHIGAN DROUGHT<br />{michiganDroughts.longest.priorWin.year} TO {michiganDroughts.longest.nextWin.year}</small>
         </div>
       </div>
+      <div class="section-title drought-subhead"><b>DROUGHT STATS</b><span>COMPLETED DROUGHTS</span></div>
       <div class="drought-table-wrap drought-comparison-wrap">
         <table class="drought-comparison">
-          <caption>Observed completed drought statistics for Ohio State and Michigan</caption>
-          <thead><tr><th scope="col">COMPLETED DROUGHTS</th><th scope="col" class="osu">OHIO STATE</th><th scope="col" class="mich">MICHIGAN</th></tr></thead>
+          <thead><tr><th scope="col">METRIC</th><th scope="col" class="osu">OHIO STATE</th><th scope="col" class="mich">MICHIGAN</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Completed drought count</th><td>{ohioStateDroughts.completedDroughts.length}</td><td>{michiganDroughts.completedDroughts.length}</td></tr>
             <tr><th scope="row">Average length</th><td>{formatDays(ohioStateDroughts.averageDays)}</td><td>{formatDays(michiganDroughts.averageDays)}</td></tr>
             <tr><th scope="row">Median length</th><td>{formatDays(ohioStateDroughts.medianDays)}</td><td>{formatDays(michiganDroughts.medianDays)}</td></tr>
             <tr><th scope="row">Shortest completed drought</th><td>{formatDays(ohioStateDroughts.shortest.elapsedDays)}</td><td>{formatDays(michiganDroughts.shortest.elapsedDays)}</td></tr>
@@ -69,18 +67,12 @@ const seasonRecord = (team: Team, season: number) => {
           </tbody>
         </table>
       </div>
-      <div class="section-title drought-subhead"><b>TOP FIVE LONGEST DROUGHTS</b><span>CALENDAR DAYS BETWEEN WINS</span></div>
-      <div class="drought-table-wrap" data-drought-table="longest">
-        <table class="drought-list">
-          <caption>Five longest observed completed droughts in the rivalry</caption>
-          <thead><tr><th scope="col">TEAM</th><th scope="col">START RESULT / YEAR</th><th scope="col">ENDING RESULT / YEAR</th><th scope="col">ELAPSED DAYS</th><th scope="col">GAMES / SEASONS</th></tr></thead>
-          <tbody>{droughtRecord.topFiveLongestDroughts.map((drought) => <tr><th scope="row" class={teamClass(drought.team)}>{drought.team}</th><td>{formatResult(drought.priorWin)}<br /><small>{drought.priorWin.year}</small></td><td>{formatResult(drought.nextWin)}<br /><small>{drought.nextWin.year}</small></td><td>{formatDays(drought.elapsedDays)}</td><td>{drought.elapsedGames} GAMES / {drought.elapsedSeasons} SEASONS</td></tr>)}</tbody>
-        </table>
-      </div>
+      <div class="section-title drought-subhead"><b>LONGEST DROUGHTS</b></div>
+      <div class="game-table drought-games">{droughtRecord.topFiveLongestDroughts.map((drought) => { const game = drought.nextWin; return <div class="game-row"><b>{game.year}</b><span class="game-result"><b class={teamClass(game.winner as Team)}>{game.winner}</b><small class="game-drought"><span class={teamClass(drought.team)}>{drought.team}</span> drought ended after {formatDays(drought.elapsedDays)}</small></span><span>{game.wScore}-{game.lScore}</span><span>{game.loser}</span></div>})}</div>
     </section>
     <section>
       <div class="record-filter"><b>EVERY MEETING</b><input aria-label="Filter games" placeholder="Filter by year, team, or site..." data-filter /></div>
-      <div class="game-table" data-games>{games.map((game) => { const drought = droughtHistoryByYear.get(game.year)!; const score = `${game.wScore}-${game.lScore}`; const winner = game.winner as Team; const loser = game.loser as Team; const winnerSeason = teamSeasonFor(teamIdFor(winner), game.year); const loserSeason = teamSeasonFor(teamIdFor(loser), game.year); return <div class="game-row" data-game={`${game.year} ${game.winner} ${game.location}`.toLowerCase()}><b>{game.year}</b><span class="game-result"><b class:list={{ mich: game.winner === 'Michigan', osu: game.winner === 'Ohio State' }}>{winnerSeason ? <a class={`game-team-link ${teamClass(winner)}`} href={`/teams/${teamIdFor(winner)}/${game.year}`}>{game.winner} {seasonRecord(winner, game.year)}</a> : game.winner}</b><small class="game-drought" data-drought-context>{drought.losingTeam ? <><span class={teamClass(drought.losingTeam)}>{drought.losingTeam}</span> · {drought.daysSincePriorWin === null ? 'NO PRIOR WIN IN RECORD' : `${formatDays(drought.daysSincePriorWin)} SINCE PRIOR WIN`}</> : 'TIE · NO DROUGHT RESET'}</small></span><span><a class="game-score-link" href={`/record/${game.year}`}>{score}</a></span><span>{loserSeason ? <a class={`game-team-link ${teamClass(loser)}`} href={`/teams/${teamIdFor(loser)}/${game.year}`}>{game.loser} {seasonRecord(loser, game.year)}</a> : game.loser}</span></div>})}</div>
+      <div class="game-table" data-games>{games.map((game) => { const drought = droughtHistoryByYear.get(game.year)!; const score = `${game.wScore}-${game.lScore}`; const winner = game.winner as Team; const loser = game.loser as Team; const winnerSeason = teamSeasonFor(teamIdFor(winner), game.year); const loserSeason = teamSeasonFor(teamIdFor(loser), game.year); return <div class="game-row" data-game={`${game.year} ${game.winner} ${game.location}`.toLowerCase()}><b>{game.year}</b><span class="game-result"><b class:list={{ mich: game.winner === 'Michigan', osu: game.winner === 'Ohio State' }}>{winnerSeason ? <a class={`game-team-link ${teamClass(winner)}`} href={`/teams/${teamIdFor(winner)}/${game.year}`}>{game.winner} {seasonRecord(winner, game.year)}</a> : game.winner}</b><small class="game-drought" data-drought-context>{drought.losingTeam ? <>{loserSeason ? <a class={`game-team-link ${teamClass(loser)}`} href={`/teams/${teamIdFor(loser)}/${game.year}`}>{game.loser} {seasonRecord(loser, game.year)}</a> : <span class={teamClass(drought.losingTeam)}>{drought.losingTeam}</span>} · {drought.daysSincePriorWin === null ? 'NO PRIOR WIN IN RECORD' : `${formatDays(drought.daysSincePriorWin)} SINCE PRIOR WIN`}</> : 'TIE · NO DROUGHT RESET'}</small></span><span><a class={`game-score-link ${teamClass(winner)}`} href={`/record/${game.year}`}>{score}</a></span><span>{game.location}</span></div>})}</div>
     </section>
   </section>
   <script>document.querySelector('[data-filter]')?.addEventListener('input', (event) => { const query = (event.currentTarget as HTMLInputElement).value.toLowerCase(); document.querySelectorAll<HTMLElement>('[data-game]').forEach((row) => row.hidden = !row.dataset.game!.includes(query)); });</script>
@@ -109,8 +101,13 @@ const seasonRecord = (team: Team, season: number) => {
   .game-result > b, .game-drought { display:block; }
   .game-drought { margin-top:2px; color:#6b717c; font-size:11px; font-weight:600; line-height:1.25; }
   .game-row a { color:inherit; text-decoration:none; }
-  .game-row a:hover, .game-row a:focus-visible { text-decoration:underline 2px currentColor; text-underline-offset:3px; }
+  .game-score-link:hover, .game-score-link:focus-visible { text-decoration:none; }
+  .game-score-link.osu:hover, .game-score-link.osu:focus-visible { background:#bb0000; color:#d9dce1; }
+  .game-score-link.mich:hover, .game-score-link.mich:focus-visible { background:#00274c; color:#ffcb05; }
   .game-team-link.osu { color:#bb0000; }
   .game-team-link.mich { color:#00274c; }
+  .game-team-link:hover, .game-team-link:focus-visible { text-decoration:none; outline:0; }
+  .game-team-link.osu:hover, .game-team-link.osu:focus-visible { background:#bb0000; color:#d9dce1; }
+  .game-team-link.mich:hover, .game-team-link.mich:focus-visible { background:#00274c; color:#ffcb05; }
   @media (max-width:640px) { .drought-summary { grid-template-columns:1fr; } .drought-summary > div { min-height:0; border-right:0; border-bottom:1px solid #d9dce1; } .drought-summary > div:last-child { border-bottom:0; } .drought-comparison th, .drought-comparison td { padding:10px; font-size:12px; } .drought-comparison tbody th { width:42%; } }
 </style>
