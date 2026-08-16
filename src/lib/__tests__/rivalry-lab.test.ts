@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { calculateMatchup, simulateGame, validateMatchupInput } from '../rivalry-lab';
+import { calculateMatchup, simulateGame, validateMatchupInput, type Matchup, type SimulationContext } from '../rivalry-lab';
 import { modelConfig, ratedSeason, simulationContext } from '../rivalry-snapshot';
 
 const ohioState = ratedSeason('ohio-state', 1995);
@@ -23,32 +23,35 @@ describe('Rivalry Lab model', () => {
     expect(Math.abs(matchup.expectedMargin)).toBeLessThan(7);
   });
 
-  it('uses score and schedule inputs when only one selected season has enrichment', () => {
+  it('uses score and schedule inputs when only one selected season has rich coverage', () => {
     const context = simulationContext('ohio-state', 1995, 'michigan', 2023);
 
     expect(context.simulationCoverage).toBe('score-and-schedule');
     expect(context.usedInputs).toEqual({});
   });
 
-  it('uses possession and turnover inputs only when both selected seasons have enrichment', () => {
+  it('uses derived simulation inputs only when both selected seasons have rich coverage', () => {
     const context = simulationContext('ohio-state', 2014, 'michigan', 2023);
 
-    expect(context.simulationCoverage).toBe('box-score-enhanced');
-    expect(context.usedInputs.possessionsPerGame).toBeDefined();
-    expect(context.usedInputs.turnoversPerGame).toBeDefined();
+    expect(context.simulationCoverage).toBe('rich-game-data');
+    expect(context.usedInputs.ohioState?.possessionsPerGame).toBeGreaterThan(0);
+    expect(context.usedInputs.michigan?.turnoverRatePerDrive).toBeGreaterThan(0);
+    expect(context.usedInputs.ohioState?.scoringRateMultiplier).toBeGreaterThan(0);
+    expect(context.usedInputs.michigan?.touchdownShare).toBeGreaterThan(0);
   });
 
-  it('replays an enriched seeded game exactly', () => {
+  it('replays a rich seeded game exactly', () => {
     const matchup = calculateMatchup(ohioState, michigan, model);
 
     const context = simulationContext('ohio-state', 2014, 'michigan', 2023);
     expect(simulateGame(matchup, '20142023', model, context)).toEqual(simulateGame(matchup, '20142023', model, context));
   });
 
-  it('lets enriched pace change the number of simulated possessions', () => {
+  it('lets derived pace change the number of simulated possessions', () => {
     const matchup = calculateMatchup(ohioState, michigan, model);
     const slow = simulationContext('ohio-state', 2014, 'michigan', 2023);
-    const fast = { ...slow, ohioState: { ...slow.ohioState, enrichment: { possessionsPerGame: 16, turnoversPerGame: 1 } }, michigan: { ...slow.michigan, enrichment: { possessionsPerGame: 16, turnoversPerGame: 1 } } };
+    const paceInputs = { possessionsPerGame: 16, turnoverRatePerDrive: 0.08, scoringRateMultiplier: 1, touchdownShare: 0.66 };
+    const fast: SimulationContext = { ...slow, ohioState: { ...slow.ohioState, inputs: paceInputs }, michigan: { ...slow.michigan, inputs: paceInputs } };
 
     expect(simulateGame(matchup, 'pace', model, fast).drives).toHaveLength(32);
     expect(simulateGame(matchup, 'pace', model, slow).drives.length).toBeLessThan(32);
@@ -78,6 +81,28 @@ describe('Rivalry Lab model', () => {
     }
 
     expect(favoredWins).toBeGreaterThan(combinations / 2);
+  });
+
+  it('matches the cross-repo golden vector from the rivalry_lab engine', () => {
+    // Identical matchup, seed, and inputs as src/product/simulation.test.ts in rivalry_lab;
+    // the expected outcomes are shared verbatim so the two engines cannot drift apart.
+    const goldenMatchup: Matchup = {
+      modelVersion: 'srs-era-neutral-v1', neutralPointsPerTeam: 25, expectedMargin: 6,
+      ohioState: { teamId: 'ohio-state', expectedScore: 30, winProbability: 0.65, scoreAdvantage: 5 },
+      michigan: { teamId: 'michigan', expectedScore: 24, winProbability: 0.35, scoreAdvantage: -1 },
+    };
+    const goldenContext: SimulationContext = {
+      simulationCoverage: 'rich-game-data',
+      usedInputs: {},
+      ohioState: { scheduleStrength: 1, inputs: { possessionsPerGame: 11, turnoverRatePerDrive: 0.08, scoringRateMultiplier: 1.1, touchdownShare: 0.7 } },
+      michigan: { scheduleStrength: 1, inputs: { possessionsPerGame: 11, turnoverRatePerDrive: 0.12, scoringRateMultiplier: 0.95, touchdownShare: 0.62 } },
+    };
+    const game = simulateGame(goldenMatchup, 'golden-1', model, goldenContext);
+    expect(game.drives.filter((drive) => drive.quarter <= 4)).toHaveLength(22);
+    expect(game.drives.slice(0, 10).map((drive) => `${drive.teamId}:${drive.outcome}`)).toEqual([
+      'ohio-state:PUNT', 'michigan:TD', 'ohio-state:DOWNS', 'michigan:PUNT', 'ohio-state:PUNT',
+      'michigan:PUNT', 'ohio-state:PUNT', 'michigan:TD', 'ohio-state:TD', 'michigan:PUNT',
+    ]);
   });
 
   it('rejects unavailable years', () => {
