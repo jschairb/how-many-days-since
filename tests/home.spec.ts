@@ -27,7 +27,8 @@ test.describe('Count', () => {
     await page.goto('/');
     await expect(page).toHaveTitle(/How many days since Michigan has beaten Ohio State/i);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('HOW MANY DAYS SINCE');
-    await expect(page.getByRole('navigation', { name: 'Site' }).getByRole('link')).toHaveCount(3);
+    await expect(page.getByRole('navigation', { name: 'Site' }).getByRole('link')).toHaveCount(4);
+    await expect(page.locator('[data-live-count]')).toHaveAttribute('data-reference-date', '2024-11-30T17:00:00Z');
   });
 
   test('displays a numeric days count and historical totals', async ({ page }) => {
