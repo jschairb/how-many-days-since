@@ -19,13 +19,15 @@ const date = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', we
 </SiteShell>
 
 <script>
+  import { calcDaysSince } from '../lib/days';
+
   const liveCount = document.querySelector<HTMLElement>('[data-live-count]');
   const referenceDate = new Date(liveCount?.dataset.referenceDate ?? '');
   const count = document.getElementById('days_count');
   const currentDate = document.querySelector<HTMLElement>('[data-current-date]');
   const renderCurrentTime = () => {
     const now = new Date();
-    const days = Math.max(Math.floor((now.getTime() - referenceDate.getTime()) / 86_400_000), 0);
+    const days = calcDaysSince(referenceDate, now);
     if (count) count.textContent = days.toLocaleString('en-US');
     if (currentDate) currentDate.textContent = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }).format(now);
   };
