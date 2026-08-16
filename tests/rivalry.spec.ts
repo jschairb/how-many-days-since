@@ -136,7 +136,7 @@ test.describe('Rivalry Lab', () => {
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await expect(page.getByRole('heading', { name: 'TALE OF THE TAPE' })).toBeVisible();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
-    await page.getByRole('button', { name: 'PLAY ONE' }).click();
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
     await expect(page.locator('[data-game-score]')).toContainText('FINAL');
   });
 
@@ -145,10 +145,10 @@ test.describe('Rivalry Lab', () => {
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
-    const playOne = page.getByRole('button', { name: 'PLAY ONE' });
+    const playOne = page.getByRole('button', { name: 'SIMULATE', exact: true });
     await expect(playOne).toBeVisible();
     await expect(page.locator('[data-view="pregame"]')).toContainText(
-      'Pick this matchup, then play one simulated game.'
+      'Pick this matchup, then simulate it.'
     );
     expect(await playOne.evaluate((button) => button.getBoundingClientRect().top)).toBeLessThan(
       await page.locator('.pregame-explanation').evaluate((section) => section.getBoundingClientRect().top)
@@ -200,7 +200,7 @@ test.describe('Rivalry Lab', () => {
     await expect(page.locator('[data-pregame-inputs]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-pregame-mobile.png', fullPage: true });
-    await page.getByRole('button', { name: 'PLAY ONE' }).click();
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
     await expect(page.locator('[data-game-coverage]')).toContainText('SCORE-SCHEDULE');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-game-mobile.png', fullPage: true });
@@ -217,7 +217,7 @@ test.describe('Rivalry Lab', () => {
     await expect(page.locator('[data-simulation-coverage]')).toContainText('RICH DATA');
     await expect(page.locator('[data-simulation-coverage]')).toContainText('Imported game data is active');
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-pregame-desktop.png', fullPage: true });
-    await page.getByRole('button', { name: 'PLAY ONE' }).click();
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
     await expect(page.locator('[data-game-coverage]')).toContainText('RICH DATA');
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-game-desktop.png', fullPage: true });
   });
@@ -233,7 +233,7 @@ test.describe('Rivalry Lab', () => {
     await expect(page.locator('[data-simulation-coverage]')).toContainText('RICH DATA');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-pregame-mobile.png', fullPage: true });
-    await page.getByRole('button', { name: 'PLAY ONE' }).click();
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
     await expect(page.locator('[data-game-coverage]')).toContainText('RICH DATA');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-game-mobile.png', fullPage: true });
@@ -246,7 +246,7 @@ test.describe('Rivalry Lab', () => {
     await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
-    await page.getByRole('button', { name: 'PLAY ONE' }).click();
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
 
     const call = page.locator('[data-model-call]');
     await expect(call).toBeVisible();
@@ -267,7 +267,7 @@ test.describe('Rivalry Lab', () => {
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-model-call.png', fullPage: true });
 
     await expect(page.getByText(/BEST OF 10|SIM 100|1,000 GAMES|RUN COUNT/i)).toHaveCount(0);
-    expect(await page.evaluate(() => document.querySelectorAll('input[type="number"], [data-run-count]').length)).toBe(0);
+    expect(await page.evaluate(() => document.querySelectorAll('input[type="number"], button[data-run]:not([data-run="1"])').length)).toBe(0);
   });
 
   test('keeps the model call readable on mobile', async ({ page }) => {
@@ -275,7 +275,7 @@ test.describe('Rivalry Lab', () => {
     await page.goto('/rivalry-lab');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
-    await page.getByRole('button', { name: 'PLAY ONE' }).click();
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
 
     await expect(page.locator('[data-model-call]')).toBeVisible();
     await page.locator('[data-model-call]').getByText('SEE THE FULL BREAKDOWN').click();
