@@ -45,7 +45,7 @@ test.describe('Count', () => {
     await page.goto('/');
 
     await expect(page.locator('figcaption')).toHaveCount(0);
-    await expect(page.locator('.hero img')).toHaveAttribute('alt', /.+/);
+    await expect(page.locator('.featured-merch img')).toHaveAttribute('alt', /.+/);
     await expect(page.getByRole('link', { name: 'Great Western Productions' })).toHaveAttribute(
       'href',
       'https://greatwesternproductions.com'

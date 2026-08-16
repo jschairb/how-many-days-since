@@ -76,6 +76,7 @@ const { osuYears, michYears, seasonProfiles, provenance, matchupMethod } = Astro
     const response = await fetch(`/api/matchup?osuYear=${osuYear}&michYear=${michYear}`);
     if (!response.ok) return;
     const { simulationCoverage, usedInputs } = await response.json() as { simulationCoverage: 'box-score-enhanced' | 'score-and-schedule'; usedInputs: { possessionsPerGame?: { ohioState: number; michigan: number }; turnoversPerGame?: { ohioState: number; michigan: number } } };
+    const coverageLabel = simulationCoverage === 'box-score-enhanced' ? 'ENRICHED' : 'SCORE-SCHEDULE';
     const coverage = simulationCoverage === 'box-score-enhanced'
       ? 'Historical possession and turnover context is active because both selected seasons have enrichment coverage.'
       : 'Score and schedule context is active. Possession and turnover context stays off unless both selected seasons have enrichment coverage.';
@@ -86,7 +87,7 @@ const { osuYears, michYears, seasonProfiles, provenance, matchupMethod } = Astro
       pregameContext.className = 'simulation-coverage';
       coveragePregame.querySelector('.pregame-results')?.after(pregameContext);
     }
-    pregameContext.innerHTML = `<b>SIMULATION COVERAGE · ${simulationCoverage.toUpperCase()}</b><p>${coverage}</p>`;
+    pregameContext.innerHTML = `<b>SIMULATION COVERAGE · ${coverageLabel}</b><p>${coverage}</p>`;
     if (!coverageGame) return;
     let gameContext = coverageGame.querySelector<HTMLElement>('[data-game-coverage]');
     if (!gameContext) {
@@ -95,7 +96,7 @@ const { osuYears, michYears, seasonProfiles, provenance, matchupMethod } = Astro
       gameContext.className = 'simulation-game-context';
       coverageGame.querySelector('[data-game-score]')?.before(gameContext);
     }
-    gameContext.textContent = `SIMULATION COVERAGE · ${simulationCoverage.toUpperCase()}`;
+    gameContext.textContent = `SIMULATION COVERAGE · ${coverageLabel}`;
   }
 
   new MutationObserver(() => {
