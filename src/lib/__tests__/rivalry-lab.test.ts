@@ -54,6 +54,32 @@ describe('Rivalry Lab model', () => {
     expect(simulateGame(matchup, 'pace', model, slow).drives.length).toBeLessThan(32);
   });
 
+  it('draws a different random stream for a different matchup under the same seed', () => {
+    const strong = { teamId: 'ohio-state', season: 2000, overall: 1.5, offense: 1.2, defense: 1.2, scheduleStrength: 1 };
+    const weak = { teamId: 'michigan', season: 2000, overall: 0, offense: 0, defense: 0, scheduleStrength: 1 };
+    const matchupA = calculateMatchup(strong, weak, model);
+    const matchupB = calculateMatchup({ ...strong, overall: 1.52 }, weak, model);
+
+    const gameA = simulateGame(matchupA, 'shared-seed', model);
+    const gameB = simulateGame(matchupB, 'shared-seed', model);
+
+    expect(gameA.drives.map((drive) => drive.outcome)).not.toEqual(gameB.drives.map((drive) => drive.outcome));
+  });
+
+  it('lets the favorite win most deterministic games under one fixed seed across many matchups', () => {
+    const weak = { teamId: 'michigan', season: 2000, overall: 0, offense: 0, defense: 0, scheduleStrength: 1 };
+    let favoredWins = 0;
+    const combinations = 60;
+    for (let index = 0; index < combinations; index += 1) {
+      const strong = { teamId: 'ohio-state', season: 1900 + index, overall: 1.5 + index * 0.025, offense: 1.2, defense: 1.2, scheduleStrength: 1 };
+      const matchup = calculateMatchup(strong, weak, model);
+      expect(matchup.ohioState.winProbability).toBeGreaterThan(0.6);
+      if (simulateGame(matchup, '19952023', model).winner === 'ohio-state') favoredWins += 1;
+    }
+
+    expect(favoredWins).toBeGreaterThan(combinations / 2);
+  });
+
   it('rejects unavailable years', () => {
     expect(() => validateMatchupInput({ osuYear: 1969, michYear: 2023 })).toThrow('Ohio State season must be between 1970 and 2025');
   });

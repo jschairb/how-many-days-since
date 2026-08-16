@@ -11,6 +11,10 @@ export type SimulationContext = { simulationCoverage: 'box-score-enhanced' | 'sc
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
+export function generateSeed(): string {
+  return String(Math.floor(10_000_000 + Math.random() * 90_000_000));
+}
+
 export function calculateMatchup(ohioState: Rating, michigan: Rating, config: ModelConfig): Matchup {
   const ohioStateAdvantage = (ohioState.offense - michigan.defense + ohioState.overall - michigan.overall) * config.pointsPerStandardDeviation / config.matchupAdvantageDivisor;
   const michiganAdvantage = (michigan.offense - ohioState.defense + michigan.overall - ohioState.overall) * config.pointsPerStandardDeviation / config.matchupAdvantageDivisor;
@@ -29,7 +33,9 @@ function random(seed: string) {
 function emptyStats(): Stats { return { possessions: 0, touchdowns: 0, fieldGoals: 0, turnovers: 0, punts: 0, points: 0 }; }
 
 export function simulateGame(matchup: Matchup, seed: string, config: ModelConfig, context?: SimulationContext): Game {
-  const next = random(seed); const ohioState = emptyStats(); const michigan = emptyStats(); const drives: Drive[] = [];
+  // Mix the matchup into the stream: a bare seed hands the same roll sequence to the same
+  // possession slots in every matchup, letting one lucky seed favor one team globally.
+  const next = random(`${seed}|${matchup.ohioState.expectedScore}|${matchup.michigan.expectedScore}`); const ohioState = emptyStats(); const michigan = emptyStats(); const drives: Drive[] = [];
   const sides = context ? { 'ohio-state': context.ohioState, michigan: context.michigan } : null;
   const drivePossessions = context?.simulationCoverage === 'box-score-enhanced'
     ? Math.round(context.ohioState.enrichment!.possessionsPerGame + context.michigan.enrichment!.possessionsPerGame)
