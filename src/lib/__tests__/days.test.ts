@@ -13,12 +13,10 @@ describe('calcDaysSince', () => {
     expect(calcDaysSince(ref, now)).toBe(3);
   });
 
-  it('floors partial days', () => {
-    const ref = new Date('2024-11-30T05:00:00.000Z');
-    const now = new Date('2024-11-30T05:00:00.000Z');
-    // 23h 59m 59s later — still day 0
-    const almostOneDay = new Date(ref.getTime() + (24 * 60 * 60 * 1000) - 1);
-    expect(calcDaysSince(ref, almostOneDay)).toBe(0);
+  it('advances at midnight in Columbus instead of 24 hours after the reference time', () => {
+    const ref = new Date('2024-11-30T17:00:00.000Z');
+    const afterMidnightEastern = new Date('2024-12-01T05:01:00.000Z');
+    expect(calcDaysSince(ref, afterMidnightEastern)).toBe(1);
   });
 
   it('returns 0 when now is before the reference date', () => {
