@@ -206,7 +206,7 @@ test.describe('Rivalry Lab', () => {
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-game-mobile.png', fullPage: true });
   });
 
-  test('shows enriched historical context for the 2014 Ohio State and 2023 Michigan pregame and game on desktop', async ({ page }) => {
+  test('shows rich-data context for the 2014 Ohio State and 2023 Michigan pregame and game on desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto('/rivalry-lab');
     await page.locator('[data-osu]').selectOption('2014');
@@ -214,15 +214,15 @@ test.describe('Rivalry Lab', () => {
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
-    await expect(page.locator('[data-simulation-coverage]')).toContainText('ENRICHED');
-    await expect(page.locator('[data-simulation-coverage]')).toContainText('possession and turnover context is active');
+    await expect(page.locator('[data-simulation-coverage]')).toContainText('RICH DATA');
+    await expect(page.locator('[data-simulation-coverage]')).toContainText('Imported game data is active');
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-pregame-desktop.png', fullPage: true });
     await page.getByRole('button', { name: 'PLAY ONE' }).click();
-    await expect(page.locator('[data-game-coverage]')).toContainText('ENRICHED');
+    await expect(page.locator('[data-game-coverage]')).toContainText('RICH DATA');
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-game-desktop.png', fullPage: true });
   });
 
-  test('shows enriched historical context for the 2014 Ohio State and 2023 Michigan on mobile', async ({ page }) => {
+  test('shows rich-data context for the 2014 Ohio State and 2023 Michigan on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/rivalry-lab');
     await page.locator('[data-osu]').selectOption('2014');
@@ -230,12 +230,57 @@ test.describe('Rivalry Lab', () => {
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
-    await expect(page.locator('[data-simulation-coverage]')).toContainText('ENRICHED');
+    await expect(page.locator('[data-simulation-coverage]')).toContainText('RICH DATA');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-pregame-mobile.png', fullPage: true });
     await page.getByRole('button', { name: 'PLAY ONE' }).click();
-    await expect(page.locator('[data-game-coverage]')).toContainText('ENRICHED');
+    await expect(page.locator('[data-game-coverage]')).toContainText('RICH DATA');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-game-mobile.png', fullPage: true });
+  });
+
+  test('shows the model call with the full breakdown after one Simulate action', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('2014');
+    await page.locator('[data-mich]').selectOption('2023');
+    await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'PLAY ONE' }).click();
+
+    const call = page.locator('[data-model-call]');
+    await expect(call).toBeVisible();
+    await expect(call.getByRole('heading', { name: "THE MODEL'S CALL" })).toBeVisible();
+    await expect(call.locator('[data-call-favorite]')).toContainText(/IS FAVORED$/);
+    await expect(call.locator('[data-call-share]')).toContainText(/won \d+% of the simulated games\./);
+    await expect(call.locator('[data-call-typical]')).toContainText(/\d+, .* \d+/);
+    await expect(call.locator('[data-call-one-score]')).toContainText(/% OF GAMES ENDED WITHIN ONE SCORE/);
+    await expect(call.locator('[data-call-underdog-rate]')).toContainText(/%/);
+
+    await call.getByText('SEE THE FULL BREAKDOWN').click();
+    await expect(call.locator('.margin-row')).toHaveCount(6);
+    await expect(call.locator('[data-breakdown-facts]')).toContainText('OVERTIME RATE');
+    await expect(call.locator('[data-breakdown-facts]')).toContainText('BLOWOUTS');
+    await expect(call.locator('[data-breakdown-facts]')).toContainText('RICH DATA');
+    await expect(call.locator('[data-breakdown-versions]')).toContainText('drive-v2');
+    await expect(call.locator('[data-breakdown-versions]')).toContainText('opp-adjust-v1');
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-model-call.png', fullPage: true });
+
+    await expect(page.getByText(/BEST OF 10|SIM 100|1,000 GAMES|RUN COUNT/i)).toHaveCount(0);
+    expect(await page.evaluate(() => document.querySelectorAll('input[type="number"], [data-run-count]').length)).toBe(0);
+  });
+
+  test('keeps the model call readable on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/rivalry-lab');
+    await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'PLAY ONE' }).click();
+
+    await expect(page.locator('[data-model-call]')).toBeVisible();
+    await page.locator('[data-model-call]').getByText('SEE THE FULL BREAKDOWN').click();
+    await expect(page.locator('.margin-row')).toHaveCount(6);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-model-call-mobile.png', fullPage: true });
   });
 });

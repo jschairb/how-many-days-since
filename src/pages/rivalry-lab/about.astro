@@ -50,9 +50,28 @@ const description = 'How Rivalry Lab labels observed history, derives cross-era 
           <li><b>Choose two seasons.</b> The selector only offers seasons included in the public Rivalry Lab snapshot.</li>
           <li><b>Use the exported cross-era ratings.</b> The matchup API uses normalized ratings and the exported scoring scale, rather than comparing raw season SRS values directly.</li>
           <li><b>Set the neutral baseline.</b> Each team is translated from its own offensive and defensive environment into the same neutral scoring environment.</li>
-          <li><b>Set simulation coverage before the run.</b> Every matchup uses the derived score and schedule context. Possession pace and turnover rates join the simulation only when both selected seasons have the released historical enrichment fields; a mixed pair never uses one team's enrichment alone.</li>
-          <li><b>Run a seeded simulation.</b> The seed makes a given run reproducible. Changing it creates a different synthetic sequence around the same derived baseline and coverage level.</li>
+          <li><b>Set simulation coverage before the run.</b> Every matchup uses the derived score and schedule context. Imported game data (possession pace, turnover rate per drive, scoring efficiency, red-zone finishing) joins the simulation only when both selected seasons carry rich coverage; a mixed pair never uses one team's imported data alone. Rich coverage exists for 2004 and later, with drive data from 2001.</li>
+          <li><b>Adjust for opponents.</b> Imported season measures are adjusted for schedule (version opp-adjust-v1): a team's efficiency is compared against what its opponents allowed everyone else, relative to the league average for that season.</li>
+          <li><b>Run one seeded simulation plus the repeated set.</b> One Simulate action plays the displayed game and a repeated run of the same matchup on the server. The repeated-game count (currently 5,000) was selected by a stability harness: the smallest count where win rates and typical scores stop moving between seeded replicates within set thresholds. The browser receives the displayed game and the aggregate summary only.</li>
+          <li><b>Replay by seed.</b> The same teams, seed, model versions, and data version reproduce the same displayed game and the same summary. Changing the seed creates a different synthetic sequence around the same derived baseline and coverage level.</li>
         </ol>
+      </div>
+    </section>
+
+    <section class="method-section method-columns" aria-labelledby="definitions-heading">
+      <div class="method-section-heading">
+        <p class="eyebrow">READING THE CALL</p>
+        <h2 id="definitions-heading">RESULT DEFINITIONS</h2>
+      </div>
+      <div class="method-copy">
+        <ul class="method-steps">
+          <li><b>Favorite.</b> The team with a pregame win probability above 50%.</li>
+          <li><b>Upset.</b> A win by the underdog; the underdog win rate is the upset rate.</li>
+          <li><b>Typical score.</b> The middle (median) simulated score for each team.</li>
+          <li><b>One-score game.</b> A final margin of eight points or fewer.</li>
+          <li><b>Blowout.</b> A final margin of 17 points or more.</li>
+        </ul>
+        <p>The model's call reports simulated results: win rates, scores, margins, overtime, and turnovers. It does not offer tactics, game plans, player judgments, coaching advice, or conditions either team would need to win.</p>
       </div>
     </section>
 
@@ -62,7 +81,7 @@ const description = 'How Rivalry Lab labels observed history, derives cross-era 
         <h2 id="sources-heading">SOURCES &amp; COVERAGE</h2>
       </div>
       <div class="method-copy">
-        <p>The site consumes a reduced public product snapshot from the Rivalry Lab model workspace. The snapshot includes the derived ratings, era translation configuration, simulation configuration, selected observed season fields, and links for covered rivalry games. When both selected seasons include possession and turnover enrichment, the Lab labels that historical context before and during the simulated game.</p>
+        <p>The site consumes a reduced public product snapshot from the Rivalry Lab model workspace. The snapshot includes the derived ratings, era translation configuration, simulation configuration with the harness-selected run count, coverage labels for every team-season, approved observed season aggregates (yards per play, rush share, third-down rate, turnovers, possessions, first downs, red zone), derived simulation inputs, and links for covered rivalry games. When both selected seasons carry rich coverage, the Lab labels that before and during the simulated game.</p>
         <p>It does not import the private historical warehouse, credentials, or purchased data packages. A season profile may show an unavailable field when the public snapshot does not report it. Missing fields are not filled with guesses.</p>
         <p>The Tape screen names the snapshot versions used for the current release. That provenance panel is the source of record for the version loaded by the simulator.</p>
       </div>
