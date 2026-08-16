@@ -114,6 +114,8 @@ test.describe('Rivalry Lab', () => {
 
   test('shows observed and derived season profiles with snapshot provenance', async ({ page }) => {
     await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('1995');
+    await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
 
     await expect(page.getByTestId('season-profile-ohio-state')).toContainText('John Cooper');
@@ -126,6 +128,11 @@ test.describe('Rivalry Lab', () => {
   test('loads server-derived matchup values and runs a simulation', async ({ page }) => {
     await page.goto('/rivalry-lab');
     await expect(page.getByRole('heading', { level: 1, name: 'RIVALRY LAB' })).toBeVisible();
+    await expect(page.locator('[data-seed]')).toHaveCount(0);
+    for (const team of ['[data-osu]', '[data-mich]'] as const) {
+      expect(await page.locator(team).evaluate((select: HTMLSelectElement) =>
+        select.value === select.options[select.options.length - 1].value)).toBe(true);
+    }
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await expect(page.getByRole('heading', { name: 'TALE OF THE TAPE' })).toBeVisible();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
@@ -160,6 +167,8 @@ test.describe('Rivalry Lab', () => {
   test('keeps Tape focused on selected-season profiles and moves derived matchup outputs to Pregame', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('1995');
+    await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
 
     await expect(page.getByRole('heading', { name: 'TALE OF THE TAPE' })).toBeVisible();
@@ -201,6 +210,7 @@ test.describe('Rivalry Lab', () => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto('/rivalry-lab');
     await page.locator('[data-osu]').selectOption('2014');
+    await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
@@ -216,6 +226,7 @@ test.describe('Rivalry Lab', () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/rivalry-lab');
     await page.locator('[data-osu]').selectOption('2014');
+    await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
