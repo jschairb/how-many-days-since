@@ -79,7 +79,7 @@ test.describe('Record', () => {
     await page.goto('/record');
 
     await expect(page.getByRole('heading', { name: 'RIVALRY DROUGHTS' })).toBeVisible();
-    await expect(page.locator('[data-drought-table="longest"]')).toBeVisible();
+    await expect(page.locator('.drought-comparison')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 
