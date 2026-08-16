@@ -137,7 +137,7 @@ test.describe('Rivalry Lab', () => {
     await expect(page.getByRole('heading', { name: 'TALE OF THE TAPE' })).toBeVisible();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
-    await expect(page.locator('[data-game-score]')).toContainText('FINAL');
+    await expect(page.locator('[data-game-score]')).toContainText('TYPICAL SCORE');
   });
 
   test('explains and plays one selected matchup without series controls or turning points', async ({ page }) => {
@@ -156,7 +156,7 @@ test.describe('Rivalry Lab', () => {
     await expect(page.getByText(/BEST OF 10|SIM 100|1,000|10,000/i)).toHaveCount(0);
 
     await playOne.click();
-    await expect(page.locator('[data-game-score]')).toContainText('FINAL');
+    await expect(page.locator('[data-game-score]')).toContainText('TYPICAL SCORE');
     await expect(page.locator('[data-game-coverage]')).toContainText('SCORE-SCHEDULE');
     await expect(page.getByText(/KEY TURNING POINT/i)).toHaveCount(0);
     await expect(page.getByRole('button', { name: /POSTGAME|RUN AGAIN/i })).toHaveCount(0);
@@ -250,12 +250,20 @@ test.describe('Rivalry Lab', () => {
 
     const call = page.locator('[data-model-call]');
     await expect(call).toBeVisible();
-    await expect(call.getByRole('heading', { name: "THE MODEL'S CALL" })).toBeVisible();
-    await expect(call.locator('[data-call-favorite]')).toContainText(/IS FAVORED$/);
+    await expect(call.getByRole('heading', { name: "THE MODEL'S RESULTS" })).toBeVisible();
+    await expect(call.locator('[data-call-note]')).toContainText(/played this matchup [\d,]+ times/);
+    await expect(call.locator('[data-call-favorite]')).toContainText(/IS FAVORED$|^UPSET:/);
     await expect(call.locator('[data-call-share]')).toContainText(/won \d+% of the simulated games\./);
-    await expect(call.locator('[data-call-typical]')).toContainText(/\d+, .* \d+/);
     await expect(call.locator('[data-call-one-score]')).toContainText(/% OF GAMES ENDED WITHIN ONE SCORE/);
-    await expect(call.locator('[data-call-underdog-rate]')).toContainText(/%/);
+    await expect(call.locator('[data-call-upset]')).toContainText(/^UPSET RATE \d+%/);
+    await expect(page.locator('[data-game-score]')).toContainText('TYPICAL SCORE');
+    const typicalScores = await page.locator('[data-game-score] strong').allTextContents();
+    const labelText = await page.locator('[data-run-game-label]').textContent();
+    expect(labelText).toMatch(/MICHIGAN \d+, OHIO STATE \d+/);
+    if (!labelText?.includes('CLOSEST GAME')) {
+      expect(labelText).toContain(`MICHIGAN ${typicalScores[0]}, OHIO STATE ${typicalScores[1]}`);
+    }
+    expect(await page.locator('[data-timeline] .q-mark').count()).toBeGreaterThanOrEqual(4);
 
     await call.getByText('SEE THE FULL BREAKDOWN').click();
     await expect(call.locator('.margin-row')).toHaveCount(6);

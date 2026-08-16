@@ -51,10 +51,16 @@ export function createSeriesAggregator(matchup: Matchup, seed: string, runCount:
   const ohioStateScores = new Map<number, number>();
   const michiganScores = new Map<number, number>();
   const bucketCounts = BUCKETS.map(() => 0);
+  // First game index per exact final score, so the displayed game can be the run's own
+  // game at (or nearest to) the typical score instead of an arbitrary draw.
+  const firstIndexByScore = new Map<string, number>();
 
   return {
     add(game: Game): void {
+      const index = added;
       added += 1;
+      const scoreKey = `${game.ohioState.points}:${game.michigan.points}`;
+      if (!firstIndexByScore.has(scoreKey)) firstIndexByScore.set(scoreKey, index);
       if (game.winner === 'ohio-state') ohioStateWins += 1;
       if (game.overtime) overtimeGames += 1;
       const margin = game.ohioState.points - game.michigan.points;
@@ -67,6 +73,22 @@ export function createSeriesAggregator(matchup: Matchup, seed: string, runCount:
       const bucketIndex = BUCKETS.findIndex((bucket) => (bucket.min === null || margin >= bucket.min) && (bucket.max === null || margin <= bucket.max));
       if (bucketIndex === -1) throw new Error(`Simulated game margin ${margin} fits no bucket`);
       bucketCounts[bucketIndex] += 1;
+    },
+    // Deterministic: the first game in the run at the typical score, else the first game
+    // at the smallest absolute distance from it (Map preserves insertion order).
+    representativeIndex(): { index: number; matchesTypicalScore: boolean } {
+      const typicalOhioState = lowerMedian(ohioStateScores, added);
+      const typicalMichigan = lowerMedian(michiganScores, added);
+      const exact = firstIndexByScore.get(`${typicalOhioState}:${typicalMichigan}`);
+      if (exact !== undefined) return { index: exact, matchesTypicalScore: true };
+      let bestIndex = 0;
+      let bestDistance = Number.POSITIVE_INFINITY;
+      for (const [key, index] of firstIndexByScore) {
+        const [osu, mich] = key.split(':').map(Number);
+        const distance = Math.abs(osu - typicalOhioState) + Math.abs(mich - typicalMichigan);
+        if (distance < bestDistance) { bestDistance = distance; bestIndex = index; }
+      }
+      return { index: bestIndex, matchesTypicalScore: false };
     },
     summary(): SeriesSummary {
       if (added !== runCount) throw new Error(`Aggregated ${added} games for a run count of ${runCount}`);

@@ -86,6 +86,34 @@ describe('createSeriesAggregator', () => {
     expect(() => aggregator.summary()).toThrow('run count');
   });
 
+  it('finds the first run game at the typical score as the representative game', () => {
+    const aggregator = createSeriesAggregator(matchup, 'rep', 3);
+    aggregator.add(syntheticGame(21, 14));
+    aggregator.add(syntheticGame(24, 20));
+    aggregator.add(syntheticGame(24, 20));
+    const summary = aggregator.summary();
+    expect([summary.ohioState.typicalScore, summary.michigan.typicalScore]).toEqual([24, 20]);
+    expect(aggregator.representativeIndex()).toEqual({ index: 1, matchesTypicalScore: true });
+  });
+
+  it('falls back to the first closest game when no run game hits the typical score', () => {
+    const aggregator = createSeriesAggregator(matchup, 'rep-close', 2);
+    aggregator.add(syntheticGame(10, 20));
+    aggregator.add(syntheticGame(20, 10));
+    expect(aggregator.representativeIndex()).toEqual({ index: 0, matchesTypicalScore: false });
+  });
+
+  it('picks the same representative game on replay', () => {
+    const first = createSeriesAggregator(matchup, 'rep-replay', 100);
+    const second = createSeriesAggregator(matchup, 'rep-replay', 100);
+    for (let index = 0; index < 100; index += 1) {
+      const game = simulateGame(matchup, `rep-replay:${index}`, model, context);
+      first.add(game);
+      second.add(game);
+    }
+    expect(first.representativeIndex()).toEqual(second.representativeIndex());
+  });
+
   it('carries the SIMULATED evidence label and engine version', () => {
     const summary = runSeries('label', 50);
     expect(summary.evidenceType).toBe('SIMULATED');

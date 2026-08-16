@@ -4,10 +4,10 @@ import { createSeriesAggregator } from '../../lib/rivalry-series';
 import { simulationRunCount } from '../../lib/simulation-config';
 import { modelConfig, ratedSeason, rivalrySnapshot, simulationContext } from '../../lib/rivalry-snapshot';
 
-// One request runs the displayed game plus the configured repeated set. The browser gets
-// the displayed game (series index 0, with its drives) and the aggregate summary only;
-// the repeated-game collection and its drive logs never leave the server. Any client-sent
-// run count is ignored: the harness-selected count in the snapshot is the configuration.
+// One request runs the configured repeated set and returns its aggregate summary plus one
+// displayed game: the run's own game at (or nearest to) the typical score, re-simulated by
+// its seed. The repeated-game collection and its drive logs never leave the server. Any
+// client-sent run count is ignored: the harness-selected count is the configuration.
 export const POST: APIRoute = async ({ request }) => {
   try {
     const { osuYear, michYear, seed = generateSeed() } = await request.json();
@@ -17,16 +17,16 @@ export const POST: APIRoute = async ({ request }) => {
     const context = simulationContext('ohio-state', osuYear, 'michigan', michYear);
     const runCount = simulationRunCount();
     const aggregator = createSeriesAggregator(matchup, String(seed), runCount);
-    let displayedGame = null;
     for (let index = 0; index < runCount; index += 1) {
-      const game = simulateGame(matchup, `${seed}:${index}`, config, context);
-      if (index === 0) displayedGame = game;
-      aggregator.add(game);
+      aggregator.add(simulateGame(matchup, `${seed}:${index}`, config, context));
     }
     const series = aggregator.summary();
+    const representative = aggregator.representativeIndex();
+    const displayedGame = simulateGame(matchup, `${seed}:${representative.index}`, config, context);
     return Response.json({
       matchup,
       result: displayedGame,
+      representative,
       series,
       simulationCoverage: context.simulationCoverage,
       usedInputs: context.usedInputs,

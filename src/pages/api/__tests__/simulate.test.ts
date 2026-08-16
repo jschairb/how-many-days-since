@@ -15,7 +15,12 @@ describe('Rivalry Lab simulate API', () => {
 
     expect(response.status).toBe(200);
     expect(payload.result.drives.length).toBeGreaterThan(0);
-    expect(payload.result.seed).toBe('20142023:0');
+    expect(payload.result.seed).toMatch(/^20142023:\d+$/);
+    expect(payload.result.seed).toBe(`20142023:${payload.representative.index}`);
+    if (payload.representative.matchesTypicalScore) {
+      expect(payload.result.ohioState.points).toBe(payload.series.ohioState.typicalScore);
+      expect(payload.result.michigan.points).toBe(payload.series.michigan.typicalScore);
+    }
     expect(payload.series.runCount).toBe(rivalrySnapshot.model.simulationRunCount);
     expect(payload.series.ohioState.wins + payload.series.michigan.wins).toBe(payload.series.runCount);
     expect(payload.series.marginBuckets.reduce((sum: number, bucket: { games: number }) => sum + bucket.games, 0)).toBe(payload.series.runCount);
