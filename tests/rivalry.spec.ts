@@ -260,7 +260,7 @@ test.describe('Rivalry Lab', () => {
     await expect(call.locator('[data-call-favorite]')).toContainText(/IS FAVORED$|^UPSET:/);
     await expect(call.locator('[data-call-share]')).toContainText(/won \d+% of the simulated games\./);
     await expect(call.locator('[data-call-one-score]')).toContainText(/% OF GAMES ENDED WITHIN ONE SCORE/);
-    await expect(call.locator('[data-call-upset]')).toContainText(/^UPSET RATE \d+%/);
+    await expect(call.locator('[data-call-upset]')).toContainText(/^UNDERDOG CHECK · PREGAME GAVE \w+.* \d+%; THE RUN DELIVERED \d+% · (UNDERPERFORMING|OVERPERFORMING|MATCHING)/);
     await expect(page.locator('[data-game-score]')).toContainText('TYPICAL SCORE');
     const typicalScores = await page.locator('[data-game-score] strong').allTextContents();
     const labelText = await page.locator('[data-run-game-label]').textContent();
