@@ -113,6 +113,29 @@ test.describe('site navigation', () => {
     expect(row.y).toBeGreaterThan(merch.y);
   });
 
+  test('keeps every destination reachable without JavaScript', async ({ browser }) => {
+    // Nothing may hide a link that only a click handler could bring back, so
+    // the bar falls back to the scrolling row it had before the collapse.
+    const context = await browser.newContext({ javaScriptEnabled: false, viewport: PHONE });
+    const page = await context.newPage();
+    await page.goto('/');
+
+    const nav = page.getByRole('navigation', { name: 'Site' });
+    await expect(nav).not.toHaveClass(/collapsible/);
+    await expect(page.locator('.site-nav-toggle')).toBeHidden();
+    for (const label of ['COUNTDOWN', 'THE RECORD', 'RIVALRY LAB', 'MERCH']) {
+      await expect(nav.getByRole('link', { name: label })).toBeVisible();
+    }
+
+    // Share falls back to the pinned pill rather than a hidden menu row.
+    expect(await page.locator('#share-clip').evaluate((el) => getComputedStyle(el).position)).toBe(
+      'fixed'
+    );
+    await expect(page.locator('#share-trigger')).toBeVisible();
+
+    await context.close();
+  });
+
   test('leaves the desktop ribbon in the corner', async ({ page }) => {
     await page.setViewportSize(WIDE);
     await page.goto('/');

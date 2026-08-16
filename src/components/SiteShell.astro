@@ -48,6 +48,9 @@ const nav = [{ href: '/', label: 'Home', id: 'count', icon: true }, { href: '/co
   const navToggle = siteNav?.querySelector<HTMLButtonElement>('.site-nav-toggle');
 
   if (siteNav && navToggle) {
+    // The collapsed styling is only safe once the toggle can open it again.
+    siteNav.classList.add('collapsible');
+
     const setOpen = (open: boolean) => {
       siteNav.classList.toggle('open', open);
       navToggle.setAttribute('aria-expanded', String(open));
@@ -88,18 +91,20 @@ const nav = [{ href: '/', label: 'Home', id: 'count', icon: true }, { href: '/co
    .site-nav-share { display:contents; }
 
    /* Below 560px the five links outrun the bar, so all but the home icon
-      collapse behind the toggle and stack under it. */
+      collapse behind the toggle and stack under it. Every rule here is gated
+      on .collapsible, which the nav script adds once it can drive the toggle.
+      Without it the bar keeps its scrolling row and stays usable. */
    @media (max-width:560px) {
-     .site-nav { flex-wrap:wrap; align-items:center; overflow:visible; column-gap:16px; row-gap:0; padding-bottom:0; }
+     .site-nav.collapsible { flex-wrap:wrap; align-items:center; overflow:visible; column-gap:16px; row-gap:0; padding-bottom:0; }
      /* The toggle trails the links in the markup; order keeps it on the bar
         row, opposite the home icon, so the opened links stack under both. */
-     .site-nav-toggle { display:grid; order:-1; margin-left:auto; }
-     .site-nav-home { order:-2; padding-bottom:0; }
-     .site-nav a:not(.site-nav-home) { display:none; width:100%; padding:15px 2px; border-top:1px solid #d9dce1; font-size:15px; }
-     .site-nav.open a:not(.site-nav-home) { display:block; }
+     .site-nav.collapsible .site-nav-toggle { display:grid; order:-1; margin-left:auto; }
+     .site-nav.collapsible .site-nav-home { order:-2; padding-bottom:0; }
+     .site-nav.collapsible a:not(.site-nav-home) { display:none; width:100%; padding:15px 2px; border-top:1px solid #d9dce1; font-size:15px; }
+     .site-nav.collapsible.open a:not(.site-nav-home) { display:block; }
      /* Share is the last row of the menu, not a floating badge. */
-     .site-nav-share { display:none; width:100%; }
-     .site-nav.open .site-nav-share { display:block; }
-     .site-nav.open { padding-bottom:14px; }
+     .site-nav.collapsible .site-nav-share { display:none; width:100%; }
+     .site-nav.collapsible.open .site-nav-share { display:block; }
+     .site-nav.collapsible.open { padding-bottom:14px; }
    }
 </style>

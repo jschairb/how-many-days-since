@@ -160,9 +160,11 @@ const { referenceDate, siteUrl } = Astro.props;
 
   /* At the nav's collapse breakpoint the corner belongs to the hamburger, so
      Share stops floating and becomes the last row of the opened menu. The nav
-     owns whether the row is shown; this block only owns how it looks. */
+     owns whether the row is shown; this block only owns how it looks. It is
+     gated on the same .collapsible class, so when the nav script never runs
+     the badge stays the corner pill it is above the breakpoint. */
   @media (max-width: 560px) {
-    #share-clip {
+    :global(.site-nav.collapsible) #share-clip {
       position: static;
       width: 100%;
       height: auto;
@@ -170,7 +172,7 @@ const { referenceDate, siteUrl } = Astro.props;
       pointer-events: auto;
     }
 
-    #share-trigger {
+    :global(.site-nav.collapsible) #share-trigger {
       display: block;
       width: 100%;
       padding: 15px 2px;
@@ -184,13 +186,13 @@ const { referenceDate, siteUrl } = Astro.props;
       box-shadow: none;
     }
 
-    #share-trigger:hover,
-    #share-trigger:focus-visible {
+    :global(.site-nav.collapsible) #share-trigger:hover,
+    :global(.site-nav.collapsible) #share-trigger:focus-visible {
       background: none;
       color: #8f3642;
     }
 
-    #share-menu {
+    :global(.site-nav.collapsible) #share-menu {
       position: static;
       min-width: 0;
       padding: 0 0 4px 14px;
@@ -199,8 +201,8 @@ const { referenceDate, siteUrl } = Astro.props;
       box-shadow: none;
     }
 
-    #share-menu > button,
-    #share-menu > a {
+    :global(.site-nav.collapsible) #share-menu > button,
+    :global(.site-nav.collapsible) #share-menu > a {
       padding: 11px 8px;
     }
   }
