@@ -37,13 +37,69 @@ const nav = [{ href: '/', label: 'Home', id: 'count', icon: true }, { href: '/co
     {gaMeasurementId && <><script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script><script is:inline define:vars={{ gaMeasurementId }}>window.dataLayer=window.dataLayer||[];function gtag(){{window.dataLayer.push(arguments)}}gtag('js',new Date());gtag('config',gaMeasurementId);</script></>}
   </head>
   <body>
-    <header class="site-header"><nav class="site-nav" aria-label="Site">{nav.map((item) => <a href={item.href} aria-label={item.icon ? item.label : undefined} target={item.id === 'merch' ? '_blank' : undefined} rel={item.id === 'merch' ? 'noopener noreferrer' : undefined} aria-current={active === item.id ? 'page' : undefined} class:list={{ active: active === item.id, 'site-nav-home': item.icon }}>{item.icon ? <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v10h-6v-6H9v6H3z" /></svg> : item.label}</a>)}</nav></header>
+    <header class="site-header"><nav class="site-nav" id="site-nav" aria-label="Site">{nav.map((item) => <a href={item.href} aria-label={item.icon ? item.label : undefined} target={item.id === 'merch' ? '_blank' : undefined} rel={item.id === 'merch' ? 'noopener noreferrer' : undefined} aria-current={active === item.id ? 'page' : undefined} class:list={{ active: active === item.id, 'site-nav-home': item.icon }}>{item.icon ? <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v10h-6v-6H9v6H3z" /></svg> : item.label}</a>)}<div class="site-nav-share"><slot name="nav-share" /></div><button type="button" class="site-nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span aria-hidden="true"></span></button></nav></header>
     <main class:list={{ 'site-main': true, lab: active === 'lab' }}><slot /></main>
     {active !== 'lab' && <footer class="site-footer">an <a href="https://github.com/jschairb">@jschairb</a> joint, from <a class="gwp" href="https://greatwesternproductions.com">Great Western Productions</a> · © {new Date().getFullYear()}</footer>}
   </body>
 </html>
 
+<script>
+  const siteNav = document.getElementById('site-nav');
+  const navToggle = siteNav?.querySelector<HTMLButtonElement>('.site-nav-toggle');
+
+  if (siteNav && navToggle) {
+    const setOpen = (open: boolean) => {
+      siteNav.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
+    };
+
+    navToggle.addEventListener('click', () => setOpen(!siteNav.classList.contains('open')));
+
+    document.addEventListener('click', (event) => {
+      if (!siteNav.contains(event.target as Node)) setOpen(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && siteNav.classList.contains('open')) {
+        setOpen(false);
+        navToggle.focus();
+      }
+    });
+
+    // The links return to the bar above 560px, so drop the open state with them.
+    matchMedia('(max-width: 560px)').addEventListener('change', (event) => {
+      if (!event.matches) setOpen(false);
+    });
+  }
+</script>
+
 <style is:global>
    .site-nav-home { display:grid; place-items:center; width:18px; padding:0 0 4px; color:#8b9098!important; }
    .site-nav-home svg { width:16px; height:16px; fill:currentColor; }
+   .site-nav-toggle { display:none; place-items:center; width:38px; height:38px; padding:0; border:2px solid #111; background:#fff; color:#111; cursor:pointer; }
+   .site-nav-toggle span,.site-nav-toggle span::before,.site-nav-toggle span::after { display:block; width:17px; height:2px; background:currentColor; }
+   .site-nav-toggle span { position:relative; }
+   .site-nav-toggle span::before,.site-nav-toggle span::after { content:''; position:absolute; left:0; }
+   .site-nav-toggle span::before { top:-5px; }
+   .site-nav-toggle span::after { top:5px; }
+   .site-nav-toggle[aria-expanded=true] { background:#111; color:#fff; }
+   /* Above the breakpoint the slotted Share badge pins itself to the viewport
+      corner, so it must not take a slot in the nav row. */
+   .site-nav-share { display:contents; }
+
+   /* Below 560px the five links outrun the bar, so all but the home icon
+      collapse behind the toggle and stack under it. */
+   @media (max-width:560px) {
+     .site-nav { flex-wrap:wrap; align-items:center; overflow:visible; column-gap:16px; row-gap:0; padding-bottom:0; }
+     /* The toggle trails the links in the markup; order keeps it on the bar
+        row, opposite the home icon, so the opened links stack under both. */
+     .site-nav-toggle { display:grid; order:-1; margin-left:auto; }
+     .site-nav-home { order:-2; padding-bottom:0; }
+     .site-nav a:not(.site-nav-home) { display:none; width:100%; padding:15px 2px; border-top:1px solid #d9dce1; font-size:15px; }
+     .site-nav.open a:not(.site-nav-home) { display:block; }
+     /* Share is the last row of the menu, not a floating badge. */
+     .site-nav-share { display:none; width:100%; }
+     .site-nav.open .site-nav-share { display:block; }
+     .site-nav.open { padding-bottom:14px; }
+   }
 </style>
