@@ -1,0 +1,102 @@
+---
+import SiteShell from '../components/SiteShell.astro';
+import { nextRivalryGame } from '../lib/next-rivalry-game';
+
+const eventSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsEvent',
+  name: nextRivalryGame.name,
+  startDate: nextRivalryGame.start,
+  location: {
+    '@type': 'Place',
+    name: nextRivalryGame.location,
+    address: { '@type': 'PostalAddress', addressLocality: nextRivalryGame.location, addressRegion: 'OH', addressCountry: 'US' },
+  },
+};
+---
+
+<SiteShell active="countdown" title="Countdown to The Game | Ohio State vs Michigan" description="A live countdown to the 2026 Ohio State-Michigan game in Columbus." schema={eventSchema}>
+  <section class="countdown" data-countdown data-game-start={nextRivalryGame.start} data-team="ohio-state">
+    <p class="eyebrow">{nextRivalryGame.name.toUpperCase()}</p>
+    <h1>UNTIL KICKOFF</h1>
+    <p class="kickoff">{nextRivalryGame.date.toUpperCase()} · {nextRivalryGame.time.toUpperCase()} · {nextRivalryGame.location.toUpperCase()}</p>
+    <div class="countdown-clock" aria-live="polite" aria-label="Time remaining until kickoff">
+      <div><strong data-countdown-days>0</strong><span>DAYS</span></div>
+      <div><strong data-countdown-hours>00</strong><span>HOURS</span></div>
+      <div><strong data-countdown-minutes>00</strong><span>MINUTES</span></div>
+      <div><strong data-countdown-seconds>00</strong><span>SECONDS</span></div>
+    </div>
+    <div class="team-toggle" aria-label="Choose team colors">
+      <button type="button" data-team-choice="ohio-state" aria-pressed="true">OHIO STATE</button>
+      <button type="button" data-team-choice="michigan" aria-pressed="false">MICHIGAN</button>
+    </div>
+    <button class="share-countdown" type="button" data-share-countdown>COPY COUNTDOWN LINK</button>
+    <p class="share-status" data-share-status aria-live="polite"></p>
+  </section>
+</SiteShell>
+
+<script>
+  const countdown = document.querySelector<HTMLElement>('[data-countdown]');
+  const gameStart = new Date(countdown?.dataset.gameStart ?? '').getTime();
+  const days = document.querySelector<HTMLElement>('[data-countdown-days]');
+  const hours = document.querySelector<HTMLElement>('[data-countdown-hours]');
+  const minutes = document.querySelector<HTMLElement>('[data-countdown-minutes]');
+  const seconds = document.querySelector<HTMLElement>('[data-countdown-seconds]');
+  const status = document.querySelector<HTMLElement>('[data-share-status]');
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-team-choice]');
+
+  const render = () => {
+    const remaining = Math.max(gameStart - Date.now(), 0);
+    const totalSeconds = Math.floor(remaining / 1_000);
+    if (days) days.textContent = String(Math.floor(totalSeconds / 86_400));
+    if (hours) hours.textContent = String(Math.floor(totalSeconds % 86_400 / 3_600)).padStart(2, '0');
+    if (minutes) minutes.textContent = String(Math.floor(totalSeconds % 3_600 / 60)).padStart(2, '0');
+    if (seconds) seconds.textContent = String(totalSeconds % 60).padStart(2, '0');
+  };
+
+  const setTeam = (team: string, replace = false) => {
+    if (!countdown) return;
+    countdown.dataset.team = team;
+    buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.teamChoice === team)));
+    const url = new URL(window.location.href);
+    url.searchParams.set('team', team);
+    history[replace ? 'replaceState' : 'pushState']({}, '', url);
+  };
+
+  const selectedTeam = new URLSearchParams(window.location.search).get('team');
+  if (selectedTeam === 'michigan' || selectedTeam === 'ohio-state') setTeam(selectedTeam, true);
+  buttons.forEach((button) => button.addEventListener('click', () => setTeam(button.dataset.teamChoice ?? 'ohio-state')));
+  document.querySelector<HTMLButtonElement>('[data-share-countdown]')?.addEventListener('click', async () => {
+    const url = window.location.href;
+    try {
+      await navigator.clipboard.writeText(url);
+      if (status) status.textContent = 'COUNTDOWN LINK COPIED.';
+    } catch {
+      if (navigator.share) await navigator.share({ title: document.title, url });
+      else if (status) status.textContent = url;
+    }
+  });
+
+  render();
+  setInterval(render, 1_000);
+</script>
+
+<style>
+   :global(main.site-main) { display:flex; flex-direction:column; min-height:calc(100dvh - 142px); padding-bottom:0; }
+   .countdown { --team:#bb0000; --team-contrast:#d9dce1; --team-shadow:#d9dce1; display:flex; flex:1; flex-direction:column; max-width:900px; width:100%; margin:0 auto; padding:36px 0 12px; text-align:center; }
+   .countdown[data-team="michigan"] { --team:#00274c; --team-contrast:#ffcb05; --team-shadow:#ffcb05; }
+  .eyebrow,.kickoff,.share-status { color:#6b717c; font-size:13px; font-weight:700; letter-spacing:.06em; }
+  .countdown h1 { margin:8px 0; font:clamp(42px, 9vw, 94px)/.9 'Archivo Black'; letter-spacing:-.04em; }
+  .kickoff { margin:0; }
+   .countdown-clock { display:grid; grid-template-columns:repeat(4,1fr); margin:36px 0 28px; border:3px solid #111; }
+  .countdown-clock div { padding:22px 12px; border-right:1px solid #d9dce1; }
+  .countdown-clock div:last-child { border:0; }
+   .countdown-clock strong { display:block; color:var(--team); font:clamp(52px, 13vw, 128px)/.85 'Archivo Black'; letter-spacing:-.06em; text-shadow:4px 4px var(--team-shadow); }
+  .countdown-clock span { display:block; margin-top:12px; font-size:12px; font-weight:700; letter-spacing:.08em; }
+   .team-toggle { display:flex; justify-content:center; gap:18px; margin-top:auto; padding-top:32px; }
+   .team-toggle button,.share-countdown { border:0; background:none; padding:3px 0; color:#6b717c; font-size:11px; font-weight:700; letter-spacing:.06em; cursor:pointer; }
+   .team-toggle button[aria-pressed="true"] { color:#111; text-decoration:underline 2px var(--team); text-underline-offset:5px; }
+   .share-countdown { margin-top:18px; }
+  .share-status { min-height:20px; margin:10px 0 0; }
+  @media (max-width:640px) { .countdown { padding-top:18px; } .countdown-clock div { padding:18px 4px; } .team-toggle { flex-direction:column; } .team-toggle button { width:100%; } }
+</style>
