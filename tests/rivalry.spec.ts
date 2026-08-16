@@ -143,6 +143,8 @@ test.describe('Rivalry Lab', () => {
 
   test('explains and plays one selected matchup without series controls or turning points', async ({ page }) => {
     await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('1995');
+    await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
@@ -194,6 +196,8 @@ test.describe('Rivalry Lab', () => {
   test('keeps the 1995 Ohio State and 2023 Michigan pregame readable on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('1995');
+    await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
