@@ -55,13 +55,18 @@ The container listens on port `4310`. Verify `/api/health`, `/api/matchup`, `/ap
 The public site consumes a reduced, derived snapshot from the private historical-model workspace. It never imports the warehouse, CFBD credentials, or purchased data packages.
 
 ```sh
-# In ~/src/cfb/cfb_simulator, after ratings and validation refresh:
+# In ~/src/cfb/cfb_simulator, after the starter-pack import and ratings refresh:
+npm run derive:season-inputs
+npm run report:coverage
+npm run harness:run-count     # records the repeated-game run count the exporter requires
 npm run product:generate
 npm run product:export-public
 
 # In this repository:
 npm run sync:lab-snapshot -- ../cfb/cfb_simulator/exports/rivalry-lab-snapshot.json
 ```
+
+The sync script accepts only the `rivalry-lab-public-snapshot-v2` schema, requires the harness-selected `model.simulationRunCount`, and rejects files carrying private warehouse keys. The server runs that many repeated games per Simulate action; `SIMULATION_RUN_COUNT` overrides it for operations work.
 
 Review and commit the resulting `src/data/rivalry-lab-snapshot.json` with the public-site change. This explicit release step prevents an unreviewed model refresh from changing production behavior.
 
