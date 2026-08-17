@@ -150,9 +150,7 @@ test.describe('Rivalry Lab', () => {
 
     const playOne = page.getByRole('button', { name: 'SIMULATE', exact: true });
     await expect(playOne).toBeVisible();
-    await expect(page.locator('[data-view="pregame"]')).toContainText(
-      'Pick this matchup, then simulate it.'
-    );
+    await expect(page.locator('[data-view="pregame"]')).toContainText(/SIMULATE plays this matchup [\d,]+ times/);
     expect(await playOne.evaluate((button) => button.getBoundingClientRect().top)).toBeGreaterThan(
       await page.locator('[data-win-probability]').evaluate((section) => section.getBoundingClientRect().top)
     );
@@ -226,7 +224,7 @@ test.describe('Rivalry Lab', () => {
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
     await expect(page.locator('[data-simulation-coverage]')).toContainText('RICH DATA');
-    await expect(page.locator('[data-simulation-coverage]')).toContainText('Imported game data is active');
+    await expect(page.locator('[data-simulation-coverage]')).toContainText('Imported game data is active for both selected seasons.');
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-pregame-desktop.png', fullPage: true });
     await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
     await expect(page.locator('[data-model-call]')).toBeVisible();
