@@ -56,6 +56,29 @@ describe('resolveOgCard', () => {
     expect(card?.team).toBe('michigan');
   });
 
+  it('keeps both sides of a tied meeting in ink', () => {
+    const card = resolveOgCard('/record/1992', NOW);
+
+    // Both sides carry "Tie", and neither may be read as a team.
+    expect(card?.headline).toEqual([
+      { text: 'TIE', tone: 'ink' },
+      { text: '13–13' },
+      { text: 'TIE', tone: 'ink' },
+    ]);
+    expect(card?.team).toBe('rivalry');
+  });
+
+  it('keeps every tied meeting neutral', () => {
+    for (const year of [1900, 1910, 1941, 1949, 1973, 1992]) {
+      const card = resolveOgCard(`/record/${year}`, NOW);
+      const tones = (card!.headline as { tone?: string }[]).map((span) => span.tone);
+
+      expect(tones, `${year}`).not.toContain('michigan');
+      expect(tones, `${year}`).not.toContain('ohio-state');
+      expect(card?.team, `${year}`).toBe('rivalry');
+    }
+  });
+
   it('summarises a team season without leaking the raw margin float', () => {
     const card = resolveOgCard('/teams/michigan/1997', NOW);
 

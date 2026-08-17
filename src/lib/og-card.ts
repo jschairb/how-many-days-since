@@ -109,19 +109,28 @@ function recordCard(): OgCard {
   };
 }
 
+/**
+ * The color one side of a score takes. The six tied meetings carry `Tie` on
+ * both sides, and `teamIdFor` would read that as Michigan, so a tie stays ink
+ * whichever side of the score it sits on.
+ */
+function sideTone(side: RivalryTeam | 'Tie'): HeadlineSpan['tone'] {
+  return side === 'Tie' ? 'ink' : teamIdFor(side);
+}
+
 function gameCard(year: number): OgCard | null {
   const game = games.find((entry) => entry.year === year);
   if (!game) return null;
   const winner = game.winner as RivalryTeam | 'Tie';
-  const loser = game.loser as RivalryTeam;
+  const loser = game.loser as RivalryTeam | 'Tie';
   return {
     eyebrow: `RIVALRY MEETING · ${game.year}`,
     // Laid out like the game page's hero: team names in their colors, the
     // score in ink between them.
     headline: [
-      { text: game.winner.toUpperCase(), tone: winner === 'Tie' ? 'ink' : teamIdFor(winner) },
+      { text: game.winner.toUpperCase(), tone: sideTone(winner) },
       { text: `${game.wScore}–${game.lScore}` },
-      { text: loser.toUpperCase(), tone: teamIdFor(loser) },
+      { text: game.loser.toUpperCase(), tone: sideTone(loser) },
     ],
     detail: `${game.date ?? 'Date not reported'} · ${game.location ?? 'Location not reported'}`,
     team: winner === 'Tie' ? 'rivalry' : teamIdFor(winner),
