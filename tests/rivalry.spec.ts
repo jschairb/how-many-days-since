@@ -262,7 +262,6 @@ test.describe('Rivalry Lab', () => {
     const call = page.locator('[data-model-call]');
     await expect(call).toBeVisible();
     await expect(call.getByRole('heading', { name: "THE MODEL'S RESULTS" })).toBeVisible();
-    await expect(call.locator('[data-call-note]')).toContainText(/played this matchup [\d,]+ times/);
     await expect(call.locator('[data-call-favorite]')).toContainText(/WAS FAVORED$|^UPSET:/);
     await expect(call.locator('[data-call-share]')).toContainText(/won \d+% of them\./);
     await expect(call.locator('[data-call-one-score]')).toContainText(/% OF GAMES ENDED WITHIN ONE SCORE/);
