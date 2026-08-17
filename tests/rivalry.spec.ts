@@ -153,8 +153,8 @@ test.describe('Rivalry Lab', () => {
     await expect(page.locator('[data-view="pregame"]')).toContainText(
       'Pick this matchup, then simulate it.'
     );
-    expect(await playOne.evaluate((button) => button.getBoundingClientRect().top)).toBeLessThan(
-      await page.locator('.pregame-explanation').evaluate((section) => section.getBoundingClientRect().top)
+    expect(await playOne.evaluate((button) => button.getBoundingClientRect().top)).toBeGreaterThan(
+      await page.locator('[data-win-probability]').evaluate((section) => section.getBoundingClientRect().top)
     );
     await expect(page.getByText(/BEST OF 10|SIM 100|1,000|10,000/i)).toHaveCount(0);
 
@@ -181,15 +181,21 @@ test.describe('Rivalry Lab', () => {
     await expect(page.locator('[data-tape]')).toHaveCount(0);
 
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
-    await expect(page.locator('[data-expected-score]')).toContainText('DERIVED');
+    for (const step of ['GRADE BOTH SEASONS', 'TURN THE GAPS INTO POINTS', 'SET THE EXPECTED SCORE', 'TURN THE MARGIN INTO A CHANCE']) {
+      await expect(page.getByRole('heading', { name: step })).toBeVisible();
+    }
+    await expect(page.locator('.step em').first()).toHaveText('DERIVED');
+    await expect(page.locator('[data-input-list]')).toContainText('OFFENSE RATING');
+    await expect(page.locator('[data-osu-driver]')).toContainText(/expects Ohio State to score [\d.]+ points (more|fewer) than an average team/);
     await expect(page.locator('[data-expected-score]')).toContainText('27 MICH');
     await expect(page.locator('[data-expected-score]')).toContainText('24 OSU');
-    await expect(page.locator('[data-expected-margin]')).toContainText('DERIVED');
-    await expect(page.locator('[data-win-probability]')).toContainText('DERIVED');
-    await expect(page.locator('[data-pregame-inputs]')).toContainText('MATCHUP INPUTS');
-    await expect(page.locator('[data-pregame-inputs]')).toContainText('OFFENSE RATING');
-    await expect(page.locator('[data-pregame-method]')).toContainText('WHAT THIS MEANS');
-    await expect(page.locator('[data-pregame-drivers]')).toContainText('KEY DRIVERS');
+    await expect(page.locator('[data-win-probability]')).toBeVisible();
+    const stepOrder = await page.evaluate(() => {
+      const tops = ['[data-input-list]', '[data-osu-driver]', '[data-expected-score]', '[data-win-probability]', '[data-pregame-play]']
+        .map((selector) => document.querySelector(selector)!.getBoundingClientRect().top);
+      return tops.every((top, index) => index === 0 || top > tops[index - 1]);
+    });
+    expect(stepOrder).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-pregame-desktop.png', fullPage: true });
   });
 
@@ -202,7 +208,7 @@ test.describe('Rivalry Lab', () => {
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
     await expect(page.locator('[data-expected-score]')).toBeVisible();
-    await expect(page.locator('[data-pregame-inputs]')).toBeVisible();
+    await expect(page.locator('[data-input-list]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-pregame-mobile.png', fullPage: true });
     await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
