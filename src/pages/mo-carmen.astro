@@ -19,7 +19,7 @@ const canonical = canonicalUrl(Astro.url.pathname);
 const ogImage = `${siteUrl}/mo-carmen.png`;
 const ogImageAlt = 'Mo Carmen, the Ohio State anti-mascot, with his trumpet.';
 const ogLogo = `${siteUrl}${OG_LOGO_PATH}`;
-const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
+const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID ?? process.env.GA_MEASUREMENT_ID;
 ---
 
 <!DOCTYPE html>
