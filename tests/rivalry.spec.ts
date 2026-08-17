@@ -160,7 +160,7 @@ test.describe('Rivalry Lab', () => {
 
     await playOne.click();
     await expect(page.locator('[data-game-score]')).toContainText('TYPICAL SCORE');
-    await expect(page.locator('[data-game-coverage]')).toContainText('SCORE-SCHEDULE');
+    await expect(page.locator('[data-game-coverage]')).toHaveCount(0);
     await expect(page.getByText(/KEY TURNING POINT/i)).toHaveCount(0);
     await expect(page.getByRole('button', { name: /POSTGAME|RUN AGAIN/i })).toHaveCount(0);
     await expect(page.locator('[data-view="postgame"]')).toHaveCount(0);
@@ -212,7 +212,7 @@ test.describe('Rivalry Lab', () => {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-pregame-mobile.png', fullPage: true });
     await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
-    await expect(page.locator('[data-game-coverage]')).toContainText('SCORE-SCHEDULE');
+    await expect(page.locator('[data-game-score]')).toContainText('TYPICAL SCORE');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-game-mobile.png', fullPage: true });
   });
@@ -229,7 +229,7 @@ test.describe('Rivalry Lab', () => {
     await expect(page.locator('[data-simulation-coverage]')).toContainText('Imported game data is active');
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-pregame-desktop.png', fullPage: true });
     await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
-    await expect(page.locator('[data-game-coverage]')).toContainText('RICH DATA');
+    await expect(page.locator('[data-model-call]')).toBeVisible();
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-game-desktop.png', fullPage: true });
   });
 
@@ -245,7 +245,7 @@ test.describe('Rivalry Lab', () => {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-pregame-mobile.png', fullPage: true });
     await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
-    await expect(page.locator('[data-game-coverage]')).toContainText('RICH DATA');
+    await expect(page.locator('[data-model-call]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-game-mobile.png', fullPage: true });
   });
@@ -263,10 +263,10 @@ test.describe('Rivalry Lab', () => {
     await expect(call).toBeVisible();
     await expect(call.getByRole('heading', { name: "THE MODEL'S RESULTS" })).toBeVisible();
     await expect(call.locator('[data-call-note]')).toContainText(/played this matchup [\d,]+ times/);
-    await expect(call.locator('[data-call-favorite]')).toContainText(/IS FAVORED$|^UPSET:/);
-    await expect(call.locator('[data-call-share]')).toContainText(/won \d+% of the simulated games\./);
+    await expect(call.locator('[data-call-favorite]')).toContainText(/WAS FAVORED$|^UPSET:/);
+    await expect(call.locator('[data-call-share]')).toContainText(/won \d+% of them\./);
     await expect(call.locator('[data-call-one-score]')).toContainText(/% OF GAMES ENDED WITHIN ONE SCORE/);
-    await expect(call.locator('[data-call-upset]')).toContainText(/^UNDERDOG CHECK · PREGAME GAVE \w+.* \d+%; THE RUN DELIVERED \d+% \([+-]?\d+ PTS VS PREGAME\)/);
+    await expect(call.locator('[data-call-upset]')).toContainText(/^UNDERDOG CHECK · PREGAME GAVE \w+.* \d+%; THE RUN DELIVERED \d+% \([+-]?\d+ PTS\)/);
     await expect(page.locator('[data-game-score]')).toContainText('TYPICAL SCORE');
     const typicalScores = await page.locator('[data-game-score] strong').allTextContents();
     const labelText = await page.locator('[data-run-game-label]').textContent();
