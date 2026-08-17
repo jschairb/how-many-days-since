@@ -46,9 +46,10 @@ for (const { path, card } of PAGES) {
       'content',
       `${SITE}/og-logo.png`
     );
+    // One fixed canonical per page, in the sitemap's trailing-slash form.
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
-      `${SITE}${path === '/' ? '/' : path}`
+      `${SITE}${path === '/' ? '/' : `${path}/`}`
     );
 
     // The card the page advertises has to be one the site actually serves.
@@ -57,6 +58,19 @@ for (const { path, card } of PAGES) {
     expect(image.headers()['content-type']).toContain('image/png');
   });
 }
+
+test('points both URL variants of a page at one canonical', async ({ page }) => {
+  const canonical = `${SITE}/mo-carmen/`;
+
+  for (const variant of ['/mo-carmen', '/mo-carmen/']) {
+    await page.goto(variant);
+    await expect(page.locator('link[rel="canonical"]'), variant).toHaveAttribute('href', canonical);
+    await expect(page.locator('meta[property="og:url"]'), variant).toHaveAttribute(
+      'content',
+      canonical
+    );
+  }
+});
 
 test('serves no card for a route that has no page', async ({ request }) => {
   expect((await request.get('/og/not-a-page.png')).status()).toBe(404);
@@ -67,7 +81,7 @@ test('publishes canonical metadata and structured data for Rivalry Lab', async (
   await page.goto('/rivalry-lab');
 
   await expect(page).toHaveTitle(/Rivalry Lab/i);
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://howmanydayssincemichiganhasbeatenohiostate.com/rivalry-lab');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://howmanydayssincemichiganhasbeatenohiostate.com/rivalry-lab/');
   await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2);
 });
 
@@ -77,7 +91,7 @@ test('publishes an evidence-labeled Rivalry Lab methodology page', async ({ page
   await expect(page).toHaveTitle(/Rivalry Lab Methodology/i);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',
-    'https://howmanydayssincemichiganhasbeatenohiostate.com/rivalry-lab/about'
+    'https://howmanydayssincemichiganhasbeatenohiostate.com/rivalry-lab/about/'
   );
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
     'content',

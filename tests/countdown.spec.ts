@@ -20,7 +20,7 @@ test('publishes the next game countdown with canonical event metadata', async ({
   await expect(page).toHaveTitle(/Countdown to The Game/i);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',
-    'https://howmanydayssincemichiganhasbeatenohiostate.com/countdown'
+    'https://howmanydayssincemichiganhasbeatenohiostate.com/countdown/'
   );
   await expect(page.getByRole('heading', { name: 'THE GAME', exact: true })).toBeVisible();
   await expect(page.locator('[data-countdown-days]')).toBeVisible();

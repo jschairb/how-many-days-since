@@ -6,13 +6,15 @@ import {
   OG_LOGO_PATH,
   OG_SITE_NAME,
 } from '../lib/og-card';
+import { SITE_URL, canonicalUrl } from '../lib/canonical';
 
 const title = 'Mo Carmen: The Mascot for a Dominance That Never Ends';
 const description = 'The anti-mascot for an era of undeniable truth: The Horn in the Dark. Born the moment Shawn Springs fell down in 1996, Mo Carmen represents Ohio State\'s dominance over Michigan.';
-const siteUrl = 'https://howmanydayssincemichiganhasbeatenohiostate.com';
-// Derived from the request rather than hardcoded, so it matches the trailing
-// slash the sitemap and the SiteShell pages use.
-const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+const siteUrl = SITE_URL;
+// One fixed URL, matching the sitemap. This page is server-rendered and answers
+// on both /mo-carmen and /mo-carmen/, so a request-derived canonical would have
+// each variant point at itself and consolidate neither.
+const canonical = canonicalUrl(Astro.url.pathname);
 // This page keeps its hand-made card rather than a generated one.
 const ogImage = `${siteUrl}/mo-carmen.png`;
 const ogImageAlt = 'Mo Carmen, the Ohio State anti-mascot, with his trumpet.';

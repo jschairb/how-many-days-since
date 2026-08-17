@@ -11,9 +11,13 @@ import {
   ogImagePathFor,
   resolveOgCard,
 } from '../lib/og-card';
-const site = 'https://howmanydayssincemichiganhasbeatenohiostate.com';
+import { SITE_URL, canonicalUrl } from '../lib/canonical';
+const site = SITE_URL;
 const { active, title = 'How Many Days Since Michigan Has Beaten Ohio State?', description = 'The Ohio State-Michigan rivalry record and an evidence-labeled cross-era Rivalry Lab.', ogImage, ogImageAlt, schema } = Astro.props;
-const canonical = new URL(Astro.url.pathname, site).toString();
+// Fixed to the trailing-slash form the sitemap publishes. Most pages are
+// server-rendered, so a request-derived canonical would let `/record` and
+// `/record/` each claim to be the original.
+const canonical = canonicalUrl(Astro.url.pathname);
 // Every page gets a card: its own generated one, or the site card as a fallback
 // for routes the resolver does not know. `og:image` is never left off.
 const openGraphImage = new URL(ogImage ?? ogImagePathFor(Astro.url.pathname), site).toString();
