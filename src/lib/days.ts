@@ -1,5 +1,13 @@
 const COLUMBUS_TIME_ZONE = 'America/New_York';
 
+/**
+ * Kickoff of the last Michigan win, November 30, 2024 in Columbus. The home
+ * page counts from here, and so does its Open Graph card, so the two read the
+ * same number.
+ */
+export const LAST_MICHIGAN_WIN_ISO = '2024-11-30T17:00:00Z';
+export const LAST_MICHIGAN_WIN = new Date(LAST_MICHIGAN_WIN_ISO);
+
 function calendarDay(date: Date): number {
   const parts = new Intl.DateTimeFormat('en-US', {
     timeZone: COLUMBUS_TIME_ZONE,

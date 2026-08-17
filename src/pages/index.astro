@@ -2,10 +2,10 @@
 import ShareGraphic from '../components/ShareGraphic.astro';
 import SiteShell from '../components/SiteShell.astro';
 import games from '../data/rivalry-games.json';
-import { calcDaysSince } from '../lib/days';
+import { LAST_MICHIGAN_WIN, LAST_MICHIGAN_WIN_ISO, calcDaysSince } from '../lib/days';
 import { nextRivalryGame } from '../lib/next-rivalry-game';
 
-const referenceDate = new Date('2024-11-30T17:00:00Z');
+const referenceDate = LAST_MICHIGAN_WIN;
 const now = new Date();
 const days = calcDaysSince(referenceDate, now);
 const totals = games.reduce((value, game) => ({ michigan: value.michigan + Number(game.winner === 'Michigan'), ohioState: value.ohioState + Number(game.winner === 'Ohio State'), ties: value.ties + Number(game.winner === 'Tie') }), { michigan: 0, ohioState: 0, ties: 0 });
@@ -13,8 +13,8 @@ const since2012 = games.filter((game) => game.year >= 2012).reduce((value, game)
 const date = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }).format(now);
 ---
 <SiteShell active="count" title="How Many Days Since Michigan Has Beaten Ohio State?" description="The live Ohio State-Michigan day count, rivalry record, and evidence-labeled Rivalry Lab.">
-  <ShareGraphic slot="nav-share" referenceDate="2024-11-30T17:00:00Z" siteUrl="https://howmanydayssincemichiganhasbeatenohiostate.com" />
-  <section class="count" data-live-count data-reference-date="2024-11-30T17:00:00Z"><h1>HOW MANY DAYS SINCE <span class="mich">MICHIGAN</span> HAS BEATEN <span class="osu">OHIO STATE</span>?</h1><p class="date" data-current-date>{date}</p><p class="counter" aria-live="polite"><strong id="days_count">{days.toLocaleString()}</strong> <span>DAYS</span></p><p class="last">Last <b class="mich">Michigan</b> win: November 30, 2024 - 13-10, Columbus.<br />Last <b class="osu">Ohio State</b> win: November 29, 2025 - 27-9, Ann Arbor.<br /><a class="next-game-link" href="/countdown"><b>NEXT GAME:</b> {nextRivalryGame.date} - <span class="osu">{nextRivalryGame.location}</span>.</a></p></section>
+  <ShareGraphic slot="nav-share" referenceDate={LAST_MICHIGAN_WIN_ISO} siteUrl="https://howmanydayssincemichiganhasbeatenohiostate.com" />
+  <section class="count" data-live-count data-reference-date={LAST_MICHIGAN_WIN_ISO}><h1>HOW MANY DAYS SINCE <span class="mich">MICHIGAN</span> HAS BEATEN <span class="osu">OHIO STATE</span>?</h1><p class="date" data-current-date>{date}</p><p class="counter" aria-live="polite"><strong id="days_count">{days.toLocaleString()}</strong> <span>DAYS</span></p><p class="last">Last <b class="mich">Michigan</b> win: November 30, 2024 - 13-10, Columbus.<br />Last <b class="osu">Ohio State</b> win: November 29, 2025 - 27-9, Ann Arbor.<br /><a class="next-game-link" href="/countdown"><b>NEXT GAME:</b> {nextRivalryGame.date} - <span class="osu">{nextRivalryGame.location}</span>.</a></p></section>
   <section class="stat-box"><div><strong class="osu">OSU 27-9</strong><small>THE GAME, 2025 · ANN ARBOR</small></div><div><strong>{totals.michigan}-{totals.ohioState}-{totals.ties}</strong><small>ALL-TIME SERIES (M-OSU-T), 1897-2025</small></div><div><strong class="osu">{since2012.ohioState}-{since2012.michigan}</strong><small>OHIO STATE SINCE 2012</small></div></section>
   <section class="featured-merch" aria-labelledby="merch-heading"><img src="/images/products/script-in-the-snow.jpg" alt="Script in the Snow 2025 Rivalry Game commemorative tee" /><div><p>RIVALRY LAB MERCH</p><h2 id="merch-heading">SCRIPT IN THE SNOW</h2><span>THE 2025 RIVALRY GAME COMMEMORATIVE TEE</span><a href="https://gwpworkshop.com/products/script-in-the-snow-the-2025-rivalry-game-commemorative-tee" target="_blank" rel="noopener noreferrer" data-track-event="merch_product_opened" data-track-properties={JSON.stringify({ product: 'script-in-the-snow', placement: 'home_featured' })}>SHOP THE 2025 COMMEMORATIVE TEE →</a></div></section>
 </SiteShell>
