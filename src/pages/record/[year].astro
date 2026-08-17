@@ -2,7 +2,7 @@
 import SiteShell from '../../components/SiteShell.astro';
 import games from '../../data/rivalry-games.json';
 import { rivalrySnapshot } from '../../lib/rivalry-snapshot';
-import { teamIdFor, teamSeasonFor, type RivalryTeam } from '../../lib/rivalry-archive';
+import { sideClass, teamIdFor, teamSeasonFor, type RivalrySide, type RivalryTeam } from '../../lib/rivalry-archive';
 
 export const prerender = true;
 export function getStaticPaths() { return games.map((game) => ({ params: { year: String(game.year) }, props: { game } })); }
@@ -11,6 +11,10 @@ type Game = typeof games[number];
 const game = Astro.props.game as Game;
 const winner = game.winner as RivalryTeam;
 const loser = game.loser as RivalryTeam;
+// The hero's team colors go through `sideClass` so the six tied meetings read
+// as neutral ink instead of falling through `teamIdFor` into Michigan navy.
+const winnerClass = sideClass(game.winner as RivalrySide);
+const loserClass = sideClass(game.loser as RivalrySide);
 const winnerSeason = teamSeasonFor(teamIdFor(winner), game.year);
 const loserSeason = teamSeasonFor(teamIdFor(loser), game.year);
 const cfbdGame = rivalrySnapshot.rivalryGames.find((entry) => entry.season === game.year);
@@ -23,7 +27,7 @@ const rank = (value: number | null) => value === null ? 'UNRANKED / NOT REPORTED
 <SiteShell active="record" title={`${game.year} ${winner} vs ${loser} | Ohio State-Michigan`} description={`The ${game.year} Ohio State-Michigan rivalry meeting: ${winner} ${game.wScore}, ${loser} ${game.lScore}.`}>
   <article class="archive-page game-archive">
     <a class="archive-back" href="/record">← EVERY MEETING</a>
-    <header class="game-hero"><span>RIVALRY MEETING · {game.year}</span><h1 data-testid="game-score"><span class={teamIdFor(winner) === 'ohio-state' ? 'osu' : 'mich'}>{winner.toUpperCase()}</span> {game.wScore}<i>–</i>{game.lScore} <span class={teamIdFor(loser) === 'ohio-state' ? 'osu' : 'mich'}>{loser.toUpperCase()}</span></h1><small>{game.date ?? 'DATE NOT REPORTED'} · {game.location ?? 'LOCATION NOT REPORTED'}{game.notes ? ` · ${game.notes}` : ''}</small></header>
+    <header class="game-hero"><span>RIVALRY MEETING · {game.year}</span><h1 data-testid="game-score"><span class={winnerClass}>{winner.toUpperCase()}</span> {game.wScore}<i>–</i>{game.lScore} <span class={loserClass}>{loser.toUpperCase()}</span></h1><small>{game.date ?? 'DATE NOT REPORTED'} · {game.location ?? 'LOCATION NOT REPORTED'}{game.notes ? ` · ${game.notes}` : ''}</small></header>
     <section class="archive-panel" data-testid="game-facts"><div class="section-title"><h2>GAME FACTS</h2><span>ARCHIVED RESULT</span></div><dl class="game-facts"><div><dt>Date</dt><dd>{game.date ?? 'NOT REPORTED'}</dd></div><div><dt>Location</dt><dd>{game.location ?? 'NOT REPORTED'}</dd></div><div><dt>{winner} rank</dt><dd>{rank(game.wRank)}</dd></div><div><dt>{loser} rank</dt><dd>{rank(game.lRank)}</dd></div>{game.notes && <div><dt>Notes</dt><dd>{game.notes}</dd></div>}</dl></section>
     <section class="archive-panel"><div class="section-title"><h2>TEAM SEASONS</h2><span>PUBLIC SNAPSHOT</span></div><div class="team-links">{winnerSeason ? <a class={teamIdFor(winner) === 'ohio-state' ? 'osu' : 'mich'} href={`/teams/${teamIdFor(winner)}/${game.year}`} aria-label={`${winner} ${game.year} season`} data-track-event="team_season_opened" data-track-properties={JSON.stringify({ team: teamIdFor(winner), season: game.year })}>{winner} {game.year} season →</a> : <p>{winner} {game.year} season profile is not in the public snapshot.</p>}{loserSeason ? <a class={teamIdFor(loser) === 'ohio-state' ? 'osu' : 'mich'} href={`/teams/${teamIdFor(loser)}/${game.year}`} aria-label={`${loser} ${game.year} season`} data-track-event="team_season_opened" data-track-properties={JSON.stringify({ team: teamIdFor(loser), season: game.year })}>{loser} {game.year} season →</a> : <p>{loser} {game.year} season profile is not in the public snapshot.</p>}</div></section>
     <section class="archive-panel"><div class="section-title"><h2>ADVANCED BOXSCORE</h2><span>EXTERNAL SOURCE</span></div>{cfbdGame ? <p><a class="archive-button" href={cfbdGame.cfbdBoxscoreUrl} target="_blank" rel="noopener noreferrer" data-track-event="cfbd_boxscore_opened" data-track-properties={JSON.stringify({ game_year: game.year })}>CFBD ADVANCED BOX SCORE →</a></p> : <p>Advanced boxscore data is not included in the public snapshot for this meeting.</p>}</section>

@@ -1,7 +1,7 @@
 ---
 import SiteShell from '../../../components/SiteShell.astro';
 import { formatSeasonRank, rivalrySnapshot, type TeamId, type TeamSeasonSnapshot } from '../../../lib/rivalry-snapshot';
-import { formatRecord, teamNameFor } from '../../../lib/rivalry-archive';
+import { formatRecord, formatScoringMargin, teamNameFor } from '../../../lib/rivalry-archive';
 import games from '../../../data/rivalry-games.json';
 
 export const prerender = true;
@@ -21,7 +21,7 @@ const observation = (value: string | number | null, suffix = '') => value === nu
 <SiteShell active="record" title={`${entry.season} ${teamName} Season | Ohio State vs Michigan`} description={`${teamName}'s ${entry.season} season record and available Rivalry Lab snapshot profile.`}>
   <article class="archive-page team-archive">
     <a class="archive-back" href="/record">← THE RECORD</a>
-    <header class={`archive-hero ${teamId === 'ohio-state' ? 'osu' : 'mich'}`}><span>RIVALRY SEASON ARCHIVE</span><h1>{entry.season} {teamName.toUpperCase()}</h1><strong data-testid="season-record">{formatRecord(entry)}</strong><small>{entry.games} GAMES · {entry.pointsFor} FOR · {entry.pointsAgainst} AGAINST · {entry.scoringMargin >= 0 ? '+' : ''}{entry.scoringMargin} MARGIN</small></header>
+    <header class={`archive-hero ${teamId === 'ohio-state' ? 'osu' : 'mich'}`}><span>RIVALRY SEASON ARCHIVE</span><h1>{entry.season} {teamName.toUpperCase()}</h1><strong data-testid="season-record">{formatRecord(entry)}</strong><small data-testid="season-totals">{entry.games} GAMES · {entry.pointsFor} FOR · {entry.pointsAgainst} AGAINST · {formatScoringMargin(entry.scoringMargin)} MARGIN/G</small></header>
     {profile ? <section class="archive-panel" data-testid="season-profile">
       <div class="section-title"><h2>SEASON PROFILE</h2><span>SNAPSHOT DATA</span></div>
       <div class="profile-section"><h3>OBSERVED</h3><dl><div><dt>Conference</dt><dd>{observation(profile.observed.conference)}</dd></div><div><dt>Division</dt><dd>{observation(profile.observed.division)}</dd></div><div><dt>Coach</dt><dd>{observation(profile.observed.coach)}</dd></div><div><dt>Final AP rank</dt><dd>{profile.observed.finalApRank === null ? 'UNRANKED / NOT REPORTED' : `NO. ${profile.observed.finalApRank}`}</dd></div><div><dt>CFBD postseason rank</dt><dd>{profile.observed.cfbdPostseasonRank === null ? 'NOT REPORTED' : `NO. ${profile.observed.cfbdPostseasonRank}`}</dd></div><div><dt>Scoring</dt><dd>{observation(profile.observed.pointsPerGame, ' PPG')} · {observation(profile.observed.pointsAllowedPerGame, ' ALLOWED/G')}</dd></div></dl></div>
