@@ -34,11 +34,11 @@ const { referenceDate, siteUrl } = Astro.props;
 </div>
 
 <style>
-  /* The body column is 640px and centred, so a corner ribbon only clears it
-     on wide viewports. Below that the badge becomes a pill and this wrapper
-     reserves the headroom it needs, since the h1 runs the full width. */
+  /* The badge is slotted into the site nav. Above the collapse breakpoint the
+     ribbon and pill are pinned to the viewport corner, so the wrapper stays out
+     of the nav row entirely; below it the trigger becomes a menu row. */
   #share-badge {
-    height: 0;
+    display: contents;
   }
 
   /* Clips the diagonal band to the corner. Only the band takes clicks. */
@@ -132,12 +132,8 @@ const { referenceDate, siteUrl } = Astro.props;
   }
 
   /* Below ~905px the 640px column reaches the corner, so the diagonal band
-     would sit on the headline. Swap to a pill and reserve room above it. */
+     would sit on the headline. Swap to a pill tucked beside the nav. */
   @media (max-width: 904px) {
-    #share-badge {
-      height: 46px;
-    }
-
     #share-clip {
       top: 9px;
       right: 9px;
@@ -159,6 +155,55 @@ const { referenceDate, siteUrl } = Astro.props;
     #share-menu {
       top: 52px;
       right: 9px;
+    }
+  }
+
+  /* At the nav's collapse breakpoint the corner belongs to the hamburger, so
+     Share stops floating and becomes the last row of the opened menu. The nav
+     owns whether the row is shown; this block only owns how it looks. It is
+     gated on the same .collapsible class, so when the nav script never runs
+     the badge stays the corner pill it is above the breakpoint. */
+  @media (max-width: 560px) {
+    :global(.site-nav.collapsible) #share-clip {
+      position: static;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      pointer-events: auto;
+    }
+
+    :global(.site-nav.collapsible) #share-trigger {
+      display: block;
+      width: 100%;
+      padding: 15px 2px;
+      border-top: 1px solid #d9dce1;
+      border-radius: 0;
+      background: none;
+      color: #be2137;
+      font: 600 15px 'IBM Plex Sans', Arial, sans-serif;
+      letter-spacing: normal;
+      text-align: left;
+      box-shadow: none;
+    }
+
+    :global(.site-nav.collapsible) #share-trigger:hover,
+    :global(.site-nav.collapsible) #share-trigger:focus-visible {
+      background: none;
+      color: #8f3642;
+    }
+
+    :global(.site-nav.collapsible) #share-menu {
+      position: static;
+      min-width: 0;
+      padding: 0 0 4px 14px;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    :global(.site-nav.collapsible) #share-menu > button,
+    :global(.site-nav.collapsible) #share-menu > a {
+      padding: 11px 8px;
     }
   }
 </style>

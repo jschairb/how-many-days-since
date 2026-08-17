@@ -22,7 +22,7 @@ test('publishes the next game countdown with canonical event metadata', async ({
     'href',
     'https://howmanydayssincemichiganhasbeatenohiostate.com/countdown'
   );
-  await expect(page.getByRole('heading', { name: /until kickoff/i })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'THE GAME', exact: true })).toBeVisible();
   await expect(page.locator('[data-countdown-days]')).toBeVisible();
   await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(3);
   expect(await page.locator('script[type="application/ld+json"]').nth(2).evaluate((element) => element.textContent)).toContain('2026-11-28T12:00:00-05:00');

@@ -110,7 +110,7 @@ test.describe('Record', () => {
     await page.goto('/record');
 
     await expect(page.getByRole('heading', { name: 'RIVALRY DROUGHTS' })).toBeVisible();
-    await expect(page.locator('[data-drought-table="longest"]')).toBeVisible();
+    await expect(page.locator('.drought-comparison')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 
@@ -145,6 +145,8 @@ test.describe('Rivalry Lab', () => {
 
   test('shows observed and derived season profiles with snapshot provenance', async ({ page }) => {
     await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('1995');
+    await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
 
     await expect(page.getByTestId('season-profile-ohio-state')).toContainText('John Cooper');
@@ -157,18 +159,26 @@ test.describe('Rivalry Lab', () => {
   test('loads server-derived matchup values and runs a simulation', async ({ page }) => {
     await page.goto('/rivalry-lab');
     await expect(page.getByRole('heading', { level: 1, name: 'RIVALRY LAB' })).toBeVisible();
+    await expect(page.locator('[data-seed]')).toHaveCount(0);
+    const latestSeason = (teamId: string) => String(Math.max(
+      ...snapshot.ratings.teamSeasons.filter((season) => season.teamId === teamId).map((season) => season.season)
+    ));
+    await expect(page.locator('[data-osu]')).toHaveValue(latestSeason('ohio-state'));
+    await expect(page.locator('[data-mich]')).toHaveValue(latestSeason('michigan'));
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await expect(page.getByRole('heading', { name: 'TALE OF THE TAPE' })).toBeVisible();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
-    await page.getByRole('button', { name: 'PLAY ONE' }).click();
-    await expect(page.locator('[data-game-score]')).toContainText('FINAL');
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
+    await expect(page.locator('[data-game-score]')).toContainText('TYPICAL SCORE');
   });
 
-  test('tracks built and played matchups with coverage but no seed', async ({ page }) => {
+  test('tracks built and simulated matchups with coverage but no seed', async ({ page }) => {
     await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('1995');
+    await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
-    await page.getByRole('button', { name: 'PLAY ONE' }).click();
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
 
     await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'rivalry_lab_matchup_built', {
       osu_season: 1995,
@@ -176,9 +186,10 @@ test.describe('Rivalry Lab', () => {
       era_mode: 'neutral',
       simulation_coverage: 'score-and-schedule',
     }]);
-    await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'rivalry_lab_game_played', {
+    await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'rivalry_lab_simulation_run', {
       osu_season: 1995,
       michigan_season: 2023,
+      simulation_count: 5_000,
       simulation_coverage: 'score-and-schedule',
     }]);
     expect(JSON.stringify(await capturedEvents(page))).not.toContain('seed');
@@ -186,22 +197,22 @@ test.describe('Rivalry Lab', () => {
 
   test('explains and plays one selected matchup without series controls or turning points', async ({ page }) => {
     await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('1995');
+    await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
-    const playOne = page.getByRole('button', { name: 'PLAY ONE' });
+    const playOne = page.getByRole('button', { name: 'SIMULATE', exact: true });
     await expect(playOne).toBeVisible();
-    await expect(page.locator('[data-view="pregame"]')).toContainText(
-      'Pick this matchup, then play one simulated game.'
-    );
-    expect(await playOne.evaluate((button) => button.getBoundingClientRect().top)).toBeLessThan(
-      await page.locator('.pregame-explanation').evaluate((section) => section.getBoundingClientRect().top)
+    await expect(page.locator('[data-view="pregame"]')).toContainText(/SIMULATE plays this matchup [\d,]+ times/);
+    expect(await playOne.evaluate((button) => button.getBoundingClientRect().top)).toBeGreaterThan(
+      await page.locator('[data-win-probability]').evaluate((section) => section.getBoundingClientRect().top)
     );
     await expect(page.getByText(/BEST OF 10|SIM 100|1,000|10,000/i)).toHaveCount(0);
 
     await playOne.click();
-    await expect(page.locator('[data-game-score]')).toContainText('FINAL');
-    await expect(page.locator('[data-game-coverage]')).toContainText('SCORE-SCHEDULE');
+    await expect(page.locator('[data-game-score]')).toContainText('TYPICAL SCORE');
+    await expect(page.locator('[data-game-coverage]')).toHaveCount(0);
     await expect(page.getByText(/KEY TURNING POINT/i)).toHaveCount(0);
     await expect(page.getByRole('button', { name: /POSTGAME|RUN AGAIN/i })).toHaveCount(0);
     await expect(page.locator('[data-view="postgame"]')).toHaveCount(0);
@@ -211,6 +222,8 @@ test.describe('Rivalry Lab', () => {
   test('keeps Tape focused on selected-season profiles and moves derived matchup outputs to Pregame', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('1995');
+    await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
 
     await expect(page.getByRole('heading', { name: 'TALE OF THE TAPE' })).toBeVisible();
@@ -220,62 +233,126 @@ test.describe('Rivalry Lab', () => {
     await expect(page.locator('[data-tape]')).toHaveCount(0);
 
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
-    await expect(page.locator('[data-expected-score]')).toContainText('DERIVED');
+    for (const step of ['GRADE BOTH SEASONS', 'TURN THE GAPS INTO POINTS', 'SET THE EXPECTED SCORE', 'TURN THE MARGIN INTO A CHANCE']) {
+      await expect(page.getByRole('heading', { name: step })).toBeVisible();
+    }
+    await expect(page.locator('.step em').first()).toHaveText('DERIVED');
+    await expect(page.locator('[data-input-list]')).toContainText('OFFENSE RATING');
+    await expect(page.locator('[data-osu-driver]')).toContainText(/expects Ohio State to score [\d.]+ points (more|fewer) than an average team/);
     await expect(page.locator('[data-expected-score]')).toContainText('27 MICH');
     await expect(page.locator('[data-expected-score]')).toContainText('24 OSU');
-    await expect(page.locator('[data-expected-margin]')).toContainText('DERIVED');
-    await expect(page.locator('[data-win-probability]')).toContainText('DERIVED');
-    await expect(page.locator('[data-pregame-inputs]')).toContainText('MATCHUP INPUTS');
-    await expect(page.locator('[data-pregame-inputs]')).toContainText('OFFENSE RATING');
-    await expect(page.locator('[data-pregame-method]')).toContainText('WHAT THIS MEANS');
-    await expect(page.locator('[data-pregame-drivers]')).toContainText('KEY DRIVERS');
+    await expect(page.locator('[data-win-probability]')).toBeVisible();
+    const stepOrder = await page.evaluate(() => {
+      const tops = ['[data-input-list]', '[data-osu-driver]', '[data-expected-score]', '[data-win-probability]', '[data-pregame-play]']
+        .map((selector) => document.querySelector(selector)!.getBoundingClientRect().top);
+      return tops.every((top, index) => index === 0 || top > tops[index - 1]);
+    });
+    expect(stepOrder).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-pregame-desktop.png', fullPage: true });
   });
 
   test('keeps the 1995 Ohio State and 2023 Michigan pregame readable on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('1995');
+    await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
     await expect(page.locator('[data-expected-score]')).toBeVisible();
-    await expect(page.locator('[data-pregame-inputs]')).toBeVisible();
+    await expect(page.locator('[data-input-list]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-pregame-mobile.png', fullPage: true });
-    await page.getByRole('button', { name: 'PLAY ONE' }).click();
-    await expect(page.locator('[data-game-coverage]')).toContainText('SCORE-SCHEDULE');
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
+    await expect(page.locator('[data-game-score]')).toContainText('TYPICAL SCORE');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-game-mobile.png', fullPage: true });
   });
 
-  test('shows enriched historical context for the 2014 Ohio State and 2023 Michigan pregame and game on desktop', async ({ page }) => {
+  test('shows rich-data context for the 2014 Ohio State and 2023 Michigan pregame and game on desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto('/rivalry-lab');
     await page.locator('[data-osu]').selectOption('2014');
+    await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
-    await expect(page.locator('[data-simulation-coverage]')).toContainText('ENRICHED');
-    await expect(page.locator('[data-simulation-coverage]')).toContainText('possession and turnover context is active');
+    await expect(page.locator('[data-simulation-coverage]')).toContainText('RICH DATA');
+    await expect(page.locator('[data-simulation-coverage]')).toContainText('Imported game data is active for both selected seasons.');
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-pregame-desktop.png', fullPage: true });
-    await page.getByRole('button', { name: 'PLAY ONE' }).click();
-    await expect(page.locator('[data-game-coverage]')).toContainText('ENRICHED');
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
+    await expect(page.locator('[data-model-call]')).toBeVisible();
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-game-desktop.png', fullPage: true });
   });
 
-  test('shows enriched historical context for the 2014 Ohio State and 2023 Michigan on mobile', async ({ page }) => {
+  test('shows rich-data context for the 2014 Ohio State and 2023 Michigan on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/rivalry-lab');
     await page.locator('[data-osu]').selectOption('2014');
+    await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
 
-    await expect(page.locator('[data-simulation-coverage]')).toContainText('ENRICHED');
+    await expect(page.locator('[data-simulation-coverage]')).toContainText('RICH DATA');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-pregame-mobile.png', fullPage: true });
-    await page.getByRole('button', { name: 'PLAY ONE' }).click();
-    await expect(page.locator('[data-game-coverage]')).toContainText('ENRICHED');
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
+    await expect(page.locator('[data-model-call]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-enriched-game-mobile.png', fullPage: true });
+  });
+
+  test('shows the model call with the full breakdown after one Simulate action', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('2014');
+    await page.locator('[data-mich]').selectOption('2023');
+    await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
+
+    const call = page.locator('[data-model-call]');
+    await expect(call).toBeVisible();
+    await expect(call.getByRole('heading', { name: "THE MODEL'S RESULTS" })).toBeVisible();
+    await expect(call.locator('[data-call-favorite]')).toContainText(/WAS FAVORED$|^UPSET:/);
+    await expect(call.locator('[data-call-share]')).toContainText(/won \d+% of them\./);
+    await expect(call.locator('[data-call-one-score]')).toContainText(/% OF GAMES ENDED WITHIN ONE SCORE/);
+    await expect(call.locator('[data-call-upset]')).toContainText(/^UNDERDOG CHECK · \w+.* HAD A \d+% CHANCE PREGAME AND WON \d+% OF THE GAMES \([+-]?\d+ PTS\)/);
+    await expect(page.locator('[data-game-score]')).toContainText('TYPICAL SCORE');
+    const typicalScores = await page.locator('[data-game-score] strong').allTextContents();
+    const labelText = await page.locator('[data-run-game-label]').textContent();
+    expect(labelText).toMatch(/MICHIGAN \d+, OHIO STATE \d+/);
+    if (!labelText?.includes('CLOSEST GAME')) {
+      expect(labelText).toContain(`MICHIGAN ${typicalScores[0]}, OHIO STATE ${typicalScores[1]}`);
+    }
+    expect(await page.locator('[data-timeline] .q-mark').count()).toBeGreaterThanOrEqual(4);
+    await expect(call.locator('[data-call-extremes]')).toContainText('BIGGEST OHIO STATE WIN');
+    await expect(call.locator('[data-call-extremes]')).toContainText('BIGGEST MICHIGAN WIN');
+
+    await call.getByText('SEE THE FULL BREAKDOWN').click();
+    await expect(call.locator('.margin-row')).toHaveCount(6);
+    await expect(call.locator('[data-breakdown-facts]')).toContainText('OVERTIME RATE');
+    await expect(call.locator('[data-breakdown-facts]')).toContainText('BLOWOUTS');
+    await expect(call.locator('[data-breakdown-facts]')).toContainText('RICH DATA');
+    await expect(call.locator('[data-breakdown-versions]')).toContainText('drive-v2');
+    await expect(call.locator('[data-breakdown-versions]')).toContainText('opp-adjust-v1');
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-model-call.png', fullPage: true });
+
+    await expect(page.getByText(/BEST OF 10|SIM 100|1,000 GAMES|RUN COUNT/i)).toHaveCount(0);
+    expect(await page.evaluate(() => document.querySelectorAll('input[type="number"], button[data-run]:not([data-run="1"])').length)).toBe(0);
+  });
+
+  test('keeps the model call readable on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/rivalry-lab');
+    await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
+
+    await expect(page.locator('[data-model-call]')).toBeVisible();
+    await page.locator('[data-model-call]').getByText('SEE THE FULL BREAKDOWN').click();
+    await expect(page.locator('.margin-row')).toHaveCount(6);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-model-call-mobile.png', fullPage: true });
   });
 });

@@ -35,8 +35,15 @@ test.describe('share badge', () => {
     await expect(page.locator('#share-canvas')).toBeHidden();
   });
 
-  test('does not overlap the headline at mobile width', async ({ page }) => {
+  test('moves into the collapsed menu at mobile width', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 720 });
+
+    // The hamburger owns the corner on a phone, so nothing floats there.
+    await expect(page.locator('#share-trigger')).toBeHidden();
+
+    await page.locator('.site-nav-toggle').click();
+    await expect(page.locator('#site-nav #share-trigger')).toBeVisible();
+
     const badge = (await page.locator('#share-trigger').boundingBox())!;
     const heading = (await page.locator('main h1').boundingBox())!;
     expect(badge.y + badge.height).toBeLessThanOrEqual(heading.y);
