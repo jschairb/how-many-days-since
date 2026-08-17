@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   DEFAULT_OG_IMAGE_PATH,
+  headlineText,
   ogCardAlt,
   ogImagePathFor,
   pagePathForOgRoute,
@@ -13,42 +14,77 @@ describe('resolveOgCard', () => {
   it('counts the days since the last Michigan win on the home card', () => {
     const card = resolveOgCard('/', NOW);
 
-    expect(card?.title).toBe('625 DAYS SINCE MICHIGAN BEAT OHIO STATE');
-    expect(card?.description).toContain('Ohio State 27, Michigan 9');
+    expect(card?.metric).toEqual({ value: '625', unit: 'DAYS' });
+    expect(card?.detail).toContain('Ohio State 27, Michigan 9');
+    // The streak is Ohio State's, so the card wears scarlet.
+    expect(card?.team).toBe('ohio-state');
   });
 
   it('counts down to kickoff on the countdown card', () => {
     const card = resolveOgCard('/countdown', NOW);
 
-    expect(card?.title).toBe('103 DAYS TO THE GAME');
-    expect(card?.description).toContain('November 28, 2026');
+    expect(card?.metric).toEqual({ value: '103', unit: 'DAYS' });
+    expect(card?.detail).toContain('November 28, 2026');
+    expect(card?.team).toBe('rivalry');
   });
 
   it('drops the countdown to a kickoff banner once the game arrives', () => {
     const card = resolveOgCard('/countdown', new Date('2026-11-28T18:00:00Z'));
 
-    expect(card?.title).toBe('THE GAME IS HERE');
+    expect(card?.metric).toBeUndefined();
+    expect(card?.headline).toBe('IT IS HERE');
   });
 
   it('reports the meeting count on the record card', () => {
     const card = resolveOgCard('/record', NOW);
 
-    expect(card?.title).toBe('THE RECORD');
-    expect(card?.description).toBe('All 121 Ohio State-Michigan meetings, 1897-2025');
+    expect(card?.headline).toBe('THE RECORD');
+    expect(card?.eyebrow).toBe('EVERY MEETING · 1897-2025');
+    expect(card?.detail).toContain('All 121 Ohio State-Michigan meetings');
   });
 
-  it('scores a single rivalry meeting', () => {
+  it('colors each team in a rivalry meeting score', () => {
     const card = resolveOgCard('/record/2024', NOW);
 
-    expect(card?.title).toBe('MICHIGAN 13, OHIO STATE 10');
-    expect(card?.description).toBe('2024 · Nov 30 · Columbus');
+    expect(card?.headline).toEqual([
+      { text: 'MICHIGAN', tone: 'michigan' },
+      { text: '13–10' },
+      { text: 'OHIO STATE', tone: 'ohio-state' },
+    ]);
+    expect(card?.detail).toBe('Nov 30 · Columbus');
+    // The winner's colors dress the card.
+    expect(card?.team).toBe('michigan');
   });
 
-  it('summarises a team season', () => {
-    const card = resolveOgCard('/teams/ohio-state/2024', NOW);
+  it('keeps both sides of a tied meeting in ink', () => {
+    const card = resolveOgCard('/record/1992', NOW);
 
-    expect(card?.title).toBe('2024 OHIO STATE');
-    expect(card?.description).toContain('Rivalry season archive');
+    // Both sides carry "Tie", and neither may be read as a team.
+    expect(card?.headline).toEqual([
+      { text: 'TIE', tone: 'ink' },
+      { text: '13–13' },
+      { text: 'TIE', tone: 'ink' },
+    ]);
+    expect(card?.team).toBe('rivalry');
+  });
+
+  it('keeps every tied meeting neutral', () => {
+    for (const year of [1900, 1910, 1941, 1949, 1973, 1992]) {
+      const card = resolveOgCard(`/record/${year}`, NOW);
+      const tones = (card!.headline as { tone?: string }[]).map((span) => span.tone);
+
+      expect(tones, `${year}`).not.toContain('michigan');
+      expect(tones, `${year}`).not.toContain('ohio-state');
+      expect(card?.team, `${year}`).toBe('rivalry');
+    }
+  });
+
+  it('summarises a team season without leaking the raw margin float', () => {
+    const card = resolveOgCard('/teams/michigan/1997', NOW);
+
+    expect(headlineText(card!.headline!)).toBe('MICHIGAN 12-0');
+    expect(card?.detail).toBe('12 games · 322 for · 114 against · +17.3 per game');
+    expect(card?.team).toBe('michigan');
   });
 
   it('ignores a trailing slash', () => {
@@ -97,9 +133,26 @@ describe('pagePathForOgRoute', () => {
 });
 
 describe('ogCardAlt', () => {
-  it('reads back the words drawn on the card', () => {
-    expect(ogCardAlt({ title: 'THE RECORD', description: 'All 121 meetings' })).toBe(
-      'THE RECORD — All 121 meetings'
-    );
+  it('reads back every word drawn on the card', () => {
+    expect(
+      ogCardAlt({
+        eyebrow: 'EVERY MEETING',
+        headline: 'THE RECORD',
+        detail: 'All 121 meetings',
+        team: 'rivalry',
+      })
+    ).toBe('EVERY MEETING. THE RECORD. All 121 meetings');
+  });
+
+  it('reads the oversized figure and the colored spans', () => {
+    expect(
+      ogCardAlt({
+        eyebrow: 'COUNTDOWN',
+        metric: { value: '103', unit: 'DAYS' },
+        headline: [{ text: 'OHIO STATE', tone: 'ohio-state' }, { text: '27–9' }],
+        detail: 'Columbus',
+        team: 'rivalry',
+      })
+    ).toBe('COUNTDOWN. 103 DAYS. OHIO STATE 27–9. Columbus');
   });
 });
