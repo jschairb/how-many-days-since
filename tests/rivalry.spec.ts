@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
-const games = JSON.parse(readFileSync(new URL('../src/data/rivalry-games.json', import.meta.url), 'utf8')) as Array<{ year: number }>;
+const games = JSON.parse(readFileSync(new URL('../src/data/rivalry-games.json', import.meta.url), 'utf8')) as Array<{ year: number; winner: string }>;
+const tiedYears = games.filter((game) => game.winner === 'Tie').map((game) => game.year);
 const snapshot = JSON.parse(readFileSync(new URL('../src/data/rivalry-lab-snapshot.json', import.meta.url), 'utf8')) as { ratings: { teamSeasons: Array<{ teamId: string; season: number }> } };
 const capturedEvents = (page: any) => page.evaluate(() => JSON.parse(sessionStorage.getItem('analytics-events') ?? '[]'));
 
@@ -66,6 +67,21 @@ test.describe('Record', () => {
     await expect(page.getByRole('link', { name: /next meeting/i })).toHaveCount(0);
   });
 
+  test('colors every tied meeting in neutral ink instead of a team palette', async ({ page }) => {
+    expect(tiedYears).toEqual([1992, 1973, 1949, 1941, 1910, 1900]);
+
+    for (const year of tiedYears) {
+      await page.goto(`/record/${year}`);
+
+      const hero = page.getByTestId('game-score');
+      await expect(hero.locator('span')).toHaveText(['TIE', 'TIE']);
+      await expect(hero.locator('.osu, .mich')).toHaveCount(0);
+      await expect(hero.locator('.tie')).toHaveCount(2);
+      await expect(hero.locator('.tie').first()).toHaveCSS('color', 'rgb(17, 17, 17)');
+      await expect(hero.locator('.tie').last()).toHaveCSS('color', 'rgb(17, 17, 17)');
+    }
+  });
+
   test('tracks an external CFBD boxscore when one is available', async ({ page }) => {
     await page.goto('/record/2025');
     await page.getByRole('link', { name: /CFBD advanced box score/i }).click();
@@ -84,6 +100,14 @@ test.describe('Record', () => {
     await expect(page.getByTestId('season-record')).toContainText('12-2');
     await expect(page.getByTestId('season-profile')).toContainText('OBSERVED');
     await expect(page.getByRole('link', { name: /2025 rivalry meeting/i })).toHaveAttribute('href', '/record/2025');
+  });
+
+  test('rounds the season scoring margin and labels it per game', async ({ page }) => {
+    await page.goto('/teams/michigan/1997');
+    await expect(page.getByTestId('season-totals')).toHaveText('12 GAMES · 322 FOR · 114 AGAINST · +17.3 MARGIN/G');
+
+    await page.goto('/teams/michigan/2008');
+    await expect(page.getByTestId('season-totals')).toHaveText('12 GAMES · 243 FOR · 347 AGAINST · -8.7 MARGIN/G');
   });
 
   test('serves every generated game and snapshot team-season route', async ({ page }) => {
