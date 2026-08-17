@@ -39,9 +39,11 @@ export function simulateGame(matchup: Matchup, seed: string, config: ModelConfig
   const next = random(`${seed}|${matchup.ohioState.expectedScore}|${matchup.michigan.expectedScore}`); const ohioState = emptyStats(); const michigan = emptyStats(); const drives: Drive[] = [];
   const sides = context ? { 'ohio-state': context.ohioState, michigan: context.michigan } : null;
   const rich = context?.simulationCoverage === 'rich-game-data';
+  // Possessions alternate starting with Ohio State, so the total must stay even: an odd
+  // count would hand Ohio State an extra drive in every game of a repeated run.
   const drivePossessions = rich
-    ? Math.round(context!.ohioState.inputs!.possessionsPerGame + context!.michigan.inputs!.possessionsPerGame)
-    : context ? Math.round(config.drivePossessions + ((context.ohioState.scheduleStrength + context.michigan.scheduleStrength) / 2 - 1) * 2) : config.drivePossessions;
+    ? 2 * Math.round((context!.ohioState.inputs!.possessionsPerGame + context!.michigan.inputs!.possessionsPerGame) / 2)
+    : context ? 2 * Math.round((config.drivePossessions + ((context.ohioState.scheduleStrength + context.michigan.scheduleStrength) / 2 - 1) * 2) / 2) : config.drivePossessions;
   for (let possession = 0; possession < drivePossessions; possession += 1) {
     const side = possession % 2 === 0 ? matchup.ohioState : matchup.michigan;
     const stats = possession % 2 === 0 ? ohioState : michigan;

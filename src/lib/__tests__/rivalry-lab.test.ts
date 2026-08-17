@@ -105,6 +105,20 @@ describe('Rivalry Lab model', () => {
     ]);
   });
 
+  it('gives both teams the same regulation possessions when the pace sum is odd', () => {
+    const oddInputs = { possessionsPerGame: 10.4, turnoverRatePerDrive: 0.1, scoringRateMultiplier: 1, touchdownShare: 0.66 };
+    const context: SimulationContext = {
+      simulationCoverage: 'rich-game-data',
+      usedInputs: {},
+      ohioState: { scheduleStrength: 1, inputs: { ...oddInputs, possessionsPerGame: 10.6 } },
+      michigan: { scheduleStrength: 1, inputs: oddInputs },
+    };
+    const game = simulateGame(calculateMatchup(ohioState, michigan, model), 'parity-1', model, context);
+    const regulation = game.drives.filter((drive) => drive.quarter <= 4);
+    expect(regulation.length % 2).toBe(0);
+    expect(regulation.filter((drive) => drive.teamId === 'ohio-state')).toHaveLength(regulation.length / 2);
+  });
+
   it('rejects unavailable years', () => {
     expect(() => validateMatchupInput({ osuYear: 1969, michYear: 2023 })).toThrow('Ohio State season must be between 1970 and 2025');
   });

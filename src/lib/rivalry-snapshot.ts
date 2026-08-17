@@ -88,8 +88,10 @@ export function validatePublicSnapshot(value: unknown): value is RivalrySnapshot
   if (typeof candidate.model?.pointsPerStandardDeviation !== 'number') throw new Error('Invalid public snapshot model');
   if (!Number.isInteger(candidate.model?.simulationRunCount) || (candidate.model!.simulationRunCount as number) < 1) throw new Error('Invalid public snapshot run count');
   if (!candidate.ratings.teamSeasons.every((season) => season.crossEra && Number.isFinite(season.crossEra.overall) && Number.isFinite(season.crossEra.offense) && Number.isFinite(season.crossEra.defense))) throw new Error('Invalid public snapshot cross-era ratings');
-  const inputs = Object.values(candidate.simulationInputs ?? {});
+  if (!candidate.simulationInputs || typeof candidate.simulationInputs !== 'object') throw new Error('Invalid public snapshot: missing simulation inputs');
+  const inputs = Object.values(candidate.simulationInputs);
   if (!inputs.every((entry) => Number.isFinite(entry.possessionsPerGame) && Number.isFinite(entry.turnoverRatePerDrive) && Number.isFinite(entry.scoringRateMultiplier) && Number.isFinite(entry.touchdownShare))) throw new Error('Invalid public snapshot simulation inputs');
+  if (!Array.isArray((candidate as { coverage?: unknown }).coverage)) throw new Error('Invalid public snapshot: missing coverage');
   return true;
 }
 export function ratedSeason(teamId: TeamId, season: number): Rating {

@@ -6,7 +6,7 @@
   "simulationEngineVersion": "drive-v2",
   "adjustmentModelVersion": "opp-adjust-v1",
   "dataSnapshotVersion": "cfbd-starterpack-1970-2025-v2",
-  "generatedAt": "2026-08-16T22:04:24.323Z",
+  "generatedAt": "2026-08-17T01:52:42.250Z",
   "neutralPointsPerTeam": 25.319940719998808,
   "model": {
     "matchupFormulaVersion": "srs-offense-defense-v1",

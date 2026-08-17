@@ -9,7 +9,15 @@ const validModel = { pointsPerStandardDeviation: 5, simulationRunCount: 5000 };
 
 describe('validatePublicSnapshot', () => {
   it('accepts the reduced public snapshot contract', () => {
-    expect(validatePublicSnapshot({ schemaVersion: 'rivalry-lab-public-snapshot-v2', model: validModel, simulationInputs: { 'ohio-state:2014': { possessionsPerGame: 13.1, turnoverRatePerDrive: 0.13, scoringRateMultiplier: 1.16, touchdownShare: 0.72 } }, ratings: { teamSeasons: validTeamSeasons } })).toBe(true);
+    expect(validatePublicSnapshot({ schemaVersion: 'rivalry-lab-public-snapshot-v2', model: validModel, simulationInputs: { 'ohio-state:2014': { possessionsPerGame: 13.1, turnoverRatePerDrive: 0.13, scoringRateMultiplier: 1.16, touchdownShare: 0.72 } }, coverage: [], ratings: { teamSeasons: validTeamSeasons } })).toBe(true);
+  });
+
+  it('rejects a snapshot without the simulationInputs block', () => {
+    expect(() => validatePublicSnapshot({ schemaVersion: 'rivalry-lab-public-snapshot-v2', model: validModel, coverage: [], ratings: { teamSeasons: validTeamSeasons } })).toThrow('missing simulation inputs');
+  });
+
+  it('rejects a snapshot without the coverage block', () => {
+    expect(() => validatePublicSnapshot({ schemaVersion: 'rivalry-lab-public-snapshot-v2', model: validModel, simulationInputs: {}, ratings: { teamSeasons: validTeamSeasons } })).toThrow('missing coverage');
   });
 
   it('rejects the retired v1 schema', () => {
