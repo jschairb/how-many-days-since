@@ -82,6 +82,46 @@ test.describe('Record', () => {
     }
   });
 
+  test('names both teams on a tied meeting outside the hero', async ({ page }) => {
+    const summary = 'The 1992 Ohio State-Michigan rivalry meeting: Ohio State 13, Michigan 13 (tie).';
+    await page.goto('/record/1992');
+
+    await expect(page).toHaveTitle('1992 Ohio State vs Michigan | Ohio State-Michigan');
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', summary);
+    await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content', summary);
+
+    await expect(page.getByTestId('game-facts')).toContainText('Ohio State rank');
+    await expect(page.getByTestId('game-facts')).toContainText('Michigan rank');
+    await expect(page.getByTestId('game-facts')).not.toContainText('Tie rank');
+
+    await expect(page.getByRole('link', { name: 'Ohio State 1992 season' })).toHaveAttribute('href', '/teams/ohio-state/1992');
+    await expect(page.getByRole('link', { name: 'Michigan 1992 season' })).toHaveAttribute('href', '/teams/michigan/1992');
+    await expect(page.getByRole('link', { name: /Tie 1992 season/ })).toHaveCount(0);
+  });
+
+  test('tracks each side of a tied meeting under its own team', async ({ page }) => {
+    await page.goto('/record/1992');
+    await page.getByRole('link', { name: 'Ohio State 1992 season' }).click();
+    await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'team_season_opened', { team: 'ohio-state', season: 1992 }]);
+
+    await page.goBack();
+    await page.getByRole('link', { name: 'Michigan 1992 season' }).click();
+    await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'team_season_opened', { team: 'michigan', season: 1992 }]);
+  });
+
+  test('names both teams in the facts and links of every tied meeting', async ({ page }) => {
+    for (const year of tiedYears) {
+      await page.goto(`/record/${year}`);
+
+      await expect(page.getByTestId('game-facts')).toContainText('Ohio State rank');
+      await expect(page.getByTestId('game-facts')).toContainText('Michigan rank');
+      // Covered seasons link; uncovered ones say so. Both name the team.
+      await expect(page.getByTestId('team-seasons')).toContainText(`Ohio State ${year} season`);
+      await expect(page.getByTestId('team-seasons')).toContainText(`Michigan ${year} season`);
+      await expect(page.getByTestId('team-seasons')).not.toContainText('Tie');
+    }
+  });
+
   test('tracks an external CFBD boxscore when one is available', async ({ page }) => {
     await page.goto('/record/2025');
     await page.getByRole('link', { name: /CFBD advanced box score/i }).click();
