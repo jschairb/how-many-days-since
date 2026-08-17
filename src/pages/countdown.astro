@@ -18,9 +18,9 @@ const eventSchema = {
 <SiteShell active="countdown" title="Countdown to The Game | Ohio State vs Michigan" description="A live countdown to the 2026 Ohio State-Michigan game in Columbus." schema={eventSchema}>
   <section class="countdown" data-countdown data-game-start={nextRivalryGame.start} data-team="ohio-state">
     <p class="eyebrow">{nextRivalryGame.name.toUpperCase()}</p>
-    <h1>UNTIL KICKOFF</h1>
+    <h1>THE GAME</h1>
     <p class="kickoff">{nextRivalryGame.date.toUpperCase()} · {nextRivalryGame.time.toUpperCase()} · {nextRivalryGame.location.toUpperCase()}</p>
-    <div class="countdown-clock" aria-live="polite" aria-label="Time remaining until kickoff">
+    <div class="countdown-clock" aria-live="polite" aria-label="Time remaining until The Game">
       <div><strong data-countdown-days>0</strong><span>DAYS</span></div>
       <div><strong data-countdown-hours>00</strong><span>HOURS</span></div>
       <div><strong data-countdown-minutes>00</strong><span>MINUTES</span></div>
@@ -87,6 +87,7 @@ const eventSchema = {
    .countdown[data-team="michigan"] { --team:#00274c; --team-contrast:#ffcb05; --team-shadow:#ffcb05; }
   .eyebrow,.kickoff,.share-status { color:#6b717c; font-size:13px; font-weight:700; letter-spacing:.06em; }
   .countdown h1 { margin:8px 0; font:clamp(42px, 9vw, 94px)/.9 'Archivo Black'; letter-spacing:-.04em; }
+  .eyebrow { font-size:19.5px; }
   .kickoff { margin:0; }
    .countdown-clock { display:grid; grid-template-columns:repeat(4,1fr); margin:36px 0 28px; border:3px solid #111; }
   .countdown-clock div { padding:22px 12px; border-right:1px solid #d9dce1; }
