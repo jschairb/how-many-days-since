@@ -94,9 +94,10 @@ const { osuYears, michYears, seasonProfiles, provenance, matchupMethod, simulati
       view.hidden = view.dataset.view !== screen;
     });
   };
-  const requestedScreen = window.location.hash.slice(1);
-  if (lab && lab.querySelector(`[data-view="${requestedScreen}"]`)) applyScreen(requestedScreen);
-  else history.replaceState({ screen: 'matchup' }, '', '#matchup');
+  // A fresh page load always starts at season select: the later screens hold state that
+  // lives only in this browser session, so restoring them from the hash lands on empty
+  // shells. Back and forward still walk the screens visited since this load.
+  history.replaceState({ screen: 'matchup' }, '', '#matchup');
   window.addEventListener('popstate', () => {
     const screen = window.location.hash.slice(1) || 'matchup';
     restoringHistory = true;
