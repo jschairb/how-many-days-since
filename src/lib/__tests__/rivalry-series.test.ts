@@ -86,6 +86,24 @@ describe('createSeriesAggregator', () => {
     expect(() => aggregator.summary()).toThrow('run count');
   });
 
+  it('tracks each team biggest win with its score', () => {
+    const aggregator = createSeriesAggregator(matchup, 'extremes', 4);
+    aggregator.add(syntheticGame(21, 14));
+    aggregator.add(syntheticGame(10, 24));
+    aggregator.add(syntheticGame(35, 3));
+    aggregator.add(syntheticGame(20, 23));
+    const summary = aggregator.summary();
+    expect(summary.biggestWin.ohioState).toEqual({ margin: 32, ohioState: 35, michigan: 3 });
+    expect(summary.biggestWin.michigan).toEqual({ margin: 14, ohioState: 10, michigan: 24 });
+  });
+
+  it('reports null for a team with no wins in the run', () => {
+    const aggregator = createSeriesAggregator(matchup, 'shutout', 2);
+    aggregator.add(syntheticGame(28, 10));
+    aggregator.add(syntheticGame(31, 17));
+    expect(aggregator.summary().biggestWin.michigan).toBeNull();
+  });
+
   it('finds the first run game at the typical score as the representative game', () => {
     const aggregator = createSeriesAggregator(matchup, 'rep', 3);
     aggregator.add(syntheticGame(21, 14));

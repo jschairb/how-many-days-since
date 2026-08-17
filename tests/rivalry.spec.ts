@@ -275,6 +275,8 @@ test.describe('Rivalry Lab', () => {
       expect(labelText).toContain(`MICHIGAN ${typicalScores[0]}, OHIO STATE ${typicalScores[1]}`);
     }
     expect(await page.locator('[data-timeline] .q-mark').count()).toBeGreaterThanOrEqual(4);
+    await expect(call.locator('[data-call-extremes]')).toContainText('BIGGEST OHIO STATE WIN');
+    await expect(call.locator('[data-call-extremes]')).toContainText('BIGGEST MICHIGAN WIN');
 
     await call.getByText('SEE THE FULL BREAKDOWN').click();
     await expect(call.locator('.margin-row')).toHaveCount(6);

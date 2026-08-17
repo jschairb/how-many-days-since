@@ -2,6 +2,8 @@ import type { Game, Matchup } from './rivalry-lab';
 
 export type MarginBucket = { label: string; min: number | null; max: number | null; games: number };
 
+export type BiggestWin = { margin: number; ohioState: number; michigan: number };
+
 export type SeriesSummary = {
   evidenceType: 'SIMULATED';
   engineVersion: 'drive-v2';
@@ -14,6 +16,7 @@ export type SeriesSummary = {
   overtime: { games: number; rate: number };
   oneScore: { games: number; rate: number };
   blowout: { games: number; rate: number };
+  biggestWin: { ohioState: BiggestWin | null; michigan: BiggestWin | null };
   marginBuckets: MarginBucket[];
 };
 
@@ -54,6 +57,8 @@ export function createSeriesAggregator(matchup: Matchup, seed: string, runCount:
   // First game index per exact final score, so the displayed game can be the run's own
   // game at (or nearest to) the typical score instead of an arbitrary draw.
   const firstIndexByScore = new Map<string, number>();
+  let biggestOhioStateWin: BiggestWin | null = null;
+  let biggestMichiganWin: BiggestWin | null = null;
 
   return {
     add(game: Game): void {
@@ -66,6 +71,8 @@ export function createSeriesAggregator(matchup: Matchup, seed: string, runCount:
       const margin = game.ohioState.points - game.michigan.points;
       if (Math.abs(margin) <= 8) oneScoreGames += 1;
       if (Math.abs(margin) >= 17) blowoutGames += 1;
+      if (margin > 0 && margin > (biggestOhioStateWin?.margin ?? 0)) biggestOhioStateWin = { margin, ohioState: game.ohioState.points, michigan: game.michigan.points };
+      if (margin < 0 && -margin > (biggestMichiganWin?.margin ?? 0)) biggestMichiganWin = { margin: -margin, ohioState: game.ohioState.points, michigan: game.michigan.points };
       ohioStateTurnovers += game.ohioState.turnovers;
       michiganTurnovers += game.michigan.turnovers;
       ohioStateScores.set(game.ohioState.points, (ohioStateScores.get(game.ohioState.points) ?? 0) + 1);
@@ -106,6 +113,7 @@ export function createSeriesAggregator(matchup: Matchup, seed: string, runCount:
         ohioState: { wins: ohioStateWins, winRate: ohioStateWins / runCount, typicalScore: lowerMedian(ohioStateScores, runCount), averageTurnovers: ohioStateTurnovers / runCount },
         michigan: { wins: michiganWins, winRate: michiganWins / runCount, typicalScore: lowerMedian(michiganScores, runCount), averageTurnovers: michiganTurnovers / runCount },
         underdogWinRate: underdogWins / runCount,
+        biggestWin: { ohioState: biggestOhioStateWin, michigan: biggestMichiganWin },
         overtime: { games: overtimeGames, rate: overtimeGames / runCount },
         oneScore: { games: oneScoreGames, rate: oneScoreGames / runCount },
         blowout: { games: blowoutGames, rate: blowoutGames / runCount },
