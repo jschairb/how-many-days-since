@@ -3,6 +3,19 @@ import { readFileSync } from 'node:fs';
 
 const games = JSON.parse(readFileSync(new URL('../src/data/rivalry-games.json', import.meta.url), 'utf8')) as Array<{ year: number }>;
 const snapshot = JSON.parse(readFileSync(new URL('../src/data/rivalry-lab-snapshot.json', import.meta.url), 'utf8')) as { ratings: { teamSeasons: Array<{ teamId: string; season: number }> } };
+const capturedEvents = (page: any) => page.evaluate(() => JSON.parse(sessionStorage.getItem('analytics-events') ?? '[]'));
+
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    type AnalyticsWindow = Window & { analyticsEvents: unknown[]; gtag: (...args: unknown[]) => void };
+    const analyticsWindow = window as unknown as AnalyticsWindow;
+    analyticsWindow.analyticsEvents = JSON.parse(sessionStorage.getItem('analytics-events') ?? '[]');
+    analyticsWindow.gtag = (...args: unknown[]) => {
+      analyticsWindow.analyticsEvents.push(args);
+      sessionStorage.setItem('analytics-events', JSON.stringify(analyticsWindow.analyticsEvents));
+    };
+  });
+});
 
 test.describe('Record', () => {
   test('links Every Meeting to the internal game and covered team-season archives', async ({ page }) => {
@@ -23,6 +36,17 @@ test.describe('Record', () => {
     );
   });
 
+  test('tracks internal archive and season opens', async ({ page }) => {
+    await page.goto('/record');
+    const meeting = page.locator('[data-game^="2025"]');
+    await meeting.getByRole('link', { name: '27-9' }).click();
+    await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'record_game_opened', { game_year: 2025 }]);
+
+    await page.goBack();
+    await meeting.getByRole('link', { name: /Ohio State/ }).click();
+    await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'team_season_opened', { team: 'ohio-state', season: 2025 }]);
+  });
+
   test('renders a covered game with its archival facts, internal team links, and adjacent meetings', async ({ page }) => {
     await page.goto('/record/2025');
 
@@ -40,6 +64,13 @@ test.describe('Record', () => {
     await expect(page.getByRole('link', { name: /CFBD advanced box score/i })).toHaveAttribute('href', /collegefootballdata\.com\/boxscore\//);
     await expect(page.getByRole('link', { name: /previous meeting: 2024/i })).toHaveAttribute('href', '/record/2024');
     await expect(page.getByRole('link', { name: /next meeting/i })).toHaveCount(0);
+  });
+
+  test('tracks an external CFBD boxscore when one is available', async ({ page }) => {
+    await page.goto('/record/2025');
+    await page.getByRole('link', { name: /CFBD advanced box score/i }).click();
+
+    await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'cfbd_boxscore_opened', { game_year: 2025 }]);
   });
 
   test('renders every snapshot team-season with its available profile and canonical URL', async ({ page }) => {
@@ -139,6 +170,29 @@ test.describe('Rivalry Lab', () => {
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
     await expect(page.locator('[data-game-score]')).toContainText('TYPICAL SCORE');
+  });
+
+  test('tracks built and simulated matchups with coverage but no seed', async ({ page }) => {
+    await page.goto('/rivalry-lab');
+    await page.locator('[data-osu]').selectOption('1995');
+    await page.locator('[data-mich]').selectOption('2023');
+    await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
+    await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
+
+    await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'rivalry_lab_matchup_built', {
+      osu_season: 1995,
+      michigan_season: 2023,
+      era_mode: 'neutral',
+      simulation_coverage: 'score-and-schedule',
+    }]);
+    await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'rivalry_lab_simulation_run', {
+      osu_season: 1995,
+      michigan_season: 2023,
+      simulation_count: 5_000,
+      simulation_coverage: 'score-and-schedule',
+    }]);
+    expect(JSON.stringify(await capturedEvents(page))).not.toContain('seed');
   });
 
   test('explains and plays one selected matchup without series controls or turning points', async ({ page }) => {

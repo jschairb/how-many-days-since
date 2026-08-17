@@ -1,5 +1,19 @@
 import { test, expect } from '@playwright/test';
 
+const capturedEvents = (page: any) => page.evaluate(() => JSON.parse(sessionStorage.getItem('analytics-events') ?? '[]'));
+
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    type AnalyticsWindow = Window & { analyticsEvents: unknown[]; gtag: (...args: unknown[]) => void };
+    const analyticsWindow = window as unknown as AnalyticsWindow;
+    analyticsWindow.analyticsEvents = JSON.parse(sessionStorage.getItem('analytics-events') ?? '[]');
+    analyticsWindow.gtag = (...args: unknown[]) => {
+      analyticsWindow.analyticsEvents.push(args);
+      sessionStorage.setItem('analytics-events', JSON.stringify(analyticsWindow.analyticsEvents));
+    };
+  });
+});
+
 test.describe('Count', () => {
   test('does not render a rotating image section', async ({ page }) => {
     await page.goto('/');
@@ -21,6 +35,16 @@ test.describe('Count', () => {
       'href',
       'https://gwpworkshop.com/products/script-in-the-snow-the-2025-rivalry-game-commemorative-tee'
     );
+  });
+
+  test('tracks the featured product and its placement', async ({ page }) => {
+    await page.goto('/');
+    await page.getByRole('link', { name: /shop the 2025 commemorative tee/i }).click();
+
+    await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'merch_product_opened', {
+      product: 'script-in-the-snow',
+      placement: 'home_featured',
+    }]);
   });
 
   test('renders the handoff counter and shared navigation', async ({ page }) => {

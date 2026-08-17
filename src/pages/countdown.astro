@@ -36,6 +36,8 @@ const eventSchema = {
 </SiteShell>
 
 <script>
+  import { trackEvent } from '../lib/client/analytics';
+
   const countdown = document.querySelector<HTMLElement>('[data-countdown]');
   const gameStart = new Date(countdown?.dataset.gameStart ?? '').getTime();
   const days = document.querySelector<HTMLElement>('[data-countdown-days]');
@@ -65,14 +67,22 @@ const eventSchema = {
 
   const selectedTeam = new URLSearchParams(window.location.search).get('team');
   if (selectedTeam === 'michigan' || selectedTeam === 'ohio-state') setTeam(selectedTeam, true);
-  buttons.forEach((button) => button.addEventListener('click', () => setTeam(button.dataset.teamChoice ?? 'ohio-state')));
+  buttons.forEach((button) => button.addEventListener('click', () => {
+    const team = button.dataset.teamChoice ?? 'ohio-state';
+    setTeam(team);
+    trackEvent('countdown_palette_selected', { team });
+  }));
   document.querySelector<HTMLButtonElement>('[data-share-countdown]')?.addEventListener('click', async () => {
     const url = window.location.href;
     try {
       await navigator.clipboard.writeText(url);
       if (status) status.textContent = 'COUNTDOWN LINK COPIED.';
+      trackEvent('countdown_shared', { method: 'clipboard', team: countdown?.dataset.team ?? 'ohio-state' });
     } catch {
-      if (navigator.share) await navigator.share({ title: document.title, url });
+      if (navigator.share) {
+        await navigator.share({ title: document.title, url });
+        trackEvent('countdown_shared', { method: 'web_share', team: countdown?.dataset.team ?? 'ohio-state' });
+      }
       else if (status) status.textContent = url;
     }
   });
