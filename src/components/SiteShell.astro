@@ -1,10 +1,24 @@
 ---
 import '../styles/site.css';
 import '../styles/norwester.css';
+import {
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_TYPE,
+  OG_IMAGE_WIDTH,
+  OG_LOGO_PATH,
+  OG_SITE_NAME,
+  ogCardAlt,
+  ogImagePathFor,
+  resolveOgCard,
+} from '../lib/og-card';
 const site = 'https://howmanydayssincemichiganhasbeatenohiostate.com';
-const { active, title = 'How Many Days Since Michigan Has Beaten Ohio State?', description = 'The Ohio State-Michigan rivalry record and an evidence-labeled cross-era Rivalry Lab.', ogImage, schema } = Astro.props;
+const { active, title = 'How Many Days Since Michigan Has Beaten Ohio State?', description = 'The Ohio State-Michigan rivalry record and an evidence-labeled cross-era Rivalry Lab.', ogImage, ogImageAlt, schema } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site).toString();
-const openGraphImage = ogImage ? new URL(ogImage, site).toString() : undefined;
+// Every page gets a card: its own generated one, or the site card as a fallback
+// for routes the resolver does not know. `og:image` is never left off.
+const openGraphImage = new URL(ogImage ?? ogImagePathFor(Astro.url.pathname), site).toString();
+const openGraphImageAlt = ogImageAlt ?? (() => { const card = resolveOgCard(Astro.url.pathname); return card ? ogCardAlt(card) : description; })();
+const openGraphLogo = new URL(OG_LOGO_PATH, site).toString();
 const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
 const webSiteSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'How Many Days Since Michigan Has Beaten Ohio State?', url: site });
 const pageSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebPage', name: title, description, url: canonical });
@@ -22,11 +36,23 @@ const nav = [{ href: '/', label: 'Home', id: 'count', icon: true }, { href: '/co
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={OG_SITE_NAME} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    {openGraphImage && <meta property="og:image" content={openGraphImage} />}
+    <meta property="og:image" content={openGraphImage} />
+    <meta property="og:image:secure_url" content={openGraphImage} />
+    <meta property="og:image:type" content={OG_IMAGE_TYPE} />
+    <meta property="og:image:width" content={String(OG_IMAGE_WIDTH)} />
+    <meta property="og:image:height" content={String(OG_IMAGE_HEIGHT)} />
+    <meta property="og:image:alt" content={openGraphImageAlt} />
+    <meta property="og:logo" content={openGraphLogo} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={openGraphImage} />
+    <meta name="twitter:image:alt" content={openGraphImageAlt} />
     <script type="application/ld+json" set:html={webSiteSchema}></script>
     <script type="application/ld+json" set:html={pageSchema}></script>
     {additionalSchema && <script type="application/ld+json" set:html={additionalSchema}></script>}

@@ -1,8 +1,22 @@
 ---
+import {
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_TYPE,
+  OG_IMAGE_WIDTH,
+  OG_LOGO_PATH,
+  OG_SITE_NAME,
+} from '../lib/og-card';
+
 const title = 'Mo Carmen: The Mascot for a Dominance That Never Ends';
 const description = 'The anti-mascot for an era of undeniable truth: The Horn in the Dark. Born the moment Shawn Springs fell down in 1996, Mo Carmen represents Ohio State\'s dominance over Michigan.';
 const siteUrl = 'https://howmanydayssincemichiganhasbeatenohiostate.com';
+// Derived from the request rather than hardcoded, so it matches the trailing
+// slash the sitemap and the SiteShell pages use.
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+// This page keeps its hand-made card rather than a generated one.
 const ogImage = `${siteUrl}/mo-carmen.png`;
+const ogImageAlt = 'Mo Carmen, the Ohio State anti-mascot, with his trumpet.';
+const ogLogo = `${siteUrl}${OG_LOGO_PATH}`;
 const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
 ---
 
@@ -13,24 +27,30 @@ const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    
+    <link rel="canonical" href={canonical} />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={`${siteUrl}/mo-carmen`} />
+    <meta property="og:site_name" content={OG_SITE_NAME} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/png" />
-    
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content={OG_IMAGE_TYPE} />
+    <meta property="og:image:width" content={String(OG_IMAGE_WIDTH)} />
+    <meta property="og:image:height" content={String(OG_IMAGE_HEIGHT)} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:logo" content={ogLogo} />
+
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={`${siteUrl}/mo-carmen`} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={ogImage} />
-    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <link rel="stylesheet" href="/reset.css?v=3" />
     <link rel="stylesheet" href="/style.css?v=3" />
