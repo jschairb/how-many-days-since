@@ -53,7 +53,7 @@ test.describe('Record', () => {
     await expect(page).toHaveTitle(/2025 Ohio State vs Michigan/i);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
-      'https://howmanydayssincemichiganhasbeatenohiostate.com/record/2025'
+      'https://howmanydayssincemichiganhasbeatenohiostate.com/record/2025/'
     );
     await expect(page.getByTestId('game-score')).toContainText('OHIO STATE 27');
     await expect(page.getByTestId('game-score')).toContainText('9 MICHIGAN');
@@ -79,7 +79,7 @@ test.describe('Record', () => {
     await expect(page).toHaveTitle(/2025 Ohio State Season/i);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
-      'https://howmanydayssincemichiganhasbeatenohiostate.com/teams/ohio-state/2025'
+      'https://howmanydayssincemichiganhasbeatenohiostate.com/teams/ohio-state/2025/'
     );
     await expect(page.getByTestId('season-record')).toContainText('12-2');
     await expect(page.getByTestId('season-profile')).toContainText('OBSERVED');
