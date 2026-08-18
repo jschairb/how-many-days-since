@@ -167,6 +167,7 @@ test.describe('Record', () => {
     await expect(page.getByRole('heading', { name: 'RIVALRY DROUGHTS' })).toBeVisible();
     await expect(page.getByTestId('ohio-state-longest')).toContainText('1944');
     await expect(page.getByTestId('ohio-state-longest')).toContainText('1952');
+    await expect(page.locator('.drought-summary')).toHaveCount(0);
   });
 
   test('keeps the Record page readable on mobile', async ({ page }) => {

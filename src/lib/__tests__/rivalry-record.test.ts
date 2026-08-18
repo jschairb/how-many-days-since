@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import games from '../../data/rivalry-games.json';
 import { calculateRivalryRecord } from '../rivalry-record';
 
-const record = calculateRivalryRecord(games, new Date('2026-08-15T16:00:00Z'));
+const record = calculateRivalryRecord(games);
 
 describe('calculateRivalryRecord', () => {
   it("derives Ohio State's known 1944-to-1952 longest completed drought", () => {
@@ -22,15 +22,6 @@ describe('calculateRivalryRecord', () => {
 
     expect(tie).toBeDefined();
     expect(ohioStateDrought).toBeDefined();
-  });
-
-  it('reports Michigan as the only current active drought after Ohio State won in 2025', () => {
-    expect(record.byTeam.Michigan.currentActiveDrought).toMatchObject({
-      team: 'Michigan',
-      startResult: { year: 2025, winner: 'Ohio State' },
-      elapsedDays: 259,
-    });
-    expect(record.byTeam['Ohio State'].currentActiveDrought).toBeNull();
   });
 
   it('sorts the public top-five list by elapsed calendar days', () => {

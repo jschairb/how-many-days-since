@@ -18,12 +18,6 @@ export interface Drought {
   elapsedSeasons: number;
 }
 
-export interface ActiveDrought {
-  team: Team;
-  startResult: RivalryGame;
-  elapsedDays: number;
-}
-
 export interface TeamDroughtRecord {
   completedDroughts: Drought[];
   averageDays: number;
@@ -31,7 +25,6 @@ export interface TeamDroughtRecord {
   shortest: Drought;
   longest: Drought;
   topFiveLongest: Drought[];
-  currentActiveDrought: ActiveDrought | null;
 }
 
 export interface DroughtHistoryRow {
@@ -72,18 +65,6 @@ function calendarDay(game: Pick<RivalryGame, 'year' | 'date'>): number {
   return Date.UTC(game.year, monthNumber, Number(day));
 }
 
-function newYorkCalendarDay(date: Date): number {
-  const parts = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'America/New_York',
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-  }).formatToParts(date);
-  const values = Object.fromEntries(parts.filter(({ type }) => type !== 'literal').map(({ type, value }) => [type, Number(value)]));
-
-  return Date.UTC(values.year, values.month - 1, values.day);
-}
-
 function elapsedDays(start: RivalryGame, end: RivalryGame): number {
   return (calendarDay(end) - calendarDay(start)) / 86_400_000;
 }
@@ -95,12 +76,11 @@ function median(values: number[]): number {
   return sorted.length % 2 === 0 ? (sorted[midpoint - 1] + sorted[midpoint]) / 2 : sorted[midpoint];
 }
 
-export function calculateRivalryRecord(sourceGames: RivalryGame[], today = new Date()): RivalryRecord {
+export function calculateRivalryRecord(sourceGames: RivalryGame[]): RivalryRecord {
   const games = [...sourceGames].sort((a, b) => calendarDay(a) - calendarDay(b));
   const completedByTeam: Record<Team, Drought[]> = { 'Ohio State': [], Michigan: [] };
   const previousWins: Partial<Record<Team, { game: RivalryGame; index: number }>> = {};
   const droughtHistory: DroughtHistoryRow[] = [];
-  let latestDecisiveGame: RivalryGame | null = null;
 
   for (const [index, game] of games.entries()) {
     if (game.winner === 'Tie') {
@@ -131,19 +111,13 @@ export function calculateRivalryRecord(sourceGames: RivalryGame[], today = new D
     }
 
     previousWins[winner] = { game, index };
-    latestDecisiveGame = game;
   }
 
-  const activeTeam = latestDecisiveGame?.loser as Team | undefined;
-  const currentDay = newYorkCalendarDay(today);
   const byTeam = Object.fromEntries(
     teams.map((team) => {
       const completedDroughts = completedByTeam[team];
       const days = completedDroughts.map((drought) => drought.elapsedDays);
       const sortedByLength = [...completedDroughts].sort((a, b) => b.elapsedDays - a.elapsedDays);
-      const currentActiveDrought = team === activeTeam && latestDecisiveGame
-        ? { team, startResult: latestDecisiveGame, elapsedDays: (currentDay - calendarDay(latestDecisiveGame)) / 86_400_000 }
-        : null;
 
       return [team, {
         completedDroughts,
@@ -152,7 +126,6 @@ export function calculateRivalryRecord(sourceGames: RivalryGame[], today = new D
         shortest: sortedByLength.at(-1)!,
         longest: sortedByLength[0]!,
         topFiveLongest: sortedByLength.slice(0, 5),
-        currentActiveDrought,
       }];
     })
   ) as Record<Team, TeamDroughtRecord>;

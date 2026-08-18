@@ -17,7 +17,6 @@ const droughtRecord = calculateRivalryRecord(games);
 const droughtHistoryByYear = new Map(droughtRecord.droughtHistory.map((entry) => [entry.game.year, entry]));
 const ohioStateDroughts = droughtRecord.byTeam['Ohio State'];
 const michiganDroughts = droughtRecord.byTeam.Michigan;
-const currentDrought = [ohioStateDroughts.currentActiveDrought, michiganDroughts.currentActiveDrought].find(Boolean);
 const number = new Intl.NumberFormat('en-US');
 const formatDays = (days: number) => `${number.format(Math.round(days))} DAYS`;
 const teamClass = (team: Team) => team === 'Ohio State' ? 'osu' : 'mich';
@@ -37,25 +36,11 @@ const seasonRecord = (team: Team, season: number) => {
     </section>
     <section>
       <div class="section-title"><b>WINS BY DECADE</b><span>TREND: HISTORICAL RESULTS</span></div>
-      <div class="decades">{decades.map(([decade, wins]) => <div class="decade" title={`${decade}s: Michigan ${wins.michigan}, Ohio State ${wins.ohioState}`}><i class="m" style={`height:${wins.michigan * 9}px`}></i><i class="o" style={`height:${wins.ohioState * 9}px`}></i></div>)}</div>
+      <div class="decades">{decades.map(([decade, wins]) => <div class="decade" title={`${decade}s: Michigan ${wins.michigan}, Ohio State ${wins.ohioState}`}><i class="m" style={`height:${wins.michigan * 9}px`}></i><i class="o" style={`height:${wins.ohioState * 9}px`}></i><small>{decade.slice(2)}</small></div>)}</div>
     </section>
     <section class="droughts" aria-labelledby="droughts-heading">
       <div class="section-title"><h2 id="droughts-heading">RIVALRY DROUGHTS</h2><span>OBSERVED · PUBLIC GAME RESULTS</span></div>
-      <div class="drought-summary" aria-label="Rivalry drought highlights">
-        <div>
-          <strong class:list={{ [teamClass(currentDrought!.team)]: true }}>{formatDays(currentDrought!.elapsedDays)}</strong>
-          <small>CURRENT {currentDrought!.team.toUpperCase()} DROUGHT<br />SINCE {currentDrought!.startResult.winner.toUpperCase()} {currentDrought!.startResult.year}</small>
-        </div>
-        <div data-testid="ohio-state-longest">
-          <strong class="osu">{formatDays(ohioStateDroughts.longest.elapsedDays)}</strong>
-          <small>LONGEST OHIO STATE DROUGHT<br />{ohioStateDroughts.longest.priorWin.year} TO {ohioStateDroughts.longest.nextWin.year}</small>
-        </div>
-        <div>
-          <strong class="mich">{formatDays(michiganDroughts.longest.elapsedDays)}</strong>
-          <small>LONGEST MICHIGAN DROUGHT<br />{michiganDroughts.longest.priorWin.year} TO {michiganDroughts.longest.nextWin.year}</small>
-        </div>
-      </div>
-      <div class="section-title drought-subhead"><b>DROUGHT STATS</b><span>COMPLETED DROUGHTS</span></div>
+      <div class="section-title drought-subhead drought-subhead-first"><b>DROUGHT STATS</b><span>COMPLETED DROUGHTS</span></div>
       <div class="drought-table-wrap drought-comparison-wrap">
         <table class="drought-comparison">
           <thead><tr><th scope="col">METRIC</th><th scope="col" class="osu">OHIO STATE</th><th scope="col" class="mich">MICHIGAN</th></tr></thead>
@@ -68,7 +53,7 @@ const seasonRecord = (team: Team, season: number) => {
         </table>
       </div>
       <div class="section-title drought-subhead"><b>LONGEST DROUGHTS</b></div>
-      <div class="game-table drought-games">{droughtRecord.topFiveLongestDroughts.map((drought) => { const game = drought.nextWin; return <div class="game-row"><b>{game.year}</b><span class="game-result"><b class={teamClass(game.winner as Team)}>{game.winner}</b><small class="game-drought"><span class={teamClass(drought.team)}>{drought.team}</span> drought ended after {formatDays(drought.elapsedDays)}</small></span><span>{game.wScore}-{game.lScore}</span><span>{game.loser}</span></div>})}</div>
+      <div class="game-table drought-games">{droughtRecord.topFiveLongestDroughts.map((drought) => { const game = drought.nextWin; return <div class="game-row" data-testid={drought === ohioStateDroughts.longest ? 'ohio-state-longest' : undefined}><b>{game.year}</b><span class="game-result"><b class={teamClass(game.winner as Team)}>{game.winner}</b><small class="game-drought"><span class={teamClass(drought.team)}>{drought.team}</span> drought · {drought.priorWin.year} to {drought.nextWin.year} · {formatDays(drought.elapsedDays)}</small></span><span>{game.wScore}-{game.lScore}</span><span>{game.loser}</span></div>})}</div>
     </section>
     <section>
       <div class="record-filter"><b>EVERY MEETING</b><input aria-label="Filter games" placeholder="Filter by year, team, or site..." data-filter /></div>
@@ -86,11 +71,7 @@ const seasonRecord = (team: Team, season: number) => {
 <style>
   .droughts { margin-top:48px; }
   .droughts h2 { margin:0; font:24px 'Archivo Black'; letter-spacing:-.02em; }
-  .drought-summary { display:grid; grid-template-columns:repeat(3, 1fr); margin:16px 0 28px; border:3px solid #111; }
-  .drought-summary > div { min-height:126px; padding:18px; border-right:1px solid #d9dce1; }
-  .drought-summary > div:last-child { border-right:0; }
-  .drought-summary strong { display:block; margin-bottom:8px; font:clamp(23px, 2.7vw, 34px) 'Archivo Black'; line-height:1; }
-  .drought-summary small, .drought-list small { color:#6b717c; font-size:11px; font-weight:700; line-height:1.35; letter-spacing:.03em; }
+  .drought-list small { color:#6b717c; font-size:11px; font-weight:700; line-height:1.35; letter-spacing:.03em; }
   .drought-table-wrap { overflow-x:auto; margin:0 0 28px; border:3px solid #111; -webkit-overflow-scrolling:touch; }
   .drought-comparison-wrap { overflow:hidden; }
   .drought-comparison, .drought-list { width:100%; border-collapse:collapse; }
@@ -103,6 +84,7 @@ const seasonRecord = (team: Team, season: number) => {
   .drought-comparison td { font-weight:700; }
   .drought-list { min-width:760px; }
   .drought-subhead { margin-top:36px; }
+  .drought-subhead-first { margin-top:20px; }
   .game-result > b, .game-drought { display:block; }
   .game-drought { margin-top:2px; color:#6b717c; font-size:11px; font-weight:600; line-height:1.25; }
   .game-row a { color:inherit; text-decoration:none; }
@@ -114,5 +96,5 @@ const seasonRecord = (team: Team, season: number) => {
   .game-team-link:hover, .game-team-link:focus-visible { text-decoration:none; outline:0; }
   .game-team-link.osu:hover, .game-team-link.osu:focus-visible { background:#bb0000; color:#d9dce1; }
   .game-team-link.mich:hover, .game-team-link.mich:focus-visible { background:#00274c; color:#ffcb05; }
-  @media (max-width:640px) { .drought-summary { grid-template-columns:1fr; } .drought-summary > div { min-height:0; border-right:0; border-bottom:1px solid #d9dce1; } .drought-summary > div:last-child { border-bottom:0; } .drought-comparison th, .drought-comparison td { padding:10px; font-size:12px; } .drought-comparison tbody th { width:42%; } }
+  @media (max-width:640px) { .drought-comparison th, .drought-comparison td { padding:10px; font-size:12px; } .drought-comparison tbody th { width:42%; } }
 </style>
