@@ -384,17 +384,10 @@ test.describe('Rivalry Lab', () => {
     await expect(call.locator('[data-call-one-score]')).toContainText(/% OF GAMES ENDED WITHIN ONE SCORE/);
     await expect(call.locator('[data-call-upset]')).toContainText(/^UNDERDOG CHECK · \w+.* HAD A \d+% CHANCE PREGAME AND WON \d+% OF THE GAMES \([+-]?\d+ PTS\)/);
     await expect(page.locator('[data-game-score]')).toContainText('TYPICAL SCORE');
-    const typicalScores = await page.locator('[data-game-score] strong').allTextContents();
-    const labelText = await page.locator('[data-run-game-label]').textContent();
-    expect(labelText).toMatch(/MICHIGAN \d+, OHIO STATE \d+/);
-    if (!labelText?.includes('CLOSEST GAME')) {
-      expect(labelText).toContain(`MICHIGAN ${typicalScores[0]}, OHIO STATE ${typicalScores[1]}`);
-    }
-    expect(await page.locator('[data-timeline] .q-mark').count()).toBeGreaterThanOrEqual(4);
     await expect(call.locator('[data-call-extremes]')).toContainText('BIGGEST OHIO STATE WIN');
     await expect(call.locator('[data-call-extremes]')).toContainText('BIGGEST MICHIGAN WIN');
+    await expect(page.locator('[data-run-game-label], [data-timeline], [data-game-stats]')).toHaveCount(0);
 
-    await call.getByText('SEE THE FULL BREAKDOWN').click();
     await expect(call.locator('.margin-row')).toHaveCount(6);
     await expect(call.locator('[data-breakdown-facts]')).toContainText('OVERTIME RATE');
     await expect(call.locator('[data-breakdown-facts]')).toContainText('BLOWOUTS');
@@ -415,7 +408,6 @@ test.describe('Rivalry Lab', () => {
     await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
 
     await expect(page.locator('[data-model-call]')).toBeVisible();
-    await page.locator('[data-model-call]').getByText('SEE THE FULL BREAKDOWN').click();
     await expect(page.locator('.margin-row')).toHaveCount(6);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({ path: 'tmp/screenshots/rivalry-lab-model-call-mobile.png', fullPage: true });
