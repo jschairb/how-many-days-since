@@ -109,7 +109,8 @@ const eventSchema = {
    .team-toggle button { padding:8px 16px; background:var(--choice); color:var(--choice-accent); }
    .team-toggle button[data-team-choice="ohio-state"] { --choice:#bb0000; --choice-accent:#d9dce1; }
    .team-toggle button[data-team-choice="michigan"] { --choice:#00274c; --choice-accent:#ffcb05; }
-   .team-toggle button[aria-pressed="true"] { outline:3px solid #111; outline-offset:-3px; }
+   /* Inset shadow, not outline: outline stays free for :focus-visible. */
+   .team-toggle button[aria-pressed="true"] { box-shadow:inset 0 0 0 3px #111; }
    .share-countdown { margin-top:18px; }
   .share-status { min-height:20px; margin:10px 0 0; }
   @media (max-width:640px) { .countdown { padding-top:18px; } .countdown-clock div { padding:18px 4px; } .team-toggle { flex-direction:column; } .team-toggle button { width:100%; } }
