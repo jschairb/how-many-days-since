@@ -109,13 +109,16 @@ const nav = [{ href: '/', label: 'Home', id: 'count', icon: true }, { href: '/co
 <style is:global>
    .site-nav-home { display:grid; place-items:center; width:18px; padding:0 0 4px; color:#8b9098!important; }
    .site-nav-home svg { width:16px; height:16px; fill:currentColor; }
-   .site-nav-toggle { display:none; place-items:center; width:38px; height:38px; padding:0; border:2px solid #111; background:#fff; color:#111; cursor:pointer; }
-   .site-nav-toggle span,.site-nav-toggle span::before,.site-nav-toggle span::after { display:block; width:17px; height:2px; background:currentColor; }
-   .site-nav-toggle span { position:relative; }
-   .site-nav-toggle span::before,.site-nav-toggle span::after { content:''; position:absolute; left:0; }
-   .site-nav-toggle span::before { top:-5px; }
-   .site-nav-toggle span::after { top:5px; }
-   .site-nav-toggle[aria-expanded=true] { background:#111; color:#fff; }
+   .site-nav-toggle { display:none; place-items:center; width:40px; height:40px; margin-right:-9px; padding:0; border:0; background:none; color:#111; cursor:pointer; }
+   .site-nav-toggle span,.site-nav-toggle span::before,.site-nav-toggle span::after { display:block; width:20px; height:2px; background:currentColor; }
+   .site-nav-toggle span { position:relative; transition:background-color .18s ease; }
+   .site-nav-toggle span::before,.site-nav-toggle span::after { content:''; position:absolute; left:0; transition:transform .18s ease; }
+   .site-nav-toggle span::before { top:-6px; }
+   .site-nav-toggle span::after { top:6px; }
+   /* Open: the bars fold into a close mark rather than swapping the whole box. */
+   .site-nav-toggle[aria-expanded=true] span { background:transparent; }
+   .site-nav-toggle[aria-expanded=true] span::before { transform:translateY(6px) rotate(45deg); }
+   .site-nav-toggle[aria-expanded=true] span::after { transform:translateY(-6px) rotate(-45deg); }
    /* Above the breakpoint the slotted Share badge pins itself to the viewport
       corner, so it must not take a slot in the nav row. */
    .site-nav-share { display:contents; }
@@ -125,16 +128,33 @@ const nav = [{ href: '/', label: 'Home', id: 'count', icon: true }, { href: '/co
       on .collapsible, which the nav script adds once it can drive the toggle.
       Without it the bar keeps its scrolling row and stays usable. */
    @media (max-width:560px) {
-     .site-nav.collapsible { flex-wrap:wrap; align-items:center; overflow:visible; column-gap:16px; row-gap:0; padding-bottom:0; }
+     .site-nav.collapsible { flex-wrap:wrap; align-items:center; overflow:visible; column-gap:16px; row-gap:0; padding:6px 4px 0; }
      /* The toggle trails the links in the markup; order keeps it on the bar
         row, opposite the home icon, so the opened links stack under both. */
      .site-nav.collapsible .site-nav-toggle { display:grid; order:-1; margin-left:auto; }
      .site-nav.collapsible .site-nav-home { order:-2; padding-bottom:0; }
-     .site-nav.collapsible a:not(.site-nav-home) { display:none; width:100%; padding:15px 2px; border-top:1px solid #d9dce1; font-size:15px; }
-     .site-nav.collapsible.open a:not(.site-nav-home) { display:block; }
+     /* display is transitioned with allow-discrete so the rows fade in place
+        instead of snapping; browsers without it fall back to the plain swap. */
+     .site-nav.collapsible a:not(.site-nav-home),.site-nav.collapsible .site-nav-share {
+       display:none; width:100%; opacity:0; transform:translateY(-4px);
+       transition:opacity .18s ease,transform .18s ease,display .18s allow-discrete;
+     }
+     .site-nav.collapsible a:not(.site-nav-home) { padding:14px 2px; border-top:1px solid #e6e8ec; font-size:15px; }
+     .site-nav.collapsible.open a:not(.site-nav-home) { display:block; opacity:1; transform:none; }
      /* Share is the last row of the menu, not a floating badge. */
-     .site-nav.collapsible .site-nav-share { display:none; width:100%; }
-     .site-nav.collapsible.open .site-nav-share { display:block; }
-     .site-nav.collapsible.open { padding-bottom:14px; }
+     .site-nav.collapsible.open .site-nav-share { display:block; opacity:1; transform:none; }
+     @starting-style {
+       .site-nav.collapsible.open a:not(.site-nav-home),.site-nav.collapsible.open .site-nav-share { opacity:0; transform:translateY(-4px); }
+     }
+     .site-nav.collapsible.open a:nth-of-type(2) { transition-delay:.03s; }
+     .site-nav.collapsible.open a:nth-of-type(3) { transition-delay:.06s; }
+     .site-nav.collapsible.open a:nth-of-type(4) { transition-delay:.09s; }
+     .site-nav.collapsible.open a:nth-of-type(5) { transition-delay:.12s; }
+     .site-nav.collapsible.open { padding-bottom:12px; }
+     @media (prefers-reduced-motion:reduce) {
+       .site-nav.collapsible a:not(.site-nav-home),.site-nav.collapsible .site-nav-share,
+       .site-nav-toggle span,.site-nav-toggle span::before,.site-nav-toggle span::after { transition:none; }
+       .site-nav.collapsible.open a { transition-delay:0s; }
+     }
    }
 </style>
