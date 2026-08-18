@@ -67,5 +67,7 @@ const eventSchema = {
   .countdown-clock div:last-child { border:0; }
    .countdown-clock strong { display:block; color:var(--team); font:clamp(52px, 13vw, 128px)/.85 'Archivo Black'; letter-spacing:-.06em; text-shadow:4px 4px var(--team-shadow); }
   .countdown-clock span { display:block; margin-top:12px; font-size:12px; font-weight:700; letter-spacing:.08em; }
-  @media (max-width:640px) { .countdown { padding-top:18px; } .countdown-clock div { padding:18px 4px; } }
+  /* Centering leaves the block sitting low on a tall phone, so it starts
+     from the top with a smaller gap under the header. */
+  @media (max-width:640px) { .countdown { justify-content:flex-start; padding-top:7vh; } .countdown-clock div { padding:18px 4px; } }
 </style>
