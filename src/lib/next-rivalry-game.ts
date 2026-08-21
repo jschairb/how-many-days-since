@@ -1,5 +1,5 @@
 export const nextRivalryGame = {
-  name: 'Ohio State vs. Michigan',
+  name: 'Michigan vs. Ohio State',
   start: '2026-11-28T12:00:00-05:00',
   date: 'November 28, 2026',
   time: 'Noon ET',
