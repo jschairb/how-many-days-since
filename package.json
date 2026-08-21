@@ -15,6 +15,7 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "sync:lab-snapshot": "node scripts/sync-rivalry-lab-snapshot.mjs",
+    "sync:media-guides": "node scripts/sync-media-guides.mjs",
     "build:og-logo": "node scripts/build-og-logo.mjs"
   },
   "devDependencies": {

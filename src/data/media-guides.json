@@ -1,0 +1,366 @@
+{
+  "collection": "college-football-media-guides",
+  "syncedAt": "2026-08-21T02:43:43.843Z",
+  "guides": [
+    {
+      "teamId": "michigan",
+      "season": 1971,
+      "identifier": "michigan-football-1971-media-guide-c",
+      "title": "Michigan football 1971 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1972,
+      "identifier": "michigan-football-1972-media-guide-c",
+      "title": "Michigan football 1972 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1973,
+      "identifier": "michigan-football-1973-media-guide-c",
+      "title": "Michigan football 1973 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1974,
+      "identifier": "michigan-football-1974-media-guide-c",
+      "title": "Michigan football 1974 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1975,
+      "identifier": "michigan-football-1975-media-guide-c",
+      "title": "Michigan football 1975 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1976,
+      "identifier": "michigan-football-1976-media-guide-c",
+      "title": "Michigan football 1976 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1977,
+      "identifier": "michigan-football-1977-media-guide-c",
+      "title": "Michigan football 1977 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1978,
+      "identifier": "michigan-football-1978-media-guide-c",
+      "title": "Michigan football 1978 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1979,
+      "identifier": "michigan-football-1979-media-guide-c",
+      "title": "Michigan football 1979 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1980,
+      "identifier": "michigan-football-1980-media-guide-c",
+      "title": "Michigan football 1980 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1981,
+      "identifier": "michigan-football-1981-media-guide-c",
+      "title": "Michigan football 1981 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1982,
+      "identifier": "michigan-football-1982-media-guide-c",
+      "title": "Michigan football 1982 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1983,
+      "identifier": "michigan-football-1983-media-guide-c",
+      "title": "Michigan football 1983 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1995,
+      "identifier": "michigan-football-1995-media-guide",
+      "title": "Michigan football 1995 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 1998,
+      "identifier": "michigan-football-1998-media-guide-c",
+      "title": "Michigan football 1998 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 2000,
+      "identifier": "michigan-football-2000-media-guide",
+      "title": "Michigan football 2000 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 2011,
+      "identifier": "michigan-football-2011-media-guide",
+      "title": "Michigan football 2011 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 2012,
+      "identifier": "michigan-football-2012-media-guide",
+      "title": "Michigan football 2012 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 2013,
+      "identifier": "michigan-football-2013-media-guide",
+      "title": "Michigan football 2013 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 2014,
+      "identifier": "michigan-football-2014-media-guide",
+      "title": "Michigan football 2014 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 2015,
+      "identifier": "michigan-football-2015-media-guide",
+      "title": "Michigan football 2015 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 2016,
+      "identifier": "michigan-football-2016-media-guide",
+      "title": "Michigan football 2016 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 2017,
+      "identifier": "michigan-football-2017-media-guide",
+      "title": "Michigan football 2017 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 2018,
+      "identifier": "michigan-football-2018-media-guide",
+      "title": "Michigan football 2018 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 2019,
+      "identifier": "michigan-football-2019-media-guide",
+      "title": "Michigan football 2019 Media Guide"
+    },
+    {
+      "teamId": "michigan",
+      "season": 2020,
+      "identifier": "michigan-football-2020-media-guide",
+      "title": "Michigan football 2020 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 1965,
+      "identifier": "ohio-state-football-1965-media-guide-c",
+      "title": "Ohio State football 1965 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 1978,
+      "identifier": "ohio-state-football-1978-media-guide-c",
+      "title": "Ohio State football 1978 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 1980,
+      "identifier": "ohio-state-football-1980-media-guide-c",
+      "title": "Ohio State football 1980 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 1981,
+      "identifier": "ohio-state-football-1981-media-guide-c",
+      "title": "Ohio State football 1981 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 1984,
+      "identifier": "ohio-state-football-1984-media-guide-c",
+      "title": "Ohio State football 1984 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 1985,
+      "identifier": "ohio-state-football-1985-media-guide-c",
+      "title": "Ohio State football 1985 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 1986,
+      "identifier": "ohio-state-football-1986-media-guide",
+      "title": "Ohio State football 1986 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 1989,
+      "identifier": "ohio-state-football-1989-media-guide-c",
+      "title": "Ohio State football 1989 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 1991,
+      "identifier": "ohio-state-football-1991-media-guide-c",
+      "title": "Ohio State football 1991 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 1996,
+      "identifier": "ohio-state-football-1996-media-guide-c",
+      "title": "Ohio State football 1996 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 1999,
+      "identifier": "ohio-state-football-1999-media-guide-c",
+      "title": "Ohio State football 1999 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2000,
+      "identifier": "ohio-state-football-2000-media-guide-c",
+      "title": "Ohio State football 2000 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2002,
+      "identifier": "ohio-state-football-2002-media-guide-c",
+      "title": "Ohio State football 2002 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2003,
+      "identifier": "ohio-state-football-2003-media-guide-c",
+      "title": "Ohio State football 2003 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2004,
+      "identifier": "ohio-state-football-2004-media-guide-c",
+      "title": "Ohio State football 2004 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2005,
+      "identifier": "ohio-state-football-2005-media-guide",
+      "title": "Ohio State football 2005 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2006,
+      "identifier": "ohio-state-football-2006-media-guide",
+      "title": "Ohio State football 2006 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2007,
+      "identifier": "ohio-state-football-2007-media-guide",
+      "title": "Ohio State football 2007 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2008,
+      "identifier": "ohio-state-football-2008-media-guide",
+      "title": "Ohio State football 2008 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2009,
+      "identifier": "ohio-state-football-2009-media-guide",
+      "title": "Ohio State football 2009 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2011,
+      "identifier": "ohio-state-football-2011-media-guide",
+      "title": "Ohio State football 2011 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2012,
+      "identifier": "ohio-state-football-2012-media-guide",
+      "title": "Ohio State football 2012 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2013,
+      "identifier": "ohio-state-football-2013-media-guide",
+      "title": "Ohio State football 2013 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2014,
+      "identifier": "ohio-state-football-2014-media-guide",
+      "title": "Ohio State football 2014 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2015,
+      "identifier": "ohio-state-football-2015-media-guide",
+      "title": "Ohio State football 2015 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2016,
+      "identifier": "ohio-state-football-2016-media-guide-yearbook",
+      "title": "Ohio State football 2016 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2017,
+      "identifier": "ohio-state-football-2017-media-guide",
+      "title": "Ohio State football 2017 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2018,
+      "identifier": "ohio-state-football-2018-media-guide",
+      "title": "Ohio State football 2018 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2019,
+      "identifier": "ohio-state-football-2019-media-guide",
+      "title": "Ohio State football 2019 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2020,
+      "identifier": "ohio-state-football-2020-media-guide-yearbook",
+      "title": "Ohio State football 2020 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2021,
+      "identifier": "ohio-state-football-2021-media-guide",
+      "title": "Ohio State football 2021 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2022,
+      "identifier": "ohio-state-football-2022-media-guide-c",
+      "title": "Ohio State football 2022 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2023,
+      "identifier": "ohio-state-football-2023-media-guide-c",
+      "title": "Ohio State football 2023 Media Guide"
+    },
+    {
+      "teamId": "ohio-state",
+      "season": 2025,
+      "identifier": "ohio-state-football-2025-media-guide-c",
+      "title": "Ohio State football 2025 Media Guide"
+    }
+  ]
+}

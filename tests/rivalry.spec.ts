@@ -142,6 +142,90 @@ test.describe('Record', () => {
     await expect(page.getByRole('link', { name: /2025 rivalry meeting/i })).toHaveAttribute('href', '/record/2025');
   });
 
+  test('carries the drought the result ended and the one the loser was serving', async ({ page }) => {
+    await page.goto('/record/2025');
+    await expect(page.getByTestId('drought-context')).toContainText('2,191 DAYS');
+    await expect(page.getByTestId('drought-context')).toContainText('364 DAYS SINCE THEIR PRIOR WIN');
+  });
+
+  test('resets no drought on a tied meeting', async ({ page }) => {
+    for (const year of tiedYears) {
+      await page.goto(`/record/${year}`);
+      await expect(page.getByTestId('drought-context')).toContainText('A tie resets nothing');
+    }
+  });
+
+  test('sets both season lines beside each other on a covered meeting', async ({ page }) => {
+    await page.goto('/record/2025');
+    const lines = page.getByTestId('season-lines');
+
+    await expect(lines.getByRole('columnheader', { name: 'OHIO STATE' })).toBeVisible();
+    await expect(lines.getByRole('columnheader', { name: 'MICHIGAN' })).toBeVisible();
+    await expect(lines.getByRole('row', { name: /^Record/ })).toContainText('12-2');
+    await expect(lines.getByRole('row', { name: /^Record/ })).toContainText('9-4');
+    await expect(lines.getByRole('row', { name: /^Coach/ })).toContainText('Ryan Day');
+    // Per-game averages arrive as raw quotients and none of them print unrounded.
+    await expect(lines).toContainText('33.4 PPG');
+    await expect(lines).not.toContainText(/\d\.\d{4}/);
+  });
+
+  test('reads the held-out model run in the same order the page names the sides', async ({ page }) => {
+    await page.goto('/record/2011');
+    const model = page.getByTestId('model-retrodiction');
+
+    await expect(model).toContainText('MICHIGAN 27.5');
+    await expect(model).toContainText('OHIO STATE 25.2');
+    await expect(model).toContainText('Michigan 54.3%');
+    await expect(model).toContainText('CORRECT WINNER');
+  });
+
+  test('declines to score the model on a drawn meeting', async ({ page }) => {
+    await page.goto('/record/1992');
+    await expect(page.getByTestId('model-retrodiction')).toContainText('NO WINNER TO CALL');
+  });
+
+  test('leaves the snapshot blocks off a meeting the model never rated', async ({ page }) => {
+    await page.goto('/record/1897');
+
+    await expect(page.getByTestId('drought-context')).toBeVisible();
+    await expect(page.getByTestId('season-lines')).toHaveCount(0);
+    await expect(page.getByTestId('model-retrodiction')).toHaveCount(0);
+  });
+
+  test('holds the media guide closed until it is opened, then frames the archive reader', async ({ page }) => {
+    await page.goto('/teams/ohio-state/2023');
+    const panel = page.getByTestId('media-guide');
+    const frame = panel.locator('iframe');
+
+    await expect(panel).toBeVisible();
+    expect(await frame.getAttribute('src')).toBeNull();
+    await expect(panel).toContainText('Ohio State football 2023 Media Guide');
+
+    await panel.locator('summary').click();
+    await expect(frame).toHaveAttribute('src', 'https://archive.org/embed/ohio-state-football-2023-media-guide-c');
+  });
+
+  test('frames Michigan guides from Michigan items', async ({ page }) => {
+    await page.goto('/teams/michigan/2019');
+    await page.getByTestId('media-guide').locator('summary').click();
+
+    await expect(page.getByTestId('media-guide').locator('iframe'))
+      .toHaveAttribute('src', 'https://archive.org/embed/michigan-football-2019-media-guide');
+  });
+
+  test('omits the media guide panel for a season the archive has not scanned', async ({ page }) => {
+    await page.goto('/teams/ohio-state/1975');
+
+    await expect(page.getByTestId('season-profile')).toBeVisible();
+    await expect(page.getByTestId('media-guide')).toHaveCount(0);
+  });
+
+  test('rounds the season scoring averages rather than printing the raw quotient', async ({ page }) => {
+    await page.goto('/teams/michigan/2019');
+    await expect(page.getByTestId('season-profile')).toContainText('31.7 PPG · 20.7 ALLOWED/G');
+    await expect(page.getByTestId('season-profile')).not.toContainText(/\d\.\d{4}/);
+  });
+
   test('rounds the season scoring margin and labels it per game', async ({ page }) => {
     await page.goto('/teams/michigan/1997');
     await expect(page.getByTestId('season-totals')).toHaveText('12 GAMES · 322 FOR · 114 AGAINST · +17.3 MARGIN/G');

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import games from '../../data/rivalry-games.json';
-import { formatScoringMargin, meetingSides, sideClass, sideTone, type RivalrySide } from '../rivalry-archive';
+import { formatClock, formatPerGame, formatRate, formatScoringMargin, meetingSides, sideClass, sideTone, type RivalrySide } from '../rivalry-archive';
 
 const tiedGames = games.filter((game) => game.winner === 'Tie');
 
@@ -75,5 +75,43 @@ describe('formatScoringMargin', () => {
 
   it('signs an even margin as a gain', () => {
     expect(formatScoringMargin(0)).toBe('+0.0');
+  });
+});
+
+describe('formatPerGame', () => {
+  it('rounds a raw snapshot quotient', () => {
+    expect(formatPerGame(35.83333333333336)).toBe('35.8');
+    expect(formatPerGame(6.737201365187714, 2)).toBe('6.74');
+  });
+
+  it('passes a missing observation through untouched', () => {
+    expect(formatPerGame(null)).toBeNull();
+    expect(formatPerGame(undefined)).toBeNull();
+  });
+});
+
+describe('formatRate', () => {
+  it('reads a stored fraction as a percentage', () => {
+    expect(formatRate(0.5263157894736842)).toBe('52.6%');
+    expect(formatRate(0.8875)).toBe('88.8%');
+  });
+
+  it('passes a missing observation through untouched', () => {
+    expect(formatRate(null)).toBeNull();
+  });
+});
+
+describe('formatClock', () => {
+  it('reads possession seconds as minutes and seconds', () => {
+    expect(formatClock(1980.5)).toBe('33:01');
+    expect(formatClock(1787)).toBe('29:47');
+  });
+
+  it('pads a sub-ten-second remainder', () => {
+    expect(formatClock(1805)).toBe('30:05');
+  });
+
+  it('passes a missing observation through untouched', () => {
+    expect(formatClock(null)).toBeNull();
   });
 });

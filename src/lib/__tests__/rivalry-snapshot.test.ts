@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { coverageForSeason, formatSeasonRank, modelConfig, profileForSeason, ratedSeason, rivalrySnapshot, validatePublicSnapshot } from '../rivalry-snapshot';
+import { coverageForSeason, formatSeasonRank, modelConfig, profileForSeason, ratedSeason, rivalrySnapshot, validatePublicSnapshot, validationGameFor } from '../rivalry-snapshot';
 
 const validTeamSeasons = [
   { teamId: 'ohio-state', crossEra: { overall: 1, offense: 1, defense: 1 } },
@@ -73,5 +73,25 @@ describe('snapshot accessors', () => {
     const profile = profileForSeason('ohio-state', 2014);
     expect(profile?.observed.yardsPerPlay).toBeGreaterThan(0);
     expect(profile?.observed.possessionsPerGame).toBeGreaterThan(0);
+  });
+});
+
+describe('validationGameFor', () => {
+  it('finds the held-out run for a scored meeting', () => {
+    expect(validationGameFor(2025)).toMatchObject({ season: 2025, ohioStateScore: 27, michiganScore: 9, predictedWinner: 'ohio-state', actualWinner: 'ohio-state' });
+  });
+
+  it('reports a drawn meeting as a tie rather than as a winner', () => {
+    expect(validationGameFor(1992)?.actualWinner).toBe('tie');
+  });
+
+  it('returns nothing for a meeting the model was not scored on', () => {
+    expect(validationGameFor(1897)).toBeNull();
+  });
+
+  it('scores every run against a rivalry season the snapshot rates', () => {
+    for (const game of rivalrySnapshot.validation.games) {
+      expect(rivalrySnapshot.ratings.teamSeasons.some((entry) => entry.season === game.season)).toBe(true);
+    }
   });
 });
