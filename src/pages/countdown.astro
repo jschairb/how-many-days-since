@@ -54,7 +54,7 @@ const eventSchema = {
 
 <style>
    :global(main.site-main) { display:flex; flex-direction:column; min-height:calc(100dvh - 142px); padding-bottom:0; }
-   .countdown { --team:#bb0000; --team-shadow:#d9dce1; display:flex; flex:1; flex-direction:column; justify-content:center; max-width:900px; width:100%; margin:0 auto; padding:36px 0 48px; text-align:center; }
+   .countdown { --team:#bb0000; display:flex; flex:1; flex-direction:column; justify-content:center; max-width:900px; width:100%; margin:0 auto; padding:36px 0 48px; text-align:center; }
   .eyebrow,.kickoff { color:#6b717c; font-size:13px; font-weight:700; letter-spacing:.06em; }
   .countdown h1 { margin:8px 0; font:clamp(42px, 9vw, 94px)/.9 'Archivo Black'; letter-spacing:-.04em; }
   .eyebrow { font-size:19.5px; }
@@ -65,7 +65,7 @@ const eventSchema = {
    .countdown-clock { display:grid; grid-template-columns:repeat(4,1fr); margin:36px 0 0; border:3px solid #111; }
   .countdown-clock div { padding:22px 12px; border-right:1px solid #d9dce1; }
   .countdown-clock div:last-child { border:0; }
-   .countdown-clock strong { display:block; color:var(--team); font:clamp(52px, 13vw, 128px)/.85 'Archivo Black'; letter-spacing:-.06em; text-shadow:4px 4px var(--team-shadow); }
+   .countdown-clock strong { display:block; color:var(--team); font:clamp(52px, 13vw, 128px)/.85 'Archivo Black'; letter-spacing:-.06em; }
   .countdown-clock span { display:block; margin-top:12px; font-size:12px; font-weight:700; letter-spacing:.08em; }
   /* Centering leaves the block sitting low on a tall phone, so it starts
      from the top with a smaller gap under the header. */
