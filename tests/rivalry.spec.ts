@@ -158,15 +158,25 @@ test.describe('Record', () => {
   test('sets both season lines beside each other on a covered meeting', async ({ page }) => {
     await page.goto('/record/2025');
     const lines = page.getByTestId('season-lines');
+    const totals = lines.locator('.season-table-wrap:not(.season-table-advanced)');
 
-    await expect(lines.getByRole('columnheader', { name: 'OHIO STATE' })).toBeVisible();
-    await expect(lines.getByRole('columnheader', { name: 'MICHIGAN' })).toBeVisible();
+    await expect(totals.getByRole('columnheader', { name: 'OHIO STATE' })).toBeVisible();
+    await expect(totals.getByRole('columnheader', { name: 'MICHIGAN' })).toBeVisible();
     await expect(lines.getByRole('row', { name: /^Record/ })).toContainText('12-2');
     await expect(lines.getByRole('row', { name: /^Record/ })).toContainText('9-4');
     await expect(lines.getByRole('row', { name: /^Coach/ })).toContainText('Ryan Day');
     // Per-game averages arrive as raw quotients and none of them print unrounded.
     await expect(lines).toContainText('33.4 PPG');
     await expect(lines).not.toContainText(/\d\.\d{4}/);
+  });
+
+  test('names its own columns on the separately scrolling box-score table', async ({ page }) => {
+    await page.goto('/record/2025');
+    const advanced = page.locator('.season-table-advanced');
+
+    await expect(advanced.getByRole('columnheader', { name: 'OHIO STATE' })).toBeVisible();
+    await expect(advanced.getByRole('columnheader', { name: 'MICHIGAN' })).toBeVisible();
+    await expect(advanced.getByRole('row', { name: /^Yards per play/ })).toContainText('6.74');
   });
 
   test('reads the held-out model run in the same order the page names the sides', async ({ page }) => {

@@ -93,6 +93,9 @@ const formatDays = (value: number) => `${days.format(Math.round(value))} DAYS`;
       </table></div>
       {advancedRows.length > 0 && <div class="season-table-wrap season-table-advanced"><table class="season-comparison">
         <caption>BOX-SCORE DETAIL · RICH-GAME-DATA SEASONS</caption>
+        {/* This table scrolls on its own, so it names its columns rather than
+            leaning on the one above staying in step with it. */}
+        <thead><tr><th scope="col">Metric</th>{seasonLines.map(({ side }) => <th scope="col" class={sideClass(side.team)}>{side.team.toUpperCase()}</th>)}</tr></thead>
         <tbody>{advancedRows.map((row) => <tr><th scope="row">{row!.label}</th>{row!.values.map((value) => <td>{value}</td>)}</tr>)}</tbody>
       </table></div>}
       <p class="source-note">Season totals and ranks come from the public Rivalry Lab snapshot. Ranks are national, across every team the model rated that year.</p>

@@ -109,7 +109,10 @@ const nav = [{ href: '/', label: 'Home', id: 'count', icon: true }, { href: '/co
 <style is:global>
    .site-nav-home { display:grid; place-items:center; width:18px; padding:0 0 4px; color:#8b9098!important; }
    .site-nav-home svg { width:16px; height:16px; fill:currentColor; }
-   .site-nav-toggle { display:none; place-items:center; width:40px; height:40px; margin-right:-9px; padding:0; border:0; background:none; color:#111; cursor:pointer; }
+   /* The pull trims the tap target's slack so the bars line up with the text
+      column. It stops at the nav's own 4px padding: anything deeper puts the
+      button past the padding box and spills the bar sideways. */
+   .site-nav-toggle { display:none; place-items:center; width:40px; height:40px; margin-right:-4px; padding:0; border:0; background:none; color:#111; cursor:pointer; }
    .site-nav-toggle span,.site-nav-toggle span::before,.site-nav-toggle span::after { display:block; width:20px; height:2px; background:currentColor; }
    .site-nav-toggle span { position:relative; transition:background-color .18s ease; }
    .site-nav-toggle span::before,.site-nav-toggle span::after { content:''; position:absolute; left:0; transition:transform .18s ease; }
