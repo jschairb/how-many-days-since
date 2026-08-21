@@ -53,6 +53,24 @@ export type TeamSeasonSnapshot = {
   evidenceType: 'DERIVED';
 };
 
+/**
+ * One rivalry meeting the rating model was scored against. The game is held out
+ * of the fit that predicts it, so the expected scores read as a forecast rather
+ * than as a curve drawn through a result the model had already seen.
+ */
+export type ValidationGame = {
+  heldOutGameId: number;
+  season: number;
+  ohioStateScore: number;
+  michiganScore: number;
+  ohioStateWinProbability: number;
+  expectedOhioStateScore: number;
+  expectedMichiganScore: number;
+  predictedWinner: TeamId;
+  /** A drawn meeting has no winner for the model's call to match. */
+  actualWinner: TeamId | 'tie';
+};
+
 export type RivalrySnapshot = {
   schemaVersion: 'rivalry-lab-public-snapshot-v2';
   productVersion: string;
@@ -66,7 +84,7 @@ export type RivalrySnapshot = {
   model: Omit<ModelConfig, 'neutralPointsPerTeam'>;
   simulationInputs: Record<string, SimulationInputs>;
   coverage: Array<{ teamId: TeamId; season: number; coverage: 'rich-game-data' | 'score-and-schedule'; missingFields: string[] }>;
-  validation: { modelVersion: string; games: unknown[]; metrics: Record<string, unknown> };
+  validation: { modelVersion: string; games: ValidationGame[]; metrics: Record<string, unknown> };
   rivalryGames: Array<{ season: number; cfbdGameId: number; date: string | null; cfbdBoxscoreUrl: string }>;
   ratings: {
     environments: Array<{ season: number; averagePointsPerTeam: number; games: number }>;
@@ -120,6 +138,11 @@ export function coverageForSeason(teamId: TeamId, season: number): { coverage: '
 
 export function profileForSeason(teamId: TeamId, season: number, teamSeasons: readonly Pick<TeamSeasonSnapshot, 'teamId' | 'season' | 'profile'>[] = rivalrySnapshot.ratings.teamSeasons): SeasonProfile | null {
   return teamSeasons.find((entry) => entry.teamId === teamId && entry.season === season)?.profile ?? null;
+}
+
+/** The model was scored on 1970 forward, so older meetings have no held-out run. */
+export function validationGameFor(season: number): ValidationGame | null {
+  return rivalrySnapshot.validation.games.find((game) => game.season === season) ?? null;
 }
 
 export function formatSeasonRank(rank: number | null, ratedTeams: number | null): string {

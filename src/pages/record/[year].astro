@@ -1,8 +1,9 @@
 ---
 import SiteShell from '../../components/SiteShell.astro';
 import games from '../../data/rivalry-games.json';
-import { rivalrySnapshot } from '../../lib/rivalry-snapshot';
-import { meetingSides, sideClass, teamSeasonFor, type RivalrySide } from '../../lib/rivalry-archive';
+import { formatSeasonRank, rivalrySnapshot, validationGameFor, type TeamId } from '../../lib/rivalry-snapshot';
+import { formatClock, formatPerGame, formatRate, formatRecord, formatScoringMargin, meetingSides, sideClass, teamSeasonFor, type RivalrySide } from '../../lib/rivalry-archive';
+import { calculateRivalryRecord } from '../../lib/rivalry-record';
 
 export const prerender = true;
 export function getStaticPaths() { return games.map((game) => ({ params: { year: String(game.year) }, props: { game } })); }
@@ -25,6 +26,53 @@ const nextMeeting = index > 0 ? games[index - 1] : undefined;
 const previousMeeting = index < games.length - 1 ? games[index + 1] : undefined;
 const rank = (value: number | null) => value === null ? 'UNRANKED / NOT REPORTED' : `NO. ${value}`;
 const scoreline = `${firstSide.team} ${firstSide.score}, ${secondSide.team} ${secondSide.score}`;
+
+// The snapshot's team seasons start in 1970, so the meetings before that carry
+// the archived result alone. Every block below is present only where its data is.
+const seasonLines = teamSeasons.every(({ season }) => season) ? teamSeasons.map(({ side, season }) => ({ side, season: season! })) : [];
+const profiles = seasonLines.map(({ season }) => season.profile);
+/** A row of the comparison prints only when at least one side reports it. */
+const compare = (label: string, values: (string | null)[]) => values.some((value) => value !== null) ? { label, values: values.map((value) => value ?? 'NOT REPORTED') } : null;
+const seasonRows = seasonLines.length ? [
+  compare('Record', seasonLines.map(({ season }) => formatRecord(season))),
+  compare('Points for · against', seasonLines.map(({ season }) => `${season.pointsFor} · ${season.pointsAgainst}`)),
+  compare('Scoring margin', seasonLines.map(({ season }) => `${formatScoringMargin(season.scoringMargin)} / GAME`)),
+  compare('Conference', profiles.map((profile) => profile?.observed.conference ? `${profile.observed.conference}${profile.observed.division ? ` · ${profile.observed.division}` : ''}` : null)),
+  compare('Coach', profiles.map((profile) => profile?.observed.coach ?? null)),
+  compare('Final AP rank', profiles.map((profile) => profile?.observed.finalApRank ? `NO. ${profile.observed.finalApRank}` : null)),
+  compare('Scoring offense', profiles.map((profile) => { const value = formatPerGame(profile?.observed.pointsPerGame); return value && `${value} PPG`; })),
+  compare('Scoring defense', profiles.map((profile) => { const value = formatPerGame(profile?.observed.pointsAllowedPerGame); return value && `${value} ALLOWED/G`; })),
+  compare('SRS overall', profiles.map((profile) => profile ? formatSeasonRank(profile.derived.overallRank, profile.derived.ratedTeams) : null)),
+  compare('SRS offense', profiles.map((profile) => profile ? formatSeasonRank(profile.derived.offenseRank, profile.derived.ratedTeams) : null)),
+  compare('SRS defense', profiles.map((profile) => profile ? formatSeasonRank(profile.derived.defenseRank, profile.derived.ratedTeams) : null)),
+  compare('Schedule strength', profiles.map((profile) => profile ? formatSeasonRank(profile.derived.scheduleStrengthRank, profile.derived.ratedTeams) : null)),
+].filter((row) => row !== null) : [];
+// Box-score fields reach 44 of the 112 team seasons, so this half of the table
+// disappears whole rather than printing a column of NOT REPORTED.
+const advancedRows = seasonLines.length ? [
+  compare('Yards per play', profiles.map((profile) => formatPerGame(profile?.observed.yardsPerPlay, 2))),
+  compare('Rush share', profiles.map((profile) => formatRate(profile?.observed.rushShare))),
+  compare('Third-down rate', profiles.map((profile) => formatRate(profile?.observed.thirdDownRate))),
+  compare('First downs', profiles.map((profile) => { const value = formatPerGame(profile?.observed.firstDownsPerGame); return value && `${value} / GAME`; })),
+  compare('Turnovers', profiles.map((profile) => { const value = formatPerGame(profile?.observed.turnoversPerGame, 2); return value && `${value} / GAME`; })),
+  compare('Red zone', profiles.map((profile) => { const trips = formatPerGame(profile?.observed.redZoneTripsPerGame); const rate = formatRate(profile?.observed.redZoneScoreRate); return trips && rate && `${trips} TRIPS/G · ${rate} SCORED`; })),
+  compare('Possession', profiles.map((profile) => { const clock = formatClock(profile?.observed.possessionSecondsPerGame); return clock && `${clock} / GAME`; })),
+].filter((row) => row !== null) : [];
+
+// The held-out validation run covers the meetings the rating model was scored on.
+// The run is keyed by team rather than by result, so both readings follow the
+// order the rest of the page names the sides in.
+const validation = validationGameFor(game.year);
+const expectedFor = (teamId: TeamId) => teamId === 'ohio-state' ? validation!.expectedOhioStateScore : validation!.expectedMichiganScore;
+const winProbabilityFor = (teamId: TeamId) => teamId === 'ohio-state' ? validation!.ohioStateWinProbability : 1 - validation!.ohioStateWinProbability;
+
+// `/record` carries the drought line for every meeting; the same numbers name
+// the wait this result ended and the one it started.
+const rivalryRecord = calculateRivalryRecord(games);
+const droughtRow = rivalryRecord.droughtHistory.find((entry) => entry.game.year === game.year);
+const endedDrought = rivalryRecord.completedDroughts.find((drought) => drought.nextWin.year === game.year);
+const days = new Intl.NumberFormat('en-US');
+const formatDays = (value: number) => `${days.format(Math.round(value))} DAYS`;
 ---
 
 <SiteShell active="record" title={`${game.year} ${firstSide.team} vs ${secondSide.team} | Ohio State-Michigan`} description={`The ${game.year} Ohio State-Michigan rivalry meeting: ${scoreline}${tie ? ' (tie)' : ''}.`}>
@@ -32,6 +80,34 @@ const scoreline = `${firstSide.team} ${firstSide.score}, ${secondSide.team} ${se
     <a class="archive-back" href="/record">← EVERY MEETING</a>
     <header class="game-hero"><span>RIVALRY MEETING · {game.year}</span><h1 data-testid="game-score"><span class={winnerClass}>{game.winner.toUpperCase()}</span> {game.wScore}<i>–</i>{game.lScore} <span class={loserClass}>{game.loser.toUpperCase()}</span></h1><small>{game.date ?? 'DATE NOT REPORTED'} · {game.location ?? 'LOCATION NOT REPORTED'}{game.notes ? ` · ${game.notes}` : ''}</small></header>
     <section class="archive-panel" data-testid="game-facts"><div class="section-title"><h2>GAME FACTS</h2><span>ARCHIVED RESULT</span></div><dl class="game-facts"><div><dt>Date</dt><dd>{game.date ?? 'NOT REPORTED'}</dd></div><div><dt>Location</dt><dd>{game.location ?? 'NOT REPORTED'}</dd></div><div><dt>{firstSide.team} rank</dt><dd>{rank(firstSide.rank)}</dd></div><div><dt>{secondSide.team} rank</dt><dd>{rank(secondSide.rank)}</dd></div>{game.notes && <div><dt>Notes</dt><dd>{game.notes}</dd></div>}</dl></section>
+    <section class="archive-panel" data-testid="drought-context"><div class="section-title"><h2>DROUGHT CONTEXT</h2><span>OBSERVED · PUBLIC GAME RESULTS</span></div>
+      {tie ? <p class="drought-line">A tie resets nothing. Both droughts ran on through {game.year}.</p> : <dl class="game-facts">
+        <div><dt>{game.winner} ended a wait of</dt><dd>{endedDrought ? `${formatDays(endedDrought.elapsedDays)} · ${endedDrought.elapsedGames} MEETINGS · SINCE ${endedDrought.priorWin.year}` : 'FIRST WIN IN THE RECORD'}</dd></div>
+        <div><dt>{game.loser} had gone</dt><dd>{droughtRow?.daysSincePriorWin ? `${formatDays(droughtRow.daysSincePriorWin)} SINCE THEIR PRIOR WIN` : 'NO PRIOR WIN IN THE RECORD'}</dd></div>
+      </dl>}
+    </section>
+    {seasonRows.length > 0 && <section class="archive-panel" data-testid="season-lines"><div class="section-title"><h2>SEASON LINES</h2><span>PUBLIC SNAPSHOT</span></div>
+      <div class="season-table-wrap"><table class="season-comparison">
+        <thead><tr><th scope="col">Metric</th>{seasonLines.map(({ side }) => <th scope="col" class={sideClass(side.team)}>{side.team.toUpperCase()}</th>)}</tr></thead>
+        <tbody>{seasonRows.map((row) => <tr><th scope="row">{row!.label}</th>{row!.values.map((value) => <td>{value}</td>)}</tr>)}</tbody>
+      </table></div>
+      {advancedRows.length > 0 && <div class="season-table-wrap season-table-advanced"><table class="season-comparison">
+        <caption>BOX-SCORE DETAIL · RICH-GAME-DATA SEASONS</caption>
+        {/* This table scrolls on its own, so it names its columns rather than
+            leaning on the one above staying in step with it. */}
+        <thead><tr><th scope="col">Metric</th>{seasonLines.map(({ side }) => <th scope="col" class={sideClass(side.team)}>{side.team.toUpperCase()}</th>)}</tr></thead>
+        <tbody>{advancedRows.map((row) => <tr><th scope="row">{row!.label}</th>{row!.values.map((value) => <td>{value}</td>)}</tr>)}</tbody>
+      </table></div>}
+      <p class="source-note">Season totals and ranks come from the public Rivalry Lab snapshot. Ranks are national, across every team the model rated that year.</p>
+    </section>}
+    {validation && <section class="archive-panel" data-testid="model-retrodiction"><div class="section-title"><h2>WHAT THE MODEL SAW COMING</h2><span>HELD-OUT RUN</span></div>
+      <p class="model-expected">{[firstSide, secondSide].map(({ team, teamId }, position) => <>{position > 0 && <i> · </i>}<span class={sideClass(team)}>{team.toUpperCase()} {expectedFor(teamId).toFixed(1)}</span></>)}</p>
+      <dl class="game-facts">
+        <div><dt>Win probability</dt><dd>{[firstSide, secondSide].map(({ team, teamId }) => `${team} ${(winProbabilityFor(teamId) * 100).toFixed(1)}%`).join(' · ')}</dd></div>
+        <div><dt>Called</dt><dd>{validation.actualWinner === 'tie' ? 'NO WINNER TO CALL · THE GAME ENDED TIED' : validation.predictedWinner === validation.actualWinner ? 'CORRECT WINNER' : 'WRONG WINNER'}</dd></div>
+      </dl>
+      <p class="source-note">This meeting was held out of the fit that produced these numbers, so the expected scores are a forecast rather than a line drawn through a result the model had already seen. Model version {rivalrySnapshot.validation.modelVersion}.</p>
+    </section>}
     <section class="archive-panel"><div class="section-title"><h2>TEAM SEASONS</h2><span>PUBLIC SNAPSHOT</span></div><div class="team-links" data-testid="team-seasons">{teamSeasons.map(({ side, season }) => season ? <a class={sideClass(side.team)} href={`/teams/${side.teamId}/${game.year}`} aria-label={`${side.team} ${game.year} season`} data-track-event="team_season_opened" data-track-properties={JSON.stringify({ team: side.teamId, season: game.year })}>{side.team} {game.year} season →</a> : <p>{side.team} {game.year} season profile is not in the public snapshot.</p>)}</div></section>
     <section class="archive-panel"><div class="section-title"><h2>ADVANCED BOXSCORE</h2><span>EXTERNAL SOURCE</span></div>{cfbdGame ? <p><a class="archive-button" href={cfbdGame.cfbdBoxscoreUrl} target="_blank" rel="noopener noreferrer" data-track-event="cfbd_boxscore_opened" data-track-properties={JSON.stringify({ game_year: game.year })}>CFBD ADVANCED BOX SCORE →</a></p> : <p>Advanced boxscore data is not included in the public snapshot for this meeting.</p>}</section>
     <nav class="meeting-nav" aria-label="Adjacent rivalry meetings">{nextMeeting && <a href={`/record/${nextMeeting.year}`}>NEXT MEETING: {nextMeeting.year} →</a>}{previousMeeting && <a href={`/record/${previousMeeting.year}`}>← PREVIOUS MEETING: {previousMeeting.year}</a>}</nav>
@@ -45,5 +121,20 @@ const scoreline = `${firstSide.team} ${firstSide.score}, ${secondSide.team} ${se
 </script>
 
 <style>
-  .archive-page { max-width:900px; margin:auto; }.archive-back { display:inline-block; margin-bottom:24px; color:#111; font-size:12px; font-weight:700; letter-spacing:.05em; text-decoration:none; }.game-hero { padding:28px; border:3px solid #111; }.game-hero > span,.game-hero small,.section-title span { color:#6b717c; font-size:11px; font-weight:700; letter-spacing:.06em; }.game-hero h1 { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline; margin:10px 0; font:clamp(30px,5.4vw,62px)/.95 'Archivo Black'; letter-spacing:-.04em; }.game-hero h1 i { color:#6b717c; font-style:normal; }.game-hero small { color:#111; }.archive-panel { margin-top:22px; padding:24px; border:3px solid #111; }.section-title { display:flex; justify-content:space-between; gap:16px; align-items:baseline; }.section-title h2 { margin:0; font:24px 'Archivo Black'; }.game-facts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 20px; margin:18px 0 0; }.game-facts div { padding:10px 0; border-top:1px solid #d9dce1; }.game-facts dt { color:#6b717c; font-size:12px; }.game-facts dd { margin:3px 0 0; font-weight:700; }.team-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:18px; }.team-links a { padding:16px; border:2px solid currentColor; font-weight:700; text-decoration:none; }.team-links p { margin:0; color:#6b717c; font-size:13px; }.archive-button { display:inline-block; padding:10px 12px; background:#111; color:#fff; font-size:12px; font-weight:700; text-decoration:none; }.meeting-nav { display:flex; justify-content:space-between; gap:16px; margin-top:24px; }.meeting-nav a { color:#111; font-size:12px; font-weight:700; text-decoration:none; } @media (max-width:640px) { .game-hero,.archive-panel { padding:18px; }.game-hero h1 { gap:8px; }.game-facts,.team-links { grid-template-columns:1fr; }.meeting-nav { flex-direction:column; } }
+  .archive-page { max-width:900px; margin:auto; }.archive-back { display:inline-block; margin-bottom:24px; color:#111; font-size:12px; font-weight:700; letter-spacing:.05em; text-decoration:none; }.game-hero { padding:28px; border:3px solid #111; }.game-hero > span,.game-hero small,.section-title span { color:#6b717c; font-size:11px; font-weight:700; letter-spacing:.06em; }.game-hero h1 { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline; margin:10px 0; font:clamp(30px,5.4vw,62px)/.95 'Archivo Black'; letter-spacing:-.04em; }.game-hero h1 i { color:#6b717c; font-style:normal; }.game-hero small { color:#111; }.archive-panel { margin-top:22px; padding:24px; border:3px solid #111; }.section-title { display:flex; justify-content:space-between; gap:16px; align-items:baseline; }.section-title h2 { margin:0; font:24px 'Archivo Black'; }.game-facts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 20px; margin:18px 0 0; }.game-facts div { padding:10px 0; border-top:1px solid #d9dce1; }.game-facts dt { color:#6b717c; font-size:12px; }.game-facts dd { margin:3px 0 0; font-weight:700; }.team-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:18px; }.team-links a { padding:16px; border:2px solid currentColor; font-weight:700; text-decoration:none; }.team-links p { margin:0; color:#6b717c; font-size:13px; }.archive-button { display:inline-block; padding:10px 12px; background:#111; color:#fff; font-size:12px; font-weight:700; text-decoration:none; }.meeting-nav { display:flex; justify-content:space-between; gap:16px; margin-top:24px; }.meeting-nav a { color:#111; font-size:12px; font-weight:700; text-decoration:none; }
+  .drought-line { margin:18px 0 0; font-weight:700; }
+  .season-table-wrap { overflow-x:auto; margin-top:18px; border:1px solid #d9dce1; -webkit-overflow-scrolling:touch; }
+  .season-table-advanced { margin-top:16px; }
+  .season-comparison { width:100%; border-collapse:collapse; }
+  .season-comparison caption { padding:12px 14px; border-bottom:1px solid #d9dce1; text-align:left; color:#6b717c; font-size:11px; font-weight:700; letter-spacing:.04em; }
+  .season-comparison th,.season-comparison td { padding:11px 14px; border-right:1px solid #d9dce1; border-bottom:1px solid #d9dce1; text-align:left; font-size:13px; vertical-align:top; }
+  .season-comparison tr > :last-child { border-right:0; }
+  .season-comparison tbody tr:last-child > * { border-bottom:0; }
+  .season-comparison thead th { background:#f2f3f5; font-size:11px; letter-spacing:.04em; }
+  .season-comparison tbody th { width:34%; color:#6b717c; font-weight:400; }
+  .season-comparison tbody td { font-weight:700; }
+  .model-expected { display:flex; flex-wrap:wrap; gap:10px; align-items:baseline; margin:18px 0 0; font:clamp(24px,4vw,38px)/1 'Archivo Black'; letter-spacing:-.03em; }
+  .model-expected i { color:#6b717c; font-style:normal; }
+  .source-note { margin:18px 0 0; color:#6b717c; font-size:12px; line-height:1.45; }
+  @media (max-width:640px) { .game-hero,.archive-panel { padding:18px; }.game-hero h1 { gap:8px; }.game-facts,.team-links { grid-template-columns:1fr; }.meeting-nav { flex-direction:column; }.season-comparison th,.season-comparison td { padding:10px; font-size:12px; }.season-comparison tbody th { width:38%; } }
 </style>

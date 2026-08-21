@@ -22,6 +22,16 @@ export const sideClass = (side: RivalrySide): 'osu' | 'mich' | 'tie' => {
 };
 /** `scoringMargin` is a per-game average, and carries full float precision. */
 export const formatScoringMargin = (scoringMargin: number) => `${scoringMargin >= 0 ? '+' : ''}${scoringMargin.toFixed(1)}`;
+/** Every snapshot per-game average is a raw quotient, so none of them print as-is. */
+export const formatPerGame = (value: number | null | undefined, digits = 1) => value === null || value === undefined ? null : value.toFixed(digits);
+/** Snapshot rates are stored as fractions of one. */
+export const formatRate = (value: number | null | undefined, digits = 1) => value === null || value === undefined ? null : `${(value * 100).toFixed(digits)}%`;
+/** `possessionSecondsPerGame` is a raw second count. */
+export const formatClock = (seconds: number | null | undefined) => {
+  if (seconds === null || seconds === undefined) return null;
+  const whole = Math.round(seconds);
+  return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, '0')}`;
+};
 export const teamNameFor = (teamId: TeamId): RivalryTeam => teamId === 'ohio-state' ? 'Ohio State' : 'Michigan';
 export const teamSeasonFor = (teamId: TeamId, season: number): TeamSeasonSnapshot | undefined => rivalrySnapshot.ratings.teamSeasons.find((entry) => entry.teamId === teamId && entry.season === season);
 export const formatRecord = ({ wins, losses, ties }: Pick<TeamSeasonSnapshot, 'wins' | 'losses' | 'ties'>) => `${wins}-${losses}${ties ? `-${ties}` : ''}`;
