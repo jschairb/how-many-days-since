@@ -50,6 +50,19 @@ docker run --rm -p 4310:4310 how-many-days-since:local
 
 The container listens on port `4310`. Verify `/api/health`, `/api/matchup`, `/api/simulate`, and `/rivalry-lab` after deployment.
 
+### Hostnames
+
+One container answers on two hostnames. On `howmanydayssincemichiganhasbeatenohiostate.com` The Game is at the root. On `therivalrylab.com` it is the folder `/thegame/`, with a placeholder at the root. `src/middleware.ts` picks the layout from the request's host (`X-Forwarded-Host`, else `Host`); any other host gets the long-domain layout.
+
+Two environment variables steer the domain move. Both default to the state the long domain has always served:
+
+| Variable | Default | Effect |
+| --- | --- | --- |
+| `CANONICAL_HOST` | `howmanydayssincemichiganhasbeatenohiostate.com` | Host named in canonicals, Open Graph URLs, the share link, the sitemap, and robots.txt. Read at build time (the sitemap) and at request time, so pass it as a Docker build argument and as a runtime variable. |
+| `REDIRECT_TO_NEW_HOST` | unset | `true` makes the long domain answer its paths with permanent redirects to `therivalrylab.com`, from the table in `src/lib/redirect-map.ts`. |
+
+`docs/migration.md` describes the phases of the move and how to verify each one.
+
 ## Rivalry Lab snapshot refresh
 
 The public site consumes a reduced, derived snapshot from the private historical-model workspace. It never imports the warehouse, CFBD credentials, or purchased data packages.
@@ -107,9 +120,13 @@ Update this date when needed to keep the counter accurate.
 - `src/lib/share-graphic.ts` – Pure helpers for the shareable graphic: caption and filename builders, the X intent URL, and the text-layout math (`wrapText`, `fitFontSize`). Text measurement is injected, so the layout is tested in Node without a canvas.
 - `src/components/ShareGraphic.astro` – The corner Share badge: draws the 1200x630 card on a hidden `<canvas>` and routes the badge to the share sheet, clipboard, download, or X.
 - `src/pages/index.astro` – The single page that renders the Buckeye propaganda, computes the days-since count, and randomizes the featured celebratory image.
+- `src/middleware.ts` – Host-aware routing: the long domain passes through, the new domain serves The Game under `/thegame/`, and the redirect table switches on with `REDIRECT_TO_NEW_HOST`.
+- `src/lib/hosts.ts` – The two hostnames, the environment settings, and the per-request `SiteContext` pages use to prefix links and build canonicals.
+- `src/lib/redirect-map.ts` – Every route in `src/pages` paired with its path on the new domain. `redirect-map.test.ts` fails when a route is missing from it.
+- `src/pages/robots.txt.ts` – robots.txt per host, in place of the build-time file.
 - `public/` – Static assets including the Block O favicon, fonts, CSS, and triumphant Buckeye imagery.
 - `public/images/` – Rotating collection of celebratory images displayed on the page.
-- `astro.config.mjs` – Astro configuration including the reference date and site URL.
+- `astro.config.mjs` – Astro configuration including the reference date, the site URL (from `CANONICAL_HOST`), and the sitemap's archive pages.
 - `tsconfig.json` – TypeScript configuration extending Astro's strict preset.
 
 ## Features
