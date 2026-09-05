@@ -3,6 +3,9 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
+# The unit suite includes the record drift guard: a build with a stale
+# rivalry-games.json fails here and never reaches production.
+RUN npm test
 RUN npm run build
 
 FROM node:24-alpine
