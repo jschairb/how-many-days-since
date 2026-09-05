@@ -11,23 +11,29 @@ import {
   ogImagePathFor,
   resolveOgCard,
 } from '../lib/og-card';
-import { SITE_URL, canonicalUrl } from '../lib/canonical';
-const site = SITE_URL;
+import { canonicalUrlOn } from '../lib/canonical';
+import { canonicalRoot, pathOn, siteFrom } from '../lib/hosts';
+// Which host served this request and where its canonical lives, from the
+// middleware. On the new host pages sit under /thegame/, so every internal
+// link goes through `pathOn`; absolute self-references hang off `site`.
+const context = siteFrom(Astro);
+const site = canonicalRoot(context);
 const { active, title = 'How Many Days Since Michigan Has Beaten Ohio State?', description = 'The Ohio State-Michigan rivalry record and an evidence-labeled cross-era Rivalry Lab.', ogImage, ogImageAlt, schema } = Astro.props;
 // Fixed to the trailing-slash form the sitemap publishes. Most pages are
 // server-rendered, so a request-derived canonical would let `/record` and
-// `/record/` each claim to be the original.
-const canonical = canonicalUrl(Astro.url.pathname);
+// `/record/` each claim to be the original. After a rewrite `Astro.url` is
+// the page's own path, so the same page is canonical from either host.
+const canonical = canonicalUrlOn(context, Astro.url.pathname);
 // Every page gets a card: its own generated one, or the site card as a fallback
 // for routes the resolver does not know. `og:image` is never left off.
-const openGraphImage = new URL(ogImage ?? ogImagePathFor(Astro.url.pathname), site).toString();
+const openGraphImage = `${site}${ogImage ?? ogImagePathFor(Astro.url.pathname)}`;
 const openGraphImageAlt = ogImageAlt ?? (() => { const card = resolveOgCard(Astro.url.pathname); return card ? ogCardAlt(card) : description; })();
-const openGraphLogo = new URL(OG_LOGO_PATH, site).toString();
+const openGraphLogo = `${site}${OG_LOGO_PATH}`;
 const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID ?? process.env.GA_MEASUREMENT_ID;
 const webSiteSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'How Many Days Since Michigan Has Beaten Ohio State?', url: site });
 const pageSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebPage', name: title, description, url: canonical });
 const additionalSchema = schema ? JSON.stringify(schema) : undefined;
-const nav = [{ href: '/', label: 'Home', id: 'count', icon: true }, { href: '/countdown', label: 'COUNTDOWN', id: 'countdown' }, { href: '/record', label: 'THE RECORD', id: 'record' }, { href: '/rivalry-lab', label: 'RIVALRY LAB', id: 'lab' }, { href: 'https://gwpworkshop.com/collections/rivalry-lab', label: 'MERCH', id: 'merch' }];
+const nav = [{ href: pathOn(context, '/'), label: 'Home', id: 'count', icon: true }, { href: pathOn(context, '/countdown'), label: 'COUNTDOWN', id: 'countdown' }, { href: pathOn(context, '/record'), label: 'THE RECORD', id: 'record' }, { href: pathOn(context, '/rivalry-lab'), label: 'RIVALRY LAB', id: 'lab' }, { href: 'https://gwpworkshop.com/collections/rivalry-lab', label: 'MERCH', id: 'merch' }];
 ---
 <!doctype html>
 <html lang="en">

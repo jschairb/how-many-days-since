@@ -4,19 +4,28 @@ import { onRequest } from '../middleware';
 
 type Next = (payload?: string) => Promise<Response>;
 
-/** A request as the middleware sees it, with the pieces of the Astro context it reads. */
-function run(host: string, path: string, init: RequestInit = {}) {
+/**
+ * A request as the middleware sees it, with the pieces of the Astro context it
+ * reads. `rewrite` does what Astro's does: re-renders the target path, which
+ * runs the middleware again with the same `locals`.
+ */
+function run(host: string, path: string, init: RequestInit = {}, locals: Record<string, unknown> = {}) {
   const url = new URL(path, 'http://127.0.0.1:4321');
   const request = new Request(url, { ...init, headers: { host: '127.0.0.1:4321', 'x-forwarded-host': host, ...init.headers } });
-  const locals: Record<string, unknown> = {};
   const next = vi.fn<Next>(async (payload) => new Response(`rendered ${payload ?? url.pathname}`));
+  const rewrite = vi.fn(async (payload: string) => {
+    const again = run(host, payload, init, locals);
+    const response = await again.response;
+    return new Response(`rewritten ${payload}: ${await response.text()}`, response);
+  });
   const context = {
     request,
     url,
     locals,
+    rewrite,
     redirect: (location: string, status = 302) => new Response(null, { status, headers: { Location: location } }),
   };
-  return { response: Promise.resolve(onRequest(context as never, next as never) as Promise<Response>), next, locals };
+  return { response: Promise.resolve(onRequest(context as never, next as never) as Promise<Response>), next, rewrite, locals };
 }
 
 afterEach(() => vi.unstubAllEnvs());
@@ -64,10 +73,15 @@ describe('new domain', () => {
     ['/thegame/api/matchup?osuYear=1995&michYear=2023', '/api/matchup?osuYear=1995&michYear=2023'],
     ['/thegame/og/home.png', '/og/home.png'],
   ])('rewrites %s to the page at %s', async (path, target) => {
-    const { response, next, locals } = run(NEW_HOST, path);
-    await response;
-    expect(next).toHaveBeenCalledWith(target);
+    const { response, next, rewrite, locals } = run(NEW_HOST, path);
+    const result = await response;
+    expect(rewrite).toHaveBeenCalledWith(target);
+    // The first pass never renders in place; the second pass, for the inner
+    // path, hands straight on instead of answering 404 for it.
+    expect(next).not.toHaveBeenCalled();
+    expect(await result.text()).toBe(`rewritten ${target}: rendered ${new URL(target, 'http://x').pathname}`);
     expect(locals.site).toMatchObject({ host: NEW_HOST, basePath: '/thegame', canonicalHost: LONG_HOST });
+    expect(locals.hostRewrite).toEqual({ from: new URL(path, 'http://x').pathname, to: new URL(target, 'http://x').pathname });
   });
 
   it.each(['/record', '/rivalry-lab', '/api/health', '/thegamer'])('answers 404 for %s outside the prefix', async (path) => {
@@ -82,8 +96,15 @@ describe('new domain', () => {
   });
 
   it('honours a www prefix on the new host', async () => {
-    const { next } = run(`www.${NEW_HOST}`, '/thegame/countdown');
-    expect(next).toHaveBeenCalledWith('/countdown');
+    const { response, rewrite } = run(`www.${NEW_HOST}`, '/thegame/countdown');
+    await response;
+    expect(rewrite).toHaveBeenCalledWith('/countdown');
+  });
+
+  it('hands the inner path on when it runs again after its own rewrite', async () => {
+    const { next, rewrite } = run(NEW_HOST, '/og/home.png', {}, { hostRewrite: { from: '/thegame/og/home.png', to: '/og/home.png' } });
+    expect(next).toHaveBeenCalledWith();
+    expect(rewrite).not.toHaveBeenCalled();
   });
 });
 
@@ -138,8 +159,9 @@ describe('REDIRECT_TO_NEW_HOST', () => {
 
   it('never redirects the new domain', async () => {
     vi.stubEnv('REDIRECT_TO_NEW_HOST', 'true');
-    const { next } = run(NEW_HOST, '/thegame/record');
-    expect(next).toHaveBeenCalledWith('/record');
+    const { response, rewrite } = run(NEW_HOST, '/thegame/record');
+    expect((await response).status).toBe(200);
+    expect(rewrite).toHaveBeenCalledWith('/record');
   });
 });
 

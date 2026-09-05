@@ -4,12 +4,15 @@ import games from '../../data/rivalry-games.json';
 import { formatSeasonRank, rivalrySnapshot, validationGameFor, type TeamId } from '../../lib/rivalry-snapshot';
 import { formatClock, formatPerGame, formatRate, formatRecord, formatScoringMargin, meetingSides, sideClass, teamSeasonFor, type RivalrySide } from '../../lib/rivalry-archive';
 import { calculateRivalryRecord } from '../../lib/rivalry-record';
+import { pathOn, siteFrom } from '../../lib/hosts';
 
-export const prerender = true;
-export function getStaticPaths() { return games.map((game) => ({ params: { year: String(game.year) }, props: { game } })); }
-
-type Game = typeof games[number];
-const game = Astro.props.game as Game;
+// Rendered on demand rather than prerendered: on the new host the middleware
+// serves this page under /thegame/ by rewriting into it, and Astro rewrites
+// only into on-demand routes. The sitemap lists these pages from the same
+// data (see astro.config.mjs).
+const site = siteFrom(Astro);
+const game = games.find((entry) => String(entry.year) === Astro.params.year);
+if (!game) return new Response('Not found', { status: 404 });
 const tie = game.winner === 'Tie';
 // The hero's team colors go through `sideClass` so the six tied meetings read
 // as neutral ink instead of falling through `teamIdFor` into Michigan navy.
@@ -77,7 +80,7 @@ const formatDays = (value: number) => `${days.format(Math.round(value))} DAYS`;
 
 <SiteShell active="record" title={`${game.year} ${firstSide.team} vs ${secondSide.team} | Ohio State-Michigan`} description={`The ${game.year} Ohio State-Michigan rivalry meeting: ${scoreline}${tie ? ' (tie)' : ''}.`}>
   <article class="archive-page game-archive">
-    <a class="archive-back" href="/record">← EVERY MEETING</a>
+    <a class="archive-back" href={pathOn(site, '/record')}>← EVERY MEETING</a>
     <header class="game-hero"><span>RIVALRY MEETING · {game.year}</span><h1 data-testid="game-score"><span class={winnerClass}>{game.winner.toUpperCase()}</span> {game.wScore}<i>–</i>{game.lScore} <span class={loserClass}>{game.loser.toUpperCase()}</span></h1><small>{game.date ?? 'DATE NOT REPORTED'} · {game.location ?? 'LOCATION NOT REPORTED'}{game.notes ? ` · ${game.notes}` : ''}</small></header>
     <section class="archive-panel" data-testid="game-facts"><div class="section-title"><h2>GAME FACTS</h2><span>ARCHIVED RESULT</span></div><dl class="game-facts"><div><dt>Date</dt><dd>{game.date ?? 'NOT REPORTED'}</dd></div><div><dt>Location</dt><dd>{game.location ?? 'NOT REPORTED'}</dd></div><div><dt>{firstSide.team} rank</dt><dd>{rank(firstSide.rank)}</dd></div><div><dt>{secondSide.team} rank</dt><dd>{rank(secondSide.rank)}</dd></div>{game.notes && <div><dt>Notes</dt><dd>{game.notes}</dd></div>}</dl></section>
     <section class="archive-panel" data-testid="drought-context"><div class="section-title"><h2>DROUGHT CONTEXT</h2><span>OBSERVED · PUBLIC GAME RESULTS</span></div>
@@ -108,9 +111,9 @@ const formatDays = (value: number) => `${days.format(Math.round(value))} DAYS`;
       </dl>
       <p class="source-note">This meeting was held out of the fit that produced these numbers, so the expected scores are a forecast rather than a line drawn through a result the model had already seen. Model version {rivalrySnapshot.validation.modelVersion}.</p>
     </section>}
-    <section class="archive-panel"><div class="section-title"><h2>TEAM SEASONS</h2><span>PUBLIC SNAPSHOT</span></div><div class="team-links" data-testid="team-seasons">{teamSeasons.map(({ side, season }) => season ? <a class={sideClass(side.team)} href={`/teams/${side.teamId}/${game.year}`} aria-label={`${side.team} ${game.year} season`} data-track-event="team_season_opened" data-track-properties={JSON.stringify({ team: side.teamId, season: game.year })}>{side.team} {game.year} season →</a> : <p>{side.team} {game.year} season profile is not in the public snapshot.</p>)}</div></section>
+    <section class="archive-panel"><div class="section-title"><h2>TEAM SEASONS</h2><span>PUBLIC SNAPSHOT</span></div><div class="team-links" data-testid="team-seasons">{teamSeasons.map(({ side, season }) => season ? <a class={sideClass(side.team)} href={pathOn(site, `/teams/${side.teamId}/${game.year}`)} aria-label={`${side.team} ${game.year} season`} data-track-event="team_season_opened" data-track-properties={JSON.stringify({ team: side.teamId, season: game.year })}>{side.team} {game.year} season →</a> : <p>{side.team} {game.year} season profile is not in the public snapshot.</p>)}</div></section>
     <section class="archive-panel"><div class="section-title"><h2>ADVANCED BOXSCORE</h2><span>EXTERNAL SOURCE</span></div>{cfbdGame ? <p><a class="archive-button" href={cfbdGame.cfbdBoxscoreUrl} target="_blank" rel="noopener noreferrer" data-track-event="cfbd_boxscore_opened" data-track-properties={JSON.stringify({ game_year: game.year })}>CFBD ADVANCED BOX SCORE →</a></p> : <p>Advanced boxscore data is not included in the public snapshot for this meeting.</p>}</section>
-    <nav class="meeting-nav" aria-label="Adjacent rivalry meetings">{nextMeeting && <a href={`/record/${nextMeeting.year}`}>NEXT MEETING: {nextMeeting.year} →</a>}{previousMeeting && <a href={`/record/${previousMeeting.year}`}>← PREVIOUS MEETING: {previousMeeting.year}</a>}</nav>
+    <nav class="meeting-nav" aria-label="Adjacent rivalry meetings">{nextMeeting && <a href={pathOn(site, `/record/${nextMeeting.year}`)}>NEXT MEETING: {nextMeeting.year} →</a>}{previousMeeting && <a href={pathOn(site, `/record/${previousMeeting.year}`)}>← PREVIOUS MEETING: {previousMeeting.year}</a>}</nav>
   </article>
 </SiteShell>
 

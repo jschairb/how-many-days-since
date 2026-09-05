@@ -1,5 +1,8 @@
 ---
 import SiteShell from '../../components/SiteShell.astro';
+import { pathOn, siteFrom } from '../../lib/hosts';
+
+const site = siteFrom(Astro);
 
 const title = 'Rivalry Lab Methodology | Ohio State vs Michigan Historical Simulator';
 const description = 'How Rivalry Lab labels observed history, derives cross-era matchup ratings, and produces seeded synthetic simulations.';
@@ -13,7 +16,7 @@ const description = 'How Rivalry Lab labels observed history, derives cross-era 
         <h1>HOW RIVALRY LAB WORKS</h1>
         <p class="methodology-lede">Rivalry Lab is a historical matchup simulator, not a record book or a prediction service. It keeps the source of each claim visible: observed history, derived ratings, or synthetic game output.</p>
       </div>
-      <a class="method-primary" href="/rivalry-lab">OPEN THE LAB</a>
+      <a class="method-primary" href={pathOn(site, '/rivalry-lab')}>OPEN THE LAB</a>
     </header>
 
     <section class="method-section" aria-labelledby="evidence-heading">
@@ -101,7 +104,7 @@ const description = 'How Rivalry Lab labels observed history, derives cross-era 
     </section>
 
     <footer class="methodology-footer">
-      <a class="method-primary" href="/rivalry-lab">BUILD A MATCHUP</a>
+      <a class="method-primary" href={pathOn(site, '/rivalry-lab')}>BUILD A MATCHUP</a>
       <p>Look for the observed, derived, and simulated labels throughout the Lab.</p>
     </footer>
   </article>

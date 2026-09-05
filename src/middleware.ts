@@ -43,10 +43,17 @@ export const onRequest: MiddlewareHandler = (context, next) => {
 
   if (!site.basePath) return next();
 
+  // `context.rewrite()` renders the target with fresh `params` and `url` (a
+  // rewrite through `next(path)` leaves endpoints holding the pre-rewrite
+  // ones) and runs this middleware again for the inner path. The marker set
+  // below is how that second pass knows to hand the request on.
+  if (context.locals.hostRewrite) return next();
+
   if (pathname === '/') return platformIndexResponse();
   if (pathname === '/robots.txt') return next();
 
   const inner = stripBase(pathname, site.basePath);
   if (inner === null) return new Response('Not found', { status: 404 });
-  return next(`${inner}${search}`);
+  context.locals.hostRewrite = { from: pathname, to: inner };
+  return context.rewrite(`${inner}${search}`);
 };
