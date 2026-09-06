@@ -105,7 +105,7 @@ function recordCard(): OgCard {
   return {
     eyebrow: `EVERY MEETING · ${earliestGame.year}-${latestGame.year}`,
     headline: 'THE RECORD',
-    detail: `All ${games.length} Ohio State-Michigan meetings, decade by decade`,
+    detail: 'Every Ohio State-Michigan meeting, decade by decade',
     team: 'rivalry',
   };
 }
