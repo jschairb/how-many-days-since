@@ -61,9 +61,9 @@ test.describe('Count', () => {
   test('answers both directions of the question', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page).toHaveTitle('How Many Days Since Michigan Has Beaten Ohio State? How Many Days Since Ohio State Beat Michigan?');
+    await expect(page).toHaveTitle('How Many Days Since Michigan Has Beaten Ohio State?');
     await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /days since Michigan beat Ohio State\. \d[\d,]* days since Ohio State beat Michigan\./);
-    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', /Ohio State Beat Michigan/);
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', 'How Many Days Since Michigan Has Beaten Ohio State?');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('AND HOW MANY DAYS SINCE OHIO STATE BEAT MICHIGAN?');
     await expect(page.getByRole('heading', { level: 2, name: /days since ohio state beat michigan/i })).toBeVisible();
     await expect(page.locator('[data-reverse-count]')).toHaveAttribute('data-reference-date', '2025-11-29T17:00:00Z');

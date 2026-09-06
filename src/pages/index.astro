@@ -17,7 +17,9 @@ const totals = games.reduce((value, game) => ({ michigan: value.michigan + Numbe
 const since2012 = games.filter((game) => game.year >= 2012).reduce((value, game) => ({ michigan: value.michigan + Number(game.winner === 'Michigan'), ohioState: value.ohioState + Number(game.winner === 'Ohio State') }), { michigan: 0, ohioState: 0 });
 const date = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }).format(now);
 const dayWord = (count: number) => (count === 1 ? 'day' : 'days');
-const title = 'How Many Days Since Michigan Has Beaten Ohio State? How Many Days Since Ohio State Beat Michigan?';
+// One clause, under 60 characters, so search results show the whole title.
+// The description and the FAQ carry the reverse question.
+const title = 'How Many Days Since Michigan Has Beaten Ohio State?';
 const description = `${formatCount(days)} ${dayWord(days)} since Michigan beat Ohio State. ${formatCount(reverseDays)} ${dayWord(reverseDays)} since Ohio State beat Michigan. Last results: Michigan ${lastMichiganWin.score} in ${lastMichiganWin.location} (${lastMichiganWin.longDate}); Ohio State ${lastOhioStateWin.score} in ${lastOhioStateWin.location} (${lastOhioStateWin.longDate}).`;
 // The same two questions the page answers, with the live numbers, so the
 // answer engines have a dated source. Server-rendered per request, so the

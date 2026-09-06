@@ -106,7 +106,7 @@ The record page and the per-game pages read the same file, so one edit carries e
 - `src/lib/rivalry-anchors.ts` – Reads the last win for each side out of `src/data/rivalry-games.json`, and computes the most recent scheduled playing of The Game for the drift guard.
 - `src/lib/share-graphic.ts` – Pure helpers for the shareable graphic: caption and filename builders, the X intent URL, and the text-layout math (`wrapText`, `fitFontSize`). Text measurement is injected, so the layout is tested in Node without a canvas.
 - `src/components/ShareGraphic.astro` – The corner Share badge: draws the 1200x630 card on a hidden `<canvas>` and routes the badge to the share sheet, clipboard, download, or X.
-- `src/pages/index.astro` – The home page: both counters (days since Michigan beat Ohio State, and the subordinate days since Ohio State beat Michigan), the two-sided title and description, and the FAQPage structured data.
+- `src/pages/index.astro` – The home page: both counters (days since Michigan beat Ohio State, and the subordinate days since Ohio State beat Michigan), the one-clause title, the two-sided description, and the FAQPage structured data.
 - `public/` – Static assets including the Block O favicon, fonts, CSS, and triumphant Buckeye imagery.
 - `public/images/` – Rotating collection of celebratory images displayed on the page.
 - `astro.config.mjs` – Astro configuration including the site URL.
