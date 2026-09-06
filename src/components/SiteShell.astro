@@ -27,7 +27,7 @@ const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID ?? process.env.GA_MEAS
 const webSiteSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'How Many Days Since Michigan Has Beaten Ohio State?', url: site });
 const pageSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebPage', name: title, description, url: canonical });
 const additionalSchema = schema ? JSON.stringify(schema) : undefined;
-const nav = [{ href: '/', label: 'Home', id: 'count', icon: true }, { href: '/countdown', label: 'COUNTDOWN', id: 'countdown' }, { href: '/record', label: 'THE RECORD', id: 'record' }, { href: '/rivalry-lab', label: 'RIVALRY LAB', id: 'lab' }, { href: 'https://gwpworkshop.com/collections/rivalry-lab', label: 'MERCH', id: 'merch' }];
+const nav = [{ href: '/', label: 'Home', id: 'count', icon: true }, { href: '/countdown/', label: 'COUNTDOWN', id: 'countdown' }, { href: '/record/', label: 'THE RECORD', id: 'record' }, { href: '/rivalry-lab/', label: 'RIVALRY LAB', id: 'lab' }, { href: 'https://gwpworkshop.com/collections/rivalry-lab', label: 'MERCH', id: 'merch' }];
 ---
 <!doctype html>
 <html lang="en">

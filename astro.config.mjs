@@ -4,9 +4,12 @@ import node from '@astrojs/node';
 import robotsTxt from 'astro-robots-txt';
 
 import sitemap from '@astrojs/sitemap';
+import { archivePageUrls } from './src/lib/sitemap-pages';
+
+const site = 'https://howmanydayssincemichiganhasbeatenohiostate.com';
 
 export default defineConfig({
-  site: 'https://howmanydayssincemichiganhasbeatenohiostate.com',
+  site,
   output: 'server',
   adapter: node({ mode: 'standalone' }),
 
@@ -18,5 +21,12 @@ export default defineConfig({
     },
   },
 
-  integrations: [robotsTxt(), sitemap()],
+  integrations: [
+    robotsTxt(),
+    // Every page renders on demand, so the archive is listed by hand; the
+    // slashless form of each URL redirects in src/middleware.ts.
+    sitemap({
+      customPages: archivePageUrls(site),
+    }),
+  ],
 });

@@ -5,12 +5,9 @@ import { formatPerGame, formatRecord, formatScoringMargin, teamNameFor } from '.
 import { mediaGuideEmbedUrl, mediaGuideFor, mediaGuideItemUrl } from '../../../lib/media-guides';
 import games from '../../../data/rivalry-games.json';
 
-export const prerender = true;
-export function getStaticPaths() {
-  return rivalrySnapshot.ratings.teamSeasons.map((entry) => ({ params: { team: entry.teamId, season: String(entry.season) }, props: { entry } }));
-}
-
-const entry = Astro.props.entry as TeamSeasonSnapshot;
+// Rendered on demand, like the record pages: see src/pages/record/[year].astro.
+const entry: TeamSeasonSnapshot | undefined = rivalrySnapshot.ratings.teamSeasons.find((season) => season.teamId === Astro.params.team && String(season.season) === Astro.params.season);
+if (!entry) return new Response('Not found', { status: 404 });
 const teamId = entry.teamId as TeamId;
 const teamName = teamNameFor(teamId);
 const profile = entry.profile;
@@ -25,7 +22,7 @@ const perGame = (value: number | null, suffix: string) => { const rounded = form
 
 <SiteShell active="record" title={`${entry.season} ${teamName} Season | Ohio State vs Michigan`} description={`${teamName}'s ${entry.season} season record and available Rivalry Lab snapshot profile.`}>
   <article class="archive-page team-archive">
-    <a class="archive-back" href="/record">← THE RECORD</a>
+    <a class="archive-back" href="/record/">← THE RECORD</a>
     <header class={`archive-hero ${teamId === 'ohio-state' ? 'osu' : 'mich'}`}><span>RIVALRY SEASON ARCHIVE</span><h1>{entry.season} {teamName.toUpperCase()}</h1><strong data-testid="season-record">{formatRecord(entry)}</strong><small data-testid="season-totals">{entry.games} GAMES · {entry.pointsFor} FOR · {entry.pointsAgainst} AGAINST · {formatScoringMargin(entry.scoringMargin)} MARGIN/G</small></header>
     {mediaGuide && <section class="archive-panel media-guide" data-testid="media-guide">
       <details data-media-guide>
@@ -42,7 +39,7 @@ const perGame = (value: number | null, suffix: string) => { const rounded = form
       <div class="profile-section"><h3>DERIVED SRS RANKINGS</h3><dl><div><dt>Overall</dt><dd>{rank(profile.derived.overallRank)}</dd></div><div><dt>Offense</dt><dd>{rank(profile.derived.offenseRank)}</dd></div><div><dt>Defense</dt><dd>{rank(profile.derived.defenseRank)}</dd></div><div><dt>Schedule strength</dt><dd>{rank(profile.derived.scheduleStrengthRank)}</dd></div></dl></div>
       <p class="source-note"><b>SNAPSHOT CONFIDENCE:</b> {profile.confidence.score === null ? 'NOT SCORED' : `${profile.confidence.score}%`} {profile.confidence.reasons.length ? `· ${profile.confidence.reasons.join(' · ')}` : ''}</p>
     </section> : <section class="archive-panel" data-testid="season-profile"><h2>SEASON PROFILE</h2><p>The public Rivalry Lab snapshot has no observed or derived profile for this available team season.</p></section>}
-    {meeting && <section class="archive-panel"><div class="section-title"><h2>RIVALRY MEETING</h2><span>ARCHIVED RESULT</span></div><p><a class="archive-result" href={`/record/${meeting.year}`}>{meeting.winner} {meeting.wScore}, {meeting.loser} {meeting.lScore} · {meeting.location}</a></p><a class="archive-button" href={`/record/${meeting.year}`}>{entry.season} RIVALRY MEETING →</a></section>}
+    {meeting && <section class="archive-panel"><div class="section-title"><h2>RIVALRY MEETING</h2><span>ARCHIVED RESULT</span></div><p><a class="archive-result" href={`/record/${meeting.year}/`}>{meeting.winner} {meeting.wScore}, {meeting.loser} {meeting.lScore} · {meeting.location}</a></p><a class="archive-button" href={`/record/${meeting.year}/`}>{entry.season} RIVALRY MEETING →</a></section>}
   </article>
 </SiteShell>
 

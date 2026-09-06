@@ -18,6 +18,6 @@ test('links the home next-game line to the countdown and colors Columbus on hove
   await page.goto('/');
 
   const nextGame = page.getByRole('link', { name: /next game: november 28, 2026 - columbus/i });
-  await expect(nextGame).toHaveAttribute('href', '/countdown');
+  await expect(nextGame).toHaveAttribute('href', '/countdown/');
   await expect(nextGame).toHaveClass(/next-game-link/);
 });

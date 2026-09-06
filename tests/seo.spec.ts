@@ -104,7 +104,7 @@ test('publishes an evidence-labeled Rivalry Lab methodology page', async ({ page
   await expect(page.getByText('OBSERVED', { exact: true })).toBeVisible();
   await expect(page.getByText('DERIVED', { exact: true })).toBeVisible();
   await expect(page.getByText('SIMULATED', { exact: true })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'OPEN THE LAB' }).first()).toHaveAttribute('href', '/rivalry-lab');
+  await expect(page.getByRole('link', { name: 'OPEN THE LAB' }).first()).toHaveAttribute('href', '/rivalry-lab/');
   await expect(page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).resolves.toBe(true);
 });
 
@@ -113,6 +113,6 @@ test('links to methodology from the Rivalry Lab header', async ({ page }) => {
 
   await expect(page.getByRole('link', { name: 'METHOD & SOURCES →' })).toHaveAttribute(
     'href',
-    '/rivalry-lab/about'
+    '/rivalry-lab/about/'
   );
 });

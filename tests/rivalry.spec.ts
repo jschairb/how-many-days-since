@@ -25,15 +25,15 @@ test.describe('Record', () => {
     const meeting = page.locator('[data-game^="2025"]');
     await expect(meeting.getByRole('link', { name: /Ohio State/ })).toHaveAttribute(
       'href',
-      '/teams/ohio-state/2025'
+      '/teams/ohio-state/2025/'
     );
     await expect(meeting.getByRole('link', { name: /Michigan/ })).toHaveAttribute(
       'href',
-      '/teams/michigan/2025'
+      '/teams/michigan/2025/'
     );
     await expect(meeting.getByRole('link', { name: '27-9' })).toHaveAttribute(
       'href',
-      '/record/2025'
+      '/record/2025/'
     );
   });
 
@@ -60,10 +60,10 @@ test.describe('Record', () => {
     await expect(page.getByTestId('game-score')).toContainText('9 MICHIGAN');
     await expect(page.getByTestId('game-facts')).toContainText('Nov 29');
     await expect(page.getByTestId('game-facts')).toContainText('Ann Arbor');
-    await expect(page.getByRole('link', { name: 'Ohio State 2025 season' })).toHaveAttribute('href', '/teams/ohio-state/2025');
-    await expect(page.getByRole('link', { name: 'Michigan 2025 season' })).toHaveAttribute('href', '/teams/michigan/2025');
+    await expect(page.getByRole('link', { name: 'Ohio State 2025 season' })).toHaveAttribute('href', '/teams/ohio-state/2025/');
+    await expect(page.getByRole('link', { name: 'Michigan 2025 season' })).toHaveAttribute('href', '/teams/michigan/2025/');
     await expect(page.getByRole('link', { name: /CFBD advanced box score/i })).toHaveAttribute('href', /collegefootballdata\.com\/boxscore\//);
-    await expect(page.getByRole('link', { name: /previous meeting: 2024/i })).toHaveAttribute('href', '/record/2024');
+    await expect(page.getByRole('link', { name: /previous meeting: 2024/i })).toHaveAttribute('href', '/record/2024/');
     await expect(page.getByRole('link', { name: /next meeting/i })).toHaveCount(0);
   });
 
@@ -94,8 +94,8 @@ test.describe('Record', () => {
     await expect(page.getByTestId('game-facts')).toContainText('Michigan rank');
     await expect(page.getByTestId('game-facts')).not.toContainText('Tie rank');
 
-    await expect(page.getByRole('link', { name: 'Ohio State 1992 season' })).toHaveAttribute('href', '/teams/ohio-state/1992');
-    await expect(page.getByRole('link', { name: 'Michigan 1992 season' })).toHaveAttribute('href', '/teams/michigan/1992');
+    await expect(page.getByRole('link', { name: 'Ohio State 1992 season' })).toHaveAttribute('href', '/teams/ohio-state/1992/');
+    await expect(page.getByRole('link', { name: 'Michigan 1992 season' })).toHaveAttribute('href', '/teams/michigan/1992/');
     await expect(page.getByRole('link', { name: /Tie 1992 season/ })).toHaveCount(0);
   });
 
@@ -139,7 +139,7 @@ test.describe('Record', () => {
     );
     await expect(page.getByTestId('season-record')).toContainText('12-2');
     await expect(page.getByTestId('season-profile')).toContainText('OBSERVED');
-    await expect(page.getByRole('link', { name: /2025 rivalry meeting/i })).toHaveAttribute('href', '/record/2025');
+    await expect(page.getByRole('link', { name: /2025 rivalry meeting/i })).toHaveAttribute('href', '/record/2025/');
   });
 
   test('carries the drought the result ended and the one the loser was serving', async ({ page }) => {
@@ -295,7 +295,7 @@ test.describe('Rivalry Lab', () => {
   test('links the Lab and the methodology page to each other on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/rivalry-lab');
-    await expect(page.getByRole('link', { name: 'METHOD & SOURCES →' })).toHaveAttribute('href', '/rivalry-lab/about');
+    await expect(page.getByRole('link', { name: 'METHOD & SOURCES →' })).toHaveAttribute('href', '/rivalry-lab/about/');
 
     await page.goto('/rivalry-lab/about');
     await expect(page.getByRole('link', { name: 'OPEN THE LAB' }).first()).toBeVisible();
