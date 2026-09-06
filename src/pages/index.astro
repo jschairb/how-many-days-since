@@ -2,36 +2,74 @@
 import ShareGraphic from '../components/ShareGraphic.astro';
 import SiteShell from '../components/SiteShell.astro';
 import games from '../data/rivalry-games.json';
-import { LAST_MICHIGAN_WIN, LAST_MICHIGAN_WIN_ISO, calcDaysSince } from '../lib/days';
+import { calcDaysSince } from '../lib/days';
+import { formatCount } from '../lib/share-graphic';
 import { nextRivalryGame } from '../lib/next-rivalry-game';
+import { earliestGame, lastMichiganWin, lastOhioStateWin, latestGame } from '../lib/rivalry-anchors';
 
-const referenceDate = LAST_MICHIGAN_WIN;
+// Both anchors come out of the record, so no date lives in this template.
 const now = new Date();
-const days = calcDaysSince(referenceDate, now);
+const days = calcDaysSince(lastMichiganWin.kickoff, now);
+const reverseDays = calcDaysSince(lastOhioStateWin.kickoff, now);
+const newest = latestGame();
+const oldest = earliestGame();
 const totals = games.reduce((value, game) => ({ michigan: value.michigan + Number(game.winner === 'Michigan'), ohioState: value.ohioState + Number(game.winner === 'Ohio State'), ties: value.ties + Number(game.winner === 'Tie') }), { michigan: 0, ohioState: 0, ties: 0 });
 const since2012 = games.filter((game) => game.year >= 2012).reduce((value, game) => ({ michigan: value.michigan + Number(game.winner === 'Michigan'), ohioState: value.ohioState + Number(game.winner === 'Ohio State') }), { michigan: 0, ohioState: 0 });
 const date = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }).format(now);
+const dayWord = (count: number) => (count === 1 ? 'day' : 'days');
+const title = 'How Many Days Since Michigan Has Beaten Ohio State? How Many Days Since Ohio State Beat Michigan?';
+const description = `${formatCount(days)} ${dayWord(days)} since Michigan beat Ohio State. ${formatCount(reverseDays)} ${dayWord(reverseDays)} since Ohio State beat Michigan. Last results: Michigan ${lastMichiganWin.score} in ${lastMichiganWin.location} (${lastMichiganWin.longDate}); Ohio State ${lastOhioStateWin.score} in ${lastOhioStateWin.location} (${lastOhioStateWin.longDate}).`;
+// The same two questions the page answers, with the live numbers, so the
+// answer engines have a dated source. Server-rendered per request, so the
+// numbers match the counters on every visit.
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How many days since Michigan beat Ohio State?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `As of ${date}, it has been ${formatCount(days)} ${dayWord(days)} since Michigan last beat Ohio State. Michigan won ${lastMichiganWin.score} in ${lastMichiganWin.location} on ${lastMichiganWin.longDate}.`,
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How many days since Ohio State beat Michigan?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `As of ${date}, it has been ${formatCount(reverseDays)} ${dayWord(reverseDays)} since Ohio State last beat Michigan. Ohio State won ${lastOhioStateWin.score} in ${lastOhioStateWin.location} on ${lastOhioStateWin.longDate}.`,
+      },
+    },
+  ],
+};
 ---
-<SiteShell active="count" title="How Many Days Since Michigan Has Beaten Ohio State?" description="The live Ohio State-Michigan day count, rivalry record, and evidence-labeled Rivalry Lab.">
-  <ShareGraphic slot="nav-share" referenceDate={LAST_MICHIGAN_WIN_ISO} siteUrl="https://howmanydayssincemichiganhasbeatenohiostate.com" />
-  <section class="count" data-live-count data-reference-date={LAST_MICHIGAN_WIN_ISO}><h1>HOW MANY DAYS SINCE <span class="mich">MICHIGAN</span> HAS BEATEN <span class="osu">OHIO STATE</span>?</h1><p class="date" data-current-date>{date}</p><p class="counter" aria-live="polite"><strong id="days_count">{days.toLocaleString()}</strong> <span>DAYS</span></p><p class="last">Last <b class="mich">Michigan</b> win: November 30, 2024 - 13-10, Columbus.<br />Last <b class="osu">Ohio State</b> win: November 29, 2025 - 27-9, Ann Arbor.<br /><a class="next-game-link" href="/countdown"><b>NEXT GAME:</b> {nextRivalryGame.date} - <span class="osu">{nextRivalryGame.location}</span>.</a></p></section>
-  <section class="stat-box"><div><strong class="osu">OSU 27-9</strong><small>THE GAME, 2025 · ANN ARBOR</small></div><div><strong>{totals.michigan}-{totals.ohioState}-{totals.ties}</strong><small>ALL-TIME SERIES (M-OSU-T), 1897-2025</small></div><div><strong class="osu">{since2012.ohioState}-{since2012.michigan}</strong><small>OHIO STATE SINCE 2012</small></div></section>
+<SiteShell active="count" title={title} description={description} schema={faqSchema}>
+  <ShareGraphic slot="nav-share" referenceDate={lastMichiganWin.iso} siteUrl="https://howmanydayssincemichiganhasbeatenohiostate.com" />
+  <section class="count" data-live-count data-reference-date={lastMichiganWin.iso}><h1>HOW MANY DAYS SINCE <span class="mich">MICHIGAN</span> HAS BEATEN <span class="osu">OHIO STATE</span>? <small class="h1-reverse">AND HOW MANY DAYS SINCE <span class="osu">OHIO STATE</span> BEAT <span class="mich">MICHIGAN</span>?</small></h1><p class="date" data-current-date>{date}</p><p class="counter" aria-live="polite"><strong id="days_count">{formatCount(days)}</strong> <span>DAYS</span></p><p class="last">Last <b class="mich">Michigan</b> win: {lastMichiganWin.longDate} - {lastMichiganWin.score}, {lastMichiganWin.location}.<br />Last <b class="osu">Ohio State</b> win: {lastOhioStateWin.longDate} - {lastOhioStateWin.score}, {lastOhioStateWin.location}.<br /><a class="next-game-link" href="/countdown"><b>NEXT GAME:</b> {nextRivalryGame.date} - <span class="osu">{nextRivalryGame.location}</span>.</a></p></section>
+  <section class="reverse-count" data-reverse-count data-reference-date={lastOhioStateWin.iso} aria-labelledby="reverse-heading"><h2 id="reverse-heading">DAYS SINCE <span class="osu">OHIO STATE</span> BEAT <span class="mich">MICHIGAN</span></h2><p class="reverse-counter" aria-live="polite"><strong id="reverse_days_count">{formatCount(reverseDays)}</strong> <span>DAYS</span></p><p class="last">Ohio State won {lastOhioStateWin.score} in {lastOhioStateWin.location} on {lastOhioStateWin.longDate}.</p></section>
+  <section class="stat-box"><div><strong class={newest.winner === 'Ohio State' ? 'osu' : newest.winner === 'Michigan' ? 'mich' : undefined}>{newest.winner === 'Ohio State' ? 'OSU' : newest.winner === 'Michigan' ? 'MICH' : 'TIE'} {newest.wScore}-{newest.lScore}</strong><small>THE GAME, {newest.year} · {newest.location?.toUpperCase()}</small></div><div><strong>{totals.michigan}-{totals.ohioState}-{totals.ties}</strong><small>ALL-TIME SERIES (M-OSU-T), {oldest.year}-{newest.year}</small></div><div><strong class="osu">{since2012.ohioState}-{since2012.michigan}</strong><small>OHIO STATE SINCE 2012</small></div></section>
   <section class="featured-merch" aria-labelledby="merch-heading"><img src="/images/products/script-in-the-snow.jpg" alt="Script in the Snow 2025 Rivalry Game commemorative tee" /><div><p>RIVALRY LAB MERCH</p><h2 id="merch-heading">SCRIPT IN THE SNOW</h2><span>THE 2025 RIVALRY GAME COMMEMORATIVE TEE</span><a href="https://gwpworkshop.com/products/script-in-the-snow-the-2025-rivalry-game-commemorative-tee" target="_blank" rel="noopener noreferrer" data-track-event="merch_product_opened" data-track-properties={JSON.stringify({ product: 'script-in-the-snow', placement: 'home_featured' })}>SHOP THE 2025 COMMEMORATIVE TEE →</a></div></section>
 </SiteShell>
 
 <script>
   import { calcDaysSince } from '../lib/days';
+  import { formatCount } from '../lib/share-graphic';
   import { trackMarkedLinks } from '../lib/client/analytics';
 
   trackMarkedLinks();
   const liveCount = document.querySelector<HTMLElement>('[data-live-count]');
+  const reverseCount = document.querySelector<HTMLElement>('[data-reverse-count]');
   const referenceDate = new Date(liveCount?.dataset.referenceDate ?? '');
+  const reverseReferenceDate = new Date(reverseCount?.dataset.referenceDate ?? '');
   const count = document.getElementById('days_count');
+  const reverse = document.getElementById('reverse_days_count');
   const currentDate = document.querySelector<HTMLElement>('[data-current-date]');
   const renderCurrentTime = () => {
     const now = new Date();
-    const days = calcDaysSince(referenceDate, now);
-    if (count) count.textContent = days.toLocaleString('en-US');
+    if (count) count.textContent = formatCount(calcDaysSince(referenceDate, now));
+    if (reverse) reverse.textContent = formatCount(calcDaysSince(reverseReferenceDate, now));
     if (currentDate) currentDate.textContent = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }).format(now);
   };
   renderCurrentTime();
@@ -40,6 +78,13 @@ const date = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', we
 
 <style>
   .count h1 { font-size: 42.5px; }
+  .h1-reverse { display:block; margin-top:10px; font-size:20px; letter-spacing:0; color:#6b717c; text-shadow:none; }
+  .reverse-count { margin:8px auto 0; padding:18px 20px 14px; max-width:640px; text-align:center; border-top:3px solid #111; }
+  .reverse-count h2 { margin:0; font:18px 'Archivo Black'; letter-spacing:.02em; }
+  .reverse-counter { margin:8px 0 6px; font-family:'Archivo Black'; line-height:1; }
+  .reverse-counter strong { font-size:min(72px,12vw); color:#bb0000; }
+  .reverse-counter span { font-size:min(24px,4vw); }
+  .reverse-count .last { margin:0; }
   .next-game-link { color:inherit; text-decoration:none; }
   .next-game-link:hover,.next-game-link:focus-visible { text-decoration:none; }
   .next-game-link:hover .osu,.next-game-link:focus-visible .osu { background:#bb0000; color:#d9dce1; }
@@ -50,5 +95,5 @@ const date = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', we
   .featured-merch p { margin:0 0 10px; color:#bb0000; }
   .featured-merch h2 { margin:0 0 10px; font:34px 'Archivo Black'; line-height:1; }
   .featured-merch a { align-self:flex-start; margin-top:24px; padding:12px 16px; background:#bb0000; color:#fff; font-size:12px; font-weight:700; text-decoration:none; }
-  @media (max-width:640px) { .featured-merch { grid-template-columns:1fr; } .featured-merch img { min-height:0; } .featured-merch div { padding:26px; } }
+  @media (max-width:640px) { .featured-merch { grid-template-columns:1fr; } .featured-merch img { min-height:0; } .featured-merch div { padding:26px; } .h1-reverse { font-size:16px; } }
 </style>

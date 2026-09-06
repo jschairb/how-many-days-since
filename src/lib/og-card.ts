@@ -9,7 +9,8 @@
  * Nothing here touches Astro or the renderer, so the whole map is unit testable.
  */
 import games from '../data/rivalry-games.json';
-import { LAST_MICHIGAN_WIN, calcDaysSince } from './days';
+import { calcDaysSince } from './days';
+import { lastMichiganWin } from './rivalry-anchors';
 import { nextRivalryGame } from './next-rivalry-game';
 import { teamIdFor, teamNameFor, formatRecord, type RivalryTeam } from './rivalry-archive';
 import { rivalrySnapshot, type TeamId } from './rivalry-snapshot';
@@ -76,7 +77,7 @@ export function ogCardAlt(card: OgCard): string {
 }
 
 function homeCard(now: Date): OgCard {
-  const days = calcDaysSince(LAST_MICHIGAN_WIN, now);
+  const days = calcDaysSince(lastMichiganWin.kickoff, now);
   return {
     eyebrow: 'HOW MANY DAYS SINCE MICHIGAN HAS BEATEN OHIO STATE?',
     metric: { value: formatCount(days), unit: 'DAYS' },

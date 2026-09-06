@@ -87,34 +87,34 @@ Run TypeScript type checking:
 npm run check
 ```
 
-## Configuration
+## After The Game
 
-The reference date (last time Michigan beat Ohio State) is configured in `astro.config.mjs`:
+The counters, the meta description, the Open Graph card, and the FAQ answers all read their dates from one file: `src/data/rivalry-games.json`. `src/lib/rivalry-anchors.ts` derives the last Michigan win and the last Ohio State win from that record, so no template carries a date.
 
-```javascript
-vite: {
-  define: {
-    'import.meta.env.REFERENCE_DATE': JSON.stringify('2024-11-30T05:00:00.000Z'),
-  },
-}
-```
+The Game is played on the last Saturday of November. Once it has been played, the unit suite fails until the record holds the result, and the deploy runs that suite (`RUN npm test` in the Dockerfile, `npm test` in the GitHub Actions workflow), so a stale record cannot reach production. To update after a game:
 
-Update this date when needed to keep the counter accurate.
+1. Prepend the new game to `src/data/rivalry-games.json`, with the next `id`, the `year`, the `date` in `Mon D` form (`Nov 28`), `winner`, `loser`, `wScore`, `lScore`, `location`, and the two AP ranks (`null` where unranked).
+2. Move `src/lib/next-rivalry-game.ts` to the next season's kickoff and site. The suite fails while it points at a game already in the record.
+3. Run `npm test`. The drift guard in `src/lib/__tests__/rivalry-anchors.test.ts` passes once the record is current.
+4. Commit and open a pull request. Merging to `master` deploys.
+
+The record page and the per-game pages read the same file, so one edit carries everywhere.
 
 ## Project Structure
 
-- `src/lib/days.ts` – Pure utility functions: `calcDaysSince` and `formatEasternTime`. Tested by Vitest.
+- `src/lib/days.ts` – Pure utility functions: `calcDaysSince`, `columbusCalendarDay`, and `formatEasternTime`. Tested by Vitest.
+- `src/lib/rivalry-anchors.ts` – Reads the last win for each side out of `src/data/rivalry-games.json`, and computes the most recent scheduled playing of The Game for the drift guard.
 - `src/lib/share-graphic.ts` – Pure helpers for the shareable graphic: caption and filename builders, the X intent URL, and the text-layout math (`wrapText`, `fitFontSize`). Text measurement is injected, so the layout is tested in Node without a canvas.
 - `src/components/ShareGraphic.astro` – The corner Share badge: draws the 1200x630 card on a hidden `<canvas>` and routes the badge to the share sheet, clipboard, download, or X.
-- `src/pages/index.astro` – The single page that renders the Buckeye propaganda, computes the days-since count, and randomizes the featured celebratory image.
+- `src/pages/index.astro` – The home page: both counters (days since Michigan beat Ohio State, and the subordinate days since Ohio State beat Michigan), the two-sided title and description, and the FAQPage structured data.
 - `public/` – Static assets including the Block O favicon, fonts, CSS, and triumphant Buckeye imagery.
 - `public/images/` – Rotating collection of celebratory images displayed on the page.
-- `astro.config.mjs` – Astro configuration including the reference date and site URL.
+- `astro.config.mjs` – Astro configuration including the site URL.
 - `tsconfig.json` – TypeScript configuration extending Astro's strict preset.
 
 ## Features
 
-- **Real-time Counter**: Displays days since the reference date, updating every minute
+- **Real-time Counters**: Days since Michigan last beat Ohio State, and below it days since Ohio State last beat Michigan, both updating every minute
 - **Dynamic Time Display**: Shows current time in Columbus (America/New_York timezone)
 - **Random Image Rotation**: Randomly selects from celebratory images on each page load
 - **Shareable Graphic**: A 1200x630 PNG drawn in the browser with the current count, offered through the native share sheet, the clipboard, a download, or an X post intent

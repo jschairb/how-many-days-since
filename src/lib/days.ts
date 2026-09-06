@@ -1,14 +1,11 @@
 const COLUMBUS_TIME_ZONE = 'America/New_York';
 
 /**
- * Kickoff of the last Michigan win, November 30, 2024 in Columbus. The home
- * page counts from here, and so does its Open Graph card, so the two read the
- * same number.
+ * The Columbus calendar day `date` falls on, as midnight UTC of that day.
+ * Both counters and the drift guard compare days through this, so a game
+ * played at noon Eastern and a visit at 11 PM Eastern land on the same day.
  */
-export const LAST_MICHIGAN_WIN_ISO = '2024-11-30T17:00:00Z';
-export const LAST_MICHIGAN_WIN = new Date(LAST_MICHIGAN_WIN_ISO);
-
-function calendarDay(date: Date): number {
+export function columbusCalendarDay(date: Date): number {
   const parts = new Intl.DateTimeFormat('en-US', {
     timeZone: COLUMBUS_TIME_ZONE,
     year: 'numeric',
@@ -21,7 +18,7 @@ function calendarDay(date: Date): number {
 
 export function calcDaysSince(referenceDate: Date, now: Date): number {
   return Math.max(
-    Math.round((calendarDay(now) - calendarDay(referenceDate)) / 86_400_000),
+    Math.round((columbusCalendarDay(now) - columbusCalendarDay(referenceDate)) / 86_400_000),
     0
   );
 }

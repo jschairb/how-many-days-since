@@ -10,10 +10,10 @@ export default defineConfig({
   output: 'server',
   adapter: node({ mode: 'standalone' }),
 
-  // Last date Michigan beat Ohio State
+  // The counters read their dates from src/data/rivalry-games.json through
+  // src/lib/rivalry-anchors.ts. Nothing here carries a game date.
   vite: {
     define: {
-      'import.meta.env.REFERENCE_DATE': JSON.stringify('2024-11-30T05:00:00.000Z'),
       'import.meta.env.IMAGE_ROTATION_INTERVAL': JSON.stringify(5000), // Image rotation interval in milliseconds
     },
   },
