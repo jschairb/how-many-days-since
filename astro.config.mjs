@@ -4,9 +4,12 @@ import node from '@astrojs/node';
 import robotsTxt from 'astro-robots-txt';
 
 import sitemap from '@astrojs/sitemap';
+import { sitemapLastmod } from './src/lib/sitemap-lastmod';
 import { archivePageUrls } from './src/lib/sitemap-pages';
 
 const site = 'https://howmanydayssincemichiganhasbeatenohiostate.com';
+// One stamp per build, so every live page in the sitemap carries the same one.
+const buildDate = new Date();
 
 export default defineConfig({
   site,
@@ -27,6 +30,7 @@ export default defineConfig({
     // slashless form of each URL redirects in src/middleware.ts.
     sitemap({
       customPages: archivePageUrls(site),
+      serialize: (item) => ({ ...item, lastmod: sitemapLastmod(item.url, buildDate) }),
     }),
   ],
 });
