@@ -35,12 +35,13 @@ describe('resolveOgCard', () => {
     expect(card?.headline).toBe('IT IS HERE');
   });
 
-  it('reports the meeting count on the record card', () => {
+  it('names no game count on the record card', () => {
     const card = resolveOgCard('/record', NOW);
 
     expect(card?.headline).toBe('THE RECORD');
     expect(card?.eyebrow).toBe('EVERY MEETING · 1897-2025');
-    expect(card?.detail).toContain('All 121 Ohio State-Michigan meetings');
+    expect(card?.detail).toBe('Every Ohio State-Michigan meeting, decade by decade');
+    expect(card?.detail).not.toMatch(/\d/);
   });
 
   it('colors each team in a rivalry meeting score', () => {
