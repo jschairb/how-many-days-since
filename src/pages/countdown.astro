@@ -1,23 +1,39 @@
 ---
 import SiteShell from '../components/SiteShell.astro';
 import { nextRivalryGame } from '../lib/next-rivalry-game';
+import { SITE_URL } from '../lib/canonical';
+import { ogImagePathFor } from '../lib/og-card';
 
 const [firstTeam, secondTeam] = nextRivalryGame.name.toUpperCase().split(' VS. ');
 const teamChipClass = (team: string) => team.includes('OHIO') ? 'osu' : 'mich';
+const description = `A live countdown to the 2026 Ohio State-Michigan game in ${nextRivalryGame.location}.`;
+// Every property here is a known value: the venue, the two programs, and the
+// card the page already publishes. Kickoff has no announced end, so there is
+// no endDate, and tickets are not sold here, so there are no offers.
+const homeTeam = { '@type': 'SportsTeam', name: nextRivalryGame.homeTeam, url: 'https://ohiostatebuckeyes.com' };
+const awayTeam = { '@type': 'SportsTeam', name: nextRivalryGame.awayTeam, url: 'https://mgoblue.com' };
 const eventSchema = {
   '@context': 'https://schema.org',
   '@type': 'SportsEvent',
   name: nextRivalryGame.name,
+  description,
+  image: new URL(ogImagePathFor('/countdown'), SITE_URL).toString(),
   startDate: nextRivalryGame.start,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   location: {
     '@type': 'Place',
-    name: nextRivalryGame.location,
-    address: { '@type': 'PostalAddress', addressLocality: nextRivalryGame.location, addressRegion: 'OH', addressCountry: 'US' },
+    name: nextRivalryGame.venue,
+    address: { '@type': 'PostalAddress', streetAddress: '411 Woody Hayes Dr', addressLocality: nextRivalryGame.location, addressRegion: 'OH', postalCode: '43210', addressCountry: 'US' },
   },
+  organizer: homeTeam,
+  performer: [homeTeam, awayTeam],
+  homeTeam,
+  awayTeam,
 };
 ---
 
-<SiteShell active="countdown" title="Countdown to The Game | Ohio State vs Michigan" description="A live countdown to the 2026 Ohio State-Michigan game in Columbus." schema={eventSchema}>
+<SiteShell active="countdown" title="Countdown to The Game | Ohio State vs Michigan" description={description} schema={eventSchema}>
   <section class="countdown" data-countdown data-game-start={nextRivalryGame.start}>
     <p class="eyebrow"><span class:list={['eyebrow-team', teamChipClass(firstTeam)]}>{firstTeam}</span> VS. <span class:list={['eyebrow-team', teamChipClass(secondTeam)]}>{secondTeam}</span></p>
     <h1>THE GAME</h1>

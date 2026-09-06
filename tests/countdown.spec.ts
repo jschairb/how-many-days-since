@@ -11,7 +11,14 @@ test('publishes the next game countdown with canonical event metadata', async ({
   await expect(page.getByRole('heading', { name: 'THE GAME', exact: true })).toBeVisible();
   await expect(page.locator('[data-countdown-days]')).toBeVisible();
   await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(3);
-  expect(await page.locator('script[type="application/ld+json"]').nth(2).evaluate((element) => element.textContent)).toContain('2026-11-28T12:00:00-05:00');
+  const event = JSON.parse((await page.locator('script[type="application/ld+json"]').nth(2).textContent())!);
+  expect(event['@type']).toBe('SportsEvent');
+  expect(event.startDate).toBe('2026-11-28T12:00:00-05:00');
+  expect(event.location).toMatchObject({ name: 'Ohio Stadium', address: { addressLocality: 'Columbus', addressRegion: 'OH' } });
+  expect(event.organizer.name).toBe('Ohio State Buckeyes');
+  expect(event.performer.map((team: { name: string }) => team.name)).toEqual(['Ohio State Buckeyes', 'Michigan Wolverines']);
+  expect(event.image).toBe('https://howmanydayssincemichiganhasbeatenohiostate.com/og/countdown.png');
+  expect(event.eventStatus).toBe('https://schema.org/EventScheduled');
 });
 
 test('links the home next-game line to the countdown and colors Columbus on hover', async ({ page }) => {

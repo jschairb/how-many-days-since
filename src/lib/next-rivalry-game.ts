@@ -4,5 +4,8 @@ export const nextRivalryGame = {
   date: 'November 28, 2026',
   time: 'Noon ET',
   location: 'Columbus',
+  venue: 'Ohio Stadium',
+  homeTeam: 'Ohio State Buckeyes',
+  awayTeam: 'Michigan Wolverines',
   timeZone: 'America/New_York',
 } as const;
