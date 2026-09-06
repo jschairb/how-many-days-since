@@ -12,6 +12,7 @@ import {
   resolveOgCard,
 } from '../lib/og-card';
 import { SITE_URL, canonicalUrl } from '../lib/canonical';
+import { GA_MEASUREMENT_ID } from '../lib/analytics-config';
 const site = SITE_URL;
 const { active, title = 'How Many Days Since Michigan Has Beaten Ohio State?', description = 'The Ohio State-Michigan rivalry record and an evidence-labeled cross-era Rivalry Lab.', ogImage, ogImageAlt, schema } = Astro.props;
 // Fixed to the trailing-slash form the sitemap publishes. Most pages are
@@ -23,7 +24,10 @@ const canonical = canonicalUrl(Astro.url.pathname);
 const openGraphImage = new URL(ogImage ?? ogImagePathFor(Astro.url.pathname), site).toString();
 const openGraphImageAlt = ogImageAlt ?? (() => { const card = resolveOgCard(Astro.url.pathname); return card ? ogCardAlt(card) : description; })();
 const openGraphLogo = new URL(OG_LOGO_PATH, site).toString();
-const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID ?? process.env.GA_MEASUREMENT_ID;
+// The measurement ID is public: it ships in every tagged page. Production
+// builds carry the site's own so a page rendered before the runtime
+// environment exists (a prerendered archive page) is tagged all the same.
+const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID ?? process.env.GA_MEASUREMENT_ID ?? (import.meta.env.PROD ? GA_MEASUREMENT_ID : undefined);
 const webSiteSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'How Many Days Since Michigan Has Beaten Ohio State?', url: site });
 const pageSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebPage', name: title, description, url: canonical });
 const additionalSchema = schema ? JSON.stringify(schema) : undefined;
