@@ -6,7 +6,7 @@ import { renderOgCard } from '../../lib/og-render';
  * Draws each page's Open Graph card on request instead of at build time.
  *
  * The site already runs a server, and the card copy is data — the live day
- * count, the 121 rivalry meetings, every team season in the snapshot. Rendering
+ * count, every rivalry meeting, every team season in the snapshot. Rendering
  * on demand keeps all of it current and keeps the build from drawing hundreds
  * of images that nothing may ever request.
  */

@@ -273,7 +273,7 @@ test.describe('Record', () => {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 
-  test('renders all 121 meetings and filters them', async ({ page }) => {
+  test('renders every meeting and filters them', async ({ page }) => {
     await page.goto('/record');
     await expect(page).toHaveTitle(/The Record/i);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('THE RECORD');
