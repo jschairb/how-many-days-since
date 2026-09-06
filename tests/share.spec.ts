@@ -99,3 +99,16 @@ test.describe('share badge', () => {
     );
   });
 });
+
+test('links to X with the rendered count before any script runs', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto('/');
+
+  const url = new URL((await page.locator('#share-x').getAttribute('href'))!);
+  expect(url.origin + url.pathname).toBe('https://x.com/intent/post');
+  expect(url.searchParams.get('text')).toMatch(/^\d[\d,]* days since Michigan beat Ohio State/);
+  expect(url.searchParams.get('url')).toBe('https://howmanydayssincemichiganhasbeatenohiostate.com');
+
+  await context.close();
+});

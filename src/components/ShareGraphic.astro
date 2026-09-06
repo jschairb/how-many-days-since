@@ -1,5 +1,6 @@
 ---
-import { SHARE_WIDTH, SHARE_HEIGHT } from '../lib/share-graphic';
+import { calcDaysSince } from '../lib/days';
+import { SHARE_WIDTH, SHARE_HEIGHT, buildXIntentUrl } from '../lib/share-graphic';
 
 interface Props {
   referenceDate: string;
@@ -7,6 +8,9 @@ interface Props {
 }
 
 const { referenceDate, siteUrl } = Astro.props;
+// The X link carries the count as rendered, so it posts the right number
+// before the script that keeps it current has run, and without it.
+const xIntentUrl = buildXIntentUrl(calcDaysSince(new Date(referenceDate), new Date()), siteUrl);
 ---
 
 <div id="share-badge" data-reference-date={referenceDate} data-site-url={siteUrl}>
@@ -25,7 +29,7 @@ const { referenceDate, siteUrl } = Astro.props;
   <div id="share-menu" role="menu" hidden>
     <button type="button" role="menuitem" id="share-copy" hidden>Copy image</button>
     <button type="button" role="menuitem" id="share-download">Download PNG</button>
-    <a role="menuitem" id="share-x" href={siteUrl} rel="noopener" target="_blank">Post on X</a>
+    <a role="menuitem" id="share-x" href={xIntentUrl} rel="noopener" target="_blank">Post on X</a>
     <p id="share-status" role="status" aria-live="polite"></p>
   </div>
 
