@@ -6,6 +6,12 @@ COPY . .
 # The unit suite includes the record drift guard: a build with a stale
 # rivalry-games.json fails here and never reaches production.
 RUN npm test
+# The record and team-season pages carry `prerender = true`, so SiteShell reads
+# the measurement id during this build, not in the running container. A
+# runtime-only variable reaches the server-rendered pages and leaves every
+# prerendered page without the tag, which is how the 25 record pages lost it.
+ARG GA_MEASUREMENT_ID
+ENV GA_MEASUREMENT_ID=$GA_MEASUREMENT_ID
 RUN npm run build
 
 FROM node:24-alpine

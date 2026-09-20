@@ -44,11 +44,24 @@ HOST=0.0.0.0 PORT=4310 node ./dist/server/entry.mjs
 Deploy this repository to a Node-capable host or container runtime. A static-only host cannot serve the Rivalry Lab API routes.
 
 ```bash
-docker build -t how-many-days-since:local .
-docker run --rm -p 4310:4310 how-many-days-since:local
+docker build --build-arg GA_MEASUREMENT_ID=G-XXXXXXXXXX -t how-many-days-since:local .
+docker run --rm -p 4310:4310 -e GA_MEASUREMENT_ID=G-XXXXXXXXXX how-many-days-since:local
 ```
 
 The container listens on port `4310`. Verify `/api/health`, `/api/matchup`, `/api/simulate`, and `/rivalry-lab` after deployment.
+
+### GA_MEASUREMENT_ID
+
+`SiteShell.astro` omits the gtag snippet when the variable is unset, so the host
+has to supply it **twice**:
+
+- as a **build** argument, because `/record/[year]` and `/teams/[team]/[season]`
+  set `prerender = true` and bake their HTML during `npm run build`;
+- as a **runtime** variable, for the pages that render per request.
+
+Setting only one of the two leaves half the site untagged, and the half that
+keeps working makes the gap easy to miss. `/record/1950/` is the page to check
+after a deploy.
 
 ## Rivalry Lab snapshot refresh
 
