@@ -24,10 +24,13 @@ const openGraphImage = new URL(ogImage ?? ogImagePathFor(Astro.url.pathname), si
 const openGraphImageAlt = ogImageAlt ?? (() => { const card = resolveOgCard(Astro.url.pathname); return card ? ogCardAlt(card) : description; })();
 const openGraphLogo = new URL(OG_LOGO_PATH, site).toString();
 const gaMeasurementId = import.meta.env.GA_MEASUREMENT_ID ?? process.env.GA_MEASUREMENT_ID;
-const webSiteSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'How Many Days Since Michigan Has Beaten Ohio State?', url: site });
+// One WebSite block for the site, on the page it describes. Emitting it on
+// every record page told Google that `/record/1950/` was the site root.
+const isHome = canonical === `${site}/`;
+const webSiteSchema = isHome ? JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebSite', name: 'How Many Days Since Michigan Has Beaten Ohio State?', url: site }) : undefined;
 const pageSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebPage', name: title, description, url: canonical });
 const additionalSchema = schema ? JSON.stringify(schema) : undefined;
-const nav = [{ href: '/', label: 'Home', id: 'count', icon: true }, { href: '/countdown', label: 'COUNTDOWN', id: 'countdown' }, { href: '/record', label: 'THE RECORD', id: 'record' }, { href: '/rivalry-lab', label: 'RIVALRY LAB', id: 'lab' }, { href: 'https://gwpworkshop.com/collections/rivalry-lab', label: 'MERCH', id: 'merch' }];
+const nav = [{ href: '/', label: 'Home', id: 'count', icon: true }, { href: '/countdown/', label: 'COUNTDOWN', id: 'countdown' }, { href: '/record/', label: 'THE RECORD', id: 'record' }, { href: '/rivalry-lab/', label: 'RIVALRY LAB', id: 'lab' }, { href: 'https://gwpworkshop.com/collections/rivalry-lab', label: 'MERCH', id: 'merch' }];
 ---
 <!doctype html>
 <html lang="en">
@@ -57,7 +60,7 @@ const nav = [{ href: '/', label: 'Home', id: 'count', icon: true }, { href: '/co
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={openGraphImage} />
     <meta name="twitter:image:alt" content={openGraphImageAlt} />
-    <script type="application/ld+json" set:html={webSiteSchema}></script>
+    {webSiteSchema && <script type="application/ld+json" set:html={webSiteSchema}></script>}
     <script type="application/ld+json" set:html={pageSchema}></script>
     {additionalSchema && <script type="application/ld+json" set:html={additionalSchema}></script>}
     <link rel="preconnect" href="https://fonts.googleapis.com" />

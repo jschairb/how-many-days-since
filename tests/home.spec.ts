@@ -54,7 +54,7 @@ test.describe('Count', () => {
     const nav = page.getByRole('navigation', { name: 'Site' });
     await expect(nav.getByRole('link')).toHaveCount(5);
     await expect(nav.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/');
-    await expect(nav.getByRole('link', { name: 'COUNTDOWN' })).toHaveAttribute('href', '/countdown');
+    await expect(nav.getByRole('link', { name: 'COUNTDOWN' })).toHaveAttribute('href', '/countdown/');
     await expect(page.locator('[data-live-count]')).toHaveAttribute('data-reference-date', '2024-11-30T17:00:00Z');
   });
 

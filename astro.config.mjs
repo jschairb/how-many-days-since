@@ -5,6 +5,8 @@ import robotsTxt from 'astro-robots-txt';
 
 import sitemap from '@astrojs/sitemap';
 
+const BUILD_TIME = new Date().toISOString();
+
 export default defineConfig({
   site: 'https://howmanydayssincemichiganhasbeatenohiostate.com',
   output: 'server',
@@ -18,5 +20,11 @@ export default defineConfig({
     },
   },
 
-  integrations: [robotsTxt(), sitemap()],
+  integrations: [
+    robotsTxt(),
+    // Every URL carries `lastmod`. The pages render from bundled data, so a
+    // deploy is the only thing that changes any of them, and the build time is
+    // the honest answer for all of them.
+    sitemap({ serialize: (item) => ({ ...item, lastmod: BUILD_TIME }) }),
+  ],
 });
