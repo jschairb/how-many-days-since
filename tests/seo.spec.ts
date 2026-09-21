@@ -78,15 +78,15 @@ test('serves no card for a route that has no page', async ({ request }) => {
 });
 
 test('publishes canonical metadata and structured data for Rivalry Lab', async ({ page }) => {
-  await page.goto('/rivalry-lab');
+  await page.goto('/rivalry-lab/');
 
   await expect(page).toHaveTitle(/Rivalry Lab/i);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://howmanydayssincemichiganhasbeatenohiostate.com/rivalry-lab/');
-  await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2);
+  await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1);
 });
 
 test('publishes an evidence-labeled Rivalry Lab methodology page', async ({ page }) => {
-  await page.goto('/rivalry-lab/about');
+  await page.goto('/rivalry-lab/about/');
 
   await expect(page).toHaveTitle(/Rivalry Lab Methodology/i);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -97,22 +97,54 @@ test('publishes an evidence-labeled Rivalry Lab methodology page', async ({ page
     'content',
     'https://howmanydayssincemichiganhasbeatenohiostate.com/og/rivalry-lab/about.png'
   );
-  await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2);
+  await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1);
   await expect(page.getByRole('heading', { level: 1, name: 'HOW RIVALRY LAB WORKS' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'WHAT THE LAB SHOWS' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'WHAT IT DOES NOT CLAIM' })).toBeVisible();
   await expect(page.getByText('OBSERVED', { exact: true })).toBeVisible();
   await expect(page.getByText('DERIVED', { exact: true })).toBeVisible();
   await expect(page.getByText('SIMULATED', { exact: true })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'OPEN THE LAB' }).first()).toHaveAttribute('href', '/rivalry-lab');
+  await expect(page.getByRole('link', { name: 'OPEN THE LAB' }).first()).toHaveAttribute('href', '/rivalry-lab/');
   await expect(page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).resolves.toBe(true);
 });
 
 test('links to methodology from the Rivalry Lab header', async ({ page }) => {
-  await page.goto('/rivalry-lab');
+  await page.goto('/rivalry-lab/');
 
   await expect(page.getByRole('link', { name: 'METHOD & SOURCES →' })).toHaveAttribute(
     'href',
-    '/rivalry-lab/about'
+    '/rivalry-lab/about/'
   );
+});
+
+test('sends the slashless form of a page to its canonical with a 301', async ({ request }) => {
+  for (const path of ['/countdown', '/record', '/rivalry-lab', '/rivalry-lab/about', '/mo-carmen']) {
+    const response = await request.get(path, { maxRedirects: 0 });
+    expect(response.status(), path).toBe(301);
+    expect(response.headers()['location'], path).toMatch(new RegExp(`${path}/$`));
+  }
+});
+
+test('leaves the card endpoint and the API off the redirect', async ({ request }) => {
+  // `trailingSlash: 'always'` sends these to a slash-suffixed form and 404s
+  // every card, which is why the redirect is middleware with exclusions.
+  for (const path of ['/og/home.png', '/og/record/2024.png', '/api/health']) {
+    const response = await request.get(path, { maxRedirects: 0 });
+    expect(response.status(), path).toBe(200);
+  }
+});
+
+test('carries the WebSite block on the home page alone', async ({ page }) => {
+  // The block names the site root. On `/record/1950/` it claimed that page was
+  // the root, on all 25 record pages the 2026-09-20 audit looked at.
+  const typesOn = async (path: string) => {
+    await page.goto(path);
+    const schemas = await page.locator('script[type="application/ld+json"]').allTextContents();
+    return schemas.map((text) => JSON.parse(text)['@type']);
+  };
+
+  expect(await typesOn('/')).toContain('WebSite');
+  for (const path of ['/record/1950/', '/record/', '/teams/ohio-state/2024/', '/rivalry-lab/']) {
+    expect(await typesOn(path), path).not.toContain('WebSite');
+  }
 });

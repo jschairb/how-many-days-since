@@ -87,7 +87,7 @@ test.describe('site navigation', () => {
 
   test('marks the current page inside the collapsed menu', async ({ page }) => {
     await page.setViewportSize(PHONE);
-    await page.goto('/countdown');
+    await page.goto('/countdown/');
 
     await page.locator('.site-nav-toggle').click();
     const current = page.getByRole('navigation', { name: 'Site' }).getByRole('link', { name: 'COUNTDOWN' });

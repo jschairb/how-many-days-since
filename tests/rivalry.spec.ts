@@ -20,25 +20,25 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('Record', () => {
   test('links Every Meeting to the internal game and covered team-season archives', async ({ page }) => {
-    await page.goto('/record');
+    await page.goto('/record/');
 
     const meeting = page.locator('[data-game^="2025"]');
     await expect(meeting.getByRole('link', { name: /Ohio State/ })).toHaveAttribute(
       'href',
-      '/teams/ohio-state/2025'
+      '/teams/ohio-state/2025/'
     );
     await expect(meeting.getByRole('link', { name: /Michigan/ })).toHaveAttribute(
       'href',
-      '/teams/michigan/2025'
+      '/teams/michigan/2025/'
     );
     await expect(meeting.getByRole('link', { name: '27-9' })).toHaveAttribute(
       'href',
-      '/record/2025'
+      '/record/2025/'
     );
   });
 
   test('tracks internal archive and season opens', async ({ page }) => {
-    await page.goto('/record');
+    await page.goto('/record/');
     const meeting = page.locator('[data-game^="2025"]');
     await meeting.getByRole('link', { name: '27-9' }).click();
     await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'record_game_opened', { game_year: 2025 }]);
@@ -49,7 +49,7 @@ test.describe('Record', () => {
   });
 
   test('renders a covered game with its archival facts, internal team links, and adjacent meetings', async ({ page }) => {
-    await page.goto('/record/2025');
+    await page.goto('/record/2025/');
 
     await expect(page).toHaveTitle(/2025 Ohio State vs Michigan/i);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -60,10 +60,10 @@ test.describe('Record', () => {
     await expect(page.getByTestId('game-score')).toContainText('9 MICHIGAN');
     await expect(page.getByTestId('game-facts')).toContainText('Nov 29');
     await expect(page.getByTestId('game-facts')).toContainText('Ann Arbor');
-    await expect(page.getByRole('link', { name: 'Ohio State 2025 season' })).toHaveAttribute('href', '/teams/ohio-state/2025');
-    await expect(page.getByRole('link', { name: 'Michigan 2025 season' })).toHaveAttribute('href', '/teams/michigan/2025');
+    await expect(page.getByRole('link', { name: 'Ohio State 2025 season' })).toHaveAttribute('href', '/teams/ohio-state/2025/');
+    await expect(page.getByRole('link', { name: 'Michigan 2025 season' })).toHaveAttribute('href', '/teams/michigan/2025/');
     await expect(page.getByRole('link', { name: /CFBD advanced box score/i })).toHaveAttribute('href', /collegefootballdata\.com\/boxscore\//);
-    await expect(page.getByRole('link', { name: /previous meeting: 2024/i })).toHaveAttribute('href', '/record/2024');
+    await expect(page.getByRole('link', { name: /previous meeting: 2024/i })).toHaveAttribute('href', '/record/2024/');
     await expect(page.getByRole('link', { name: /next meeting/i })).toHaveCount(0);
   });
 
@@ -84,7 +84,7 @@ test.describe('Record', () => {
 
   test('names both teams on a tied meeting outside the hero', async ({ page }) => {
     const summary = 'The 1992 Ohio State-Michigan rivalry meeting: Ohio State 13, Michigan 13 (tie).';
-    await page.goto('/record/1992');
+    await page.goto('/record/1992/');
 
     await expect(page).toHaveTitle('1992 Ohio State vs Michigan | Ohio State-Michigan');
     await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', summary);
@@ -94,13 +94,13 @@ test.describe('Record', () => {
     await expect(page.getByTestId('game-facts')).toContainText('Michigan rank');
     await expect(page.getByTestId('game-facts')).not.toContainText('Tie rank');
 
-    await expect(page.getByRole('link', { name: 'Ohio State 1992 season' })).toHaveAttribute('href', '/teams/ohio-state/1992');
-    await expect(page.getByRole('link', { name: 'Michigan 1992 season' })).toHaveAttribute('href', '/teams/michigan/1992');
+    await expect(page.getByRole('link', { name: 'Ohio State 1992 season' })).toHaveAttribute('href', '/teams/ohio-state/1992/');
+    await expect(page.getByRole('link', { name: 'Michigan 1992 season' })).toHaveAttribute('href', '/teams/michigan/1992/');
     await expect(page.getByRole('link', { name: /Tie 1992 season/ })).toHaveCount(0);
   });
 
   test('tracks each side of a tied meeting under its own team', async ({ page }) => {
-    await page.goto('/record/1992');
+    await page.goto('/record/1992/');
     await page.getByRole('link', { name: 'Ohio State 1992 season' }).click();
     await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'team_season_opened', { team: 'ohio-state', season: 1992 }]);
 
@@ -123,14 +123,14 @@ test.describe('Record', () => {
   });
 
   test('tracks an external CFBD boxscore when one is available', async ({ page }) => {
-    await page.goto('/record/2025');
+    await page.goto('/record/2025/');
     await page.getByRole('link', { name: /CFBD advanced box score/i }).click();
 
     await expect.poll(() => capturedEvents(page)).toContainEqual(['event', 'cfbd_boxscore_opened', { game_year: 2025 }]);
   });
 
   test('renders every snapshot team-season with its available profile and canonical URL', async ({ page }) => {
-    await page.goto('/teams/ohio-state/2025');
+    await page.goto('/teams/ohio-state/2025/');
 
     await expect(page).toHaveTitle(/2025 Ohio State Season/i);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -139,11 +139,11 @@ test.describe('Record', () => {
     );
     await expect(page.getByTestId('season-record')).toContainText('12-2');
     await expect(page.getByTestId('season-profile')).toContainText('OBSERVED');
-    await expect(page.getByRole('link', { name: /2025 rivalry meeting/i })).toHaveAttribute('href', '/record/2025');
+    await expect(page.getByRole('link', { name: /2025 rivalry meeting/i })).toHaveAttribute('href', '/record/2025/');
   });
 
   test('carries the drought the result ended and the one the loser was serving', async ({ page }) => {
-    await page.goto('/record/2025');
+    await page.goto('/record/2025/');
     await expect(page.getByTestId('drought-context')).toContainText('2,191 DAYS');
     await expect(page.getByTestId('drought-context')).toContainText('364 DAYS SINCE THEIR PRIOR WIN');
   });
@@ -156,7 +156,7 @@ test.describe('Record', () => {
   });
 
   test('sets both season lines beside each other on a covered meeting', async ({ page }) => {
-    await page.goto('/record/2025');
+    await page.goto('/record/2025/');
     const lines = page.getByTestId('season-lines');
     const totals = lines.locator('.season-table-wrap:not(.season-table-advanced)');
 
@@ -171,7 +171,7 @@ test.describe('Record', () => {
   });
 
   test('names its own columns on the separately scrolling box-score table', async ({ page }) => {
-    await page.goto('/record/2025');
+    await page.goto('/record/2025/');
     const advanced = page.locator('.season-table-advanced');
 
     await expect(advanced.getByRole('columnheader', { name: 'OHIO STATE' })).toBeVisible();
@@ -180,7 +180,7 @@ test.describe('Record', () => {
   });
 
   test('reads the held-out model run in the same order the page names the sides', async ({ page }) => {
-    await page.goto('/record/2011');
+    await page.goto('/record/2011/');
     const model = page.getByTestId('model-retrodiction');
 
     await expect(model).toContainText('MICHIGAN 27.5');
@@ -190,12 +190,12 @@ test.describe('Record', () => {
   });
 
   test('declines to score the model on a drawn meeting', async ({ page }) => {
-    await page.goto('/record/1992');
+    await page.goto('/record/1992/');
     await expect(page.getByTestId('model-retrodiction')).toContainText('NO WINNER TO CALL');
   });
 
   test('leaves the snapshot blocks off a meeting the model never rated', async ({ page }) => {
-    await page.goto('/record/1897');
+    await page.goto('/record/1897/');
 
     await expect(page.getByTestId('drought-context')).toBeVisible();
     await expect(page.getByTestId('season-lines')).toHaveCount(0);
@@ -203,7 +203,7 @@ test.describe('Record', () => {
   });
 
   test('holds the media guide closed until it is opened, then frames the archive reader', async ({ page }) => {
-    await page.goto('/teams/ohio-state/2023');
+    await page.goto('/teams/ohio-state/2023/');
     const panel = page.getByTestId('media-guide');
     const frame = panel.locator('iframe');
 
@@ -216,7 +216,7 @@ test.describe('Record', () => {
   });
 
   test('frames Michigan guides from Michigan items', async ({ page }) => {
-    await page.goto('/teams/michigan/2019');
+    await page.goto('/teams/michigan/2019/');
     await page.getByTestId('media-guide').locator('summary').click();
 
     await expect(page.getByTestId('media-guide').locator('iframe'))
@@ -224,23 +224,23 @@ test.describe('Record', () => {
   });
 
   test('omits the media guide panel for a season the archive has not scanned', async ({ page }) => {
-    await page.goto('/teams/ohio-state/1975');
+    await page.goto('/teams/ohio-state/1975/');
 
     await expect(page.getByTestId('season-profile')).toBeVisible();
     await expect(page.getByTestId('media-guide')).toHaveCount(0);
   });
 
   test('rounds the season scoring averages rather than printing the raw quotient', async ({ page }) => {
-    await page.goto('/teams/michigan/2019');
+    await page.goto('/teams/michigan/2019/');
     await expect(page.getByTestId('season-profile')).toContainText('31.7 PPG · 20.7 ALLOWED/G');
     await expect(page.getByTestId('season-profile')).not.toContainText(/\d\.\d{4}/);
   });
 
   test('rounds the season scoring margin and labels it per game', async ({ page }) => {
-    await page.goto('/teams/michigan/1997');
+    await page.goto('/teams/michigan/1997/');
     await expect(page.getByTestId('season-totals')).toHaveText('12 GAMES · 322 FOR · 114 AGAINST · +17.3 MARGIN/G');
 
-    await page.goto('/teams/michigan/2008');
+    await page.goto('/teams/michigan/2008/');
     await expect(page.getByTestId('season-totals')).toHaveText('12 GAMES · 243 FOR · 347 AGAINST · -8.7 MARGIN/G');
   });
 
@@ -256,7 +256,7 @@ test.describe('Record', () => {
   });
 
   test('shows the observed drought statistics section and longest Ohio State drought', async ({ page }) => {
-    await page.goto('/record');
+    await page.goto('/record/');
 
     await expect(page.getByRole('heading', { name: 'RIVALRY DROUGHTS' })).toBeVisible();
     await expect(page.getByTestId('ohio-state-longest')).toContainText('1944');
@@ -266,7 +266,7 @@ test.describe('Record', () => {
 
   test('keeps the Record page readable on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto('/record');
+    await page.goto('/record/');
 
     await expect(page.getByRole('heading', { name: 'RIVALRY DROUGHTS' })).toBeVisible();
     await expect(page.locator('.drought-comparison')).toBeVisible();
@@ -274,7 +274,7 @@ test.describe('Record', () => {
   });
 
   test('renders all 121 meetings and filters them', async ({ page }) => {
-    await page.goto('/record');
+    await page.goto('/record/');
     await expect(page).toHaveTitle(/The Record/i);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('THE RECORD');
     await expect(page.locator('[data-game]')).toHaveCount(121);
@@ -284,7 +284,7 @@ test.describe('Record', () => {
   });
 
   test('includes drought history in each Every Meeting row', async ({ page }) => {
-    await page.goto('/record');
+    await page.goto('/record/');
 
     await expect(page.getByText('DROUGHT HISTORY', { exact: true })).toHaveCount(0);
     await expect(page.locator('[data-game^="2025"] [data-drought-context]')).toContainText('Michigan');
@@ -294,16 +294,16 @@ test.describe('Record', () => {
 test.describe('Rivalry Lab', () => {
   test('links the Lab and the methodology page to each other on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto('/rivalry-lab');
-    await expect(page.getByRole('link', { name: 'METHOD & SOURCES →' })).toHaveAttribute('href', '/rivalry-lab/about');
+    await page.goto('/rivalry-lab/');
+    await expect(page.getByRole('link', { name: 'METHOD & SOURCES →' })).toHaveAttribute('href', '/rivalry-lab/about/');
 
-    await page.goto('/rivalry-lab/about');
+    await page.goto('/rivalry-lab/about/');
     await expect(page.getByRole('link', { name: 'OPEN THE LAB' }).first()).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 
   test('shows observed and derived season profiles with snapshot provenance', async ({ page }) => {
-    await page.goto('/rivalry-lab');
+    await page.goto('/rivalry-lab/');
     await page.locator('[data-osu]').selectOption('1995');
     await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
@@ -316,7 +316,7 @@ test.describe('Rivalry Lab', () => {
   });
 
   test('loads server-derived matchup values and runs a simulation', async ({ page }) => {
-    await page.goto('/rivalry-lab');
+    await page.goto('/rivalry-lab/');
     await expect(page.getByRole('heading', { level: 1, name: 'RIVALRY LAB' })).toBeVisible();
     await expect(page.locator('[data-seed]')).toHaveCount(0);
     const latestSeason = (teamId: string) => String(Math.max(
@@ -332,7 +332,7 @@ test.describe('Rivalry Lab', () => {
   });
 
   test('tracks built and simulated matchups with coverage but no seed', async ({ page }) => {
-    await page.goto('/rivalry-lab');
+    await page.goto('/rivalry-lab/');
     await page.locator('[data-osu]').selectOption('1995');
     await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
@@ -355,7 +355,7 @@ test.describe('Rivalry Lab', () => {
   });
 
   test('explains and plays one selected matchup without series controls or turning points', async ({ page }) => {
-    await page.goto('/rivalry-lab');
+    await page.goto('/rivalry-lab/');
     await page.locator('[data-osu]').selectOption('1995');
     await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
@@ -380,7 +380,7 @@ test.describe('Rivalry Lab', () => {
 
   test('keeps Tape focused on selected-season profiles and moves derived matchup outputs to Pregame', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.goto('/rivalry-lab');
+    await page.goto('/rivalry-lab/');
     await page.locator('[data-osu]').selectOption('1995');
     await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
@@ -412,7 +412,7 @@ test.describe('Rivalry Lab', () => {
 
   test('keeps the 1995 Ohio State and 2023 Michigan pregame readable on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto('/rivalry-lab');
+    await page.goto('/rivalry-lab/');
     await page.locator('[data-osu]').selectOption('1995');
     await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
@@ -430,7 +430,7 @@ test.describe('Rivalry Lab', () => {
 
   test('shows rich-data context for the 2014 Ohio State and 2023 Michigan pregame and game on desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.goto('/rivalry-lab');
+    await page.goto('/rivalry-lab/');
     await page.locator('[data-osu]').selectOption('2014');
     await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
@@ -446,7 +446,7 @@ test.describe('Rivalry Lab', () => {
 
   test('shows rich-data context for the 2014 Ohio State and 2023 Michigan on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto('/rivalry-lab');
+    await page.goto('/rivalry-lab/');
     await page.locator('[data-osu]').selectOption('2014');
     await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
@@ -463,7 +463,7 @@ test.describe('Rivalry Lab', () => {
 
   test('shows the model call with the full breakdown after one Simulate action', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.goto('/rivalry-lab');
+    await page.goto('/rivalry-lab/');
     await page.locator('[data-osu]').selectOption('2014');
     await page.locator('[data-mich]').selectOption('2023');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
@@ -496,7 +496,7 @@ test.describe('Rivalry Lab', () => {
 
   test('keeps the model call readable on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto('/rivalry-lab');
+    await page.goto('/rivalry-lab/');
     await page.getByRole('button', { name: 'BUILD MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE MATCHUP →' }).click();
     await page.getByRole('button', { name: 'SIMULATE', exact: true }).click();
