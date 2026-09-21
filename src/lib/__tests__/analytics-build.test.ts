@@ -32,3 +32,29 @@ describe('the measurement id reaches a prerendered page', () => {
     expect(dockerfile.indexOf('ENV GA_MEASUREMENT_ID')).toBeLessThan(dockerfile.indexOf('RUN npm run build'));
   });
 });
+
+/**
+ * Astro wraps a `define:vars` inline script in an IIFE, so `function gtag()`
+ * stays private to that closure and `window.gtag` never exists. The GA library
+ * reads `window.dataLayer` directly, so page_view still arrived and the gap
+ * looked like working analytics. Every custom event went nowhere:
+ * `trackEvent` and ShareGraphic both bail on `typeof window.gtag !== 'function'`.
+ *
+ * The Playwright suite cannot catch this. It stubs `window.gtag` itself, and
+ * the test server renders no tag at all.
+ */
+describe('the bootstrap reaches the custom events', () => {
+  for (const file of ['src/components/SiteShell.astro', 'src/pages/mo-carmen.astro']) {
+    it(`assigns gtag onto window in ${file}`, () => {
+      const source = read(file);
+      const bootstrap = source.slice(source.indexOf('window.dataLayer')).replace(/\s+/g, '');
+      expect(bootstrap).toContain('window.gtag=function(');
+      // A bare `function gtag()` is the closure-scoped form the IIFE swallows.
+      expect(bootstrap).not.toMatch(/(^|[^.])functiongtag\(/);
+    });
+  }
+
+  it('has the call sites read gtag off window', () => {
+    expect(read('src/lib/client/analytics.ts')).toContain('window as Window & { gtag?: Gtag }');
+  });
+});
